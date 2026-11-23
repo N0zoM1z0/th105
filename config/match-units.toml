@@ -24095,6 +24095,25 @@ rel32_targets = [
     "?common_update@KomachiActionStateView@th105@@QAEXXZ=0x004740C0",
 ]
 
+[units.exact-first-komachi-action-state.functions.switch_payload]
+size = 65176
+sha256 = "20d83eff7214346536177a1391fa993ccf62081c1b9ebc5aa048edc005094204"
+alignment_hex = "8d4900"
+table_offset = 63996
+table_entries = 2
+map_offset = 64004
+map_size = 9
+load_offset = 99
+jump_offset = 106
+additional_tables = [
+    { alignment_hex = "8d4900", table_offset = 64016, table_entries = 34, map_offset = 64152, map_size = 227, load_offset = 609, jump_offset = 616 },
+    { alignment_hex = "90", table_offset = 64380, table_entries = 41, map_offset = 64544, map_size = 226, load_offset = 10995, jump_offset = 11002 },
+    { alignment_hex = "8bff", table_offset = 64772, table_entries = 31, map_offset = 64896, map_size = 230, load_offset = 35129, jump_offset = 35136 },
+    { alignment_hex = "8bff", table_offset = 65128, table_entries = 4, jump_offset = 58919 },
+    { alignment_hex = "", table_offset = 65144, table_entries = 4, jump_offset = 59985 },
+    { alignment_hex = "", table_offset = 65160, table_entries = 4, jump_offset = 60648 },
+]
+
 [units.exact-first-marisa-action-state]
 kind = "probe"
 source = "src/characters/MarisaActionState.cpp"

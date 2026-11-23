@@ -14,15 +14,15 @@ import coff_switch_payload as payload
 import build
 
 
-def fixture(spill=False):
+def fixture(spill=False, compare=b'\x83\xf8\x01'):
     address = 0x401000
     middle = bytes.fromhex('885c2416') if spill else b''
-    load = 5 + len(middle)
+    load = len(compare) + len(middle) + 2
     jump = load + 7
     case0, case1, default = jump + 7, jump + 10, jump + 16
     code_size = default + 3
     table, index = code_size + 1, code_size + 9
-    body = (b'\x83\xf8\x01' + middle + b'\x77' + bytes([default - load])
+    body = (compare + middle + b'\x77' + bytes([default - load])
             + b'\x0f\xb6\x90' + struct.pack('<I', address + index)
             + b'\xff\x24\x95' + struct.pack('<I', address + table)
             + b'\x31\xc0\xc3' + b'\xb8\x01\x00\x00\x00\xc3'
@@ -92,12 +92,34 @@ class CompactSwitchTests(unittest.TestCase):
             with self.subTest(offset=at), self.assertRaises(ValueError):
                 payload.inspect(raw, raw, a, n, contract, r)
 
-    def test_only_one_byte_stack_store_may_intervene_without_changing_flags(self):
+    def test_scheduled_integer_stack_spill_must_be_one_byte(self):
         b, a, n, c, r = fixture(True)
         for at, value in [(3, b'\x80'), (4, b'\x5d'), (3, b'\x89'), (6, b'\xff')]:
             raw, contract = changed(b, c, at, value)
             with self.subTest(offset=at), self.assertRaises(ValueError):
                 payload.inspect(raw, raw, a, n, contract, r)
+
+    def test_register_bound_must_be_constant_on_every_incoming_path(self):
+        compare = b'\x90' * 8 + bytes.fromhex('bb01000000 90909090 3bc3')
+        body, address, size, contract, relocs = fixture(compare=compare)
+        payload.inspect(body, body, address, size, contract, relocs)
+        patches = ((9, b'\x02', 'reaching constant'),
+                   (13, b'\xb3\x00', 'reaching constant'),
+                   (0, b'\x75\x0b', 'branch escapes code or bypasses'),
+                   (0, b'\xe8\x08\x00\x00\x00', 'call bypasses'))
+        for offset, value, message in patches:
+            raw, updated_contract = changed(body, contract, offset, value)
+            with self.subTest(value=value), self.assertRaisesRegex(ValueError, message):
+                payload.inspect(raw, raw, address, size, updated_contract, relocs)
+
+    def test_scheduled_fstp_requires_a_dword_stack_slot(self):
+        body, address, size, contract, relocs = fixture(spill=True)
+        raw, updated_contract = changed(body, contract, 3, bytes.fromhex('d95c2428'))
+        payload.inspect(raw, raw, address, size, updated_contract, relocs)
+        for spill in ('dd5c2428', 'd95c24fc'):
+            raw, updated_contract = changed(body, contract, 3, bytes.fromhex(spill))
+            with self.subTest(spill=spill), self.assertRaisesRegex(ValueError, 'unsupported instruction'):
+                payload.inspect(raw, raw, address, size, updated_contract, relocs)
 
     def test_local_relocations_cannot_be_missing_duplicated_or_added_to_map(self):
         b, a, n, c, r = fixture()

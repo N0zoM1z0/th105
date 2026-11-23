@@ -58,8 +58,8 @@ the last remap byte at `0x004DEABF` from valid index 25 to valid index 26
 leaves the 2,106-byte callable comparison equal. The configured
 `switch_payload` rejects the changed object at that address.
 
-Komachi `0x005E20E0` has no `switch_payload` in its normal build unit.
-That unit compares the 63,993-byte callable and currently fails at `+8`
+Komachi `0x005E20E0` now has a complete `switch_payload` in its build unit.
+The 63,993-byte callable comparison runs first and currently fails at `+8`
 (frame `0x490` native, `0x498` rebuilt). A separate replay of the complete
 candidate section resolves 1,857 relocations and compares 65,304 rebuilt
 bytes against the 65,176-byte target envelope. The switch mapper pairs the
@@ -74,15 +74,15 @@ share one entry in the selected candidate. Their native entries at `0x005E3661` 
 non-crossing path. Expanding action 212's helper and spelling its branch
 in the opposite direction still emits the original candidate.
 
-The compact-switch verifier currently expects an immediate CMP bound and
-only recognizes specific intervening stores. Komachi has a register bound
-at `0x005E213B` and an x87 stack store between CMP and JA at
-`0x005F0DBE`. Registering a full strict contract for this root will need to
-cover those shapes and all seven tables. Keep the callable count separate
-from the full comparison. The 24 current giant-map roots have no entries in
-`matches.csv`, so this gap does not invalidate a giant-map acceptance.
-`ci.py` and the tracking check cover repository consistency. The full
-target comparison establishes byte equality at the reviewed extent.
+The compact-switch verifier checks the reaching `EBX = 8` definition at
+`0x005E210A` for the card gate's register bound at `0x005E213B`. The one
+intervening call is the VC8 deque subscript at `0x004399C0`, which preserves
+EBX. Action 730's `FSTP` at `0x005F0DBE` stores a DWORD to the stack between
+CMP and JA. The native structural check covers all seven tables, 120 jump
+words, 692 remap bytes and 11 alignment bytes. A one-byte change in each
+table is rejected at the changed address. This check uses target bytes and
+expected relocation sites. Source acceptance still requires an actual COFF
+object with all matching bytes and relocations.
 
 ## Engine references and readable source
 

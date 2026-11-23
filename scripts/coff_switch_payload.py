@@ -23,6 +23,12 @@ OPTIONAL_FIELDS = {'additional_tables', 'tail_jumps'}
 ALIGNMENT_NOPS = {bytes.fromhex(code) for code in (
     '90', '8bff', '8d4900', '8d642400', '8d9b00000000', '8da42400000000',
 )}
+NONVOLATILE_ALIASES = {
+    x.X86_REG_EBX: {x.X86_REG_EBX, x.X86_REG_BX, x.X86_REG_BL, x.X86_REG_BH},
+    x.X86_REG_EBP: {x.X86_REG_EBP, x.X86_REG_BP},
+    x.X86_REG_ESI: {x.X86_REG_ESI, x.X86_REG_SI},
+    x.X86_REG_EDI: {x.X86_REG_EDI, x.X86_REG_DI},
+}
 
 
 def validate_contract(contract, code_size):
@@ -64,6 +70,31 @@ def validate_contract(contract, code_size):
             or len(set(tail_jumps)) != len(tail_jumps)):
         raise ValueError('compact switch requires distinct in-code tail jump offsets')
     return tables
+
+
+def inspect_register_bound(ins, bound_index, expected):
+    bound = ins[bound_index]
+    reg = bound.operands[1].reg
+    aliases = NONVOLATILE_ALIASES.get(reg)
+    code_end = ins[-1].address + ins[-1].size
+    if aliases and reg != bound.operands[0].reg:
+        for index in range(bound_index - 1, -1, -1):
+            inst = ins[index]
+            if (inst.mnemonic == 'jmp' or inst.group(capstone.CS_GRP_RET)
+                    or (inst.group(capstone.CS_GRP_CALL)
+                        and (inst.operands[0].type != x.X86_OP_IMM
+                             or ins[0].address <= inst.operands[0].imm < code_end))):
+                break
+            if aliases.isdisjoint(inst.regs_access()[1]):
+                continue
+            if (inst.mnemonic == 'mov' and inst.operands[0].type == x.X86_OP_REG
+                    and inst.operands[0].reg == reg and inst.operands[1].type == x.X86_OP_IMM
+                    and inst.operands[1].imm == expected):
+                # Direct out-of-span calls preserve the nonvolatile bound register.
+                # Reject explicit entries that bypass the defining MOV.
+                return {step.address for step in ins[index + 1:bound_index + 1]}
+            break
+    raise ValueError('compact switch register bound lacks a reaching constant')
 
 
 def inspect_table(target, address, start, contract, relocations, ins, by):
@@ -111,15 +142,16 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
     scheduled = []
     bound_index = number - 2
     # These flag-preserving stores can be scheduled between CMP and JA.
-    while bound_index > 0 and ins[bound_index].mnemonic in ('mov', 'fst'):
+    while bound_index > 0 and ins[bound_index].mnemonic in ('mov', 'fst', 'fstp'):
         store = ins[bound_index]
         dest = store.operands[0]
         if (dest.type != x.X86_OP_MEM or dest.mem.index or dest.mem.segment
                 or not 0 <= dest.mem.disp <= 65535):
             raise ValueError('unsupported instruction between compact-switch bound and guard')
-        receiver_store = dest.mem.base == x.X86_REG_ESI
-        stack_spill = (dest.mem.base == x.X86_REG_ESP and dest.size == 1
-                       and store.mnemonic == 'mov' and store.operands[1].type == x.X86_OP_REG)
+        receiver_store = dest.mem.base == x.X86_REG_ESI and store.mnemonic != 'fstp'
+        stack_spill = dest.mem.base == x.X86_REG_ESP and (
+            (dest.size == 1 and store.mnemonic == 'mov' and store.operands[1].type == x.X86_OP_REG)
+            or (dest.size == 4 and store.mnemonic == 'fstp'))
         if not receiver_store and not stack_spill:
             raise ValueError('unsupported instruction between compact-switch bound and guard')
         scheduled.append(store)
@@ -127,12 +159,18 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
     bound = ins[bound_index]
     if (bound.mnemonic != 'cmp' or len(bound.operands) != 2
             or bound.operands[0].type != x.X86_OP_REG or bound.operands[0].size != 4
-            or bound.operands[0].reg != selector or bound.operands[1].type != x.X86_OP_IMM
-            or bound.operands[1].imm != case_count - 1
+            or bound.operands[0].reg != selector
             or guard.mnemonic != 'ja' or len(guard.operands) != 1
             or guard.operands[0].type != x.X86_OP_IMM
             or guard.operands[0].imm not in by
             or bound.address <= guard.operands[0].imm < jump.address + jump.size):
+        raise ValueError('compact switch bound/index/default disagree')
+    limit = bound.operands[1]
+    if limit.type == x.X86_OP_REG:
+        protected_bound = inspect_register_bound(ins, bound_index, case_count - 1)
+    elif limit.type == x.X86_OP_IMM and limit.imm == case_count - 1:
+        protected_bound = set()
+    else:
         raise ValueError('compact switch bound/index/default disagree')
     for instruction in relocated:
         field = instruction.address - address + instruction.disp_offset
@@ -142,7 +180,7 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
             raise ValueError('compact switch address lacks its local DIR32 proof')
     destinations = struct.unpack_from('<' + 'I' * contract['table_entries'], target, table)
     forbidden = {instruction.address for instruction in [*relocated, *scheduled, *dispatch_prefix, guard]}
-    return jump.address, destinations, forbidden
+    return jump.address, destinations, forbidden | protected_bound
 
 
 def inspect(canonical, target, address, code_size, contract, relocations, tail_targets=None):
@@ -206,6 +244,11 @@ def inspect(canonical, target, address, code_size, contract, relocations, tail_t
                     raise ValueError('branch escapes code or bypasses the compact-switch guard')
             else:
                 indirect.add(instruction.address)
+        elif instruction.group(capstone.CS_GRP_CALL):
+            operand = instruction.operands[0]
+            if operand.type == x.X86_OP_IMM and address <= operand.imm < address + code_size:
+                if operand.imm not in by or operand.imm in forbidden:
+                    raise ValueError('call bypasses the compact-switch guard or enters an instruction')
     if indirect != dispatches.keys():
         raise ValueError('unsupported additional indirect branch in compact-switch code')
     # Close every reachable path without interpreting metadata as executable code.
