@@ -150,9 +150,11 @@ and [retirement sharing](SAKUYA_OBJECT_UPDATE_2026_10_25.md#action-853-retiremen
 Other open leads:
 - Info effect update `0x0065CB40` now checks both jump tables through
   all 15,330 target bytes. The current 15,322-byte replay first differs
-  at `0x0065CB53`. Focus on the two candidate retirement destinations
-  for action 100 and the first `0x10BAF600` call that combines the
-  separate frame reads for 900–922.
+  at `0x0065CB53`. The two compact regions retain all 84 physical
+  destinations. Five alpha guards choose the late retirement copy.
+  The first `0x10BAF600` call preserves the two memory reads for
+  900–922 until `0x10B49300` combines them. Inspect the memory
+  definitions and intervening stores entering that pass.
   [Info effect update](INFO_EFFECT_UPDATE_2026_10_27.md#shared-exits-and-frame-reads-2026-11-23)
 - Scenario character install 0x456EB0 (one EH-state store).
 - LTCG context: `MenuCursorState::update` 0x41FA20 takes a propagated

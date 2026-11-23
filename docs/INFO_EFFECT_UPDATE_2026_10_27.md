@@ -161,11 +161,12 @@ retirement instructions. The remaining shape differences cluster in
 100 and the single body for 900 through 922. Both index maps agree
 and all 493 relocations resolve in the complete replay.
 
-The action 100 alpha test jumps to the shared low-action retirement
-at `0x0065CC9E` in the target. The current short branch reaches
-`0x0065D0F1`, the retirement after animation advance. An explicit
-goto to the low retirement yields the same 15,322 bytes. In both
-builds the successful alpha update is the conditional destination
+The alpha tests for 15, 17, 16/18, 21/22 and 100 reach the retirement
+at `0x0065CC9E` in the target. Their five candidate branches all
+reach `0x0065D0F1`, the retirement after animation advance. The 100
+branch also shrinks from six to two bytes. The explicit goto control
+yields the same 15,322 bytes. In both builds the successful alpha
+update is the conditional destination
 before the late `0x10B2C950` pass. Under `0x10B2E0D0`,
 `0x10BF2C00` replaces the branch operand as the pass moves
 the subtraction onto the fallthrough and points the branch at the
@@ -175,15 +176,18 @@ also combines the previous growth branches of 15 through 18.
 For 900 through 922, the target compares `[ESI+0x142]` with 150
 at `0x00660482`, then reads it into EAX at `0x0066049C`.
 The rebuilt code reads it into EAX before both comparisons.
-VC8 reads two separate definitions from the input at
-`0x10C064F9`. Both survive to `0x10C06C60`. The first call
-to `0x10BAF600` at `0x10C06C96` starts replacing the second
-comparison's operand. By `0x10C06D34` both comparisons reference
-the same 16-bit value, before physical register assignment.
+VC8 enters with two separate definitions at `0x10C064F9`.
+The first `0x10BAF600` call folds each definition into its own
+memory operand. They remain separate on entry to `0x10B49300`
+at `0x10C06D03`, with identical memory type and different address
+temporaries. By the return at `0x10C06D08`, both comparisons
+reference the same 16-bit value, before physical register assignment.
 Capturing a short after the fade keeps the earlier load and adds
-`MOVZX EAX, AX`. Reading it through the effect animation view emits
-that same output. Selecting the real `CObjectBase` member in the
-first fade leaves the original complete replay intact.
+`MOVZX EAX, AX`. An unsigned short capture and a read through the
+effect animation view emit that same output. Selecting the real
+`CObjectBase` member in the fade leaves the original complete replay
+intact. RTM 14.00.50727.42 and SP1 14.00.50727.762 reproduce the same
+selected payload and relocated values at all 493 sites.
 
 The shorter selected body uses the existing `GameMode` declaration
 for the exact getter at `0x0043AC40` and preserves all 72 calls.
@@ -191,3 +195,16 @@ The clearer alpha branch and named sine angle preserve the full
 canonical candidate with SHA-256
 `8b8a8449490a12b4f60fc9949d7938e65831bc43f55a644a0940d492f873d5c0`.
 The compiler traces replay the ordinary objects in full.
+
+The repository's owner audit now accepts `info-effect-update` as a
+root. Both tables keep their 84 physical destinations with no split
+groups. The audit reaches all 14,783 native callable bytes and
+reports 77 of 85 physical spans with matching instructions and edges,
+including the dispatch entry. The two direct ranges are accounted for
+by reachability and occur inside the physical spans after 30/31 and
+274. To reproduce the audit after the focused build, run
+
+```sh
+scripts/repo-python scripts/audit-giant-action-owners.py info-effect-update \
+  build/match-units/ExactFirst_InfoEffectUpdate.obj --unit exact-first-info-effect-update
+```

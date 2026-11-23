@@ -982,3 +982,32 @@ destination_table = "0x005D04F4"
 destination_count = 39
 index_table = "0x005D0590"
 expected_physical_groups = 39
+
+[[roots]]
+name = "info-effect-update"
+address = "0x0065CB40"
+callable_end = "0x006604FF"
+metadata_end = "0x00660722"
+# Action 100 and the shared 900–922 body enter through direct branches.
+expected_unique_destinations = 84
+expected_direct_call_sites = 72
+expected_direct_call_targets = 7
+expected_ret_opcodes = 10
+
+[[roots.regions]]
+name = "low"
+case_min = 1
+case_max = 33
+destination_table = "0x00660500"
+destination_count = 12
+index_table = "0x00660530"
+expected_physical_groups = 12
+
+[[roots.regions]]
+name = "high"
+case_min = 101
+case_max = 274
+destination_table = "0x00660554"
+destination_count = 72
+index_table = "0x00660674"
+expected_physical_groups = 72
