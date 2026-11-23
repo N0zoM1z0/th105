@@ -52,19 +52,23 @@ ordering. Recent focused owner extents (candidate/target) are:
 | Owner | Candidate | Target | Difference |
 |---|---:|---:|---:|
 | action 802 | 31 | 31 | exact owner extent |
-| action 811 | 1,329 | 1,507 | -178 bytes |
+| action 811 | 1,507 | 1,507 | exact owner extent; 18 diff groups |
 | action 812 | 1,393 | 1,376 | +17 bytes |
 | action 822 | 1,957 | 1,955 | +2 bytes |
 | action 869 | 1,656 | 1,736 | -80 bytes |
 | action 900 | 1,197 | 1,229 | -32 bytes |
 | action 901 | 2,241 | 2,324 | -83 bytes |
 | action 902 | 3,019 | 2,998 | +21 bytes |
-| action 903 | 1,391 | 1,397 | -6 bytes |
-| action 908 | 3,793 | 3,794 | -1 byte |
+| action 903 | 1,403 | 1,397 | +6 bytes |
+| action 908 | 3,791 | 3,794 | -3 bytes |
 
 Action 811 now keeps sequence-3 and sequence-4 channel/alpha fades as separate
 branches, matching the target's two control-flow paths rather than combining
-them under one `sequence == 3 || sequence == 4` condition.
+them under one `sequence == 3 || sequence == 4` condition. Its final pure
+state-field test is ordered sequence-first so Clang does not tail-merge the
+811 epilogue into action 804. This restores a distinct 1,507-byte owner; the
+owner extent now matches the target, while 18 instruction-difference groups
+remain and the condition order itself is not yet byte-identical.
 
 Action 900's sequence-0/1 retirement exits select their own packet and word
 count, then converge on one local `spawn_unparented_related_object` call and
@@ -92,15 +96,16 @@ to their owning cases, allowing the compiler to reuse stack storage.
 ## Current root status and next work
 
 The focused owner audit reports a 46,138-byte target callable extent,
-45,472 candidate main bytes, a 46,340-byte candidate section tail, and 1,204
-instruction-difference groups (down from 1,300 before the direct retirement
-calls). Action 802 remains one exact 31-byte owner. The complete root is still
-nonexact: the root comparison's first mismatch remains at `0x0049655F`
-(offset `+0x1F`). Action 822 and 908 are now within two and one bytes by owner
-extent, respectively, but the large 811/869/900/901 and 816/817/905/951
-families still need their original shared-tail and register lifetimes
-recovered. Continue with those large handlers and the remote owner boundary;
-do not substitute a full cold replay for focused changed-owner builds.
+45,676 candidate main bytes, a 46,544-byte candidate section tail, and 1,198
+instruction-difference groups (down from 1,204 before restoring the distinct
+811 epilogue). Action 802 remains one exact 31-byte owner, and action 811 now
+matches its 1,507-byte owner extent. The complete root is still nonexact: the
+root comparison's first mismatch remains at `0x0049655F` (offset `+0x1F`).
+Actions 822 and 908 are within two and three bytes by owner extent. The larger
+remaining deficits include 869/900/901 and 816/817/905/951; continue
+recovering their original shared-tail and register lifetimes together with
+the remote owner boundary. Do not substitute a full cold replay for focused
+changed-owner builds.
 
 The exact 66-byte helper at `0x004963A0` remains independently exact.
 

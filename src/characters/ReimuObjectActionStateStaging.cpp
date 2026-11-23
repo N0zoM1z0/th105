@@ -638,7 +638,8 @@ retire_801_811:
             goto retire;
         if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
             --_root_state.state_330;
-        if (_root_state.counter_144 == 0 && _root_state.frame_timer_142 == 0 && _root_state.frame_140 == 0 && _root_state.sequence_13e == 2)
+        if (_root_state.sequence_13e == 2 && _root_state.counter_144 == 0 &&
+                _root_state.frame_timer_142 == 0 && _root_state.frame_140 == 0)
             --_root_state.state_330;
         return;
 
@@ -2763,8 +2764,6 @@ fade_902:
         float packet_903_health[3];
         float packet_903_burst[3];
         register int match_step = 1;
-        const unsigned *retiring_packet_903 = 0;
-        int retiring_words_903 = 0;
         if (_root_state.phase_state_180 == 5)
             goto retire;
         switch (_root_state.sequence_13e) {
@@ -2775,9 +2774,12 @@ fade_902:
                 packet_903_health[0] = 0.0f;
                 packet_903_health[1] = 0.0f;
                 packet_903_health[2] = static_cast<float>(_root_state.sequence_13e + 6.0);
-                retiring_packet_903 = reinterpret_cast<const unsigned *>(packet_903_health);
-                retiring_words_903 = 3;
-                break;
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    903, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                    static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(packet_903_health), 3);
+                --_root_state.state_330;
+                return;
             }
             if (_root_state.state_364 == 0) {
                 reinterpret_cast<float *>(copied_words_340)[1] = static_cast<float>(reinterpret_cast<float *>(copied_words_340)[1] * static_cast<double>(0.95f));
@@ -2840,9 +2842,12 @@ fade_902:
                 packet_903_burst[0] = 0.0f;
                 packet_903_burst[1] = 0.5f;
                 packet_903_burst[2] = static_cast<float>(_root_state.sequence_13e + 6.0);
-                retiring_packet_903 = reinterpret_cast<const unsigned *>(packet_903_burst);
-                retiring_words_903 = 3;
-                break;
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    903, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                    static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(packet_903_burst), 3);
+                --_root_state.state_330;
+                return;
             }
             break;
         case 3: case 4: case 5:
@@ -2863,14 +2868,6 @@ fade_902:
                 goto retire;
             _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 - 10);
             break;
-        }
-        if (retiring_packet_903) {
-            reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                903, effect_000.object_x_0e8, effect_000.object_y_0ec,
-                static_cast<unsigned char>(effect_000.object_facing_100), 1,
-                retiring_packet_903, retiring_words_903);
-            --_root_state.state_330;
-            return;
         }
         effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
         effect_000.object_y_0ec += effect_000.motion_0f0.velocity_y;
