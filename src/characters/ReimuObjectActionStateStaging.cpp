@@ -115,8 +115,10 @@ void th105::reimu_object_model::ReimuObject::dispatch_action_state()
     case 800:
         if (_root_state.phase_state_180 == 5 || (_root_state.sequence_13e == 0 &&
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
-                    emit_repeated_effects_for_owner_state(0, 0, 3)))
-            goto retire;
+                    emit_repeated_effects_for_owner_state(0, 0, 3))) {
+            --_root_state.state_330;
+            return;
+        }
         if (_root_state.counter_144 == 0 && _root_state.frame_timer_142 == 0 && _root_state.frame_140 == 0 && _root_state.sequence_13e == 0) {
             reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
                 replace_secondary_animation(993, 10.0f, 10, 1, 2);
@@ -141,15 +143,21 @@ void th105::reimu_object_model::ReimuObject::dispatch_action_state()
         if (_root_state.sequence_13e == 1) {
             effect_000.reset_one_118 = static_cast<float>(effect_000.reset_one_118 + static_cast<double>(0.1f));
             effect_000.reset_one_11c = static_cast<float>(effect_000.reset_one_11c * static_cast<double>(0.65f));
-            if (_root_state.alpha_113 < 5)
-                goto clear_alpha_and_retire;
+            if (_root_state.alpha_113 < 5) {
+                _root_state.alpha_113 = 0;
+                --_root_state.state_330;
+                return;
+            }
             _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 - 5);
         }
         if (_root_state.sequence_13e == 2) {
             effect_000.reset_one_118 = static_cast<float>(effect_000.reset_one_118 + static_cast<double>(0.4f));
             effect_000.reset_one_11c = static_cast<float>(effect_000.reset_one_11c + static_cast<double>(0.4f));
-            if (_root_state.alpha_113 < 25)
-                goto clear_alpha_and_retire;
+            if (_root_state.alpha_113 < 25) {
+                _root_state.alpha_113 = 0;
+                --_root_state.state_330;
+                return;
+            }
             _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 - 25);
         }
         if (_root_state.phase_state_180 != 0 && _root_state.sequence_13e == 0) {
@@ -162,7 +170,32 @@ void th105::reimu_object_model::ReimuObject::dispatch_action_state()
                     reinterpret_cast<int>(copied), 3);
             return;
         }
-        goto bounded_projectile_advance;
+        if (effect_000.object_x_0e8 > 1380.0 || effect_000.object_x_0e8 < -100.0 || effect_000.object_y_0ec > 1000.0 || effect_000.object_y_0ec < -120.0) {
+            --_root_state.state_330;
+            return;
+        }
+        if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
+            --_root_state.state_330;
+        if (_root_state.counter_144 == 0 && _root_state.frame_timer_142 == 0 && _root_state.frame_140 == 0 && _root_state.sequence_13e == 2)
+            --_root_state.state_330;
+        return;
+
+// Shared early retirement path for action 800's sequence-1/2 fade exits.
+clear_alpha_and_retire:
+    _root_state.alpha_113 = 0;
+retire:
+    --_root_state.state_330;
+    return;
+
+bounded_projectile_advance:
+    if (effect_000.object_x_0e8 > 1380.0 || effect_000.object_x_0e8 < -100.0 || effect_000.object_y_0ec > 1000.0 || effect_000.object_y_0ec < -120.0)
+        goto retire;
+advance_with_sequence_two_retirement:
+    if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
+        --_root_state.state_330;
+    if (_root_state.counter_144 == 0 && _root_state.frame_timer_142 == 0 && _root_state.frame_140 == 0 && _root_state.sequence_13e == 2)
+        --_root_state.state_330;
+    return;
 
     case 801:
         if (effect_000.object_x_0e8 > 1380.0 || effect_000.object_x_0e8 < -100.0 || effect_000.object_y_0ec > 1000.0 || effect_000.object_y_0ec < -240.0 ||
@@ -3826,15 +3859,6 @@ select_sequence_three:
     select_sequence(3);
     return;
 
-bounded_projectile_advance:
-    if (effect_000.object_x_0e8 > 1380.0 || effect_000.object_x_0e8 < -100.0 || effect_000.object_y_0ec > 1000.0 || effect_000.object_y_0ec < -120.0)
-        goto retire;
-advance_with_sequence_two_retirement:
-    if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
-        --_root_state.state_330;
-    if (_root_state.counter_144 == 0 && _root_state.frame_timer_142 == 0 && _root_state.frame_140 == 0 && _root_state.sequence_13e == 2)
-        --_root_state.state_330;
-    return;
 
 advance_with_sequence_retirement:
     if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
@@ -3849,9 +3873,4 @@ advance_and_retire_on_completion:
     if (!reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
         return;
     goto retire;
-clear_alpha_and_retire:
-    _root_state.alpha_113 = 0;
-retire:
-    --_root_state.state_330;
-    return;
 }
