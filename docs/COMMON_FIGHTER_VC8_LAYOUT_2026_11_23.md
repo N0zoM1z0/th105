@@ -333,10 +333,10 @@ site, or removing a register restore or a direct-tail relocation is rejected.
 reports zero differences after all 393 relocations. The complete
 10,725-byte envelope includes the one-byte alignment at `0x004768AB`.
 The exact ledger records 10,219 callable bytes. The owner diagnostic
-reports one extra trailing NOP in candidate action 799 because it ends
-the candidate span at the first table. The complete byte comparison
-verifies that NOP as the metadata alignment on both sides.
+reports 66 of 66 identical instruction and edge owners. It ends the last
+owner at the callable boundary when the code and pre-table alignment
+match. The complete byte comparison includes the NOP in the envelope.
 
 The focused build and owner commands are in the
-[giant root review](GIANT_ROOT_REVIEW_2026_11_23.md#reproduce-the-selected-baselines).
+[giant root review](GIANT_ROOT_REVIEW_2026_11_23.md#reproduce-the-scoped-comparisons).
 The private driver and retained trace inputs are under `build/common-vc8/`.

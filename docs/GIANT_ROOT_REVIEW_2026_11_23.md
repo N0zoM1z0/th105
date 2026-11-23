@@ -1,12 +1,12 @@
 # Giant action root review
 
-Start the compiler investigation at the shared Fighter root `0x004740C0`.
-The VC8 SP1 baseline for this review reproduces 53 of 66 physical owners in the
-instruction/edge diagnostic. Its 10,219-byte callable still differs at
-`+0x14`, and the candidate section is 10,801 bytes versus a 10,725-byte
-target envelope. It is small enough to review all the remaining shared
-tails and is called by all fifteen roster Fighter roots. All TH105 results
-below use the hash-attested Japanese 1.06a PE.
+The shared Fighter root `0x004740C0` now matches its complete 10,725-byte
+envelope. All fifteen roster Fighter roots call it. The experiments below
+start from its earlier VC8 SP1 build, which matched 53 of 66 physical
+owners in the instruction and edge diagnostic. That build first differed
+at `+0x14` and emitted 10,801 bytes. The [compiler layout
+note](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md) records the final recovery.
+All TH105 results use the hash-attested Japanese 1.06a PE.
 
 ## The difference can originate in another case
 
@@ -110,9 +110,10 @@ object with all matching bytes and relocations.
   consumers, evaluation order and individual x87 rounding points visible
   during review. [Checked motion fields](KOMACHI_ACTION_STATE_2026_10_28.md#checked-motion-fields-2026-11-23)
 
-## Reproduce the selected baselines
+## Reproduce the scoped comparisons
 
 ```sh
+export DISPLAY= WAYLAND_DISPLAY=
 scripts/repo-python scripts/build.py --unit exact-first-sakuya-action-initialization --compare --json
 scripts/repo-python scripts/build.py --unit exact-first-komachi-action-state --compare --json
 scripts/repo-python scripts/compare-giant-action-switches.py komachi-vslot28 build/match-units/ExactFirst_KomachiActionState.obj --json

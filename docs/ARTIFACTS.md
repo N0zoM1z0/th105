@@ -31,8 +31,6 @@ extents and relocations. Historical objects or receipts do not replace it.
   `.analysis/archive-loader-shape-20261019/primary-before/`.
 - Six detached worktrees under `.analysis/gptweb_*_wt` contain uncommitted work.
   Preserve them until their work is reconciled.
-- Input, Scenario, MenuCursor and Alice trial inputs related to the main
-  worktree's uncommitted changes remain available for review.
 - Reimu's linked owner closure under
   `build/reimu-object-owner-closure-20261022/` and its provider inputs retain a
   qualified 48-object compiler context. Related private recipes remain under
@@ -51,7 +49,10 @@ extents and relocations. Historical objects or receipts do not replace it.
 
 Generated products belong under `build/`; private analysis belongs under
 `.analysis/`. Current `build/match-units/` and `build/origin-anchors/` caches are
-convenient working outputs. Rebuild the affected units when fresh proof is needed.
+convenient working outputs. Rebuild the affected units when fresh proof is
+needed. The original Boost link driver recompiles every `original-*.obj`
+from its pinned inputs before linking, so those intermediates can be removed
+after the linked image, map and receipt are recorded.
 Keep reference SDK/library inputs required by the configured tools. The optional VC8
 manual cache can be downloaded again with `scripts/repo-python
 scripts/reference-vc8.py --fetch`; its source manifest and page index stay in Git.

@@ -1611,11 +1611,18 @@ byte-index tables in the same `.text` section. The target callable ends at RET
 `0x004768AA`. Use that boundary for code accounting, and use the table topology
 to locate case differences before running the full comparison.
 
-Use the physical switch tables as source-ownership evidence.  For this root the current target low switch has 51 destinations and the high switch has 15.  Recovering the target-proven 62/67/66 shared lane changed VC8's low table from a three-way fold at 62/63/64 into the correct three independent entries without byte padding or artificial liveness.  Conversely, attempting to preserve a destination solely by inventing locals is rejected: several safe source spellings for actions 50..52 still fold under ordinary `/O2`, and predicate rewrites that change unordered floating-point behavior are semantically invalid even when they alter code layout.
+The native low and high switches have 51 and 15 destinations. The selected
+single switch reproduces both selector instructions. The default edge to the
+return in 75 and the switch exits in the clamp paths preserve the original
+entries and shared tails. The complete comparison covers both tables and
+all 393 relocations. [Compiler layout trace](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md).
 
 x87 operand order is source evidence, not cosmetic syntax.  The target action-145/149 gate loads 2.0 after checking the sequence and compares `2.0f > velocity_y`; writing the mathematically equivalent member-first comparison caused VC8 to hoist the constant across the switch and inject `fstp st` at unrelated case entries.  Restore the observed operand lifetime rather than compensating later with flags or fake stack variables.
 
-Before trying `/GL`, check the actual linked prologue.  A bounded `/O2 /GL + /LTCG` experiment for `0x004740C0` produced an aligned EBP frame unlike the shipped four-byte temporary frame, so LTCG is negative provenance evidence for this root.  `/Z7`, `/Gy±`, `/Oi-` and `/Ob0` also do not change the remaining 51/52 fold; `/Oy-` changes the function frame and is rejected.  Profile experimentation is useful only to classify provenance, never to accept a size-only coincidence.
+An earlier `/O2 /GL + /LTCG` experiment for `0x004740C0` produced an
+aligned EBP frame. The shipped root uses a four-byte temporary frame.
+`/Z7`, `/Gy±`, `/Oi-` and `/Ob0` preserved the earlier 51/52 fold.
+The exact build uses the pinned ordinary VC8 SP1 profile.
 
 The CBitmapData lane now also demonstrates a mixed exact/nonexact unit. `/GS` source keeps ctor/scalar-dtor/dtor/copy exact and adds an exact 33-byte libpng read callback, while the two large file loaders remain deliberately nonexact on FileReaderOwner late-inline/EH scheduling. A matching section size produced by an LTCG experiment is still not acceptance: `load_from_file` can link to exactly 448 bytes while simultaneously private-specializing `FileReaderOwner::open` into the wrong ABI. Always replay the canonical target relocations and compare the actual callable bytes.
 

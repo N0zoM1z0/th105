@@ -1,13 +1,12 @@
 # SakuyaObject complete update: 2026-10-25
 
-`SakuyaObject_update_action_state @ 0x004E0D30` now has a manual complete-body
-source hypothesis. The first differing field at `0x004E0D55` points to
-`0x004E7E55` in the rebuild and `0x004E7E50` in the target. The
-default frame call and its seven epilogue instructions agree after
-rebasing. The selected source restores action
-803's alpha continuations and the 920 match-ID switch layout. See
-[the action 803 comparison](#action-803-keeps-two-alpha-calls) and
-[the frame-path comparison](#frame-calls-and-cross-case-registers).
+The selected [update source](../src/characters/SakuyaObjectUpdate.cpp)
+for `0x004E0D30` emits 29,480 bytes with 742 relocations. The target
+envelope is 29,476 bytes. The strict comparison first differs at
+`0x004E0D55`, the primary default branch displacement. The rebuild
+keeps all 17 animation-advance call owners. Useful open leads are
+the [action 900 landing sum](#the-entry-y-bounds-affect-the-landing-sum)
+and [action 853 retirement](#action-853-retirement-is-shared-with-action-805-in-the-rebuild).
 
 ## Observed target and complete boundary
 
@@ -1073,7 +1072,7 @@ constant setup now differs again. VC8 puts 2 in EDI and zero in EBX.
 Reverting the 816 owner cutoff to `< 2` leaves these registers swapped
 and loses the native compare encoding.
 
-The current envelope is 29,492 bytes with 742 relocations, SHA256
+That checkpoint emitted 29,492 bytes with 742 relocations, SHA256
 `cc919178c9c15f2cde245c0486a12d50a1a1a075aba053291f4403e264d2a40d`.
 The target envelope is 29,476 bytes. The first difference is at the
 primary default branch, `0x004E0D55`. Both 803 alpha paths and the

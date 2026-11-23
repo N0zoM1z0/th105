@@ -2,33 +2,27 @@
 
 ## Acceptance boundary
 
-A same-sized switch arm is not necessarily reconstructed. The common Fighter
-root supplied three independent counterexamples: `test eax,eax` versus
-`test al,al`, unsigned `ja/jbe` versus Boolean `jne/je`, and a same-length
-backward jump to the wrong physical owner. None changes an arm's byte count.
+Equal-length switch arms can still differ in their register widths, branch
+predicates and physical destinations. Earlier builds of the common Fighter
+root showed all three.
 
-`audit-giant-action-owners.py` is a diagnostic companion to the existing target
-switch mapper and strict function comparator. It does **not** award partial
-function/byte credit and does not write candidate, origin, or match ledgers.
-The only acceptance gate remains the complete canonical comparison.
+`audit-giant-action-owners.py` diagnoses instruction and edge differences.
+The complete canonical comparison verifies exactness.
 
 ```bash
-python3 -m pip install -r scripts/requirements-ci.txt
-python3 scripts/check-ida-mcp.py
-python3 scripts/build.py --unit gpt-web-fighter-common-action-state --compare --json
-python3 scripts/compare-giant-action-switches.py fighter-common-action \
+export DISPLAY= WAYLAND_DISPLAY=
+scripts/repo-python scripts/build.py --unit gpt-web-fighter-common-action-state --compare --json
+scripts/repo-python scripts/compare-giant-action-switches.py fighter-common-action \
   build/match-units/GptWeb_FighterCommonActionState.obj --json
-python3 scripts/audit-giant-action-owners.py fighter-common-action \
+scripts/repo-python scripts/audit-giant-action-owners.py fighter-common-action \
   build/match-units/GptWeb_FighterCommonActionState.obj \
   --unit gpt-web-fighter-common-action-state --json
 ```
 
-The build/comparison command currently returns exit 1 for this nonexact probe.
-The audit returning exit 0 means the diagnostic completed, **not** that the
-function matched. Its JSON is explicitly marked
-`diagnostic_only_not_exact_acceptance` and pins both target and object hashes.
-Capstone is pinned to the 4.0.2 decoder used for this checkpoint; the CI
-requirements also supply its `distutils` dependency on Python 3.12 and later.
+The common Fighter unit reports an exact 10,725-byte envelope, and the
+diagnostic pairs all 66 physical owners. An audit exit code of 0 means
+the diagnostic ran successfully. Check the strict comparison result
+for exactness. The audit reads the target PE and COFF object directly.
 
 ## What the diagnostic preserves
 
@@ -52,8 +46,9 @@ For the common root this is **65 destinations + 1 entry = 66 owners**. This
 is NOT the older span mapper's 66 rows, which count the cross-region default
 twice and omit the dispatcher. Do not interchange their numerators.
 
-The independent raw-code traversal starts at the PE entry, expands only the
-validated byte-index switch tables, and follows direct internal control flow.
+The independent raw-code traversal starts at the callable entry in
+the PE, expands the configured switch tables and follows direct internal
+control flow.
 It records external calls/tail jumps and internal call entries rather than
 searching for apparent `E8` bytes inside data or instruction operands. Unknown
 indirect exits remain visible; it does not invent destinations for them or
@@ -70,9 +65,9 @@ closure, source ownership or exactness.
 
 ## 2026-09-07 common Fighter recovery
 
-Later checkpoint: the [2026-09-12 landing recovery](COMMON_FIGHTER_LANDING_EVIDENCE_2026_09_12.md)
-improves the current source to 52/66 owners and metadata +0x2838. The numbers
-in this dated section remain historical observations, not current totals.
+The [2026-09-12 landing recovery](COMMON_FIGHTER_LANDING_EVIDENCE_2026_09_12.md)
+reached 52 of 66 owners. The [November layout recovery](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md)
+matched the full envelope.
 
 Target: `Fighter_update_common_action_state @ 0x004740C0`, original Japanese
 TH105 1.06a, SHA-256

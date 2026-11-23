@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit giant-root instruction/edge identity and raw reachable candidate boundaries.
+"""Compare giant-root owner instructions and edges, and audit target reachability.
 
 This report is diagnostic only. It neither records matches nor awards partial
 function/byte credit. Canonical acceptance remains compare-function.py.

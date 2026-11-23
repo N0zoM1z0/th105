@@ -6,12 +6,12 @@ contains the current sequence/frame execution controls. The earlier
 related frame-limit field and scoped motion matrix.
 The code-generation observations below retain their checkpoint scope.
 
-The active major target is `Fighter_update_common_action_state @ 4740C0`,
-the 10219-byte CharacterEx method used by all 15 roster action roots. It remains
-nonexact. This pass adds receiver-domain evidence for its eight register tail
-jumps, aligns the source call interface with already accepted animation
-methods, and improves the independently attested Ghidra working model.
-No function or partial authored bytes are credited as exact.
+`Fighter_update_common_action_state` at `0x004740C0` is the 10,219-byte
+CharacterEx method used by all 15 roster action roots. This October
+checkpoint recovered receiver evidence for the eight register tail jumps
+and corrected the source call interface. The [later exact
+match](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md) covers the callable and both
+switch tables.
 
 ## Target observations
 
@@ -135,14 +135,12 @@ The earlier PIC/unreachable-block warnings and the eight root-local virtual
 tail warnings are gone. A warning at helper 4351F8 remains outside this root;
 its separate indirect behavior is not qualified by this packet.
 
-The
-canonical root object stays in its configured match-unit path. Reproduce the main
-checks:
+The current unit builds and compares the complete root headlessly.
 
 ```bash
-python3 scripts/build.py --unit gpt-web-fighter-common-action-state --json
-python3 scripts/compare-unit-object.py gpt-web-fighter-common-action-state build/match-units/GptWeb_FighterCommonActionState.obj --json
-python3 scripts/audit-giant-action-owners.py fighter-common-action build/match-units/GptWeb_FighterCommonActionState.obj --unit gpt-web-fighter-common-action-state --json
+export DISPLAY= WAYLAND_DISPLAY=
+scripts/repo-python scripts/build.py --unit gpt-web-fighter-common-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py fighter-common-action build/match-units/GptWeb_FighterCommonActionState.obj --unit gpt-web-fighter-common-action-state --json
 ```
 
 The new receiver-flow tests reject volatile-call clobbers, conflicting incoming
