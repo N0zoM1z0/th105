@@ -71,8 +71,9 @@ Smallest remaining character residuals, after the literal pass:
 
 The checked receiver layouts for Youmu's Fighter initializer and Sakuya's
 Object initializer preserve both complete VC8 baselines. Youmu's remaining
-difference is the placement of the shared 601/604 branch. Sakuya's is the
-virtual selector and the later spawn argument scheduling in action 803.
+difference is the placement of the shared 601/604 branch. The same early
+C2 pass adds the jump after Youmu's phase-5 assignment. Sakuya still differs
+at the virtual selector and the later spawn argument scheduling in action 803.
 See the [Youmu](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md) and
 [Sakuya](SAKUYA_OBJECT_ENTRY_2026_10_24.md) case notes for the byte-neutral trials.
 

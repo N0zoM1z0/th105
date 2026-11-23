@@ -145,6 +145,28 @@ The target PE and selected object are unchanged. Five synthetic fixtures cover
 both EAX/ECX tables, invalid final indices, metadata destinations, truncated
 remaps and an unreviewed external CFG tail.
 
+## VC8 block ordering, 2026-11-23
+
+A headless trace of the pinned VC8 SP1 back end reproduces the complete
+1,874-byte candidate and all 60 relocations. At `c2.dll:0x10B26CA8`, the
+phase-5 assignment is followed by the common publication statements in
+the instruction list. The same nodes survive `0x10B281E0`. At its return
+at `0x10B26CAE`, an extra branch record follows phase 5, and the shared
+publication now follows phase 6. The final object encodes that branch as
+`EB 02` at root offset `+0x4EC`. The native byte store starts there.
+This is the same list-splicing pass observed in
+[the common Fighter trace](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md).
+
+Moving the 604 stub next to 601, putting the 602 group before both, spelling
+the shared motion reset as a direct fallthrough, and compiling independent
+copies of the 600/603 or 602 reset statements each reproduce the same
+44 differences. Placing the 604 stub before the 601 body reverses
+the two phase constants and their table entries, leaving 46 differences
+as in the earlier reversed-order control. Keep the checked source.
+Compare the incoming block lists at the layout pass when testing another
+source context. The change in layout is already present before native
+instruction encoding.
+
 ## Reproduction and next scope
 
 Use locked repository Python and serial CPU 0/nice10 jobs. Build/comparison and
