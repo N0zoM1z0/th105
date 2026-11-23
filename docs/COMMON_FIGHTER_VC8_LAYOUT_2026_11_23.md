@@ -1,5 +1,11 @@
 # Common Fighter sequence selection and VC8 block order
 
+`CharacterEx::update_common_action_state` at `0x004740C0` is exact under
+VC8 SP1. A single action switch produces both native selector instructions.
+The switch exits and the explicit edge to the shared return keep the
+original case entries and shared tails. The checkpoints below show how
+those responsibilities affect one another.
+
 The target places the sequence tail of common Fighter `0x004740C0` at
 `0x00474992`, inside action 73. Actions 75 and 88 jump to it with an
 x87 zero live. The selected source gives each case its own selection and
@@ -280,6 +286,31 @@ lexical `default` label in the early-pivot trial preserves its complete
 output. A source change needs the in-place operand identities at
 `0x10C0B1FE` and the physical case entries of the selected build.
 
+## Distinct entries in the single switch
+
+In the flat control with a direct return in 54, the calls at the
+entries of 51, 52 and 62–64 survive through x87 lowering at
+`0x10C077B1`. The late splice at `0x10B30CE6` releases the original
+entry calls of 51, 63, 64 and 690. Making 690 the direct return instead
+reverses the 54/690 pairing. In that build the late comparator finds
+eight equivalent instructions in each of the 62/63/64 pairs and leaves
+their entries distinct.
+
+Branching from `default` to the return in 75 restores all 51 low slots.
+With direct returns in both 54 and 690 and the switch exit in 50, the
+shared landing entry is back at `0x00474375` and the common return at
+`0x00474B91`. The already matching 50–67 cases survive this change.
+In the exact build, the trace after `0x10C077B6` still shows the
+separate entries of 51, 52 and 62–64. The entry for 54 survives and
+the duplicate landing in 690 is released.
+
+Using the switch exit for the landed path in 71, the two transitions
+in 74 and the rebound in 76 restores the landing and sequence owners.
+The same exit choice in 145 and 158 puts their shared tails back in the
+original cases. The remaining difference is one byte in 790's branch
+displacement. Giving 140 the switch exit sends the branch to
+`0x00475440` inside 140, matching the last byte.
+
 ## Complete comparison
 
 The full target envelope is 10,725 bytes. It ends at `0x00476AA5`, after
@@ -298,14 +329,13 @@ classes, bind slot `+0x14` to the exact 138-byte `next_sequence_block` at
 The pinned target passes the structural check using its decoded relocation
 sites. Changing the last index in either table, omitting a virtual tail
 site, or removing a register restore or a direct-tail relocation is rejected.
-The complete 10,725-byte candidate resolves all 393 relocations and
-differs in seven bytes. At `0x004740DE` and `0x00475E20`, VC8 emits
-`ADD EAX,-50` and `ADD EAX,-691`; the target uses `SUB EAX,50` and
-`SUB EAX,691`. The alignment byte at `0x004768AB` matches, as do all 66
-jump words and 241 remap bytes. The owner diagnostic counts the trailing
-NOP as part of candidate action 799 and excludes it from the target
-callable, so it also reports that span despite its identical code and
-alignment bytes. The remaining exact work is the two selector encodings.
+`scripts/repo-python scripts/build.py --unit gpt-web-fighter-common-action-state --compare --json`
+reports zero differences after all 393 relocations. The complete
+10,725-byte envelope includes the one-byte alignment at `0x004768AB`.
+The exact ledger records 10,219 callable bytes. The owner diagnostic
+reports one extra trailing NOP in candidate action 799 because it ends
+the candidate span at the first table. The complete byte comparison
+verifies that NOP as the metadata alignment on both sides.
 
 The focused build and owner commands are in the
 [giant root review](GIANT_ROOT_REVIEW_2026_11_23.md#reproduce-the-selected-baselines).

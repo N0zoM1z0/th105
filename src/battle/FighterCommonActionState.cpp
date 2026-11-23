@@ -186,16 +186,8 @@ void CharacterEx::update_common_action_state()
   float v119; // [esp+20h] [ebp-4h]
   float v120; // [esp+20h] [ebp-4h]
   const int action = action_13c;
-  if ( action <= 690 )
-  {
-    if (action == 690)
-      goto resolve_landing_then_advance;
-    else
-    {
-    switch (action)
-    {
-      // This return lets the action-0 clamp merge before the action-2
-      // clamp at case 62, which exits through the switch.
+  switch (action) {
+      // The switch exit keeps this clamp ahead of the later copies.
       case 50:
         resolve_stage_surface_landing_transition();
         if (velocity_x_f4 < 0.0) {
@@ -206,7 +198,7 @@ void CharacterEx::update_common_action_state()
           peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
         if (advance_frame_and_dispatch())
           set_action(0);
-        return;
+        break;
 
       case 51:
         resolve_stage_surface_landing_transition();
@@ -261,11 +253,10 @@ void CharacterEx::update_common_action_state()
 
       case 54:
       case 60:
-resolve_landing_then_advance:
         resolve_stage_surface_landing_transition();
         if (advance_frame_and_dispatch())
           set_action(0);
-        break;
+        return;
 
       case 55:
       case 61:
@@ -381,8 +372,7 @@ resolve_landing_then_advance:
       }
 
       case 71:
-        // This return owns the publisher/event tail. The later landing
-        // consumers join the switch exit instead of owning another copy.
+        // The switch exit keeps this landing sequence as the shared copy.
         if (sequence_13e == 1 && velocity_y_f8 < 2.0) {
           next_sequence_block();
           return;
@@ -399,7 +389,7 @@ resolve_landing_then_advance:
           set_action(97);
           publish_battle_layout_scalar(2.0f);
           dispatch_indexed_event_member(0x16u);
-          return;
+          break;
         }
         if (word_730 > 0)
           --word_730;
@@ -473,11 +463,11 @@ resolve_landing_then_advance:
         }
         if (classify_fighter_x_boundary() && velocity_x_f4 <= -25.0) {
           set_action(76);
-          return;
+          break;
         }
         if (classify_fighter_x_boundary() && velocity_x_f4 <= -15.0) {
           set_action(78);
-          return;
+          break;
         }
         velocity_y_f8 -= acceleration_y_100;
         if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
@@ -513,8 +503,10 @@ resolve_landing_then_advance:
           break;
         }
         advance_frame_and_dispatch();
-        if (frame_counter_144)
+        if (frame_counter_144) {
+finish_common_action:
           return;
+        }
         if (frame_timer_142)
           return;
         if (frame_index_140)
@@ -552,7 +544,7 @@ resolve_landing_then_advance:
           acceleration_y_100 = 0.5f;
           facing_104 = -facing_104;
         }
-        return;
+        break;
 
       case 77:
         angle_12c -= 30.0f;
@@ -770,7 +762,7 @@ resolve_landing_then_advance:
           peer_component_6ac = velocity_x_f4 * 0.75;
         if (advance_frame_and_dispatch())
           set_action(0);
-        return;
+        break;
       case 143:
         resolve_stage_surface_landing_transition();
         if ( velocity_x_f4 < 0.0 )
@@ -815,7 +807,7 @@ resolve_landing_then_advance:
         } else if (advance_frame_and_dispatch()) {
           set_sequence(5);
         }
-        return;
+        break;
       case 149:
         if (sequence_13e == 1 && velocity_y_f8 < 2.0) {
           next_sequence_block();
@@ -968,7 +960,7 @@ resolve_landing_then_advance:
         }
         if (advance_frame_and_dispatch())
           set_action(9);
-        return;
+        break;
       case 159:
         resolve_stage_surface_landing_transition();
         if (velocity_x_f4 < 0.0f) {
@@ -1110,15 +1102,13 @@ LABEL_357:
         }
         advance_frame_and_dispatch();
         return;
-      default:
+      case 690:
+        // VC8 merges this landing path into case 54.
+        resolve_stage_surface_landing_transition();
+        if (advance_frame_and_dispatch())
+          set_action(0);
         return;
-    }
-      }
-  }
-  else
-  {
-    switch (action)
-    {
+
       case 691:
         resolve_stage_surface_landing_transition();
         if (advance_frame_and_dispatch())
@@ -1409,8 +1399,8 @@ LABEL_522:
         }
         break;
       default:
-        return;
-    }
-    }}
+        goto finish_common_action;
+  }
+}
 
 } // namespace th105

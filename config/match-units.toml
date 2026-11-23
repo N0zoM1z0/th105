@@ -17375,7 +17375,7 @@ source = "src/battle/FighterCommonActionState.cpp"
 object = "build/match-units/GptWeb_FighterCommonActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current source and boundary evidence is in docs/GIANT_OWNER_AUDIT.md. The previous size-only descriptions are superseded. The complete canonical comparison remains nonexact; no partial match credit is awarded."
+notes = "Exact VC8 SP1 comparison covers the 10219-byte callable and full 10725-byte envelope with two switch tables. See docs/COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md."
 
 [[units.gpt-web-fighter-common-action-state.functions]]
 address = "0x004740C0"
