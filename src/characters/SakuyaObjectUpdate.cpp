@@ -562,9 +562,26 @@ void SakuyaObjectUpdateView::update_action_state()
     float count=0;do{children[0]=(parameters_340[0]+15.0)-count*15.0;spawn_unparented(853,x_ec,y_f0,static_cast<unsigned char>(facing_104),1,WORDS(children),4);count+=1.0;}while(count<3.0f);
     children[2]=6;spawn_unparented(853,x_ec,y_f0,static_cast<unsigned char>(facing_104),1,WORDS(children),4);children[2]=7;spawn_unparented(853,x_ec,y_f0,static_cast<unsigned char>(facing_104),1,WORDS(children),4);}}
   if(sequence_id_13e==1){MOVE();if(time_counter_144>=parameters_340[3]){next_sequence_block();float *words=parameters_340;words[0]=-atan2_degrees(static_cast<float>(target_170->y_f0+100.0-y_f0),static_cast<float>(facing_104*(target_170->x_ec-x_ec)));words[1]=80.0f;angle_12c=words[0];return;}}
-  if(sequence_id_13e==2){MOVE();if(time_counter_144>=180)RETIRE();}
-  if(sequence_id_13e==4){if(!parent_object_34c)RETIRE();x_ec=facing_104*parent_object_34c->velocity_x_f4+parent_object_34c->x_ec;y_f0=parent_object_34c->velocity_y_f8+parent_object_34c->y_f0;angle_12c=parent_object_34c->angle_12c;if(parent_object_34c->frame_index_140>0)RETIRE();}
-  if(sequence_id_13e==5){if(!parent_object_34c)RETIRE();x_ec=facing_104*parent_object_34c->velocity_x_f4+parent_object_34c->x_ec;y_f0=parent_object_34c->velocity_y_f8+parent_object_34c->y_f0;angle_12c=parent_object_34c->angle_12c;scale_x_11c+=D(0.1f);scale_y_120*=D(0.95f);if(parent_object_34c->frame_index_140>0)RETIRE();}
+  if (sequence_id_13e == 2) {
+   MOVE();
+   if (time_counter_144 >= 180) goto retire_853;
+  }
+  if (sequence_id_13e == 4) {
+   if (!parent_object_34c) goto retire_853;
+   x_ec = facing_104 * parent_object_34c->velocity_x_f4 + parent_object_34c->x_ec;
+   y_f0 = parent_object_34c->velocity_y_f8 + parent_object_34c->y_f0;
+   angle_12c = parent_object_34c->angle_12c;
+   if (parent_object_34c->frame_index_140 > 0) goto retire_853;
+  }
+  if (sequence_id_13e == 5) {
+   if (!parent_object_34c) goto retire_853;
+   x_ec = facing_104 * parent_object_34c->velocity_x_f4 + parent_object_34c->x_ec;
+   y_f0 = parent_object_34c->velocity_y_f8 + parent_object_34c->y_f0;
+   angle_12c = parent_object_34c->angle_12c;
+   scale_x_11c += D(0.1f);
+   scale_y_120 *= D(0.95f);
+   if (parent_object_34c->frame_index_140 > 0) goto retire_853;
+  }
   if(sequence_id_13e==6){scale_y_120=scale_x_11c=static_cast<float>(scale_x_11c-D(0.01f));if(alpha_113<=20)RETIRE();alpha_113-=20;channel_110-=20;channel_111-=20;}
   if (sequence_id_13e == 7) {
    scale_y_120 = scale_x_11c = static_cast<float>(scale_x_11c + D(0.2f));

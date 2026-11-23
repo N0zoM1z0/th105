@@ -112,18 +112,19 @@ the native frame cutoff. Its two x87 operand orders and alpha tail
 still differ. Action 900 pairs after rebasing except for its two x87
 landing-sum instructions. The entry Y bounds change the address
 definition used by the early C2 pass. Compare how that definition
-reaches the landing sum. The 853 sequence 7 exit now uses the native
-local target. Its other six branches still share the 805 copy.
+reaches the landing sum. Six 853 branches now use the native local
+retirement. Only sequence 6's alpha exit still uses the 805 copy.
 The early pass at `0x10C26030` substitutes a symbolic operand for the
 805 immediate cutoff. `0x10B130F6` links it to the five-use group for
 2, and `0x10B17A46` installs BP after allocation. The `<= 1` control
 uses BX for the cutoff and gives EBX to the separate -1 group. The
 804 sequence test starts in the same group for 2 as the 805 cutoff.
-`0x10B599B0` restores the 804 immediate after the sparse-set lookup
-at `0x10B12F4D` returns no match. The next lead is how 805 populates
-those sets. The clearer 805 source preserves the complete 29,480-byte
-candidate and all 742 relocation sites. The first difference is still
-at `0x004E0D55`.
+`0x10B599B0` restores the 804 immediate after splitting removes `0x39A`
+from the lookup sets. The 805 block retains `0x3A1`. The 805 alpha-local
+control also splits all seven 853 exits from 805, and changes the
+registers and destinations in 816's last two parent exits. The selected
+29,480-byte candidate preserves all 742 relocations and 17 frame-call
+sites. The first difference is still at `0x004E0D55`.
 [Fade tails](SAKUYA_OBJECT_UPDATE_2026_10_25.md#fade-tail-folding-in-actions-859-and-901)
 and [retirement sharing](SAKUYA_OBJECT_UPDATE_2026_10_25.md#action-853-retirement-is-shared-with-action-805-in-the-rebuild).
 

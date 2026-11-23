@@ -753,13 +753,20 @@ can fall through to the same decrement. The preceding build used the
 same register for its 805 retirement, so all seven branches jumped to
 that earlier copy. The native 805 retirement at `0x004E24E2` uses EBP.
 
-The selected sequence 7 branch jumps to the frame retirement in 853.
-It emits the native short JBE at the alpha cutoff. The case diagnostic
-pairs all 298 native instructions after rebasing, with eight more
-instructions for the retirement copy still used by the six other
-branches. The other primary entries retain their instruction and
-edge mappings. The complete candidate is 29,480 bytes with the same
-742 relocations.
+The sequence 7 alpha cutoff already used the native short JBE to the
+local frame retirement. The sequence 2 timeout and both parent checks
+in sequences 4 and 5 now reach that retirement too. Only sequence 6's
+alpha guard still reaches the 805 copy. All 298 native instructions
+pair after rebasing, with eight extra instructions from that copy.
+The five branch displacements account for all 20 changed bytes.
+All 17 frame-call sites retain their owners.
+
+Routing all six earlier branches to the same source label removes the
+853 frame call and its EDI setup. An explicit 805 alpha exit into 804
+with a local alpha byte instead restores all seven 853 branches and
+keeps the 17 frame calls. It also changes the register and tail shape
+in 816's last two parent exits. The selected six local branches preserve
+816's previous instruction encodings and change only 853's destinations.
 
 At `c2.dll:0x10C077B1` the 853 alpha branches still have separate
 label references. After `0x10B2C950` returns to `0x10C077B6`, both
@@ -797,6 +804,15 @@ It starts as the same immediate 2 and shares 805's symbolic group at
 For 804, `0x10B599B0` restores the literal while splitting uses,
 before physical register selection. Its call at `0x10B12FDD` follows
 the failed intersection of two sparse sets at `0x10B12F4D`.
+
+Before the 853 exit edit, the lookup associated with `0x10B130F6`
+returns `0x39A` for 804 and `0x3A1` for 805. Both IDs are in the
+original group for 2. The 804 block's entry set at `+0x48` is
+`{0x3, 0x38, 0x39A}`. When `0x10B599B0` restores the immediate,
+the entry set is `{0x38, 0x363}` and the two lookup input sets are
+empty. The 805 block's entry set is `{0x38, 0x3A1}` and its lookup
+keeps the single matching ID. The two traced builds reproduce the
+complete ordinary object after relocation replay.
 
 At `c2.dll:0x10B14D84`, the `< 2` build gives the group containing
 `select_sequence(2)` and the cutoff five uses and score 2. The `<= 1` control
