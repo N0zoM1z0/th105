@@ -43,6 +43,23 @@ Thus all 200 action values select the same 42 handler groups, including the
 remote action families. This closes the top-level case grouping without
 inventing cases, padding, or instruction overrides.
 
+## Primary-vtable origin-boundary coverage
+
+The target-SHA-pinned raw primary-vtable coverage audit reports all configured
+class-specific virtual pointers as candidate-ledger starts: Fighter has 15
+owners, 360 slots, and 99 unique pointers; Object has 15 owners, 255 slots,
+and 59 unique pointers. Both surfaces have zero interior pointers and zero
+unledgered pointers. In particular, ReimuObject's `+0x28` slot at
+`0x006C40CC` resolves to the ledger start `0x00496540`.
+
+This closes the primary-vtable pointer-coverage boundary, not the ReimuObject
+codegen boundary. The three target executable chunks and seven-byte alignment
+exclusion remain recorded in `config/function-byte-ownership.toml`, and
+`remote_exact = false` remains intentional until the full root and remote
+chunk compare exactly. The coverage audit does not promote any byte-exactness
+or original source-translation-unit claim.
+
+
 ## Reconstruction progress
 
 The source keeps the large action bodies as natural C++ and is recovering the
