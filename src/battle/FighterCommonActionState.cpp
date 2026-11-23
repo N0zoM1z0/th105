@@ -452,7 +452,7 @@ ACTION_54_60_690:
         return;
 
       case 73:
-        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
           word_730 = 100 * (int)velocity_x_f4;
           word_732 = 100 * (int)velocity_y_f8;
           zero_velocity_acceleration();
@@ -463,9 +463,9 @@ ACTION_54_60_690:
           break;
         }
         advance_frame_and_dispatch();
-        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && velocity_y_f8) {
-LABEL_126:
-          if (!velocity_x_f4)
+        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && velocity_y_f8 != 0.0f) {
+select_landing_sequence:
+          if (velocity_x_f4 == 0.0f)
             set_sequence(3);
           else
             set_sequence(2);
@@ -509,7 +509,7 @@ LABEL_126:
         break;
 
       case 75:
-        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
           word_730 = 100 * (int)velocity_x_f4;
           word_732 = 100 * (int)velocity_y_f8;
           zero_velocity_acceleration();
@@ -528,17 +528,17 @@ LABEL_126:
           break;
         }
         advance_frame_and_dispatch();
-        if ( frame_counter_144 )
+        if (frame_counter_144)
           return;
-        if ( frame_timer_142 )
+        if (frame_timer_142)
           return;
-        if ( frame_index_140 )
+        if (frame_index_140)
           return;
-        if ( sequence_13e != 1 )
+        if (sequence_13e != 1)
           return;
-        if (!velocity_y_f8)
+        if (velocity_y_f8 == 0.0f)
           return;
-        goto LABEL_126;
+        goto select_landing_sequence;
 
       case 76:
         if (sequence_13e > 0)
@@ -605,7 +605,7 @@ LABEL_126:
         break;
 
       case 88:
-        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
           word_730 = 100 * (int)velocity_x_f4;
           word_732 = 100 * (int)velocity_y_f8;
           zero_velocity_acceleration();
@@ -616,8 +616,8 @@ LABEL_126:
           break;
         }
         advance_frame_and_dispatch();
-        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && velocity_y_f8)
-          goto LABEL_126;
+        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && velocity_y_f8 != 0.0f)
+          goto select_landing_sequence;
         if (--word_730 < 0)
           word_730 = 0;
         if (classify_fighter_x_boundary() && velocity_x_f4 < 0.0) {

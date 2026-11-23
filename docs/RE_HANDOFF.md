@@ -49,13 +49,14 @@ and `/Os` trials left several such residuals unchanged.
 
 ## Giant action root follow-up
 
-Use shared Fighter `0x004740C0` for the next cross-case VC8 control. Its
-fresh owner diagnostic gives 53/66, and omitting action 88 in scratch
-changes the emitted selection tail of unchanged action 75. Follow the
-73/75/88 join through the virtual calls and x87 value before tuning local
-register choices. The [giant root review](GIANT_ROOT_REVIEW_2026_11_23.md)
-records the TH09 controls, TH075/EFZ references, Sakuya switch-check
-positive and negative, and the byte-neutral Komachi field-layout trial.
+For shared Fighter `0x004740C0`, the read-only VC8 trace identifies
+`c2.dll:0x10B281E0` as the pass that places the 73/75/88 selection tail
+after action 88, before x87 lowering. The next useful control is to compare
+the input block ordering with a source variant that keeps all three
+predecessors. The 53/66 owner baseline and its complete relocated bytes
+survive the clearer sequence label and comparisons. See the
+[compiler trace](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md) and the
+[engine and Oracle review](GIANT_ROOT_REVIEW_2026_11_23.md).
 
 ## Open work
 
