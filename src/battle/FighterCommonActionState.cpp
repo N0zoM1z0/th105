@@ -132,8 +132,8 @@ float __fastcall stage_surface_height_at_x(CharacterEx *fighter);
 void CharacterEx::update_common_action_state()
 {
   int v2; // eax
-  double v3; // st7
-  double v4; // st6
+  double horizontal_speed_limit;
+  double adjusted_horizontal_speed;
   double v30; // st7
   int v32; // eax
   int v33; // ecx
@@ -170,14 +170,6 @@ void CharacterEx::update_common_action_state()
   float v96; // [esp+20h] [ebp-4h]
   float v97; // [esp+20h] [ebp-4h]
   float v98; // [esp+20h] [ebp-4h]
-  float v99; // [esp+20h] [ebp-4h]
-  float v100; // [esp+20h] [ebp-4h]
-  float v101; // [esp+20h] [ebp-4h]
-  float v102; // [esp+20h] [ebp-4h]
-  float v103; // [esp+20h] [ebp-4h]
-  float v104; // [esp+20h] [ebp-4h]
-  float v105; // [esp+20h] [ebp-4h]
-  float v106; // [esp+20h] [ebp-4h]
   float v107; // [esp+20h] [ebp-4h]
   float v108; // [esp+20h] [ebp-4h]
   float v109; // [esp+20h] [ebp-4h]
@@ -195,7 +187,7 @@ void CharacterEx::update_common_action_state()
   if ( v2 <= 690 )
   {
     if (v2 == 690)
-      goto ACTION_54_60_690;
+      goto resolve_landing_then_advance;
     else
     {
     switch ( v2 )
@@ -214,18 +206,18 @@ void CharacterEx::update_common_action_state()
           set_action(0);
         return;
 
-LABEL_6:
-        velocity_x_f4 = v4;
-        if ( v4 > v3 )
-          velocity_x_f4 = v3;
-LABEL_8:
+clamp_horizontal_speed:
+        velocity_x_f4 = adjusted_horizontal_speed;
+        if ( adjusted_horizontal_speed > horizontal_speed_limit )
+          velocity_x_f4 = horizontal_speed_limit;
+publish_boundary_speed:
         if ( classify_fighter_x_boundary() )
         {
           if ( unknown_490 )
             peer_component_6ac = velocity_x_f4 * 0.75;
         }
-        goto LABEL_11;
-LABEL_11:
+        goto advance_and_maybe_reset_action;
+advance_and_maybe_reset_action:
         if (advance_frame_and_dispatch())
           set_action(0);
         return;
@@ -277,34 +269,34 @@ LABEL_11:
           publish_battle_layout_scalar(2.0f);
           dispatch_indexed_event_member(0x16u);
         }
-        goto LABEL_11;
+        goto advance_and_maybe_reset_action;
 
       case 54:
       case 60:
-ACTION_54_60_690:
+resolve_landing_then_advance:
         resolve_stage_surface_landing_transition();
-        goto LABEL_11;
+        goto advance_and_maybe_reset_action;
 
       case 55:
       case 61:
         resolve_stage_surface_landing_transition();
-        v3 = 0.0;
+        horizontal_speed_limit = 0.0;
         if ( velocity_x_f4 > 0.0 ) {
-          v4 = static_cast<float>(velocity_x_f4 - 1.5);
-          goto LABEL_6;
+          adjusted_horizontal_speed = static_cast<float>(velocity_x_f4 - 1.5);
+          goto clamp_horizontal_speed;
         }
-        goto LABEL_8;
+        goto publish_boundary_speed;
 
       case 56:
       case 57:
       case 58:
         resolve_stage_surface_landing_transition();
-        v3 = 0.0;
+        horizontal_speed_limit = 0.0;
         if ( velocity_x_f4 < 0.0 ) {
-          v4 = static_cast<float>(velocity_x_f4 + 1.5);
-          goto LABEL_6;
+          adjusted_horizontal_speed = static_cast<float>(velocity_x_f4 + 1.5);
+          goto clamp_horizontal_speed;
         }
-        goto LABEL_8;
+        goto publish_boundary_speed;
 
       case 62:
         resolve_stage_surface_landing_transition();
@@ -977,40 +969,48 @@ select_landing_sequence:
         return;
       case 159:
         resolve_stage_surface_landing_transition();
-        v3 = 0.0;
+        horizontal_speed_limit = 0.0;
         if (!(velocity_x_f4 < 0.0f))
-          goto LABEL_8;
-        v99 = velocity_x_f4 + 0.6000000238418579;
-        v100 = v99 + 0.6000000238418579;
-        v4 = v100;
-        goto LABEL_6;
+          goto publish_boundary_speed;
+        {
+          const float first_step = velocity_x_f4 + static_cast<double>(0.6f);
+          const float second_step = first_step + static_cast<double>(0.6f);
+          adjusted_horizontal_speed = second_step;
+        }
+        goto clamp_horizontal_speed;
       case 160:
         resolve_stage_surface_landing_transition();
-        v3 = 0.0;
+        horizontal_speed_limit = 0.0;
         if (!(velocity_x_f4 < 0.0f))
-          goto LABEL_8;
-        v101 = velocity_x_f4 + 0.6000000238418579;
-        v102 = v101 + 0.6000000238418579;
-        v4 = v102;
-        goto LABEL_6;
+          goto publish_boundary_speed;
+        {
+          const float first_step = velocity_x_f4 + static_cast<double>(0.6f);
+          const float second_step = first_step + static_cast<double>(0.6f);
+          adjusted_horizontal_speed = second_step;
+        }
+        goto clamp_horizontal_speed;
       case 161:
         resolve_stage_surface_landing_transition();
-        v3 = 0.0;
+        horizontal_speed_limit = 0.0;
         if (!(velocity_x_f4 < 0.0f))
-          goto LABEL_8;
-        v103 = velocity_x_f4 + 0.6000000238418579;
-        v104 = v103 + 0.6000000238418579;
-        v4 = v104;
-        goto LABEL_6;
+          goto publish_boundary_speed;
+        {
+          const float first_step = velocity_x_f4 + static_cast<double>(0.6f);
+          const float second_step = first_step + static_cast<double>(0.6f);
+          adjusted_horizontal_speed = second_step;
+        }
+        goto clamp_horizontal_speed;
       case 162:
         resolve_stage_surface_landing_transition();
-        v3 = 0.0;
+        horizontal_speed_limit = 0.0;
         if (!(velocity_x_f4 < 0.0f))
-          goto LABEL_8;
-        v105 = velocity_x_f4 + 0.6000000238418579;
-        v106 = v105 + 0.6000000238418579;
-        v4 = v106;
-        goto LABEL_6;
+          goto publish_boundary_speed;
+        {
+          const float first_step = velocity_x_f4 + static_cast<double>(0.6f);
+          const float second_step = first_step + static_cast<double>(0.6f);
+          adjusted_horizontal_speed = second_step;
+        }
+        goto clamp_horizontal_speed;
       case 163:
         resolve_stage_surface_landing_transition();
         if (velocity_x_f4 < 0.0f) {

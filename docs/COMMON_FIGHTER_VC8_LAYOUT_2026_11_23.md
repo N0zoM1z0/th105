@@ -71,6 +71,30 @@ the float guard from the integer guards or putting the motion return first
 is also byte-neutral. Duplicating just its selection with a reversed
 velocity test loses the previously matching action 799 owner.
 
+## The shared horizontal-speed clamp
+
+The native 55/56 and 159–162 paths enter action 50 at `0x00474122` to
+store the rounded speed or at `0x00474139` to drop the x87 zero and
+skip the store. The 53/54 paths enter later at `0x00474161` for the
+frame advance. In the rebuilt function those entries are in action 162.
+
+The clamp's speed store is instruction-list entry 82 before the call to
+`0x10B281E0`. The same node is entry 3031 at the return, just after
+action 162's branch. The boundary publication and frame advance move
+with it. The headless trace reproduces the complete 10,801-byte candidate
+after all 396 relocations.
+
+Sharing the frame advance explicitly with action 50, or sharing both
+boundary publication and advance, yields the same 10,741-byte candidate.
+Both lose action 50 without recovering any of the incoming owners.
+Putting the clamp store in that shared source path emits 10,717 bytes
+and loses action 799 as well. The size change alone is misleading.
+
+The retained source names the three shared entries and keeps the two steps
+in cases 159–162 in scoped float locals. The native steps use the double
+promotion of `0.6f` and round to float after each addition. The rewrite
+keeps all 10,801 relocated bytes and the 53 matching diagnostic owners.
+
 ## Complete comparison
 
 The full target envelope is 10,725 bytes. It ends at `0x00476AA5`, after
