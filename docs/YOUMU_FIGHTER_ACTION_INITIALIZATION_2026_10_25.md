@@ -190,7 +190,25 @@ Two source controls separate the case label from its phase assignment with
 a forward or backward `goto`. Moving 604's label before 601 and moving 601's
 label after 604 both generate the same four-byte change as swapping the full
 cases. They exchange the two phase constants and table entries. A source
-shape that shares the publication after block ordering is still open.
+shape that selects the native tail direction is still open.
+
+## Late publication merge with a shared switch exit
+
+Publishing both bytes inside 601 and 604, then using a shared reset after
+the switch, postpones the join to the same late `c2.dll:0x10B2C950` pass
+that resolves Reimu's motion tail. Both copies survive the early layout
+pass and lowering. At `0x10C077B6`, 601's two stores are gone, and 604's
+stores have been exchanged. The resulting 1,874-byte candidate differs at
+four byte offsets from the retained candidate and still has 44 differences
+against the target. Reversing the stores in both source arms reproduces
+the retained candidate, including its forward jump out of 601.
+
+The target's action 602 enters at `0x0053A6C8`, immediately after 601's two
+flag stores. Including 602 in the post-switch reset, or spelling its reset
+as a fallthrough from 601 and a named branch from 604, gives the same late
+merge and complete candidate. Leaving either phase arm with its own return
+brings back the 1,910-byte duplicate. A successful late source shape still
+needs to keep 601's stores and route 604 backward to them.
 
 ## Reproduction and next scope
 
