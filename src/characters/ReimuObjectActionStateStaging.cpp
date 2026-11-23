@@ -2266,16 +2266,17 @@ retire_801_811:
         goto advance_and_retire_on_completion;
 
     case 900: {
+        const unsigned *retiring_packet_900 = 0;
+        int retiring_words_900 = 0;
         switch (_root_state.sequence_13e) {
         case 0:
             if (*reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x174) <= 0) {
                 dead_sequence_zero[0] = 0.0f;
                 dead_sequence_zero[1] = 0.0f;
                 dead_sequence_zero[2] = 2.0f;
-                retiring_packet = reinterpret_cast<const unsigned *>(dead_sequence_zero);
-                retiring_words = 3;
-                retiring_action = 900;
-                goto emit_retiring_world;
+                retiring_packet_900 = reinterpret_cast<const unsigned *>(dead_sequence_zero);
+                retiring_words_900 = 3;
+                break;
             }
             reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(0);
             reinterpret_cast<CharacterObjectRuntime *>(this)->advance_phase_counter_conditional(0);
@@ -2294,10 +2295,9 @@ retire_801_811:
                     completed_sequence_zero[3] = 15.0f;
                 else if (match_identifier == 0)
                     completed_sequence_zero[3] = 8.0f;
-                retiring_packet = reinterpret_cast<const unsigned *>(completed_sequence_zero);
-                retiring_words = 4;
-                retiring_action = 900;
-                goto emit_retiring_world;
+                retiring_packet_900 = reinterpret_cast<const unsigned *>(completed_sequence_zero);
+                retiring_words_900 = 4;
+                break;
             }
             break;
         case 1:
@@ -2305,10 +2305,9 @@ retire_801_811:
                 dead_sequence_one[0] = 0.0f;
                 dead_sequence_one[1] = 0.0f;
                 dead_sequence_one[2] = 2.0f;
-                retiring_packet = reinterpret_cast<const unsigned *>(dead_sequence_one);
-                retiring_words = 3;
-                retiring_action = 900;
-                goto emit_retiring_world;
+                retiring_packet_900 = reinterpret_cast<const unsigned *>(dead_sequence_one);
+                retiring_words_900 = 3;
+                break;
             }
             reinterpret_cast<float *>(copied_words_340)[1] = static_cast<float>(reinterpret_cast<float *>(copied_words_340)[1] + static_cast<double>(0.4f));
             reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
@@ -2359,6 +2358,14 @@ retire_801_811:
             if (reinterpret_cast<float *>(copied_words_340)[3] <= this->state_370)
                 goto retire;
             break;
+        }
+        if (retiring_packet_900) {
+            reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                900, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                retiring_packet_900, retiring_words_900);
+            --_root_state.state_330;
+            return;
         }
         effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
         effect_000.object_y_0ec += effect_000.motion_0f0.velocity_y;

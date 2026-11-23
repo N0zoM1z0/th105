@@ -72,3 +72,17 @@ at the candidate's `0x496FC9` destination, while the target emits a separate
 missing action-selector entries or padding. The next source work is to
 recover the target's distinct live-register lifetimes around the 811 tail
 and continue with the larger 900/869/901 action families.
+
+## Action 900 retirement dispatch reconstruction
+
+Action 900's three sequence-0/1 retirement cases now converge at one local
+C++ spawn site, with the packet and word count selected by the sequence
+switch. This replaces three repeated spawn/epilogue call sites while keeping
+the actual packet construction and normal movement path in the case body.
+The focused owner extent is now 1,217 bytes against 1,229 target bytes
+(previously 1,103 bytes with the function-wide retirement label). The
+remaining 12-byte deficit is not padding: the target branches into the
+shared emitter/epilogue body placed with the earlier 822 family, whereas
+this compiler currently keeps the local call/return in 900. The next boundary
+experiment moves the shared natural C++ label toward its 822 owner, then
+rechecks the adjacent 869/900/901/902 owners.
