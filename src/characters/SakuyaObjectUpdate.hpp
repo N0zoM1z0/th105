@@ -41,7 +41,8 @@ public:
  int time_counter_144;
  unsigned char unknown_148[0x38];
  int phase_state_180;
- unsigned char unknown_184[0x1ac];
+ signed char phase_index_184;
+ unsigned char unknown_185[0x1ab];
  int lifetime_330;
  unsigned char unknown_334[0xc];
  float *parameters_340;
@@ -79,6 +80,8 @@ typedef char CheckSakuyaUpdate_time_counter_144[
     offsetof(SakuyaObjectUpdateView, time_counter_144) == 0x144 ? 1 : -1];
 typedef char CheckSakuyaUpdate_phase_state_180[
     offsetof(SakuyaObjectUpdateView, phase_state_180) == 0x180 ? 1 : -1];
+typedef char CheckSakuyaUpdate_phase_index_184[
+    offsetof(SakuyaObjectUpdateView, phase_index_184) == 0x184 ? 1 : -1];
 typedef char CheckSakuyaUpdate_lifetime_330[
     offsetof(SakuyaObjectUpdateView, lifetime_330) == 0x330 ? 1 : -1];
 typedef char CheckSakuyaUpdate_parameters_340[

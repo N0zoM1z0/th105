@@ -389,11 +389,10 @@ and the alignment is rejected at the changed address.
 
 ## Frame calls and cross-case registers
 
-The selected build has 15 frame-advance call sites compared with 17 in
-the target. The native 812/815/855 group already uses one physical call
-in the current build. The two remaining merges are 816 into the 803
-group and 930 into 920. The pinned `c2.dll` has all four relevant call
-records at `0x10C077B1`. After `0x10B2C950` returns to `0x10C077B6`,
+The earlier unsigned-byte build had 15 frame-advance call sites compared
+with 17 in the target. It reproduced the native 812/815/855 group and
+merged 816 into the 803 group and 930 into 920. The pinned `c2.dll` has
+all four relevant call records at `0x10C077B1`. After `0x10B2C950` returns to `0x10C077B6`,
 the 816 and 930 call records are gone. The traced object reproduces
 the prior complete candidate. Reversing the two post-advance tests
 splits 920 and 930 at the cost of reversing the native comparison order.
@@ -402,13 +401,14 @@ Duplicating the post-call test splits the calls and leaves duplicate code.
 Action 920 reads `g_match_identifier` at `0x006FA894`, the same DWORD
 written at `0x0047096A` in the exact battle setup. Writing the case groups
 in the order 2/3, 1, 0 restores the native stub order and the relative
-destinations of the four table words. The zero argument still comes from
-EBX in the build and EBP in the target. This source change by itself
+destinations of the four table words. The zero argument came from EBX
+in that build and EBP in the target. This source change by itself
 changes only 13 relocated bytes in the stubs and table.
 
 Changing the signed owner byte guard in 816 from `< 2` to `<= 1` gives
-the native `CMP BYTE PTR [EDX+0x609], 1` and `JG`. It also changes the
-earlier 811 action with its source held fixed. VC8 puts 2 in EBX and zero
+the native `CMP BYTE PTR [EDX+0x609], 1` and `JG`. In the unsigned-byte
+build it also changed the earlier 811 action with its source held fixed.
+VC8 put 2 in EBX and zero
 in EDI, matching the target. With branch destinations normalized, all
 13 instructions starting at that register setup agree, including the
 two stack arguments. A read-only trace shows the assignments already
@@ -494,13 +494,13 @@ VC8 merges the arms into the same zero push and shared
 `advance_state_six_counter_conditional` call. Grouping the two labels on
 one source statement emits a range test instead.
 
-The 187 instructions in 930 through the bounds checks now agree after
+The 187 instructions in 930 through the bounds checks agreed after
 rebasing branches and calls. The branches reach the same local blocks
 and shared retire tail, and the calls retain their target addresses.
-The candidate still jumps to 920's frame call where the target calls
-directly. In 920 the zero value stays in EBX and 30 in EBP, with the
-opposite register roles in the target. The target loads 30 before the
-contact branch and uses it for all four random calls in 920.
+That build still jumped to 920's frame call where the target calls
+directly. In 920 the zero value stayed in EBX and 30 in EBP. The target
+loads 30 into EBX before the contact branch and uses it for all four
+random calls in 920.
 
 At `0x10C073E7`, the four random arguments and both timer tests in
 920 refer to the same whole-function group for 30. The first split
@@ -523,8 +523,7 @@ range for all four random calls. The frame-counter tests use BP in
 Omitting 901 or 930 leaves the 920 constant placement unchanged.
 Omitting only the right-wall arm or the frame call in 816 also leaves
 the 920 choices unchanged. The traced objects replay their corresponding
-ordinary objects in full. The next control should preserve all of 816
-and change a group that competes for EBX or EBP in the 920 allocations.
+ordinary objects in full.
 
 ## Action 854 saturation and typed object links
 
@@ -542,8 +541,39 @@ and parent at these offsets. The update reads the parent's checked
 position, velocity, frame index and alpha directly. The full relocated
 output of the typed view agrees with the previous offset form.
 
-The current envelope is 29,200 bytes with 737 relocations, SHA256
-`a916e2591f806f83ff88e00a72d20435309daa7dd8562384220a6aba243ff1c2`.
+## Signed phase byte restores frame-call ownership
+
+The byte at `+0x184` is tested with signed comparisons in 816.
+The unsigned decrement carrier produced one shared load of FF into BL
+for the four wall rebounds. The signed member restores the target's
+four `ADD BYTE PTR [ESI+0x184], 0xFF` instructions and the `OR EBP, -1`
+used by the separate frame tail. Omitting just the four decrements
+isolated their effect on 920 and 930. Explicit unsigned subtraction,
+addition of FF and splitting the phase reset into two arms all replayed
+the unsigned baseline. Changing just the four decrement lvalues to
+signed in a control reproduced the complete selected output.
+
+The read-only VC8 SP1 trace sees the byte-add constant operand change
+from descriptor bits `0x20010001` to `0x10010001` at offset `+8` before
+`0x10B0CF40`. At `0x10B14D84`, the signed build keeps all six uses of
+30 in one group and selects EBX at cost zero. The 920 zero group then
+has only EBP available. The 930 zero group has EBX and EBP at cost zero
+and takes EBX. In the unsigned build, both zero groups chose EBX and
+the timer fragment of 30 took EBP. Both traced builds replay their
+corresponding ordinary objects in full.
+
+The signed build reproduces all 17 physical frame-call sites with
+their target action ownership. After rebasing calls and branches,
+920 and 930 agree for all 288 and 221 reachable instructions,
+respectively. Action 816 agrees for all 409 target instructions,
+with its two identical retirement tails at `0x004E213C` and
+`0x004E24E2` sharing one physical copy in the candidate. The 811
+constant setup now differs again. VC8 puts 2 in EDI and zero in EBX.
+Reverting the 816 owner cutoff to `< 2` leaves these registers swapped
+and loses the native compare encoding.
+
+The current envelope is 29,304 bytes with 739 relocations, SHA256
+`267031f9fe206b9c432cba4ebd64133e98deec4f5271480c73079e455524569c`.
 The target envelope is 29,476 bytes. The first difference is at the
 primary default branch, `0x004E0D55`. Both 803 alpha paths and the
 200-byte primary remap still agree.
