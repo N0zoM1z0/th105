@@ -59,10 +59,11 @@ leaves the 2,106-byte callable comparison equal. The configured
 `switch_payload` rejects the changed object at that address.
 
 Komachi `0x005E20E0` now has a complete `switch_payload` in its build unit.
-The 63,993-byte callable comparison runs first and currently fails at `+8`
-(frame `0x490` native, `0x498` rebuilt). A separate replay of the complete
-candidate section resolves 1,857 relocations and compares 65,304 rebuilt
-bytes against the 65,176-byte target envelope. The switch mapper pairs the
+The 63,993-byte callable comparison runs first. The action-730 packet-angle
+update restores the native frame `0x490`. The first difference is now at
+`+0x2A` in the card-switch prologue. A replay of the complete candidate
+section resolves all 1,857 relocations and compares 65,288 rebuilt bytes
+against the 65,176-byte target envelope. The switch mapper pairs the
 card gate and the three action tables. The raw owner audit follows those
 four tables and the three keyed by `g_match_identifier`, covering all
 63,993 callable bytes. The selector reads at `0x005F06F9`,
@@ -71,8 +72,9 @@ battle setup writes from the first `MatchSetup` DWORD at `0x0047096A`.
 Owner pairing stops because actions 209 and 212
 share one entry in the selected candidate. Their native entries at `0x005E3661` and
 `0x005E3815` have distinct prefixes and join at `0x005E3683` on the
-non-crossing path. Expanding action 212's helper and spelling its branch
-in the opposite direction still emits the original candidate.
+non-crossing path. An explicit landing path shared by 208–212 preserves
+both entries but still places their common flight after 212 in the rebuild.
+[Komachi case notes](KOMACHI_ACTION_STATE_2026_10_28.md#shared-high-jump-landing-and-ring-frame-2026-11-23)
 
 The compact-switch verifier checks the reaching `EBX = 8` definition at
 `0x005E210A` for the card gate's register bound at `0x005E213B`. The one

@@ -382,3 +382,11 @@ the preceding candidate. The first difference moves from `+8` to `+0x2A`
 (`0x005E210A`). The native hoists `EBX = 8` before the card gate, then
 derives `EDI = 2` with LEA. The current build loads EDI directly and defines
 EBX after the deque call or on the bypass edge.
+
+The card gate's 0–4 and 5–8 entries each compute the expiry effect's
+height. In the native build the first jumps into the second's shared
+effect call at `0x005E22BA`. Factoring the call through one source label
+collapses all nine remap indices to one destination. Naming the rounded
+height or reversing the face-test operands gives the selected bytes.
+Spelling separate facing arms emits two immediate direction writes
+instead of the native shared `NEG CL` and leaves the prologue difference.
