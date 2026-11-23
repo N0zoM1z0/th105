@@ -96,10 +96,14 @@ zero. The 930 comparison still uses BX and its call survives. Both
 actions agree through their complete reachable paths after rebasing.
 Action 816 still merges two byte-identical retirement tails. The 811
 constant registers have swapped again. The 815 fade and 854 saturation
-paths survive these changes. The complete candidate is 29,304 bytes
-with 739 relocations and first differs at `0x004E0D55`. Actions 859
-and 901 still need the target's four fade guards and two shared tails.
-[Case note](SAKUYA_OBJECT_UPDATE_2026_10_25.md#signed-phase-byte-restores-frame-call-ownership)
+paths survive these changes. All 139 reachable instructions in 901
+sequence 7 now agree after rebasing. The complete candidate is 29,304
+bytes with 739 relocations and first differs at `0x004E0D55`. Two
+VC8 routines under `0x10B2C950` discard fade guards in 859 and 901.
+A full-root control preserves all four guards and their pairwise
+destinations. The two saturation tails still need to move from 901
+to their native positions in 859.
+[Case note](SAKUYA_OBJECT_UPDATE_2026_10_25.md#fade-tail-folding-in-actions-859-and-901)
 
 Other open leads:
 - Scenario character install 0x456EB0 (one EH-state store) and the info

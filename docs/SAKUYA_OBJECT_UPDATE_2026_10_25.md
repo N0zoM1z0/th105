@@ -476,12 +476,41 @@ members and the time counter now have compile-time offset checks.
 Replacing their offset macros with members is byte-neutral across the
 full rebuilt function.
 
-Actions 859 and 901 also fade these fields. The target has four guards.
-The low-channel branch from 901 sequence 4 goes to the 859 sequence 5/6
-tail, and 901 sequence 5/6 goes to the 859 sequence 4 tail. A scratch
-build with both destinations written explicitly still merges the two
-901 paths in VC8. Keep those tails in the full-root allocation and
-sharing investigation.
+## Fade tail folding in actions 859 and 901
+
+The four native guards load channel 111 and compare it with 10. In
+859, sequence 4 branches to `0x004E67C6` and sequences 5/6 branch
+to `0x004E688D`. Both branches are short. In 901, sequence 4 branches
+back to `0x004E688D` and sequences 5/6 to `0x004E67C6`. Those
+branches are near. Each saturation tail clears channel 111 before 110,
+then branches to the common retirement block when alpha is below 10.
+Otherwise it subtracts 10 from alpha and jumps to the common frame
+continuation.
+
+On the full root, VC8 SP1's `c2.dll` keeps all four guards through
+register allocation and into the late pass at `0x10B2C950`. A hardware
+watch on each guard's predecessor links caught the 859 sequence 4 record
+being unlinked under `0x10B2E1B0`, then the 901 sequences 5/6 record
+under `0x10B306C0`. The two remaining guards are the ones for 859
+sequences 5/6 and 901 sequence 4. Both read-only trace builds replay
+to the same complete bytes as the untraced control.
+
+In a full-root control, using `>= 10` for the four channel updates,
+writing the two shared low-channel destinations explicitly, and
+placing the successful alpha update first in one low-channel path
+reproduces all four guards and their cross-action destinations. It
+also preserves the 17 frame-call owner groups. VC8 places both low
+tails inside 901, reversing which guards need near branches, and
+shares their alpha subtraction. Explicit jumps to the common retire
+and frame blocks did not recover the native placement. The next
+question is how the late passes choose a physical copy for each tail.
+
+Sequence 7 of 901 uses `CMP AL, 10` and `JBE` at `0x004E7301`.
+Spelling the alpha test as `<= 10` aligns all 139 reachable
+instructions after rebasing control-flow edges. It changes two bytes
+in the full replay. Separate comparisons with offset reads and checked
+float members at `+0x11C` and `+0x120` produce identical full
+outputs, including the parent scale reads.
 
 ## Actions 920 and 930 before frame advance
 
@@ -573,7 +602,7 @@ Reverting the 816 owner cutoff to `< 2` leaves these registers swapped
 and loses the native compare encoding.
 
 The current envelope is 29,304 bytes with 739 relocations, SHA256
-`267031f9fe206b9c432cba4ebd64133e98deec4f5271480c73079e455524569c`.
+`600ba569fd9bc959af0d72b5f468f10f35478cb2b698cd6f12c696911ae8ab54`.
 The target envelope is 29,476 bytes. The first difference is at the
 primary default branch, `0x004E0D55`. Both 803 alpha paths and the
 200-byte primary remap still agree.
