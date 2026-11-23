@@ -95,7 +95,8 @@ to 3,698 differences. The first difference remains at `0x004740D4`.
 The native 55/56 and 159–162 paths enter action 50 at `0x00474122` to
 store the rounded speed or at `0x00474139` to drop the x87 zero and
 skip the store. The 53/54 paths enter later at `0x00474161` for the
-frame advance. In the rebuilt function those entries are in action 162.
+frame advance. Before the shared-exit change, all three entries were
+in action 162 in the rebuild.
 
 The clamp's speed store is instruction-list entry 82 before the call to
 `0x10B281E0`. The same node is entry 3031 at the return, just after
@@ -109,7 +110,7 @@ Both lose action 50 without recovering any of the incoming owners.
 Putting the clamp store in that shared source path emits 10,717 bytes
 and loses action 799 as well. The size change alone is misleading.
 
-The retained source names the three shared entries and keeps the two steps
+The source names the two shared clamp entries and keeps the two steps
 in cases 159–162 in scoped float locals. The native steps use the double
 promotion of `0.6f` and round to float after each addition. That rewrite
 kept the complete envelope and the 53 matching owners at the time.
@@ -124,10 +125,11 @@ the native entries between its x87 compare, speed store and advance.
 
 ### Two passes choose the clamp successors
 
-In the current 664-block graph, the low switch visits action 162 before
-the other clamp consumers. Its successful speed test reaches the store
-block first. The DFS then discovers the boundary publication and frame
-advance through that block, and `0x10B281E0` places all three after 162.
+In the 664-block graph with the detached clamp, the low switch visits
+action 162 before the other clamp consumers. Its successful speed test
+reaches the store block first. The DFS then discovers the boundary
+publication and frame advance through that block, and `0x10B281E0`
+places all three after 162.
 The late copy emits another `FLDZ` and `FCOMPP` before the clamp.
 The exact copy in 50 compares with the live zero via `FCOMP ST(1)`.
 Using the same zero local in both source tests preserves the full
@@ -135,8 +137,9 @@ output. Reversing the comparison operands selects a memory operand
 and adds two alignment bytes after 799's final return. The owner audit
 assigns that padding to its final span.
 
-Giving only 53 and 54 their own frame advances and switch exits keeps
-both calls through x87 lowering and removes them in `0x10B2C950`.
+Giving 53 and 54 their own frame advances and switch exits keeps both
+calls through x87 lowering. With 51 and 52 still returning directly,
+`0x10B2C950` merges the two calls into 52.
 The splice at `0x10B30CE6` releases the redundant instructions. The
 linked branches now go to `0x0047426D` in action 52. Omitting
 52 in scratch moves the destination to 51. Omitting 51 and 52 together
@@ -145,14 +148,45 @@ advance also changes the full graph. With both incoming cases, it
 merges the distinct switch entries for 50 and 52 and routes 53 and 54
 to 51.
 
-The late-merge control that keeps all actions has 16 changed bytes in
-the four jump displacements and reports eight fewer byte differences.
-All four jumps still reach the wrong physical owner. The owner audit
-reports the same 56 matching spans. The selected source uses one
-constant clamp limit, a named snapshot of the action selector, and a
-typed accessor for the reset receiver at `+4`. The configured build
-reproduces all 10,801 bytes, relocation sites and kinds, and all 56
-matching spans.
+The incoming list at the shared return label holds the unconditional
+exits from 52, 51, 50, the detached clamp, 53 and 54 in that order among
+the six traced copies. The conditional exits that skip the action reset
+also appear on the list and are skipped by the scan at `0x10B3075B`.
+At `0x10B30784`, VC8 offers 52 as the retained copy. The comparison
+returns zero for 51, 50 and the detached clamp. It accepts 53 and 54
+and removes their copies at `0x10B30CE6`, before 50 gets a turn as the
+retained copy. The headless trace reproduces the complete relocated
+`copied-advance-break` scratch object.
+
+In the direct-jump control, folding the rounded speed assignment into
+52's comparison keeps the three switch entries distinct. The 134-byte
+spans in 51 and 52 still match. VC8 shortens 50 to 49 bytes and moves
+its publication and advance into 52, which again owns the four jumps
+from 53 and 54.
+
+### A common switch exit restores 53 and 54
+
+The early layout at `0x10B26CA8` and `0x10B26CAE` preserves two branch
+lists. Actions 51 and 52 use the function return, while 50, 53, 54 and
+the detached clamp use the switch exit. By `0x10C065F8`, the lowered
+branches have one list. The two direct returns come first among these
+actions, in the order 52 then 51. Changing only 51 to `break` leaves 52
+as the winner. Changing only 52 gives the tail to 51. Changing both to
+`break` gives it to 50. Using `return` for all the copies merges the
+distinct switch entries of 50, 51 and 52.
+
+The selected source keeps ordinary frame-advance statements in 53 and
+54 and uses the switch exit in all six copies. In the lowered return
+list, 50 now precedes the detached clamp, 51, 52, 53 and 54. Hardware
+breakpoints at `0x10B30CE6` observe both splices into 50. The four
+displacements at `0x00474326`, `0x0047433D`, `0x00474371` and `0x0047437B` lead
+to `0x00474161`. These are the only sixteen bytes that change in the
+complete 10,801-byte candidate. The 645 bytes from `0x004740FA` through
+`0x0047437E` match the target, including the previously differing 243
+bytes of 53 and 54. The owner diagnostic rises from 56 to 58 of 66.
+All 396 relocation sites, types and resolved references are preserved.
+The frame-advance tests also use the helper's declared `unsigned char`
+return type directly. That cleanup alone reproduces the previous candidate.
 
 ## Complete comparison
 
@@ -173,8 +207,10 @@ The pinned target passes the structural check using its decoded relocation
 sites. Changing the last index in either table, omitting a virtual tail
 site, or removing a register restore or a direct-tail relocation is rejected.
 The selected source emits 10,801 bytes and differs first at `+0x14`.
-The remaining owner differences are the clamp's eight incoming cases
-and the two switch selector instructions.
+The remaining owner differences are the six clamp cases (55, 56 and
+159–162) and the two switch selector instructions. The next clamp test
+needs to preserve the live x87 zero when those cases branch to the
+speed store or publication in 50.
 
 The focused build and owner commands are in the
 [giant root review](GIANT_ROOT_REVIEW_2026_11_23.md#reproduce-the-selected-baselines).

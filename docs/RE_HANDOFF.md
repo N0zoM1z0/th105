@@ -49,18 +49,17 @@ and `/Os` trials left several such residuals unchanged.
 
 ## Giant action root follow-up
 
-Shared Fighter `0x004740C0` now matches the complete physical spans of
-73, 75 and 88. Their separate sequence selections exit with `break`,
-so VC8 merges them into 73 after x87 lowering. The complete 10,801-byte
-candidate preserves all 53 formerly matching owners and reaches 56
-of 66. The first strict difference remains at `0x004740D4`. The other
-owner differences are the clamp's eight incoming cases and the two
-switch selector encodings. Action 162 discovers the shared clamp first
-in the early DFS. In a separate control, 53 and 54 keep private frame
-advances until the late merge picks action 52. Removing both competing
-actions 51 and 52 in scratch restores the jump to 50. The 10,725-byte
-target contract covers both switch tables, the bound direct tails and
-eight virtual tails. See the
+Shared Fighter `0x004740C0` matches the 645-byte span of actions 50–54.
+Giving the six frame-advance copies the same switch exit lets VC8 keep
+50, 51 and 52 distinct and merge 53 and 54 into 50 after x87 lowering.
+The selected candidate preserves all 56 previously matching owners,
+including 73, 75 and 88, and reaches 58 of 66. The first strict difference
+remains at `0x004740D4`. The remaining owners are the two switch selectors
+and clamp cases 55, 56 and 159–162. Action 162 discovers the speed store
+and publication first in the early DFS. The six cases need to reach the
+native entries in 50 with an x87 zero live. The 10,725-byte target
+contract covers both switch tables, the bound direct tails and eight
+virtual tails. See the
 [compiler trace](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md) and the
 [engine and Oracle review](GIANT_ROOT_REVIEW_2026_11_23.md).
 

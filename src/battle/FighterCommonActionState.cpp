@@ -196,6 +196,8 @@ void CharacterEx::update_common_action_state()
     {
     switch (action)
     {
+      // A common switch exit lets VC8 merge the lowered frame advances
+      // from actions 53 and 54 into action 50.
       case 50:
         resolve_stage_surface_landing_transition();
         if (velocity_x_f4 < 0.0) {
@@ -208,7 +210,7 @@ void CharacterEx::update_common_action_state()
           peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
         if (advance_frame_and_dispatch())
           set_action(0);
-        return;
+        break;
 
 clamp_horizontal_speed:
         velocity_x_f4 = adjusted_horizontal_speed;
@@ -217,10 +219,9 @@ clamp_horizontal_speed:
 publish_boundary_speed:
         if (classify_fighter_x_boundary() && unknown_490)
           peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
-advance_and_maybe_reset_action:
         if (advance_frame_and_dispatch())
           set_action(0);
-        return;
+        break;
 
       case 51:
         resolve_stage_surface_landing_transition();
@@ -234,7 +235,7 @@ advance_and_maybe_reset_action:
           peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
         if (advance_frame_and_dispatch())
           set_action(0);
-        return;
+        break;
 
       case 52:
         resolve_stage_surface_landing_transition();
@@ -249,7 +250,7 @@ advance_and_maybe_reset_action:
           peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
         if (advance_frame_and_dispatch())
           set_action(0);
-        return;
+        break;
 
       case 53:
       case 59:
@@ -269,13 +270,17 @@ advance_and_maybe_reset_action:
           publish_battle_layout_scalar(2.0f);
           dispatch_indexed_event_member(0x16u);
         }
-        goto advance_and_maybe_reset_action;
+        if (advance_frame_and_dispatch())
+          set_action(0);
+        break;
 
       case 54:
       case 60:
 resolve_landing_then_advance:
         resolve_stage_surface_landing_transition();
-        goto advance_and_maybe_reset_action;
+        if (advance_frame_and_dispatch())
+          set_action(0);
+        break;
 
       case 55:
       case 61:
@@ -689,7 +694,7 @@ resolve_landing_then_advance:
         }
         else
         {
-          if ( (unsigned __int8)advance_frame_and_dispatch() )
+          if (advance_frame_and_dispatch())
           {
             set_action(98);
             if ( terminal_pending_4e9 )
@@ -723,7 +728,7 @@ resolve_landing_then_advance:
         {
           word_730 = 2;
         }
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
+        if (advance_frame_and_dispatch())
         {
           set_action(199);
           if ( word_730 == 1 )
@@ -772,7 +777,7 @@ resolve_landing_then_advance:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(0);
         return;
       case 143:
@@ -786,7 +791,7 @@ resolve_landing_then_advance:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(0);
         break;
       case 144:
@@ -800,7 +805,7 @@ resolve_landing_then_advance:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(0);
         break;
       case 145:
@@ -816,7 +821,7 @@ resolve_landing_then_advance:
           y_f0 = 0.0f;
           set_action(97);
           publish_battle_layout_scalar(2.0f);
-        } else if ((unsigned __int8)advance_frame_and_dispatch()) {
+        } else if (advance_frame_and_dispatch()) {
           set_sequence(5);
         }
         return;
@@ -833,7 +838,7 @@ resolve_landing_then_advance:
           y_f0 = 0.0f;
           set_action(97);
           publish_battle_layout_scalar(2.0f);
-        } else if ((unsigned __int8)advance_frame_and_dispatch()) {
+        } else if (advance_frame_and_dispatch()) {
           set_sequence(5);
         }
         break;
@@ -848,7 +853,7 @@ resolve_landing_then_advance:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(0);
         break;
       case 151:
@@ -862,7 +867,7 @@ resolve_landing_then_advance:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(0);
         break;
       case 152:
@@ -876,7 +881,7 @@ resolve_landing_then_advance:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(0);
         break;
       case 153:
@@ -890,7 +895,7 @@ resolve_landing_then_advance:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(0);
         break;
       case 154:
@@ -904,7 +909,7 @@ resolve_landing_then_advance:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(2);
         return;
       case 155:
@@ -918,7 +923,7 @@ resolve_landing_then_advance:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(2);
         return;
       case 156:
@@ -932,7 +937,7 @@ resolve_landing_then_advance:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(2);
         return;
       case 157:
@@ -946,7 +951,7 @@ resolve_landing_then_advance:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(2);
         return;
       case 158:
@@ -970,7 +975,7 @@ resolve_landing_then_advance:
           if ( unknown_490 )
             peer_component_6ac = (double)word_730 * -2.0;
         }
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
+        if (advance_frame_and_dispatch())
           set_action(9);
         return;
       case 159:
@@ -1023,7 +1028,7 @@ resolve_landing_then_advance:
         }
         if (classify_fighter_x_boundary() && unknown_490)
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(2);
         break;
       case 164:
@@ -1036,7 +1041,7 @@ resolve_landing_then_advance:
         }
         if (classify_fighter_x_boundary() && unknown_490)
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(2);
         break;
       case 165:
@@ -1049,7 +1054,7 @@ resolve_landing_then_advance:
         }
         if (classify_fighter_x_boundary() && unknown_490)
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(2);
         break;
       case 166:
@@ -1062,7 +1067,7 @@ resolve_landing_then_advance:
         }
         if (classify_fighter_x_boundary() && unknown_490)
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(2);
         break;
       case 167:
@@ -1086,7 +1091,7 @@ resolve_landing_then_advance:
           if ( unknown_490 )
             peer_component_6ac = (double)word_730 * -2.0;
         }
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
+        if (advance_frame_and_dispatch())
           set_action(9);
         break;
       case 180:
@@ -1113,7 +1118,7 @@ LABEL_357:
     {
       case 691:
         resolve_stage_surface_landing_transition();
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
+        if (advance_frame_and_dispatch())
           set_action(0);
         if ( frame_counter_144 == 20 )
         {
@@ -1156,7 +1161,7 @@ LABEL_357:
             return;
           }
         }
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
+        if (advance_frame_and_dispatch())
           set_action(0);
         if ( !frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 )
           dispatch_indexed_event_member(0x38u);
@@ -1167,7 +1172,7 @@ LABEL_357:
           next_sequence_block();
           return;
         }
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
+        if (advance_frame_and_dispatch())
           set_action(0);
         if ( !frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 )
         {
@@ -1199,7 +1204,7 @@ LABEL_444:
         else
         {
 LABEL_522:
-          if ( (unsigned __int8)advance_frame_and_dispatch() )
+          if (advance_frame_and_dispatch())
             set_action(0);
           if ( !frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 )
           {
@@ -1296,7 +1301,7 @@ LABEL_522:
         break;
       case 709:
         resolve_stage_surface_landing_transition();
-        if ((unsigned __int8)advance_frame_and_dispatch())
+        if (advance_frame_and_dispatch())
           set_action(700);
         return;
       case 789:
@@ -1331,7 +1336,7 @@ LABEL_522:
         }
         else
         {
-          if ((unsigned __int8)advance_frame_and_dispatch()) {
+          if (advance_frame_and_dispatch()) {
             set_action(0);
             return;
           }
@@ -1357,7 +1362,7 @@ LABEL_522:
           y_f0 = stage_surface_height_at_x(this);
           zero_velocity_acceleration();
         }
-        else if ( (unsigned __int8)advance_frame_and_dispatch() )
+        else if (advance_frame_and_dispatch())
         {
           set_action(700);
         }
@@ -1384,7 +1389,7 @@ LABEL_522:
           y_f0 = stage_surface_height_at_x(this);
           zero_velocity_acceleration();
         }
-        else if ( (unsigned __int8)advance_frame_and_dispatch() )
+        else if (advance_frame_and_dispatch())
         {
           set_action(789);
         }
