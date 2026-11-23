@@ -1,8 +1,10 @@
 # SakuyaObject complete update: 2026-10-25
 
 `SakuyaObject_update_action_state @ 0x004E0D30` now has a manual complete-body
-source hypothesis. The current comparison first differs at `0x004E0D55`,
-the primary default-branch destination. The selected source restores action
+source hypothesis. The first differing field at `0x004E0D55` points to
+`0x004E7E55` in the rebuild and `0x004E7E50` in the target. The
+default frame call and its seven epilogue instructions agree after
+rebasing. The selected source restores action
 803's alpha continuations and the 920 match-ID switch layout. See
 [the action 803 comparison](#action-803-keeps-two-alpha-calls) and
 [the frame-path comparison](#frame-calls-and-cross-case-registers).
@@ -738,6 +740,37 @@ The update view also exposes gravity at `+0x100` and the spawn byte at
 `+0x33C`, which use float and byte accesses respectively in 999 and
 810. The typed control reproduces the complete preceding build. Action
 999's landing calculation keeps its QWORD sum across the surface query.
+
+## Action 853 retirement is shared with action 805 in the rebuild
+
+The target routes seven exits from sequences 2, 4, 5, 6 and 7 to the
+decrement at `0x004E53AD`, which adds EDI holding -1. The frame call
+can fall through to the same decrement. The preceding build used the
+same register for its 805 retirement, so all seven branches jumped to
+that earlier copy. The native 805 retirement at `0x004E24E2` uses EBP.
+
+The selected sequence 7 branch jumps to the frame retirement in 853.
+It emits the native short JBE at the alpha cutoff. The case diagnostic
+pairs all 298 native instructions after rebasing, with eight more
+instructions for the retirement copy still used by the six other
+branches. The other primary entries retain their instruction and
+edge mappings. The complete candidate is 29,480 bytes with the same
+742 relocations.
+
+At `c2.dll:0x10C077B1` the 853 alpha branches still have separate
+label references. After `0x10B2C950` returns to `0x10C077B6`, both
+reference the same label (`+0x18` in the `0x284` operand). In a
+control that redirects the 816 parent-frame exit through the 805
+decrement, 853's source stays identical and all seven branches use
+the 853 frame retirement. That control adds a second -1 load in
+816 and sends its parent-frame exit to the 803 retirement.
+Both read-only traces reproduced the ordinary builds.
+
+Changing the 805 starting frame test from `< 2` to `<= 1` also
+restores all 298 instructions and their sharing in 853. It gives the
+805 decrement EBX and changes the native frame compare. Explicit
+casts, separate guards and reordered operands that retain the bound
+of 2 do not remove the 805 register group for that literal.
 
 ## Actions 920 and 930 before frame advance
 

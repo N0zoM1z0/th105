@@ -202,16 +202,16 @@ void SakuyaObjectUpdateView::update_action_state()
  case 810:
   if(sequence_id_13e<=1) {
    if(owner_348->action_id_13c<500 || owner_348->action_id_13c>503 || sequence_id_13e>2){if(alpha_113<=20)RETIRE();alpha_113-=20;}
-   else {x_ec=facing_104*AT(owner_348,float,0xf4)+owner_348->x_ec;y_f0=AT(owner_348,float,0xf8)+owner_348->y_f0;}
+   else {x_ec=facing_104*owner_348->velocity_x_f4+owner_348->x_ec;y_f0=owner_348->velocity_y_f8+owner_348->y_f0;}
    angle_12c+=10.0;
   }
 #define ORBIT810() { \
  parameters_340[0]+=10.0;if(parameters_340[0]>360.0f)parameters_340[0]-=360.0; \
  double facing=facing_104;SakuyaObjectUpdateView *owner=owner_348; \
  double cosine=lookup_orientation_cosine_quantized_abs(parameters_340[0]);SakuyaObjectUpdateView *vertical_owner=owner_348; \
- x_ec=facing*AT(owner,float,0xf4)+owner->x_ec+cosine*field_370*facing; \
+ x_ec=facing*owner->velocity_x_f4+owner->x_ec+cosine*field_370*facing; \
  double sine=lookup_orientation_sine_quantized_abs(parameters_340[0]); \
- y_f0=AT(vertical_owner,float,0xf0)+125.0+AT(vertical_owner,float,0xf8)+sine*field_370*0.25; \
+ y_f0=vertical_owner->y_f0+125.0+vertical_owner->velocity_y_f8+sine*field_370*0.25; \
  if(!(parameters_340[0]>=0) || parameters_340[0]>180.0f)spawn_field_33c=1;else spawn_field_33c=255; \
 }
   if(sequence_id_13e==2){angle_12c-=40.0;field_370+=15.0;if(field_370>parameters_340[1])field_370=parameters_340[1];
@@ -393,7 +393,7 @@ void SakuyaObjectUpdateView::update_action_state()
     if(CONTACT2468){phase_index_184=0;owner_348->dispatch_character_wave_handle(3);set_sequence_frame(4);release_secondary();velocity_x_f4=-velocity_x_f4*(0.5-random_float(30)*D(0.01f));velocity_y_f8=static_cast<float>(random_float(30)*D(0.05f))+5.0;}
     if(frame_index_140==0 || frame_index_140==2)MOVE();
     if(frame_index_140==1){velocity_x_f4=0;velocity_y_f8=0;
-     if((owner_348->action_id_13c==545 && owner_348->sequence_id_13e==0 && AT(owner_348,short,0x140)==8) || (owner_348->action_id_13c==546 && owner_348->sequence_id_13e==0 && AT(owner_348,short,0x140)==8) || (owner_348->action_id_13c==547 && owner_348->sequence_id_13e==0 && AT(owner_348,short,0x140)==8) || (owner_348->action_id_13c==548 && owner_348->sequence_id_13e==0 && AT(owner_348,short,0x140)==8)){next_sequence_frame();return;}}
+     if((owner_348->action_id_13c==545 && owner_348->sequence_id_13e==0 && owner_348->frame_index_140==8) || (owner_348->action_id_13c==546 && owner_348->sequence_id_13e==0 && owner_348->frame_index_140==8) || (owner_348->action_id_13c==547 && owner_348->sequence_id_13e==0 && owner_348->frame_index_140==8) || (owner_348->action_id_13c==548 && owner_348->sequence_id_13e==0 && owner_348->frame_index_140==8)){next_sequence_frame();return;}}
    }
    if(frame_index_140==4){angle_12c-=30.0;velocity_y_f8-=0.5;if (alpha_113 <= 10) RETIRE();alpha_113-=10;}
   }break; case 3:{if(!parent_object_34c)RETIRE();facing_104=parent_object_34c->facing_104;if(parent_object_34c->frame_index_140!=2)RETIRE();x_ec=facing_104*parent_object_34c->velocity_x_f4+parent_object_34c->x_ec;y_f0=parent_object_34c->velocity_y_f8+parent_object_34c->y_f0;facing_104=parent_object_34c->facing_104;}
@@ -469,8 +469,20 @@ void SakuyaObjectUpdateView::update_action_state()
   if(sequence_id_13e==4){if(!parent_object_34c)RETIRE();x_ec=facing_104*parent_object_34c->velocity_x_f4+parent_object_34c->x_ec;y_f0=parent_object_34c->velocity_y_f8+parent_object_34c->y_f0;angle_12c=parent_object_34c->angle_12c;if(parent_object_34c->frame_index_140>0)RETIRE();}
   if(sequence_id_13e==5){if(!parent_object_34c)RETIRE();x_ec=facing_104*parent_object_34c->velocity_x_f4+parent_object_34c->x_ec;y_f0=parent_object_34c->velocity_y_f8+parent_object_34c->y_f0;angle_12c=parent_object_34c->angle_12c;scale_x_11c+=D(0.1f);scale_y_120*=D(0.95f);if(parent_object_34c->frame_index_140>0)RETIRE();}
   if(sequence_id_13e==6){scale_y_120=scale_x_11c=static_cast<float>(scale_x_11c-D(0.01f));if(alpha_113<=20)RETIRE();alpha_113-=20;channel_110-=20;channel_111-=20;}
-  if(sequence_id_13e==7){scale_y_120=scale_x_11c=static_cast<float>(scale_x_11c+D(0.2f));if(alpha_113<=30)RETIRE();alpha_113-=30;channel_110-=30;channel_111-=30;}
-  STEP();FRAME_EXIT();
+  if (sequence_id_13e == 7) {
+   scale_y_120 = scale_x_11c = static_cast<float>(scale_x_11c + D(0.2f));
+   if (alpha_113 <= 30) goto retire_853;
+   alpha_113 -= 30;
+   channel_110 -= 30;
+   channel_111 -= 30;
+  }
+  STEP();
+  if (CORE->advance_frame_and_dispatch()) {
+  retire_853:
+   --lifetime_330;
+   return;
+  }
+  return;
  case 854:
   if (AT(owner_348, short, 0x7a4) <= 0 || field_364 != 0) {
    field_364 = 1;
