@@ -99,7 +99,12 @@ Sequences 2 through 4 of action 815 now share the target's channel fade,
 with checked byte-channel and signed time-counter fields. Action 930 now
 agrees through its bounds checks. The late pass at
 `c2.dll:0x10B2C950` still folds 816 and 930 into other frame calls.
-The complete candidate is 29,192 bytes with 737 relocations. The first
+Omitting 816 in a scratch build restores the 920 BP versus 930 BX
+comparisons before that pass and both frame calls survive. Recover the
+competing register live ranges with all of 816 present. Action 854
+agrees through its shared saturation and return paths. The parameter,
+owner and parent accesses now use checked members.
+The complete candidate is 29,200 bytes with 737 relocations. The first
 difference is at `0x004E0D55`. Actions 859 and 901 still need to recover
 the target's four fade guards and two shared low-channel tails.
 [Case note](SAKUYA_OBJECT_UPDATE_2026_10_25.md#actions-920-and-930-before-frame-advance)

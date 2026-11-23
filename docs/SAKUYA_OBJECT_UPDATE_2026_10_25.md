@@ -502,8 +502,48 @@ directly. In 920 the zero value stays in EBX and 30 in EBP, with the
 opposite register roles in the target. The target loads 30 before the
 contact branch and uses it for all four random calls in 920.
 
-The current envelope is 29,192 bytes with 737 relocations, SHA256
-`a27d44ed13dcc44e965567ad59174e6655b7afe3a94bf31be99f6025df4f70a2`.
+At `0x10C073E7`, the four random arguments and both timer tests in
+920 refer to the same whole-function group for 30. The first split
+of this group follows an EBX allocation to a range tagged to 858's
+secondary-animation guard. The six 920 uses still share a fragment.
+A later split request tagged to 853's child-spawn loop separates the
+two contact arguments from the timer and remaining random arguments.
+By `0x10C073F3`, the contact arguments are immediate 30 and the rest
+use BP or EBP.
+
+The first split request from 816's right-wall rebound puts the zero
+operands for 920 and 930 into distinct fragments. Both get BX for
+their frame-counter tests. At `0x10C077B1`, the two calls are still
+present and their comparisons already use the same register. Only
+the 920 call remains at `0x10C077B6`.
+
+Omitting 816 in a scratch build gives 920 EBP for zero and one EBX
+range for all four random calls. The frame-counter tests use BP in
+920 and BX in 930 before the late pass, and both calls survive it.
+Omitting 901 or 930 leaves the 920 constant placement unchanged.
+Omitting only the right-wall arm or the frame call in 816 also leaves
+the 920 choices unchanged. The traced objects replay their corresponding
+ordinary objects in full. The next control should preserve all of 816
+and change a group that competes for EBX or EBP in the 920 allocations.
+
+## Action 854 saturation and typed object links
+
+Action 854 compares the alpha byte with 220 at `0x004E53E8`. The
+below-220 path adds 25 and the other path writes 255 in a shared tail.
+Writing the non-saturating branch first reproduces all 44 reachable
+instructions after rebasing branches, including the earlier shared
+stores and return code.
+
+The receiver view now has checked members for the parameter buffer at
+`+0x340`, the word at `+0x344`, the fighter owner at `+0x348` and the
+parent object at `+0x34C`. The Sakuya initializer uses the same
+parameter buffer and word. The roster spawn code publishes the owner
+and parent at these offsets. The update reads the parent's checked
+position, velocity, frame index and alpha directly. The full relocated
+output of the typed view agrees with the previous offset form.
+
+The current envelope is 29,200 bytes with 737 relocations, SHA256
+`a916e2591f806f83ff88e00a72d20435309daa7dd8562384220a6aba243ff1c2`.
 The target envelope is 29,476 bytes. The first difference is at the
 primary default branch, `0x004E0D55`. Both 803 alpha paths and the
 200-byte primary remap still agree.

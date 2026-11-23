@@ -43,7 +43,13 @@ public:
  int phase_state_180;
  unsigned char unknown_184[0x1ac];
  int lifetime_330;
- unsigned char unknown_334[0x40];
+ unsigned char unknown_334[0xc];
+ float *parameters_340;
+ short field_344;
+ unsigned char unknown_346[0x2];
+ SakuyaObjectUpdateView *owner_348;
+ SakuyaObjectUpdateView *parent_object_34c;
+ unsigned char unknown_350[0x24];
  float field_374;
 };
 
@@ -75,6 +81,14 @@ typedef char CheckSakuyaUpdate_phase_state_180[
     offsetof(SakuyaObjectUpdateView, phase_state_180) == 0x180 ? 1 : -1];
 typedef char CheckSakuyaUpdate_lifetime_330[
     offsetof(SakuyaObjectUpdateView, lifetime_330) == 0x330 ? 1 : -1];
+typedef char CheckSakuyaUpdate_parameters_340[
+    offsetof(SakuyaObjectUpdateView, parameters_340) == 0x340 ? 1 : -1];
+typedef char CheckSakuyaUpdate_field_344[
+    offsetof(SakuyaObjectUpdateView, field_344) == 0x344 ? 1 : -1];
+typedef char CheckSakuyaUpdate_owner_348[
+    offsetof(SakuyaObjectUpdateView, owner_348) == 0x348 ? 1 : -1];
+typedef char CheckSakuyaUpdate_parent_object_34c[
+    offsetof(SakuyaObjectUpdateView, parent_object_34c) == 0x34c ? 1 : -1];
 typedef char CheckSakuyaUpdate_field_374[
     offsetof(SakuyaObjectUpdateView, field_374) == 0x374 ? 1 : -1];
 
