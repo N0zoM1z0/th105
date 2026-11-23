@@ -126,8 +126,24 @@ and the shared tail ownership around action 822.
 The two sequence-1 terminal burst paths now converge on one direct natural
 C++ `spawn_unparented_related_object` call within action 901 rather than
 routing through the function-wide generic emitter label. The focused owner
-grows from 2,246 to 2,264 bytes against the 2,324-byte target (60 bytes
+grows from 2,246 to 2,255 bytes against the 2,324-byte target (69 bytes
 short). This preserves the shared packet selection but moves the actual
 call/retirement back into the action's physical owner. The root remains
 nonexact; remaining differences are dominated by VC8 register lifetimes
 and x87 packet preparation order.
+
+## Action 903 owner-retirement reconstruction
+
+Action 903's sequence-0/1/2 health and burst exits now select a packet and
+word count locally and converge on one direct C++ spawn/retirement call in
+the action. Its match-mode selector is expressed as a three-step decrement
+chain, while preserving the target's separate mode-2 and mode-3 burst
+bodies. The focused owner grows from 1,355 to 1,390 bytes against the
+1,397-byte target (7 bytes short). This is a near-complete leaf within the
+large root, achieved without padding or instruction overrides.
+
+Latest focused owner extents after this change: action 901 is 2,255/2,324,
+action 902 is 2,972/2,998, action 903 is 1,390/1,397, and action 908 is
+3,786/3,794. Candidate callable code is 45,400/46,138 bytes; the complete
+root remains nonexact. Continue with the shared 822 spawn boundary and the
+remaining large 817/901/902/908 control-flow and x87 lifetimes.

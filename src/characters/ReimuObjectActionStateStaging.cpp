@@ -94,18 +94,8 @@ void th105::reimu_object_model::ReimuObject::dispatch_action_state()
 {
     th105::ReimuObjectActionStateStagingView &_root_state =
         *reinterpret_cast<th105::ReimuObjectActionStateStagingView *>(this);
-    float packet_822_health[4];
-    float packet_822_phase[4];
-    float packet_869_sequence[3];
-    float packet_869_owner[3];
-    float dead_sequence_zero[3];
-    float completed_sequence_zero[4];
-    float dead_sequence_one[3];
     float health_packet[3];
     float exhausted_packet[3];
-    float packet_902_retirement[3];
-    float packet_903_health[3];
-    float packet_903_burst[3];
     float packet_908_sequence_6[3];
     float packet_908_sequence_7[3];
     unsigned retiring_action;
@@ -1277,7 +1267,9 @@ retire_801_811:
             --_root_state.state_330;
         return;
 
-    case 822:
+    case 822: {
+        float packet_822_health[4];
+        float packet_822_phase[4];
         if (_root_state.phase_state_180 == 5)
             goto retire;
         switch (_root_state.sequence_13e) {
@@ -1429,6 +1421,7 @@ retire_801_811:
         if (_root_state.counter_144 == 0 && _root_state.frame_timer_142 == 0 && _root_state.frame_140 == 0 && _root_state.sequence_13e == 2)
             --_root_state.state_330;
         return;
+    }
 
 emit_retiring_world:
         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
@@ -2113,6 +2106,8 @@ emit_retiring_world:
         goto advance_and_retire_on_completion;
 
     case 869: {
+        float packet_869_sequence[3];
+        float packet_869_owner[3];
         const unsigned *retiring_packet_869 = 0;
         int retiring_words_869 = 0;
         if (_root_state.phase_state_180 == 5)
@@ -2283,6 +2278,9 @@ emit_retiring_world:
         goto advance_and_retire_on_completion;
 
     case 900: {
+        float dead_sequence_zero[3];
+        float completed_sequence_zero[4];
+        float dead_sequence_one[3];
         const unsigned *retiring_packet_900 = 0;
         int retiring_words_900 = 0;
         switch (_root_state.sequence_13e) {
@@ -2584,7 +2582,8 @@ emit_retiring_world:
         return;
     }
 
-    case 902:
+    case 902: {
+        float packet_902_retirement[3];
         switch (_root_state.sequence_13e) {
         case 0:
             if (*reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x174) <= 0)
@@ -2764,8 +2763,14 @@ fade_902:
         effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
         effect_000.object_y_0ec += effect_000.motion_0f0.velocity_y;
         goto advance_and_retire_on_completion;
+    }
 
-    case 903:
+    case 903: {
+        float packet_903_health[3];
+        float packet_903_burst[3];
+        register int match_step = 1;
+        const unsigned *retiring_packet_903 = 0;
+        int retiring_words_903 = 0;
         if (_root_state.phase_state_180 == 5)
             goto retire;
         switch (_root_state.sequence_13e) {
@@ -2776,21 +2781,20 @@ fade_902:
                 packet_903_health[0] = 0.0f;
                 packet_903_health[1] = 0.0f;
                 packet_903_health[2] = static_cast<float>(_root_state.sequence_13e + 6.0);
-                retiring_action = 903;
-                retiring_packet = reinterpret_cast<const unsigned *>(packet_903_health);
-                retiring_words = 3;
-                goto emit_retiring_world;
+                retiring_packet_903 = reinterpret_cast<const unsigned *>(packet_903_health);
+                retiring_words_903 = 3;
+                break;
             }
             if (_root_state.state_364 == 0) {
                 reinterpret_cast<float *>(copied_words_340)[1] = static_cast<float>(reinterpret_cast<float *>(copied_words_340)[1] * static_cast<double>(0.95f));
                 reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
                     set_oriented_components_f0_f4(reinterpret_cast<float *>(copied_words_340)[0], reinterpret_cast<float *>(copied_words_340)[1]);
                 if (_root_state.counter_144 >= 40) {
-                    _root_state.phase_index_184 = 1;
+                    _root_state.phase_index_184 = match_step;
                     _root_state.phase_state_180 = 0;
                     effect_000.motion_0f0.velocity_x = 0.0f;
                     effect_000.motion_0f0.velocity_y = 0.0f;
-                    _root_state.state_364 = 1;
+                    _root_state.state_364 = match_step;
                     _root_state.counter_144 = 0;
                 }
                 if (_root_state.counter_144 % 10 == 0) {
@@ -2807,7 +2811,8 @@ fade_902:
                     *reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x13e) == 6) {
                 const int axis = selector_random_roll(2);
                 const float width = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(120))) * static_cast<double>(0.1f));
-                if (g_match_identifier == 1) {
+                register int match_index = g_match_identifier;
+                if ((match_index -= match_step) == 0) {
                     for (float sector = 0.0f; sector < 2.0f; sector += 1.0f) {
                         double angle = sector * 180.0;
                         if (axis == 0)
@@ -2819,7 +2824,7 @@ fade_902:
                             904, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
                             reinterpret_cast<const unsigned *>(packet_903_burst), 3);
                     }
-                } else if (g_match_identifier == 2) {
+                } else if ((match_index -= match_step) == 0) {
                     for (float sector = 0.0f; sector < 4.0f; sector += 1.0f) {
                         packet_903_burst[0] = static_cast<float>(sector * 90.0);
                         packet_903_burst[1] = width;
@@ -2828,7 +2833,7 @@ fade_902:
                             904, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
                             reinterpret_cast<const unsigned *>(packet_903_burst), 3);
                     }
-                } else if (g_match_identifier == 3) {
+                } else if ((match_index -= match_step) == 0) {
                     for (float sector = 0.0f; sector < 4.0f; sector += 1.0f) {
                         packet_903_burst[0] = static_cast<float>(sector * 90.0);
                         packet_903_burst[1] = width;
@@ -2841,10 +2846,9 @@ fade_902:
                 packet_903_burst[0] = 0.0f;
                 packet_903_burst[1] = 0.5f;
                 packet_903_burst[2] = static_cast<float>(_root_state.sequence_13e + 6.0);
-                retiring_action = 903;
-                retiring_packet = reinterpret_cast<const unsigned *>(packet_903_burst);
-                retiring_words = 3;
-                goto emit_retiring_world;
+                retiring_packet_903 = reinterpret_cast<const unsigned *>(packet_903_burst);
+                retiring_words_903 = 3;
+                break;
             }
             break;
         case 3: case 4: case 5:
@@ -2866,6 +2870,14 @@ fade_902:
             _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 - 10);
             break;
         }
+        if (retiring_packet_903) {
+            reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                903, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                retiring_packet_903, retiring_words_903);
+            --_root_state.state_330;
+            return;
+        }
         effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
         effect_000.object_y_0ec += effect_000.motion_0f0.velocity_y;
         if (effect_000.object_x_0e8 > 1680.0 || effect_000.object_x_0e8 < -400.0 || effect_000.object_y_0ec > 1480.0 || effect_000.object_y_0ec < -520.0) {
@@ -2873,6 +2885,8 @@ fade_902:
             return;
         }
         goto advance_and_retire_on_completion;
+
+    }
 
     case 904:
         if (_root_state.phase_state_180 == 5)
