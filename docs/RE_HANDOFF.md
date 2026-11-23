@@ -55,8 +55,12 @@ so VC8 merges them into 73 after x87 lowering. The complete 10,801-byte
 candidate preserves all 53 formerly matching owners and reaches 56
 of 66. The first strict difference remains at `0x004740D4`. The other
 owner differences are the clamp's eight incoming cases and the two
-switch selector encodings. The 10,725-byte target contract covers both
-switch tables, the bound direct tails and eight virtual tails. See the
+switch selector encodings. Action 162 discovers the shared clamp first
+in the early DFS. In a separate control, 53 and 54 keep private frame
+advances until the late merge picks action 52. Removing both competing
+actions 51 and 52 in scratch restores the jump to 50. The 10,725-byte
+target contract covers both switch tables, the bound direct tails and
+eight virtual tails. See the
 [compiler trace](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md) and the
 [engine and Oracle review](GIANT_ROOT_REVIEW_2026_11_23.md).
 

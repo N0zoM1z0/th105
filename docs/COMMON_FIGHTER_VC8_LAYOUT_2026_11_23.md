@@ -122,6 +122,38 @@ keep the restored sequence cases, add no matching clamp owners, and
 change 799's return branches. The selected clamp therefore still needs
 the native entries between its x87 compare, speed store and advance.
 
+### Two passes choose the clamp successors
+
+In the current 664-block graph, the low switch visits action 162 before
+the other clamp consumers. Its successful speed test reaches the store
+block first. The DFS then discovers the boundary publication and frame
+advance through that block, and `0x10B281E0` places all three after 162.
+The late copy emits another `FLDZ` and `FCOMPP` before the clamp.
+The exact copy in 50 compares with the live zero via `FCOMP ST(1)`.
+Using the same zero local in both source tests preserves the full
+output. Reversing the comparison operands selects a memory operand
+and adds two alignment bytes after 799's final return. The owner audit
+assigns that padding to its final span.
+
+Giving only 53 and 54 their own frame advances and switch exits keeps
+both calls through x87 lowering and removes them in `0x10B2C950`.
+The splice at `0x10B30CE6` releases the redundant instructions. The
+linked branches now go to `0x0047426D` in action 52. Omitting
+52 in scratch moves the destination to 51. Omitting 51 and 52 together
+restores the jump to 50 at `0x00474161`. A direct source jump to 50's
+advance also changes the full graph. With both incoming cases, it
+merges the distinct switch entries for 50 and 52 and routes 53 and 54
+to 51.
+
+The late-merge control that keeps all actions has 16 changed bytes in
+the four jump displacements and reports eight fewer byte differences.
+All four jumps still reach the wrong physical owner. The owner audit
+reports the same 56 matching spans. The selected source uses one
+constant clamp limit, a named snapshot of the action selector, and a
+typed accessor for the reset receiver at `+4`. The configured build
+reproduces all 10,801 bytes, relocation sites and kinds, and all 56
+matching spans.
+
 ## Complete comparison
 
 The full target envelope is 10,725 bytes. It ends at `0x00476AA5`, after

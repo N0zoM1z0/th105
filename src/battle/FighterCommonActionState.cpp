@@ -44,6 +44,11 @@ public:
     void copy_action_word_176_to_174();
     void update_common_action_state();
 
+    FighterActionScratchView *action_scratch()
+    {
+        return reinterpret_cast<FighterActionScratchView *>(reserved_004);
+    }
+
     unsigned char reserved_004[0xe8];
     float x_ec;
     float y_f0;
@@ -120,7 +125,7 @@ public:
 };
 
 #define OFFCHECK(field, off) typedef char FighterCommonActionState_##field[(offsetof(CharacterEx, field)==off)?1:-1]
-OFFCHECK(action_13c,0x13c); OFFCHECK(frame_counter_144,0x144); OFFCHECK(frame_limit_14c,0x14c);
+OFFCHECK(reserved_004,0x004); OFFCHECK(action_13c,0x13c); OFFCHECK(frame_counter_144,0x144); OFFCHECK(frame_limit_14c,0x14c);
 OFFCHECK(byte_47e,0x47e);
 OFFCHECK(sequence_controller_55c,0x55c); OFFCHECK(peer_component_6ac,0x6ac); OFFCHECK(state_72c,0x72c);
 OFFCHECK(word_730,0x730); OFFCHECK(flag_776,0x776); OFFCHECK(word_7a2,0x7a2);
@@ -131,8 +136,7 @@ float __fastcall stage_surface_height_at_x(CharacterEx *fighter);
 
 void CharacterEx::update_common_action_state()
 {
-  int v2; // eax
-  double horizontal_speed_limit;
+  const double horizontal_speed_limit = 0.0;
   double adjusted_horizontal_speed;
   double v30; // st7
   int v32; // eax
@@ -183,14 +187,14 @@ void CharacterEx::update_common_action_state()
   float v118; // [esp+20h] [ebp-4h]
   float v119; // [esp+20h] [ebp-4h]
   float v120; // [esp+20h] [ebp-4h]
-  v2 = action_13c;
-  if ( v2 <= 690 )
+  const int action = action_13c;
+  if ( action <= 690 )
   {
-    if (v2 == 690)
+    if (action == 690)
       goto resolve_landing_then_advance;
     else
     {
-    switch ( v2 )
+    switch (action)
     {
       case 50:
         resolve_stage_surface_landing_transition();
@@ -211,12 +215,8 @@ clamp_horizontal_speed:
         if ( adjusted_horizontal_speed > horizontal_speed_limit )
           velocity_x_f4 = horizontal_speed_limit;
 publish_boundary_speed:
-        if ( classify_fighter_x_boundary() )
-        {
-          if ( unknown_490 )
-            peer_component_6ac = velocity_x_f4 * 0.75;
-        }
-        goto advance_and_maybe_reset_action;
+        if (classify_fighter_x_boundary() && unknown_490)
+          peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
 advance_and_maybe_reset_action:
         if (advance_frame_and_dispatch())
           set_action(0);
@@ -280,7 +280,6 @@ resolve_landing_then_advance:
       case 55:
       case 61:
         resolve_stage_surface_landing_transition();
-        horizontal_speed_limit = 0.0;
         if ( velocity_x_f4 > 0.0 ) {
           adjusted_horizontal_speed = static_cast<float>(velocity_x_f4 - 1.5);
           goto clamp_horizontal_speed;
@@ -291,7 +290,6 @@ resolve_landing_then_advance:
       case 57:
       case 58:
         resolve_stage_surface_landing_transition();
-        horizontal_speed_limit = 0.0;
         if ( velocity_x_f4 < 0.0 ) {
           adjusted_horizontal_speed = static_cast<float>(velocity_x_f4 + 1.5);
           goto clamp_horizontal_speed;
@@ -548,7 +546,7 @@ resolve_landing_then_advance:
           set_action(97);
           angle_12c = 0.0f;
           publish_battle_layout_scalar(2.0f);
-          reinterpret_cast<FighterActionScratchView *>(reinterpret_cast<unsigned char *>(this) + 4)->reset();
+          action_scratch()->reset();
           return;
         }
         advance_frame_and_dispatch();
@@ -572,7 +570,7 @@ resolve_landing_then_advance:
           set_action(97);
           angle_12c = 0.0f;
           publish_battle_layout_scalar(2.0f);
-          reinterpret_cast<FighterActionScratchView *>(reinterpret_cast<unsigned char *>(this) + 4)->reset();
+          action_scratch()->reset();
           return;
         }
         advance_frame_and_dispatch();
@@ -640,7 +638,7 @@ resolve_landing_then_advance:
           set_action(97);
           angle_12c = 0.0;
           publish_battle_layout_scalar(2.0);
-          reinterpret_cast<FighterActionScratchView *>(reinterpret_cast<unsigned char *>(this) + 4)->reset();
+          action_scratch()->reset();
           dispatch_indexed_event_member(0x16u);
         }
         else
@@ -977,7 +975,6 @@ resolve_landing_then_advance:
         return;
       case 159:
         resolve_stage_surface_landing_transition();
-        horizontal_speed_limit = 0.0;
         if (!(velocity_x_f4 < 0.0f))
           goto publish_boundary_speed;
         {
@@ -988,7 +985,6 @@ resolve_landing_then_advance:
         goto clamp_horizontal_speed;
       case 160:
         resolve_stage_surface_landing_transition();
-        horizontal_speed_limit = 0.0;
         if (!(velocity_x_f4 < 0.0f))
           goto publish_boundary_speed;
         {
@@ -999,7 +995,6 @@ resolve_landing_then_advance:
         goto clamp_horizontal_speed;
       case 161:
         resolve_stage_surface_landing_transition();
-        horizontal_speed_limit = 0.0;
         if (!(velocity_x_f4 < 0.0f))
           goto publish_boundary_speed;
         {
@@ -1010,7 +1005,6 @@ resolve_landing_then_advance:
         goto clamp_horizontal_speed;
       case 162:
         resolve_stage_surface_landing_transition();
-        horizontal_speed_limit = 0.0;
         if (!(velocity_x_f4 < 0.0f))
           goto publish_boundary_speed;
         {
@@ -1115,7 +1109,7 @@ LABEL_357:
   }
   else
   {
-    switch ( action_13c )
+    switch (action)
     {
       case 691:
         resolve_stage_surface_landing_transition();
