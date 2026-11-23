@@ -21415,7 +21415,7 @@ source = "src/characters/ReimuActionInitialization.cpp"
 object = "build/match-units/ExactFirst_ReimuActionInitialization.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a Reimu primary slot3C491C40;3785 callable/full4738 payload with63 destination words and696 remap bytes. Natural source has complete scalar and declaration-only effect/control policy; nonexact. Whole diagnostic. docs/REIMU_ACTION_INITIALIZATION_2026_10_25.md."
+notes = "Exact JP 1.06a Reimu primary slot 3C at 0x491C40. The 4738-byte comparison covers the 3785-byte callable and three compact switches. Cases 404/406 and 414/416 share a flag reset after the switch. See docs/REIMU_ACTION_INITIALIZATION_2026_10_25.md."
 
 [[units.exact-first-reimu-action-initialization.functions]]
 address = "0x00491C40"

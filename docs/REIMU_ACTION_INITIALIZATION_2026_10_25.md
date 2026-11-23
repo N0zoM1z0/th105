@@ -1,11 +1,10 @@
 # Reimu primary slot 3C: complete action-entry source
 
-`Reimu_initialize_action_entry @ 0x00491C40` has complete source in
-`src/characters/ReimuActionInitialization.cpp/.hpp`. The current 4,738-byte
-candidate has 70 differing bytes after relocation, concentrated in the
-404/414 shared tail and three relocated destination bytes. Action 322 now
-matches, including its conditional branch into 305. The build unit checks
-the full extent, including all three tables, after the callable matches.
+`Reimu_initialize_action_entry @ 0x00491C40` matches the complete 4,738-byte
+extent from `src/characters/ReimuActionInitialization.cpp/.hpp`. The
+comparison includes all three switch tables, alignment and 171 relocation
+sites. The action-322 branch enters 305's reset, and action 404 jumps
+forward into 414 with both x87 operands ready.
 
 ## Observed target and boundary
 
@@ -142,7 +141,7 @@ remap bytes, five bytes of table alignment and the tail to `0x00477830`.
 Structural checks against the target reject changes to the final remap
 byte of every table, an alignment byte and a jump word.
 
-The pinned VC8 SP1 back end still has separate 404 and 414 multiplication
+The pre-match source retains separate 404 and 414 multiplication
 tails at `c2.dll:0x10C0661B`, after x87 lowering. When the pass at
 `0x10B2C950` returns to `0x10C077B6`, 404 retains both multiplies and 414
 branches backward after loading its coefficient. Inside that pass, the
@@ -159,6 +158,25 @@ An explicit join through a shared `double` coefficient puts the tail in
 speed before the join adds a stack spill. Sharing the later flag-reset
 tail with action 400 in source shifts the dispatch layout. Both behaviors
 provide controls for the x87 live values and the later cross-jump pass.
+
+## Shared reset after the switch
+
+Cases 404/406 and 414/416 perform their own velocity updates and leave the
+switch with `break`. The four cases reach a single flag reset after the
+switch. The rebuild keeps the target's horizontal-speed load followed by the
+coefficient load in each arm. The late `0x10B2C950` pass receives two
+lowered multiply tails and keeps the 414 copy. The final object has the
+forward jump from `0x00492400` to `0x00492431` and the original three
+destination words that moved with the 408/321 and 414/416 entries.
+In the exact build, a hardware watchpoint on the link to 404's first
+multiply stops after the splice at `c2.dll:0x10B2E5C0`, inside
+`0x10B2E1B0`. The rebuilt section from that trace is exact as well.
+
+Moving action 400 to the same reset changes the code and relocation
+layout. Its zero-motion call and reset stay in its own source arm.
+An inline velocity helper also changes layout. In the exact build, mutating
+the final remap byte from index 16 to 17 leaves all 3,785 callable bytes
+equal. The strict comparison rejects the altered object at `0x00492EC1`.
 
 ## Reproduction
 

@@ -1,4 +1,4 @@
-// JP 1.06a Reimu action initializer at 0x491C40. The 404/414 shared tail still differs.
+// JP 1.06a Reimu action initializer at 0x491C40.
 #include "ReimuActionInitialization.hpp"
 namespace th105 {
 #define FIELD(type,offset) (*reinterpret_cast<type *>(reinterpret_cast<unsigned char *>(this)+(offset)))
@@ -110,10 +110,7 @@ void ReimuFinalizationView::initialize_action_entry()
   I(0x180) = 0;
   velocity_x_f4 *= 0.2f;
   velocity_y_f8 *= 0.2f;
-  S(0x736) = S(0x732) = S(0x730) = S(0x738) = 0;
-  B(0x750) = 1;
-  S(0x7cc) = 1;
-  return;
+  break;
  case 408:
   velocity_x_f4 = 14.0f;
   acceleration_y_100 = velocity_y_f8 = 0;
@@ -129,10 +126,7 @@ void ReimuFinalizationView::initialize_action_entry()
   I(0x180) = 0;
   velocity_x_f4 *= 0.25;
   velocity_y_f8 *= 0.25;
-  S(0x736) = S(0x732) = S(0x730) = S(0x738) = 0;
-  B(0x750) = 1;
-  S(0x7cc) = 1;
-  return;
+  break;
  case 418:
   velocity_x_f4=8.5f;acceleration_y_100=velocity_y_f8=0;B(0x184)=1;B(0x47e)=0;I(0x180)=0;S(0x7cc)=0;return;
  case 500:case 501:
@@ -212,6 +206,11 @@ void ReimuFinalizationView::initialize_action_entry()
   zero_motion();velocity_x_f4=12.0f;S(0x730)=0;velocity_y_f8=0;acceleration_y_100=0.5f;return;
  default:initialize_common_action_entry();return;
  }
+
+ S(0x736) = S(0x732) = S(0x730) = S(0x738) = 0;
+ B(0x750) = 1;
+ S(0x7cc) = 1;
+ return;
 }
 #undef F
 #undef S

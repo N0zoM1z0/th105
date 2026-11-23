@@ -471,8 +471,8 @@ target lacks, so LTCG does not explain the register.
   Searches over all 120 integer-store orders for 404 and all 12 orders for 650
   did not move `pop edi`.
 
-- **Reimu action initialization 0x491C40 cross-jumps (2026-11-14).** Two
-  residuals remain, and both are cross-jump decisions.
+- **Reimu action initialization 0x491C40 cross-jumps.** The November 14
+  baseline had two cross-jump differences.
   - Cases 404 and 414 share the tail `fmul st(1), st(0); mov [180], ebx; ...;
     jmp`. In the target, 404 jumps forward into 414's copy; ours makes 414 jump
     back into 404's.
@@ -482,9 +482,9 @@ target lacks, so LTCG does not explain the register.
     compare instruction lengths too.
 
   A manual `/GL` + `/LTCG` link with out-of-line callee stubs gives the same two
-  residuals, so this is not an LTCG effect. VC8 keeps the copy of the case that
-  comes first in source, so writing 404 after 414 gives the target's code but the
-  wrong layout. Small sub-switches sometimes merge the target's way (for example,
+  residuals. That source keeps the 404 copy. Moving 404 after 414 changes
+  the merge direction and the switch layout. Small sub-switches sometimes
+  merge the target's way (for example,
   only 400/404/408/321/414 without the `default:` tail call). Removing any one or
   two of the large cases 76, 78, 89, 609, 610, 696 or 760 does not. The following
   made no difference: every order of the five 404 statements, the 414 store order,
@@ -494,6 +494,12 @@ target lacks, so LTCG does not explain the register.
   which are now written that way (neutral). The next lead is some other
   difference in earlier IR size (helpers inlined in the original, for example)
   rather than in these cases.
+
+  The exact build retains distinct case 322 reset arms and puts the first
+  flag reset reachable from 404/406 and 414/416 after the switch. This keeps
+  the two lowered x87 tails separate until the late join pass, which now
+  keeps 414's copy. Expanding the shared reset to action 400 changes the
+  layout. See the [whole-function trace](REIMU_ACTION_INITIALIZATION_2026_10_25.md#shared-reset-after-the-switch).
 
 - **Background runtime 0x466F40 zero register (2026-11-14).** The target
   computes `effect_level_f8 + effect_level_delta_fc` once, so an `int const level`

@@ -66,12 +66,11 @@ Smallest remaining character residuals, after the literal pass:
   frame), Suika, Yukari, Tenshi;
 - the object-entry functions of Sakuya, Marisa, Patchouli and Yuyuko, and the
   Marisa CPU dispatch tails 0x4B4070;
-- the initializers Reimu 0x491C40, Udonge 0x5D0E60 and Youmu 0x53A1D0 (one or
-  two cross-jump regions each).
+- the initializers Udonge 0x5D0E60 and Youmu 0x53A1D0.
 
-Reimu's [checked initializer fields](REIMU_ACTION_INITIALIZATION_2026_10_25.md#checked-fields-and-late-x87-tail-merging-2026-11-23)
-preserve the full candidate. Case 322 already matches. The 404/414 shared
-tail changes owner in the post-x87 pass `c2.dll:0x10B2C950`.
+Reimu's initializer at 0x491C40 is exact. Cases 404/406 and 414/416 reach
+one flag reset after the switch. VC8 shares their already-lowered x87
+multiplication forward into 414. See the [case note](REIMU_ACTION_INITIALIZATION_2026_10_25.md#shared-reset-after-the-switch).
 
 The checked receiver layouts for Youmu's Fighter initializer and Sakuya's
 Object initializer preserve both complete VC8 baselines. Youmu's remaining
