@@ -456,12 +456,11 @@ resolve_landing_then_advance:
         }
         advance_frame_and_dispatch();
         if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && velocity_y_f8 != 0.0f) {
-select_landing_sequence:
           if (velocity_x_f4 == 0.0f)
             set_sequence(3);
           else
             set_sequence(2);
-          return;
+          break;
         }
         if (--word_730 < 0)
           word_730 = 0;
@@ -530,7 +529,11 @@ select_landing_sequence:
           return;
         if (velocity_y_f8 == 0.0f)
           return;
-        goto select_landing_sequence;
+        if (velocity_x_f4 == 0.0f)
+          set_sequence(3);
+        else
+          set_sequence(2);
+        break;
 
       case 76:
         if (sequence_13e > 0)
@@ -608,8 +611,13 @@ select_landing_sequence:
           break;
         }
         advance_frame_and_dispatch();
-        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && velocity_y_f8 != 0.0f)
-          goto select_landing_sequence;
+        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && velocity_y_f8 != 0.0f) {
+          if (velocity_x_f4 == 0.0f)
+            set_sequence(3);
+          else
+            set_sequence(2);
+          break;
+        }
         if (--word_730 < 0)
           word_730 = 0;
         if (classify_fighter_x_boundary() && velocity_x_f4 < 0.0) {

@@ -1,13 +1,12 @@
-# VC8 moves the common Fighter sequence tail before x87 lowering
+# Common Fighter sequence selection and VC8 block order
 
 The target places the sequence tail of common Fighter `0x004740C0` at
-`0x00474992`, inside action 73. Actions 75 and 88 jump to it with an x87
-zero live. In the current source the three actions also share one tail.
-VC8 initially keeps it in the source position, then moves it to action 88
-before lowering the comparison to an x87 `fcomp`. Tune the block placement
-before changing the comparison or the virtual call's register choice.
+`0x00474992`, inside action 73. Actions 75 and 88 jump to it with an
+x87 zero live. The selected source gives each case its own selection and
+exits the switch with `break`. VC8 merges the lowered copies into 73
+and reproduces all 802 bytes across the three physical spans.
 
-## Read-only compiler trace
+## Discovery order with the shared source label
 
 The trace uses the repository's VC8 SP1 14.00.50727.762, `/O2 /GS- /GR
 /EHsc /MT`, and the same game-specific Wine prefix. Wine/GDB runs headless.
@@ -42,8 +41,10 @@ physical successor and splice the instruction list. The input order
 already puts selection after action 88. The baseline has the selection
 test at reverse index 439 and the final action-88 guard at 441. Omitting
 action 88 in scratch puts the selection test at 451 and the final action-75
-guard at 454. Track the predecessor that contributes the selected order
-when preparing a variant that preserves all three actions.
+guard at 454. Reconstructing the baseline DFS from all 658 blocks and
+their outgoing edge lists reproduces C2's complete postorder. The low
+switch reaches 88 before 75 and 73. Action 88's successful final guard
+discovers the shared block from the source label in 73.
 The COFF encoder's return at `0x10B2419F` exposes the current
 instruction record in EDI, the output offset at `[ESI+0x18]`, the encoded
 length in EAX, and the bytes at `[ESP+0x48]`. The raw target and the fresh
@@ -60,16 +61,34 @@ declaration-only boundary in this carrier while the native calls remain
 present. The control uses the body from `StageGeometry.cpp`, which reads
 the typed X coordinate and compares it to the stage thresholds.
 
-Using explicit zero comparisons in the three actions, spelling the byte
-conversion at the landing predicate, and naming the selection label make
-the shared behavior visible in the source. The rebuilt complete envelope
-is identical to the previous 10,801-byte baseline after all 396 relocations
-are replayed. Duplicating the selection tails regresses the owner
+The earlier shared-label source added explicit zero comparisons and an
+unsigned-byte conversion at the landing predicate. Those edits preserved
+the complete 10,801-byte candidate after replaying all 396 relocations.
+Duplicating the selection tails with direct returns regresses the owner
 diagnostic from 53 to 51 out of 66. Moving action 73's ordinary motion to
 the guarded arm ahead of selection is byte-neutral. In action 88, splitting
 the float guard from the integer guards or putting the motion return first
 is also byte-neutral. Duplicating just its selection with a reversed
 velocity test loses the previously matching action 799 owner.
+
+## A shared switch exit restores action 73
+
+The three cases retain separate comparisons in their own blocks before
+and after `0x10B281E0`. All three still reach the late merge at
+`c2.dll:0x10B2C950` after x87 lowering. At its return to
+`0x10C077B6`, only 73's comparison remains. This keeps 73's fallthrough
+into `0x00474992` and restores the backward jumps from 75 and 88.
+Leaving any of the three selections as a direct return did not recover
+all three spans. Several mixed-exit builds also changed action 799's
+jumps to the epilogue.
+
+The formal build and the headless traced build agree over all 10,801
+bytes after replaying 396 relocations. The span lengths and offsets for
+73, 75 and 88 agree with the target, and a direct byte comparison matches
+344, 148 and 310 bytes respectively. The whole-root diagnostic improves
+from 53 to 56 matching owners out of 66 and preserves all former matches.
+The complete comparison against the 10,725-byte target falls from 4,979
+to 3,698 differences. The first difference remains at `0x004740D4`.
 
 ## The shared horizontal-speed clamp
 
@@ -92,8 +111,8 @@ and loses action 799 as well. The size change alone is misleading.
 
 The retained source names the three shared entries and keeps the two steps
 in cases 159–162 in scoped float locals. The native steps use the double
-promotion of `0.6f` and round to float after each addition. The rewrite
-keeps all 10,801 relocated bytes and the 53 matching diagnostic owners.
+promotion of `0.6f` and round to float after each addition. That rewrite
+kept the complete envelope and the 53 matching owners at the time.
 
 ## Complete comparison
 
@@ -113,7 +132,9 @@ classes, bind slot `+0x14` to the exact 138-byte `next_sequence_block` at
 The pinned target passes the structural check using its decoded relocation
 sites. Changing the last index in either table, omitting a virtual tail
 site, or removing a register restore or a direct-tail relocation is rejected.
-The fresh source still emits 10,801 bytes and differs first at `+0x14`.
+The selected source emits 10,801 bytes and differs first at `+0x14`.
+The remaining owner differences are the clamp's eight incoming cases
+and the two switch selector instructions.
 
 The focused build and owner commands are in the
 [giant root review](GIANT_ROOT_REVIEW_2026_11_23.md#reproduce-the-selected-baselines).
