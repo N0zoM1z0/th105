@@ -648,9 +648,9 @@ advance_and_retire_on_completion:
         return;
 
     case 812: {
-        register int retire_delta = -1;
-        register int one = 1;
         register int five = 5;
+        register int one = 1;
+        register int retire_delta = -1;
         if (effect_000.object_x_0e8 > 1380.0 || effect_000.object_x_0e8 < -100.0 || effect_000.object_y_0ec > 1000.0 || effect_000.object_y_0ec < -240.0 ||
                 _root_state.phase_state_180 == five || (_root_state.sequence_13e <= one &&
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
@@ -671,8 +671,7 @@ advance_and_retire_on_completion:
                 effect_000.reset_one_11c = effect_000.reset_one_118;
                 next_sequence_block();
             }
-            effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
-            effect_000.object_y_0ec += effect_000.motion_0f0.velocity_y;
+            goto move_with_facing_velocity_812;
             break;
         case 1:
             reinterpret_cast<float *>(copied_words_340)[1] = static_cast<float>(reinterpret_cast<float *>(copied_words_340)[1] - 1.5);
@@ -714,8 +713,7 @@ advance_and_retire_on_completion:
             reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(30);
             if (_root_state.phase_state_180 != 0)
                 goto select_sequence_three;
-            effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
-            effect_000.object_y_0ec += effect_000.motion_0f0.velocity_y;
+            goto move_with_facing_velocity_812;
             break;
         case 2:
             reinterpret_cast<float *>(copied_words_340)[1] = static_cast<float>(reinterpret_cast<float *>(copied_words_340)[1] + 0.5);
@@ -736,26 +734,28 @@ advance_and_retire_on_completion:
             if (this->state_370 < 0.0f)
                 this->state_370 = 0.0f;
             reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(3);
-            if (_root_state.phase_state_180 == 0) {
-                effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
-                effect_000.object_y_0ec += effect_000.motion_0f0.velocity_y;
-            } else {
+            if (_root_state.phase_state_180 != 0) {
                 select_sequence(3);
                 return;
             }
+            goto move_with_facing_velocity_812;
             break;
         case 3: case 4:
-            if (_root_state.alpha_113 < 15)
-                goto action_812_alpha_retire;
-            _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 - 15);
-            effect_000.reset_one_118 = static_cast<float>(effect_000.reset_one_118 + static_cast<double>(0.1f));
-            effect_000.reset_one_11c = static_cast<float>(effect_000.reset_one_11c + static_cast<double>(0.1f));
-            break;
-        action_812_alpha_retire:
-            _root_state.alpha_113 = 0;
-            _root_state.state_330 += retire_delta;
-            break;
+            if (_root_state.alpha_113 >= 15) {
+                _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 - 15);
+                effect_000.reset_one_118 = static_cast<float>(effect_000.reset_one_118 + static_cast<double>(0.1f));
+                effect_000.reset_one_11c = static_cast<float>(effect_000.reset_one_11c + static_cast<double>(0.1f));
+            } else {
+                _root_state.alpha_113 = 0;
+                _root_state.state_330 += retire_delta;
+            }
+            goto advance_812;
         }
+        goto advance_812;
+move_with_facing_velocity_812:
+        effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
+        effect_000.object_y_0ec += effect_000.motion_0f0.velocity_y;
+advance_812:
         if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
             _root_state.state_330 += retire_delta;
         if (_root_state.counter_144 == 0 && _root_state.frame_timer_142 == 0 && _root_state.frame_140 == 0 && _root_state.sequence_13e == 2)
