@@ -42,9 +42,20 @@ parked residual with what was tried. The most productive rules:
 - A "remote chunk" reached by `jmp` after an epilogue is usually a tail call
   to a separate function (the scene frame update 0x43B4A0 tail-calls 0x4400D0).
 
-Equal-size residuals have nearly always been source questions (statement order,
-branch direction, scopes, literals), not compiler settings; RTM, LTCG, `/Z7`,
-`/fp` and `/Os` variations were tried without effect.
+For equal-size residuals, inspect statement order, branch direction, scopes
+and literals together with the shared tails and visible definitions that
+can change instruction selection elsewhere. Earlier RTM, LTCG, `/Z7`, `/fp`
+and `/Os` trials left several such residuals unchanged.
+
+## Giant action root follow-up
+
+Use shared Fighter `0x004740C0` for the next cross-case VC8 control. Its
+fresh owner diagnostic gives 53/66, and omitting action 88 in scratch
+changes the emitted selection tail of unchanged action 75. Follow the
+73/75/88 join through the virtual calls and x87 value before tuning local
+register choices. The [giant root review](GIANT_ROOT_REVIEW_2026_11_23.md)
+records the TH09 controls, TH075/EFZ references, Sakuya switch-check
+positive and negative, and the byte-neutral Komachi field-layout trial.
 
 ## Open work
 
@@ -82,11 +93,13 @@ Other open leads:
 - The CDesignBase loader links but differs in size (2666 against 2708) and
   frame (0x3E8 against 0x3F8); see
   [real gauge context](DESIGN_LOADER_REAL_GAGE_2026_11_02.md).
-- The giant action roots are not yet registered. Komachi 0x5E20E0 has a
-  complete but unselected candidate (unit `exact-first-komachi-action-state`,
-  108 actions). Reimu 0x478FA0 has only staged partial sources
-  (`src/characters/ReimuActionState*`, actions up to 798), with no unit; the
-  later high-action path is still missing.
+- The giant action roots have no exact entries. Komachi 0x5E20E0 has a
+  complete unselected candidate (unit `exact-first-komachi-action-state`,
+  108 actions). Its ordinary replay covers the callable and a full exact
+  contract must account for all seven tables. The owner diagnostic stops
+  at the merged 209/212 entry. Reimu 0x478FA0 has staged partial sources
+  (`src/characters/ReimuActionState*`) and still needs a selected whole-root
+  unit.
 
 ## Checking shared type changes
 

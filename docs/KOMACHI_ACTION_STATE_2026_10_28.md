@@ -30,7 +30,9 @@ Raw hash-attested CFG:
 - Seven resolved tables; no unresolved indirect exit.
 - Three action tables: low 34, mid 41, high 31 physical destinations.
 - A two-destination card gate with nine remap bytes.
-- Three four-entry difficulty tables (first has three unique destinations).
+- Three four-entry tables keyed by the match identifier (the first has three
+  unique destinations). The [later audit](GIANT_ROOT_REVIEW_2026_11_23.md#what-the-byte-check-covers)
+  ties these reads to the battle setup writer.
 - Direct actions 300, 540, 795, 797, 798 are outside the sparse tables.
 - Full payload ends 0x5F1F78, 65,176 bytes; next callable starts 0x5F1F80.
 
@@ -130,9 +132,9 @@ taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-
     scripts/repo-python scripts/ci.py
     git diff --check
 
-Both comparators correctly report mismatch. The complete-payload audit
-rechecks target identity, all seven tables, reachability, length and unmasked
-bytes. Final candidate SHA-256:
+The ordinary build command compares the callable. The separate full-payload
+audit also checks all seven tables, reachability, length and unmasked bytes.
+Both reported a mismatch for this checkpoint. Candidate SHA-256:
 5ac7b06797104542570da85ab2029169a844efbcfa0f6bba55c766af74cd5771
 
 61,429 positional differences including missing tail bytes are diagnostic,
@@ -144,7 +146,7 @@ Checked-in source is authoritative.
 
 The private VC8 source listing identifies the extra eight-byte allocation:
 tv26973 is a qword temporary following all 94 arrays, holding jitter+180
-hoisted out of action 730's difficulty-three loop. It is not an extra packet.
+hoisted out of action 730's loop for match identifier 3. It is not an extra packet.
 Changing packet sizes or adding padding would not explain it.
 
 Native 0x5F0DEF writes the angle to a DWORD home while retaining the x87
