@@ -55,12 +55,12 @@ ordering. Recent focused owner extents (candidate/target) are:
 | action 811 | 1,507 | 1,507 | exact owner extent; 18 diff groups |
 | action 812 | 1,393 | 1,376 | +17 bytes |
 | action 822 | 1,957 | 1,955 | +2 bytes |
-| action 869 | 1,656 | 1,736 | -80 bytes |
+| action 869 | 1,669 | 1,736 | -67 bytes |
 | action 900 | 1,197 | 1,229 | -32 bytes |
-| action 901 | 2,241 | 2,324 | -83 bytes |
+| action 901 | 2,244 | 2,324 | -80 bytes |
 | action 902 | 3,019 | 2,998 | +21 bytes |
 | action 903 | 1,403 | 1,397 | +6 bytes |
-| action 908 | 3,791 | 3,794 | -3 bytes |
+| action 908 | 3,795 | 3,794 | +1 byte |
 
 Action 811 now keeps sequence-3 and sequence-4 channel/alpha fades as separate
 branches, matching the target's two control-flow paths rather than combining
@@ -87,9 +87,9 @@ The dispatcher-wide `retiring_action`, `retiring_packet`, `retiring_words`,
 and `emit_retiring_world` path have now been removed. Actions 822, 902, and
 908 issue their packet-specific spawn/decrement/return calls in their own
 natural C++ branches. This puts action 822 at 1,957/1,955 bytes and action
-908 at 3,793/3,794 bytes; action 902 is 3,019/2,998. Action 903 is now 1,403/1,397 after moving its two terminal packet calls
+908 at 3,795/3,794 bytes; action 902 is 3,019/2,998. Action 903 is now 1,403/1,397 after moving its two terminal packet calls
 into the health/burst branches; this reduced its instruction-difference groups
-from 36 to 26 and the root total from 1,204 to 1,190. The improvement is not uniform: 811, 869, 900, and 901 are now
+from 36 to 26 and the root total from 1,204 to 1,190 at that checkpoint. The improvement is not uniform: 811, 869, 900, and 901 are now
 shorter because their target-owned shared tails still need explicit natural
 reconstruction. Packet arrays for 822, 869, 900, 902, 903, and 908 are scoped
 to their owning cases, allowing the compiler to reuse stack storage.
@@ -97,12 +97,12 @@ to their owning cases, allowing the compiler to reuse stack storage.
 ## Current root status and next work
 
 The focused owner audit reports a 46,138-byte target callable extent,
-45,676 candidate main bytes, a 46,544-byte candidate section tail, and 1,198
+45,680 candidate main bytes, a 46,548-byte candidate section tail, and 1,191
 instruction-difference groups (down from 1,204 before restoring the distinct
 811 epilogue). Action 802 remains one exact 31-byte owner, and action 811 now
 matches its 1,507-byte owner extent. The complete root is still nonexact: the
 root comparison's first mismatch remains at `0x0049655F` (offset `+0x1F`).
-Actions 822 and 908 are within two and three bytes by owner extent. The larger
+Actions 822 and 908 are within two and one bytes by owner extent. Action 869 is now 1,669/1,736 after restoring its two branch-local retirement calls. The larger
 remaining deficits include 869/900/901 and 816/817/905/951; continue
 recovering their original shared-tail and register lifetimes together with
 the remote owner boundary. Do not substitute a full cold replay for focused
@@ -134,3 +134,17 @@ falls from 1,204 to 1,190. The root remains nonexact; the health-death branch
 still reaches a candidate shared call tail at a different physical address
 than the target's `0x00499DF6` tail. No padding or instruction overrides are
 used.
+
+
+## Action 869 branch-local retirement
+
+The two sequence-0 retirement branches now build and emit their own three-word
+packets directly in the owning C++ branches. This removes the post-switch
+`retiring_packet_869`/`retiring_words_869` handoff and grows the owner from
+1,656 to 1,669 bytes while reducing its instruction-difference groups from
+57 to 46. The current root audit is 45,680 candidate main bytes against the
+46,138-byte target callable extent, with 1,191 instruction-difference groups.
+The target routes both branches to the shared `0x00499DF6` call tail; the
+candidate still selects different shared call tails, so this is real semantic
+and ownership progress, not an exactness claim. The full root remains
+nonexact, and the separate action-901 and action-817 large-body gaps remain.

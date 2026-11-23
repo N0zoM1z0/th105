@@ -2101,8 +2101,6 @@ retire_801_811:
     case 869: {
         float packet_869_sequence[3];
         float packet_869_owner[3];
-        const unsigned *retiring_packet_869 = 0;
-        int retiring_words_869 = 0;
         if (_root_state.phase_state_180 == 5)
             goto retire;
         switch (_root_state.sequence_13e) {
@@ -2126,9 +2124,12 @@ retire_801_811:
                     packet_869_sequence[0] = 0.0f;
                     packet_869_sequence[1] = 0.0f;
                     packet_869_sequence[2] = 2.0f;
-                    retiring_packet_869 = reinterpret_cast<const unsigned *>(packet_869_sequence);
-                    retiring_words_869 = 3;
-                    break;
+                    reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                        869, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                        static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                        reinterpret_cast<const unsigned *>(packet_869_sequence), 3);
+                    --_root_state.state_330;
+                    return;
                 }
             } else {
                 this->state_37c = static_cast<float>(lookup_orientation_sine_quantized_abs(static_cast<float>(_root_state.counter_144)) * 10.0);
@@ -2166,9 +2167,12 @@ retire_801_811:
                 packet_869_owner[0] = 0.0f;
                 packet_869_owner[1] = 0.0f;
                 packet_869_owner[2] = 2.0f;
-                retiring_packet_869 = reinterpret_cast<const unsigned *>(packet_869_owner);
-                retiring_words_869 = 3;
-                break;
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    869, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                    static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(packet_869_owner), 3);
+                --_root_state.state_330;
+                return;
             }
             break;
         case 1:
@@ -2217,14 +2221,6 @@ retire_801_811:
                 goto retire;
             _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 - 15);
             break;
-        }
-        if (retiring_packet_869) {
-            reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                869, effect_000.object_x_0e8, effect_000.object_y_0ec,
-                static_cast<unsigned char>(effect_000.object_facing_100), 1,
-                retiring_packet_869, retiring_words_869);
-            --_root_state.state_330;
-            return;
         }
         goto advance_and_retire_on_completion;
 
