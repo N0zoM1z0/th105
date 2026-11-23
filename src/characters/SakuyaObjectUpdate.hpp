@@ -1,4 +1,7 @@
 #pragma once
+
+#include <stddef.h>
+
 namespace th105 {
 // Pointer-only ABI views, not complete allocations.
 class SakuyaObjectUpdateView {
@@ -19,7 +22,41 @@ public:
  void *spawn_unparented(int,float,float,int,int,const unsigned *,int);
  int spawn_owned(int,float,float,int,int,const unsigned *,int);
  void update_ping_pong_motion();
+
+ unsigned char unknown_004[0xe8];
+ float x_ec;
+ float y_f0;
+ float velocity_x_f4;
+ float velocity_y_f8;
+ unsigned char unknown_0fc[0x17];
+ unsigned char alpha_113;
+ unsigned char unknown_114[0x28];
+ short action_id_13c;
+ short sequence_id_13e;
+ short frame_index_140;
+ unsigned char unknown_142[0x232];
+ float field_374;
 };
+
+typedef char CheckSakuyaUpdate_x_ec[
+    offsetof(SakuyaObjectUpdateView, x_ec) == 0xec ? 1 : -1];
+typedef char CheckSakuyaUpdate_y_f0[
+    offsetof(SakuyaObjectUpdateView, y_f0) == 0xf0 ? 1 : -1];
+typedef char CheckSakuyaUpdate_velocity_x_f4[
+    offsetof(SakuyaObjectUpdateView, velocity_x_f4) == 0xf4 ? 1 : -1];
+typedef char CheckSakuyaUpdate_velocity_y_f8[
+    offsetof(SakuyaObjectUpdateView, velocity_y_f8) == 0xf8 ? 1 : -1];
+typedef char CheckSakuyaUpdate_alpha_113[
+    offsetof(SakuyaObjectUpdateView, alpha_113) == 0x113 ? 1 : -1];
+typedef char CheckSakuyaUpdate_action_id_13c[
+    offsetof(SakuyaObjectUpdateView, action_id_13c) == 0x13c ? 1 : -1];
+typedef char CheckSakuyaUpdate_sequence_id_13e[
+    offsetof(SakuyaObjectUpdateView, sequence_id_13e) == 0x13e ? 1 : -1];
+typedef char CheckSakuyaUpdate_frame_index_140[
+    offsetof(SakuyaObjectUpdateView, frame_index_140) == 0x140 ? 1 : -1];
+typedef char CheckSakuyaUpdate_field_374[
+    offsetof(SakuyaObjectUpdateView, field_374) == 0x374 ? 1 : -1];
+
 int __cdecl selector_random_roll(int);
 float __cdecl atan2_degrees(float,float);
 float __cdecl square_float_value(float);

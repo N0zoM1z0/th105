@@ -121,6 +121,16 @@ class CompactSwitchTests(unittest.TestCase):
             with self.subTest(spill=spill), self.assertRaisesRegex(ValueError, 'unsupported instruction'):
                 payload.inspect(raw, raw, address, size, updated_contract, relocs)
 
+    def test_scheduled_edi_save_and_constant_keep_the_selector(self):
+        compare = bytes.fromhex('9090 83f801 57 bf01000000')
+        body, address, size, contract, relocs = fixture(compare=compare)
+        payload.inspect(body, body, address, size, contract, relocs)
+
+        for offset, replacement in ((5, b'\x50'), (6, b'\xb8'), (7, b'\x02')):
+            raw, updated = changed(body, contract, offset, replacement)
+            with self.subTest(offset=offset), self.assertRaisesRegex(ValueError, 'unsupported instruction'):
+                payload.inspect(raw, raw, address, size, updated, relocs)
+
     def test_local_relocations_cannot_be_missing_duplicated_or_added_to_map(self):
         b, a, n, c, r = fixture()
         bad = [r[:-1], r + [r[-1]], r + [(c['map_offset'], 6, '$FAKE')],

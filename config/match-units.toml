@@ -22193,7 +22193,7 @@ source = "src/characters/SakuyaObjectUpdate.cpp"
 object = "build/match-units/ExactFirst_SakuyaObjectUpdate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete manual JP1.06a SakuyaObject slot284E0D30 source hypothesis. Target28985 callable/full29476 payload; seven tables and200-byte remap. Full source29408 SHA3e0aa7a9 remains nonexact+37; actual0xD0 frame,48 virtual calls and19/20 direct-call counts agree.; docs/SAKUYA_OBJECT_UPDATE_2026_10_25.md."
+notes = "Complete JP1.06a Sakuya Object slot 28 at 0x004E0D30. Strict envelope covers 28985 callable bytes and all seven tables. Action 803 retains its two alpha calls and their shared continuation. First mismatch 0x004E0D55. See docs/SAKUYA_OBJECT_UPDATE_2026_10_25.md."
 
 [[units.exact-first-sakuya-object-update.functions]]
 address = "0x004E0D30"
@@ -22304,6 +22304,25 @@ dir32_targets = [
     "?sakuya_update_left@th105@@3MA=_sakuya_object_update_006fbd1c",
     "?sakuya_update_top@th105@@3MA=_sakuya_object_update_006fbd20",
     "?sakuya_update_bottom@th105@@3MA=_sakuya_object_update_006fbd28",
+]
+
+[units.exact-first-sakuya-object-update.functions.switch_payload]
+size = 29476
+sha256 = "453a7abb8a48642f5852078059893f8611d26b07c77ae67d8747c4fadcd42ce3"
+alignment_hex = "8d4900"
+table_offset = 0x713C
+table_entries = 33
+map_offset = 0x71C0
+map_size = 200
+load_offset = 0x29
+jump_offset = 0x30
+additional_tables = [
+    { table_offset = 0x7288, jump_offset = 0x0A7E, table_entries = 5, alignment_hex = "" },
+    { table_offset = 0x729C, jump_offset = 0x2794, table_entries = 5, alignment_hex = "" },
+    { table_offset = 0x72B0, jump_offset = 0x5670, table_entries = 7, alignment_hex = "" },
+    { table_offset = 0x72CC, jump_offset = 0x615B, table_entries = 9, alignment_hex = "" },
+    { table_offset = 0x72F0, jump_offset = 0x6720, table_entries = 4, alignment_hex = "" },
+    { table_offset = 0x7300, jump_offset = 0x6F3F, table_entries = 9, alignment_hex = "" },
 ]
 
 

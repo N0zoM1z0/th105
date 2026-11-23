@@ -1,13 +1,10 @@
 # SakuyaObject complete update: 2026-10-25
 
 `SakuyaObject_update_action_state @ 0x004E0D30` now has a manual complete-body
-source hypothesis. It is **not exact**. Formal and independent cold ordinary
-VC8 builds emit 29408 bytes, SHA256
-`3e0aa7a9293563dd879d253047218a3cf9140b6fce7bfb9b8ce30c515c35bc9c`,
-against 29476 target bytes. Full unmasked comparison reports 27397 differing
-bytes, first+37 in the primary default-branch destination. This is not a small
-localized residual or a partial exact claim. The later controls below leave
-this root parked pending new independent sharing/lifetime evidence.
+source hypothesis. The current comparison first differs at `0x004E0D55`,
+the primary default-branch destination. The latest change restores action
+803's two alpha calls and their shared continuation. See
+[the action 803 comparison](#action-803-keeps-two-alpha-calls).
 
 ## Observed target and complete boundary
 
@@ -351,3 +348,40 @@ nonexact. No new authored exact credit or source-origin pin change.
 
 The actual source closure is this one update unit. Tracking validation, scoped CI
 and diff checks pass. Unrelated input migration and Alice edits remain untouched.
+
+## Action 803 keeps two alpha calls
+
+In the target, sequences 0/1 call the alpha helper at `0x004E18CD` and
+sequences 3/4 call it at `0x004E1BD8`. Both jump to the frame-index-1
+update at `0x004E19D4`, physically before sequence 2. Sequence 2
+continues directly to movement. The preceding build folded both alpha
+paths into a single call, then fell through to the frame-index test.
+
+Writing the frame-index-1 update in both switch arms lets VC8 share that
+update while retaining both calls. Their full argument-setup sequences now
+agree, including when ECX is restored and where the x87 control word is
+restored. Both continuations reach the same code before the sequence 2
+entry, and sequence 2 bypasses it. A named jump to a single copy of the
+update still folds the calls. Exposing the real alpha method body to both
+paths preserves the original candidate's bytes and its shared call. The
+TH075 update uses a different action 803 sequence and motion path.
+
+The pinned SP1 back end has both call records at `c2.dll:0x10C077B1` in
+both builds. At `0x10C077B6`, after `0x10B2C950` returns, the original
+candidate has lost the sequences 3/4 call record. The duplicated-update
+build retains both records. Read-only traced builds reproduce the
+complete ordinary outputs.
+
+The selected 29,212-byte candidate replays all 737 relocations. Its full
+SHA256 is `922e46fce0ffbb6b11083754bf33dc3a245f42372cfd0c6d9b5534b75d15874f`.
+Using checked members for position, velocity, alpha, action, sequence,
+frame index and the float at `+0x374` reproduces those complete bytes.
+The target has 47 returns and 17 frame-advance calls. The build has 51
+and 15, respectively, so the outer sharing still needs work.
+
+The strict unit now includes all seven tables. The native structural
+check closes all 28,985 code bytes, 72 destination words, 200 remap bytes
+and three alignment bytes. It recognizes the `PUSH EDI` at `0x004E0D52`
+and the `MOV EDI, 1` at `0x004E34B9` and `0x004E7C64` between the switch
+CMP and JA. A separate byte change in each table, the last remap byte
+and the alignment is rejected at the changed address.

@@ -147,10 +147,18 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
     guard = ins[number - 1]
     scheduled = []
     bound_index = number - 2
-    # These flag-preserving stores can be scheduled between CMP and JA.
-    while bound_index > 0 and ins[bound_index].mnemonic in ('mov', 'fst', 'fstp'):
+    # VC8 can schedule flag-preserving saves and stores between CMP and JA.
+    while bound_index > 0 and ins[bound_index].mnemonic in ('push', 'mov', 'fst', 'fstp'):
         store = ins[bound_index]
         dest = store.operands[0]
+        if dest.type == x.X86_OP_REG and dest.reg == x.X86_REG_EDI:
+            saves_edi = store.mnemonic == 'push' and selector != x.X86_REG_ESP
+            sets_one = (store.mnemonic == 'mov' and selector != x.X86_REG_EDI
+                        and store.operands[1].type == x.X86_OP_IMM and store.operands[1].imm == 1)
+            if saves_edi or sets_one:
+                scheduled.append(store)
+                bound_index -= 1
+                continue
         if (dest.type != x.X86_OP_MEM or dest.mem.index or dest.mem.segment
                 or not 0 <= dest.mem.disp <= 65535):
             raise ValueError('unsupported instruction between compact-switch bound and guard')
