@@ -98,12 +98,12 @@ their owning cases, allowing the compiler to reuse stack storage.
 ## Current root status and next work
 
 The latest focused owner audit reports a 46,138-byte target callable extent,
-45,576 candidate main bytes, a 46,444-byte candidate section tail, and 1,117
+45,576 candidate main bytes, a 46,444-byte candidate section tail, and 1,114
 instruction-difference groups. The candidate main remains 562 bytes short and
 the whole root is nonexact: the first raw-byte mismatch is still
 `0x0049655F` (offset `+0x1F`, target byte `0xF8`, candidate byte `0xC5`).
 Action 902 has an exact 2,998-byte owner extent; action 811 is +2 bytes and
-action 908 is -5 bytes. Action 951 is now 575/547 bytes with only two
+action 908 is -5 bytes. Action 951 is 575/547 bytes with only two
 instruction-difference groups; its remaining extent excess is the shared
 advance tail being physically owned by the candidate's 951 region instead of
 target action 807. The largest remaining deficits include 812, 816, 817, 821,
@@ -227,6 +227,21 @@ the owner flag before returning. This reduces the action-951 owner audit from
 (+28): the remaining two groups are branch destinations to the shared advance
 tail. The target tail is at `0x00497191` after action 807; Clang places the
 same advance/retire sequence at `0x004A1505` inside the candidate action-951
-owner. The whole-root difference count changes from 1,116 to 1,117, so this is
-a local control-flow improvement with an open physical ownership boundary,
-not a whole-root exactness claim.
+owner. The focused root audit now reports 1,114 instruction-difference groups,
+down from 1,115 in the preceding case-local-loop checkpoint, while candidate
+main code grows from 45,468 to 45,576 bytes. This is a local control-flow
+improvement with an open physical ownership boundary, not a whole-root
+exactness claim.
+
+
+## Action 817 collision-burst loop and register scopes
+
+The sequence-0 and sequence-9 collision bursts now use natural post-decrement
+`do/while` loops for their 14 particle emissions. Their `one` count is scoped
+to the two manager-spawn branches; the repeated particle calls and sequence-3/
+sequence-4 tests use literal one values. This removes the shared count from the
+loop lifetime and reduces the focused owner audit to 82 instruction-difference
+groups at 3,027/3,066 bytes. The target still keeps zero in `EBX` and one in
+`EDI`, whereas the candidate uses a different register lifetime and retains
+`sub edi, ebx` in the loop. That mismatch remains a source-level register
+allocation problem, not a reason to add assembly or padding.
