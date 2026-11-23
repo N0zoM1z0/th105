@@ -23847,7 +23847,7 @@ source = "src/battle/InfoEffectUpdate.cpp"
 object = "build/match-units/ExactFirst_InfoEffectUpdate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete14779/full15326 source versus14783/full15330 target remains nonexact; all144 IDs and72 physical calls retained. docs/INFO_EFFECT_UPDATE_2026_10_27.md."
+notes = "JP1.06a InfoEffect update. Owns 14783 callable bytes and two compact switches through 15330 bytes. Current comparison differs at 0x0065CB53. See docs/INFO_EFFECT_UPDATE_2026_10_27.md."
 
 [[units.exact-first-info-effect-update.functions]]
 address = "0x0065CB40"
@@ -23858,8 +23858,22 @@ rel32_targets = [
   "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
   "?dispatch_info_state_6609f0@InfoEffectUpdateView@th105@@QAEHH@Z=0x006609F0",
   "?advance_frame_and_dispatch@InfoEffectUpdateView@th105@@QAEEXZ=0x004351C0",
-  "?get_game_mode@th105@@YAHXZ=0x0043AC40",
+  "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
   "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+]
+
+[units.exact-first-info-effect-update.functions.switch_payload]
+size = 15330
+sha256 = "6b1ddd188d86f1ae825e31b0b7eea565eb482aece797305ffe733b391fe9f695"
+alignment_hex = "90"
+table_offset = 0x39C0
+table_entries = 12
+map_offset = 0x39F0
+map_size = 33
+load_offset = 0x29
+jump_offset = 0x30
+additional_tables = [
+    { table_offset = 0x3A14, jump_offset = 0x5EE, table_entries = 72, map_offset = 0x3B34, map_size = 174, load_offset = 0x5E6, alignment_hex = "8d4900" },
 ]
 
 [units.exact-first-battle-transition-phase5]

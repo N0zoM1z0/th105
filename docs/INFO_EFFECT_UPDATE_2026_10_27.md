@@ -1,10 +1,9 @@
 # InfoEffectObject update 65CB40: complete nonexact source
 
-Source src/battle/InfoEffectUpdate.cpp covers the complete 14783-byte target.
-It remains **nonexact**:14779 callable/full15326 candidate versus 14783/full15330.
-A four-byte length deficit is not four unequal bytes: displaced code/branches
-produce many differing positions. Both canonical focused and full-tail audits
-fail at+19. No matches row or exact credit is added.
+The current [update source](../src/battle/InfoEffectUpdate.cpp) emits
+14,774 callable bytes and a 15,322-byte payload. The target owns 14,783
+callable bytes and a 15,330-byte payload. Comparison first differs at
+`0x0065CB53`, in the branch to the high action range.
 
 ## Current-target evidence
 
@@ -109,14 +108,10 @@ forcing, inert values, copied bytes, padding, masked matching or LTCG claim.
 
 - scripts/repo-python scripts/build.py --unit exact-first-info-effect-update --compare --json
 - scripts/repo-python scripts/validate-tracking.py --require-target
-- scripts/repo-python scripts/ci.py
+- python3 scripts/ci.py
 
-The first two commands currently exit 1 with mismatch, not blocked. The initial
-generator is not the selected later source.
-
-Only this new unit is rebuilt. No shared header/flag/global/literal mapping
-changes; prior receipts remain retained and totals are incremental. Final local
-CI is pending at writing; its terminal exit/log is the commit gate.
+The focused comparison exits 1 for the callable mismatch. Target-backed
+tracking validation passes.
 
 ## Typed update state, 2026-11-10
 
@@ -149,6 +144,50 @@ separate shared-ABI/binding change. The final bounded update view avoids that
 unrelated change. The visual source was restored and its two complete roots
 replayed at 80/80 and 266/266 exact.
 
-`update-final.json`, `payload-final.json` and `update-final.sections` describe the
-selected final build; intermediate `after` files are failed/unselected integration
-trials. No Factory replay, ledger promotion or new exact credit.
+## Shared exits and frame reads, 2026-11-23
+
+The match unit now runs the existing compact-switch check once the
+callable comparison passes. The raw target passes the structural check
+with its two decoded dispatch sites, 84 destinations, 207 index bytes
+and both alignment spans. Single-byte changes to either index table,
+a destination or the alignment fail comparison. The target check uses
+the relocation sites implied by the raw instructions and tables. A
+candidate must supply those bindings from its actual COFF relocations.
+
+Of the 144 action IDs, 120 pair through all reachable instructions
+after rebasing branches, including the original branch widths. Some
+of those actions reach a different physical copy of the same
+retirement instructions. The remaining shape differences cluster in
+100 and the single body for 900 through 922. Both index maps agree
+and all 493 relocations resolve in the complete replay.
+
+The action 100 alpha test jumps to the shared low-action retirement
+at `0x0065CC9E` in the target. The current short branch reaches
+`0x0065D0F1`, the retirement after animation advance. An explicit
+goto to the low retirement yields the same 15,322 bytes. In both
+builds the successful alpha update is the conditional destination
+before the late `0x10B2C950` pass. Under `0x10B2E0D0`,
+`0x10BF2C00` replaces the branch operand as the pass moves
+the subtraction onto the fallthrough and points the branch at the
+nearer retirement. Sharing the low animation advance in source
+also combines the previous growth branches of 15 through 18.
+
+For 900 through 922, the target compares `[ESI+0x142]` with 150
+at `0x00660482`, then reads it into EAX at `0x0066049C`.
+The rebuilt code reads it into EAX before both comparisons.
+VC8 reads two separate definitions from the input at
+`0x10C064F9`. Both survive to `0x10C06C60`. The first call
+to `0x10BAF600` at `0x10C06C96` starts replacing the second
+comparison's operand. By `0x10C06D34` both comparisons reference
+the same 16-bit value, before physical register assignment.
+Capturing a short after the fade keeps the earlier load and adds
+`MOVZX EAX, AX`. Reading it through the effect animation view emits
+that same output. Selecting the real `CObjectBase` member in the
+first fade leaves the original complete replay intact.
+
+The shorter selected body uses the existing `GameMode` declaration
+for the exact getter at `0x0043AC40` and preserves all 72 calls.
+The clearer alpha branch and named sine angle preserve the full
+canonical candidate with SHA-256
+`8b8a8449490a12b4f60fc9949d7938e65831bc43f55a644a0940d492f873d5c0`.
+The compiler traces replay the ordinary objects in full.

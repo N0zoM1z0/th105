@@ -1,10 +1,10 @@
+#include "battle/GameMode.hpp"
 #include "battle/InfoEffectState.hpp"
 class InfoEffectObject;
 namespace th105 {
 extern int g_event_effect_id;
 extern int g_secondary_event_effect_id;
 extern int g_fighter_state_4b8_default;
-int __cdecl get_game_mode();
 double __cdecl lookup_orientation_cosine_quantized_abs(float);
 double __cdecl lookup_orientation_sine_quantized_abs(float);
 struct InfoEffectUpdateView : InfoEffectState {
@@ -134,18 +134,26 @@ void InfoEffectUpdateView::update_65cb40()
     case 100:
         if (time_144 == 0) {
             emit_info_effect_6609c0(103,x_0ec,static_cast<float>(y_0f0-10.0),1,1);
-            if (g_event_effect_id == 0 && g_fighter_state_4b8_default != 16 && get_game_mode() != 0) emit_info_effect_6609c0(105,320.0f,120.0f,1,1);
+            if (g_event_effect_id == 0 && g_fighter_state_4b8_default != 16 &&
+                get_game_mode() != 0) {
+                emit_info_effect_6609c0(105, 320.0f, 120.0f, 1, 1);
+            }
         }
         if (fade_latch_174 == 0.0) {
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
             if (time_144 % 60 == 0) emit_info_effect_6609c0(101,x_0ec,y_0f0,1,2);
         } else {
-            if (alpha_113 <= 10) { --state_158; return; }
-            alpha_113 -= 10;
+            if (alpha_113 > 10) {
+                alpha_113 -= 10;
+            } else {
+                --state_158;
+                return;
+            }
         }
         if (g_event_effect_id != 0) fade_latch_174 = 1.0f;
-        if (advance_frame_and_dispatch()) --state_158; return;
+        if (advance_frame_and_dispatch()) --state_158;
+        return;
     case 101: case 111: case 121: case 131: case 141: case 151: case 161: case 171: case 181: case 191: case 201: case 211: case 221: case 231: case 241: case 251: case 261:
         alpha_113 = static_cast<unsigned char>(lookup_orientation_sine_quantized_abs(static_cast<float>(3 * time_144)) * 255.0);
         scale_x_11c = static_cast<float>(scale_x_11c + 0.01f);
@@ -1279,14 +1287,23 @@ void InfoEffectUpdateView::update_65cb40()
             else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
-    case 900: case 901: case 902: case 903: case 904: case 905: case 906: case 907: case 908: case 909: case 910: case 911: case 912: case 913: case 914: case 915: case 916: case 917: case 918: case 919: case 920: case 921: case 922:
+    case 900: case 901: case 902: case 903:
+    case 904: case 905: case 906: case 907:
+    case 908: case 909: case 910: case 911:
+    case 912: case 913: case 914: case 915:
+    case 916: case 917: case 918: case 919:
+    case 920: case 921: case 922:
         if (frame_142 > 150) {
             alpha_113 -= 5;
             if (alpha_113 == 0) --state_158;
         }
-        if (frame_142 < 30)
-            x_0ec = static_cast<float>((1.0 - lookup_orientation_sine_quantized_abs(static_cast<float>(frame_142 * 3.0))) * 480.0 + 640.0);
-        if (advance_frame_and_dispatch()) --state_158; return;
+        if (frame_142 < 30) {
+            const float angle = static_cast<float>(frame_142 * 3.0);
+            x_0ec = static_cast<float>(
+                (1.0 - lookup_orientation_sine_quantized_abs(angle)) * 480.0 + 640.0);
+        }
+        if (advance_frame_and_dispatch()) --state_158;
+        return;
     default: return;
     }
 }

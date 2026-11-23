@@ -148,8 +148,13 @@ The first difference is still at `0x004E0D55`.
 and [retirement sharing](SAKUYA_OBJECT_UPDATE_2026_10_25.md#action-853-retirement-is-shared-with-action-805-in-the-rebuild).
 
 Other open leads:
-- Scenario character install 0x456EB0 (one EH-state store) and the info
-  effect update 0x65CB40 (14,783 bytes, two regions).
+- Info effect update `0x0065CB40` now checks both jump tables through
+  all 15,330 target bytes. The current 15,322-byte replay first differs
+  at `0x0065CB53`. Focus on the two candidate retirement destinations
+  for action 100 and the first `0x10BAF600` call that combines the
+  separate frame reads for 900–922.
+  [Info effect update](INFO_EFFECT_UPDATE_2026_10_27.md#shared-exits-and-frame-reads-2026-11-23)
+- Scenario character install 0x456EB0 (one EH-state store).
 - LTCG context: `MenuCursorState::update` 0x41FA20 takes a propagated
   `int period` from its 35 callers, which explains its `idiv` by 6. The angle
   lookups 0x406360/0x4063D0 (`idiv` by 3600) and the menu callers' residuals may
