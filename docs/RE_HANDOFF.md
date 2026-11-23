@@ -79,14 +79,22 @@ switches. In 404/406, moving the horizontal multiply before the final flag
 write also restores the separate native scaling tail in 650.
 See the [Udonge case note](UDONGE_ACTION_ENTRY_2026_10_24.md).
 
-With a shared switch exit in Youmu, the late C2 pass at 0x10B2C950 discards
-the publication in 601 and retains it in 604. Sakuya's Object initializer
+Youmu `0x0053A1D0` now expresses the 602 reset as a fallthrough and still
+differs at 44 bytes in the complete 1,874-byte envelope. For independent
+phase arms, C2 merges the reset into 601 before the late scheduler moves
+604's receiver load. With a shared switch exit, `0x10B2C950` keeps the
+flag writes in 604. Follow the merge decision before scheduling. Exposing
+the exact motion reset removes the native receiver loads before a virtual
+selector and an event dispatch. The selected initializer keeps the
+declaration-only context.
+See the [Youmu case note](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md#the-receiver-load-moves-after-tail-merging).
+
+Sakuya's Object initializer
 has 13 differing bytes in 803. Omitting either 800 or 801 in a scratch
 build restores 803's native register choices. The 801 facing-byte load
 advances the search position at `c2.dll:0x10D0F854`, so the full build's
 803 virtual target search starts at ECX and skips the available EAX.
-See the [Youmu](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md) and
-[Sakuya](SAKUYA_OBJECT_ENTRY_2026_10_24.md) case notes.
+See the [Sakuya case note](SAKUYA_OBJECT_ENTRY_2026_10_24.md).
 
 Sakuya's Object update `0x004E0D30` now reproduces all 387 reachable
 instructions in 803 after rebasing, including both alpha calls and the

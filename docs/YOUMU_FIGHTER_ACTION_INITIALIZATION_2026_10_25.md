@@ -11,7 +11,8 @@ The later fixed-field rewrite uses checked C++ members and compiles to the
 same 1,874-byte canonical payload as the offset baseline. The comparison
 includes both dispatch tables and all 60 relocations. Cases 601 and 604 still
 share the wrong physical order. Their order also moves the entry shared by
-602, 605–607 and 710 by four bytes. An explicit reset label and chained
+602, 605–607 and 710 by four bytes. The source now falls through into that
+shared reset after the two flag writes. An explicit reset label and chained
 publication of the already shared phase were byte-neutral. A phase helper
 stayed out of line under ordinary inlining and duplicated the case body when
 forced inline. The unit now records the dispatch tables for future strict
@@ -218,6 +219,62 @@ both publishing cases leaves those bytes identical. Giving the reset its
 own label inside the switch also reproduces the original baseline across all
 three positions. Changing the lexical placement of the reset group alone
 does not change the splice direction.
+
+## The receiver load moves after tail merging
+
+Giving 601, 602 and 604 independent returns reproduces the native bytes
+from the 601 entry at `0x0053A6BA` through the 604 phase load at
+`0x0053A6E2`, including 602's entry at `0x0053A6C8`. The compiler keeps
+604's body in this 1,910-byte build, adding a call to the motion reset.
+The shared-tail control emits 1,874 bytes by keeping the copies of the
+two flag writes in 604. Swapping the store order in just one arm,
+following the pattern used in the exact Komachi initializer, changes at
+most four bytes in that control and leaves 44 differences.
+
+Before the late merge at `c2.dll:0x10B2C950`, both independent phase
+arms still set up ECX after clearing `+0x180`. The merge introduces the
+602 entry between the flag stores and this clear in 601. It leaves the
+604 receiver load in place. A hardware watchpoint on the predecessor
+link of the first 604 store stops at `0x10C721DA`, immediately after
+`0x10C721D7` links the store after the ECX load in `0x10C71DC0`. This
+late instruction scheduler runs after the merge decision. Removing only
+the reset-only case group in a scratch build also moves 601's receiver
+load above the stores. Omitting 600/603, 720/730 or 797/798 leaves it
+below them. The 602 entry accounts for an instruction-order difference
+in a different action, and the next merge investigation belongs before
+the scheduler.
+
+The selected fallthrough source replays the same 1,874 bytes as the
+prior selection, with identical relocation sites and kinds. The complete
+replay has 42 DIR32 and 18 REL32 fields, including 26 local jump words,
+345 remap bytes and the alignment byte. The strict switch verifier
+rejects the candidate at `0x0053A6BC`. A separate complete comparison
+finds 42 changed callable bytes through `0x0053A6E5` and two changed
+destination bytes at `0x0053A830` and `0x0053A834`.
+
+## The visible motion-reset definition changes later calls
+
+A separate translation-unit control used the real four-store motion
+reset from [FighterMotionReset.cpp](../src/characters/FighterMotionReset.cpp).
+Both variants used `/Gy` to keep the two COFF bodies separate. The
+declaration-only build reproduces the original caller. Putting the
+definition before the initializer and marking it `noinline` retains all
+the calls and reproduces the 27-byte callee at `0x0045AF40`. The 601/604
+join direction stays the same. The caller loses two `mov ecx, esi`
+instructions that the target has, one before the 525/526 virtual selector
+at `0x0053A638` and one before the 797/798 event dispatch at
+`0x0053A71E`. The caller shrinks by four bytes in both the independent
+and shared-tail builds.
+
+The receiver copies are present after register allocation in both
+contexts. With the body visible they disappear in `c2.dll:0x10C07690`,
+before tail merging. At that point the instruction list still has
+separate receiver copies for 797 and 798, which subsequently share their
+event dispatch. With ordinary inlining the visible definition also
+removes two motion-reset call sites. Keep the declaration-only context for
+the selected initializer. The resulting call count and switch size agree
+with the target. This is a bounded compiler witness for the
+[TH09 translation-unit control](GIANT_ROOT_REVIEW_2026_11_23.md#the-difference-can-originate-in-another-case).
 
 ## Reproduction and next scope
 

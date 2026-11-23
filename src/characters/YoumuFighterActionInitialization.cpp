@@ -260,10 +260,7 @@ void YoumuFighterActionEntryView::initialize_action_entry()
     publish_phase:
         phase_index_184 = phase;
         field_7cd = phase;
-        phase_state_180 = 0;
-        zero_motion();
-        field_730 = 0;
-        return;
+        // Fall through to the shared motion reset.
 
     case 602:
     case 605:
