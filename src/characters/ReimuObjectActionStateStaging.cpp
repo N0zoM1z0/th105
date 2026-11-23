@@ -96,9 +96,6 @@ void th105::reimu_object_model::ReimuObject::dispatch_action_state()
         *reinterpret_cast<th105::ReimuObjectActionStateStagingView *>(this);
     float health_packet[3];
     float exhausted_packet[3];
-    unsigned retiring_action;
-    const unsigned *retiring_packet;
-    int retiring_words;
     switch (_root_state.action_13c) {
     case 800:
         if (_root_state.phase_state_180 == 5 || (_root_state.sequence_13e == 0 &&
@@ -1281,10 +1278,12 @@ retire_801_811:
                     822, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
                     reinterpret_cast<const unsigned *>(packet_822_health), 4);
                 packet_822_health[2] = 3.0f;
-                retiring_action = 822;
-                retiring_packet = reinterpret_cast<const unsigned *>(packet_822_health);
-                retiring_words = 4;
-                goto emit_retiring_world;
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    822, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                    static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(packet_822_health), 4);
+                --_root_state.state_330;
+                return;
             }
             if (_root_state.frame_140 == 0) {
                 reinterpret_cast<float *>(copied_words_340)[1] = static_cast<float>(reinterpret_cast<float *>(copied_words_340)[1] * static_cast<double>(0.85f));
@@ -1323,10 +1322,12 @@ retire_801_811:
                         822, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
                         reinterpret_cast<const unsigned *>(packet_822_phase), 4);
                     packet_822_phase[2] = 3.0f;
-                    retiring_action = 822;
-                    retiring_packet = reinterpret_cast<const unsigned *>(packet_822_phase);
-                    retiring_words = 4;
-                    goto emit_retiring_world;
+                    reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                        822, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                        static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                        reinterpret_cast<const unsigned *>(packet_822_phase), 4);
+                    --_root_state.state_330;
+                    return;
                 }
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->turn_heading_toward_related(0.0f, 0.1f, 100.0f);
                 effect_000.reset_zero_128 = reinterpret_cast<float *>(copied_words_340)[0];
@@ -1420,14 +1421,6 @@ retire_801_811:
             --_root_state.state_330;
         return;
     }
-
-emit_retiring_world:
-        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-            retiring_action, effect_000.object_x_0e8, effect_000.object_y_0ec,
-            static_cast<unsigned char>(effect_000.object_facing_100), 1,
-            retiring_packet, retiring_words);
-        --_root_state.state_330;
-        return;
 
     case 825: {
         const short owner_action = *reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x13c);
@@ -2629,10 +2622,12 @@ fade_902:
                 packet_902_retirement[0] = 0.0f;
                 packet_902_retirement[1] = 0.0f;
                 packet_902_retirement[2] = 3.0f;
-                retiring_action = 902;
-                retiring_packet = reinterpret_cast<const unsigned *>(packet_902_retirement);
-                retiring_words = 3;
-                goto emit_retiring_world;
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    902, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                    static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(packet_902_retirement), 3);
+                --_root_state.state_330;
+                return;
             }
             double directed_x_heading = effect_000.object_facing_100;
             directed_x_heading *= effect_000.motion_0f0.velocity_x;
@@ -3726,10 +3721,12 @@ fade_902:
                 packet_908_sequence_6[0] = effect_000.reset_zero_128;
                 packet_908_sequence_6[1] = 0.5f;
                 packet_908_sequence_6[2] = 8.0f;
-                retiring_action = 908;
-                retiring_packet = reinterpret_cast<const unsigned *>(packet_908_sequence_6);
-                retiring_words = 3;
-                goto emit_retiring_world;
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    908, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                    static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(packet_908_sequence_6), 3);
+                --_root_state.state_330;
+                return;
             }
             goto bounds_908;
         case 7:
@@ -3746,10 +3743,12 @@ fade_902:
                 packet_908_sequence_7[0] = effect_000.reset_zero_128;
                 packet_908_sequence_7[1] = 0.5f;
                 packet_908_sequence_7[2] = 9.0f;
-                retiring_action = 908;
-                retiring_packet = reinterpret_cast<const unsigned *>(packet_908_sequence_7);
-                retiring_words = 3;
-                goto emit_retiring_world;
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    908, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                    static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(packet_908_sequence_7), 3);
+                --_root_state.state_330;
+                return;
             }
             goto bounds_908;
         bounds_908:
