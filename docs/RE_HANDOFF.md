@@ -100,10 +100,14 @@ paths survive these changes. The selected source has all four fade
 guards and both shared saturation destinations. The reachable paths
 of 859 sequences 5/6 and 901 sequences 4 and 7 agree after rebasing.
 Action 998 sequence 1 enters the first native tail after the channel
-clears. The rebuilt clears are in 901 and jump to the alpha test in
-998. The complete candidate is 29,576 bytes with 742 relocations and
-first differs at `0x004E0D55`.
-[Case note](SAKUYA_OBJECT_UPDATE_2026_10_25.md#fade-tail-folding-in-actions-859-and-901)
+clears. VC8's early `0x10B281E0` pass puts the clear block in 901.
+The rebuilt clear block jumps to the alpha test in 998. All three 901
+parent updates now jump to their native partners in 859 with the new
+angle still on the x87 stack. The shared 859 sequence 3 copy skips
+the native ECX reload before the frame call. The complete candidate is
+29,492 bytes with 742 relocations and first differs at `0x004E0D55`.
+[Fade tails](SAKUYA_OBJECT_UPDATE_2026_10_25.md#fade-tail-folding-in-actions-859-and-901)
+and [parent updates](SAKUYA_OBJECT_UPDATE_2026_10_25.md#parent-updates-in-actions-859-and-901).
 
 Other open leads:
 - Scenario character install 0x456EB0 (one EH-state store) and the info

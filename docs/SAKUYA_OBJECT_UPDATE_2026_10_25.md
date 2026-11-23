@@ -525,6 +525,18 @@ generated test uses JAE to share the subtraction with the second
 tail. Recovering the first contiguous native tail means keeping the
 998 entry on the alpha test without letting 998 own that test.
 
+On the four-guard build, the channel 111 clear is still in 859 at
+`0x10B26CA8`, immediately before `0x10B281E0`. The same `0x28D`
+record follows the 901 sequence 5 guard at the return site
+`0x10B26CAE`. The 998 alpha check already has its own block at both
+points. A hardware watch on the clear block's predecessor link
+catches the store at `0x10B282A8`. It changes the predecessor to
+the unconditional branch tagged to 901's `goto clear_channels_859_four`.
+That block order appears in the final output. A control with the alpha
+predicate written success-first in both source locations recovers all 81
+reachable instructions from 998. It keeps the first fade tail in
+901 and changes the second fade tail's alpha branch to JAE.
+
 Sequence 7 of 901 uses `CMP AL, 10` and `JBE` at `0x004E7301`.
 Spelling the alpha test as `<= 10` aligns all 139 reachable
 instructions after rebasing control-flow edges. It changes two bytes
@@ -535,6 +547,27 @@ outputs, including the parent scale reads. The checked float at
 replacing the offset accesses used by these scale updates.
 Comparing all 200 primary dispatch entries with the previous build
 after rebasing puts the instruction changes in 859, 901, and 998.
+
+## Parent updates in actions 859 and 901
+
+The native 901 sequence entries 1, 2 and 3 compute the angle adjustment
+on the x87 stack and jump to the angle store in 859 sequences 3, 1
+and 2, respectively. The three jumps are at `0x004E708C`,
+`0x004E709D` and `0x004E70AE`. The earlier build repeated the
+sequence 1 parent copy in 901. Ending the frame directly in both
+859 sequence 3 and 901 sequence 1 makes VC8 retain the 859 copy and
+recover all three cross-action jumps. Ending the frame in either
+arm alone leaves the copy in 901. Sharing an explicit angle temporary
+keeps the copy in 901 as well.
+
+The two changed paths agree through the angle store, parent guard,
+position, scale and alpha copies. At the common frame block they
+branch to the frame call, skipping the native `MOV ECX, ESI`.
+The paths otherwise agree after rebasing, including the remaining
+frame instructions. The full rebuild removes 84 bytes. Comparing
+all 200 primary dispatch entries with the preceding candidate finds
+instruction changes in 859 and 901. Replacing the angle accesses at
+`+0x12C` with a checked float member reproduces the complete output.
 
 ## Actions 920 and 930 before frame advance
 
@@ -625,8 +658,8 @@ constant setup now differs again. VC8 puts 2 in EDI and zero in EBX.
 Reverting the 816 owner cutoff to `< 2` leaves these registers swapped
 and loses the native compare encoding.
 
-The current envelope is 29,576 bytes with 742 relocations, SHA256
-`e0de843db6a42cf2fe49ff75de44d088ee4a4d20b7d809952170a967dbdcc903`.
+The current envelope is 29,492 bytes with 742 relocations, SHA256
+`09360ac8f108ef8fdd9fae096a27d630d89bb97474a501aabc27e140aec61a07`.
 The target envelope is 29,476 bytes. The first difference is at the
 primary default branch, `0x004E0D55`. Both 803 alpha paths and the
 200-byte primary remap still agree.

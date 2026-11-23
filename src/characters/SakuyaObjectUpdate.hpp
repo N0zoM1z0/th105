@@ -36,7 +36,9 @@ public:
  unsigned char unknown_114[0x8];
  float scale_x_11c;
  float scale_y_120;
- unsigned char unknown_124[0x18];
+ unsigned char unknown_124[0x8];
+ float angle_12c;
+ unsigned char unknown_130[0xc];
  short action_id_13c;
  short sequence_id_13e;
  short frame_index_140;
@@ -76,6 +78,8 @@ typedef char CheckSakuyaUpdate_scale_x_11c[
     offsetof(SakuyaObjectUpdateView, scale_x_11c) == 0x11c ? 1 : -1];
 typedef char CheckSakuyaUpdate_scale_y_120[
     offsetof(SakuyaObjectUpdateView, scale_y_120) == 0x120 ? 1 : -1];
+typedef char CheckSakuyaUpdate_angle_12c[
+    offsetof(SakuyaObjectUpdateView, angle_12c) == 0x12c ? 1 : -1];
 typedef char CheckSakuyaUpdate_action_id_13c[
     offsetof(SakuyaObjectUpdateView, action_id_13c) == 0x13c ? 1 : -1];
 typedef char CheckSakuyaUpdate_sequence_id_13e[
