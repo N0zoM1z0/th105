@@ -319,3 +319,35 @@ The promoted source was built with `scripts/compile-unit.sh` and checked only
 with the root target-map/object comparison. No full cold replay was run. Keep
 the active function lock unchanged and continue from the Action410/414
 instruction frontiers; do not mark the root exact or change functions.
+
+## 2026-11-24 Action404/414 action-nine tail recovered
+
+Continue the same locked `Reimu_dispatch_action_state_vslot28` root; this is
+not a function switch. The target's `set_action(9)` return tail at `0x0047EDAB`
+is owned by Action404. Action414's sequence-one and sequence-three completion
+branches both target that same tail.
+
+The natural C++ source now makes the sequence-one branch jump to a label at
+the sequence-three branch's `set_action(9); return;` block. VC8 emits both
+branches to candidate offset `0x5E25`, the Action404-owned slot-`+0x08` call
+and common epilogue. This replaces the previous duplicate local sequence-one
+return path. The source change is a local `goto` between two existing
+control-flow paths; no assembly or synthetic bytes are involved.
+
+This also preserves the recovered Action520 shared sequence-completion tail:
+its candidate owner is now at `0xC368`, exactly `0x360` bytes into Action520,
+and the 18 external sequence-completion edges target that owner. The target
+owner is root-relative `0xC356`, also `0x360` bytes into Action520.
+
+The promoted focused object has an 81,580-byte callable prefix, 30 bytes over
+the 81,550-byte target, 126 destination groups and zero split groups. Action416
+remains 959/959 bytes with 235 normalized instructions exact; Action520 remains
+881/881 with 215 normalized instructions exact; Action521 remains 794/794.
+Action414's mapped span is now 1,102/1,116 bytes, Action410 remains 964/975,
+and Action404 is 1,539/1,535. These are still open instruction/control-flow
+frontiers; the root is not exact and has not received oracle acceptance.
+
+Next work remains inside this root: close Action414's remaining register and
+instruction differences, then Action410 and the surrounding drift. Keep the
+full-function lock and avoid full cold replay; use only focused root object,
+relocation, and affected-case checks.

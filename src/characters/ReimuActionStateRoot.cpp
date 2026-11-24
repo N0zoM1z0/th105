@@ -3632,12 +3632,11 @@ reimu_action_320_advance:
         if (advance_frame_and_dispatch())
             set_action(0);
         if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0
-                && sequence_13e == 1) {
-            set_action(9);
-            return;
-        }
+                && sequence_13e == 1)
+            goto reimu_action414_set_action9_exit;
         if (aerial && frame_counter_144 == 0 && frame_timer_142 == 0
                 && frame_index_140 == 0 && sequence_13e == 3) {
+reimu_action414_set_action9_exit:
             set_action(9);
             return;
         }
