@@ -1,6 +1,5 @@
 #include "ReimuActionStateStaging.hpp"
 
-#define TH105_REIMU_SHARED_SEQUENCE_LANDINGS
 
 namespace th105 {
 
@@ -52,7 +51,6 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
     if (word_186 != 0 || peer_170->word_48c != 0)
         return;
 
-    int landing_sequence;
     const int selected_action = action_13c;
     switch (selected_action) {
     case 0: {
@@ -1478,10 +1476,6 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
         advance_frame_and_dispatch();
         return;
         case 197:
-#ifdef TH105_REIMU_SHARED_SEQUENCE_LANDINGS
-        if (197 != 199)
-            landing_sequence = 2;
-#endif
         if (197 == 199 || (sequence_13e == 0 && frame_index_140 <= 2)
                 || sequence_13e == 2)
             resolve_stage_surface_landing_transition();
@@ -1489,16 +1483,7 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
             if (sequence_13e < 2)
                 velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
             if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-#ifdef TH105_REIMU_SHARED_SEQUENCE_LANDINGS
-                if (197 == 197)
-                    goto reimu_land_sequence_658;
-                goto reimu_land_sequence_608;
-#else
-                y_f0 = reimu_stage_surface_height_at_x(this);
-                zero_velocity_acceleration();
-                set_sequence(2);
-                return;
-#endif
+                goto reimu_land_sequence_2;
             }
         }
         if (advance_frame_and_dispatch()) {
@@ -1527,10 +1512,6 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
         }
         return;
         case 198:
-#ifdef TH105_REIMU_SHARED_SEQUENCE_LANDINGS
-        if (198 != 199)
-            landing_sequence = 2;
-#endif
         if (198 == 199 || (sequence_13e == 0 && frame_index_140 <= 2)
                 || sequence_13e == 2)
             resolve_stage_surface_landing_transition();
@@ -1538,16 +1519,7 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
             if (sequence_13e < 2)
                 velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
             if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-#ifdef TH105_REIMU_SHARED_SEQUENCE_LANDINGS
-                if (198 == 197)
-                    goto reimu_land_sequence_658;
-                goto reimu_land_sequence_608;
-#else
-                y_f0 = reimu_stage_surface_height_at_x(this);
-                zero_velocity_acceleration();
-                set_sequence(2);
-                return;
-#endif
+                goto reimu_land_sequence_2;
             }
         }
         if (advance_frame_and_dispatch()) {
@@ -1576,10 +1548,6 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
         }
         return;
         case 199:
-#ifdef TH105_REIMU_SHARED_SEQUENCE_LANDINGS
-        if (199 != 199)
-            landing_sequence = 2;
-#endif
         if (199 == 199 || (sequence_13e == 0 && frame_index_140 <= 2)
                 || sequence_13e == 2)
             resolve_stage_surface_landing_transition();
@@ -1587,16 +1555,7 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
             if (sequence_13e < 2)
                 velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
             if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-#ifdef TH105_REIMU_SHARED_SEQUENCE_LANDINGS
-                if (199 == 197)
-                    goto reimu_land_sequence_658;
-                goto reimu_land_sequence_608;
-#else
-                y_f0 = reimu_stage_surface_height_at_x(this);
-                zero_velocity_acceleration();
-                set_sequence(2);
-                return;
-#endif
+                goto reimu_land_sequence_2;
             }
         }
         if (advance_frame_and_dispatch()) {
@@ -8843,9 +8802,15 @@ reimu_action416_gravity:
         }
         return;
 
+// The earlier landing actions share a literal sequence-2 completion tail.
+reimu_land_sequence_2:
+        y_f0 = reimu_stage_surface_height_at_x(this);
+        zero_velocity_acceleration();
+        set_sequence(2);
+        return;
+
 // Middle high-table families; no separate callable boundary.
         case 608:
-        landing_sequence = 3;
         if ((sequence_13e == 0 && frame_index_140 <= 3) || sequence_13e == 3)
             resolve_stage_surface_landing_transition();
         publish_texture_state(6, 2);
@@ -8859,7 +8824,7 @@ reimu_action416_gravity:
             reimu_land_sequence_608:
                 y_f0 = reimu_stage_surface_height_at_x(this);
                 zero_velocity_acceleration();
-                set_sequence(landing_sequence);
+                set_sequence(3);
                 return;
             }
         }
@@ -9357,7 +9322,6 @@ reimu_complete_action0_619:
         return;
     }
         case 658:
-        landing_sequence = 3;
         if (sequence_13e == 3)
             resolve_stage_surface_landing_transition();
         publish_texture_state(6, 2);
@@ -9371,7 +9335,7 @@ reimu_complete_action0_619:
             reimu_land_sequence_658:
                 y_f0 = reimu_stage_surface_height_at_x(this);
                 zero_velocity_acceleration();
-                set_sequence(landing_sequence);
+                set_sequence(3);
                 return;
             }
         }

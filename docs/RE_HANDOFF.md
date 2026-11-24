@@ -108,33 +108,39 @@ trace inputs when they are needed to reproduce a live lead.
 
 The active tracked source `src/characters/ReimuActionStateRoot.cpp` remains the
 full void-ABI, single-outer-switch natural C++ candidate. The tracked staging
-header is unchanged. Action 300 and Action 320 now use one source-level
+header is unchanged. Action 300 and Action 320 use one source-level
 `reimu_action_300_320_event_tail` label: both action bodies advance through
 their own call sites and jump to the same event-27/reset tail. This is ordinary
 C++ control flow, not duplicated code, inline assembly, or padding.
 
-Latest direct-root VC8 `/O2 /GS- /GL + LTCG` replay after the Action 616 update:
+The function-scope `landing_sequence` spill has now been removed. Actions 197
+and 198 share an explicit sequence-2 completion label; Actions 608 and 658
+write sequence 3 in their own landing tails. This keeps the shared completion
+behavior in natural C++ while removing a cross-case local that was forcing a
+larger root layout.
 
-- Target callable: 81,550 bytes; candidate callable prefix: **81,548 bytes**.
-- Complete replay payload: 82,920 bytes; 1,283 HIGHLOW fields; 11 switches;
-  zero ordinary buffer-partition mismatches; linked and ordinary payloads agree.
+Latest direct-root VC8 `/O2 /GS- /GL + LTCG` replay after that change:
+
+- Target callable: 81,550 bytes; candidate callable: 81,564 bytes (14-byte
+  excess). Complete replay payload: 82,936 bytes; 1,283 HIGHLOW fields;
+  11 switches; linked and ordinary payloads agree; zero ordinary buffer
+  partition mismatches.
 - First mismatch remains `0x004791BD`: target displacement byte `a9`,
-  candidate `99`. This is not exact acceptance; the early shared-exit/root
-  layout still needs work.
-- The 8 source auxiliary switch bounds are now audited successfully. Action
-  616's nested seven-entry table is indexed by the explicit natural C++
-  expression `static_cast<unsigned int>(static_cast<int>(sequence_13e) - 1)`;
-  its default exits the function. This preserves the target's signed load,
-  subtract-one, unsigned `ja` bound check, and indirect seven-way dispatch.
-- `scripts/audit-reimu-root-stack.py` now accepts non-flag-setting VC8 register
-  setup between the unsigned `ja` and the indirect jump, while verifying that
-  flags remain intact from the compare through the guard and from the guard
-  through dispatch. This matches both the compiler's legal scheduling and the
-  target's instruction ordering without weakening the bound proof.
-- Focused Action 616 stack/request audit: 2 target request sites and 2 source
-  request sites, identical stack-buffer partition, zero partition and request
-  preparation mismatches. The complete root stack audit also retains zero
-  partition mismatches across its existing selected action matrix.
+  candidate `a7`. The early shared-exit destination is now only 2 bytes apart,
+  down from 16 bytes in the previous layout. This is not exact acceptance.
+- Entry offsets for Actions 619, 650, 658, 710, 711, and 720 now align with
+  their target entries. Action 616 is 2 bytes early and retains the audited
+  seven-entry unsigned `(sequence - 1)` switch. Its two request sites have
+  identical target/source stack-buffer partitions.
+- Remaining large local layout differences include Action 416 (candidate
+  span 922 vs target 959 bytes) and Action 608 (776 vs 810 bytes). These are
+  the next source-level control-flow areas to investigate within this same
+  function.
+- The expanded source exceeds the old diagnostic envelope by 14 callable
+  bytes and 12 metadata bytes. The root relocation/stack audit therefore ran
+  explicitly in read-only `--diagnostic-oversize` mode. It recognized all 8
+  auxiliary switch bounds, with zero buffer-partition and request-preparation
+  mismatches. This mode is diagnostic only, not execution or exactness credit.
 
 TH075 remains a structural reference only: its exact Reimu Fighter Advance
 `0x0045DD70` (60,999 bytes) uses a shared `goto` label inside a switch under
@@ -144,4 +150,4 @@ assumption for TH105's VC8 root.
 **Lock unchanged:** `Reimu_dispatch_action_state_vslot28` at `0x00478FA0` is
 the only active function. Continue until the complete callable and owned data
 receive formal exact acceptance. Do not switch to another function. No ASM,
-padding, or exactness credit is claimed by this checkpoint.
+padding, or exactness claim is made by this checkpoint.
