@@ -113,34 +113,35 @@ header is unchanged. Action 300 and Action 320 use one source-level
 their own call sites and jump to the same event-27/reset tail. This is ordinary
 C++ control flow, not duplicated code, inline assembly, or padding.
 
-The function-scope `landing_sequence` spill has now been removed. Actions 197
-and 198 share an explicit sequence-2 completion label; Actions 608 and 658
-write sequence 3 in their own landing tails. This keeps the shared completion
-behavior in natural C++ while removing a cross-case local that was forcing a
-larger root layout.
+The shared landing structure is intentionally retained. Actions 197/198 set
+`landing_sequence` and jump into the Action 608/658 landing labels; Action 608
+and Action 658 set it to 3. The target Action 198 path branches forward into
+the Action 608 landing tail, so splitting sequence-2 into a separate tail is
+not equivalent at the code-layout level. A temporary split-tail experiment
+made Action 198 34 bytes too long and Action 608 34 bytes too short; that
+experiment has been reverted. The recorded direct-root replay source is
+restored byte-for-byte in content.
 
-Latest direct-root VC8 `/O2 /GS- /GL + LTCG` replay after that change:
+Latest retained direct-root VC8 `/O2 /GS- /GL + LTCG` replay:
 
-- Target callable: 81,550 bytes; candidate callable: 81,564 bytes (14-byte
-  excess). Complete replay payload: 82,936 bytes; 1,283 HIGHLOW fields;
-  11 switches; linked and ordinary payloads agree; zero ordinary buffer
-  partition mismatches.
+- Target callable: 81,550 bytes; candidate callable prefix: 81,548 bytes.
+  Complete replay payload: 82,920 bytes; 1,283 HIGHLOW fields; 11 switches;
+  zero ordinary buffer-partition mismatches; linked and ordinary payloads
+  agree.
 - First mismatch remains `0x004791BD`: target displacement byte `a9`,
-  candidate `a7`. The early shared-exit destination is now only 2 bytes apart,
-  down from 16 bytes in the previous layout. This is not exact acceptance.
-- Entry offsets for Actions 619, 650, 658, 710, 711, and 720 now align with
-  their target entries. Action 616 is 2 bytes early and retains the audited
-  seven-entry unsigned `(sequence - 1)` switch. Its two request sites have
-  identical target/source stack-buffer partitions.
-- Remaining large local layout differences include Action 416 (candidate
-  span 922 vs target 959 bytes) and Action 608 (776 vs 810 bytes). These are
-  the next source-level control-flow areas to investigate within this same
-  function.
-- The expanded source exceeds the old diagnostic envelope by 14 callable
-  bytes and 12 metadata bytes. The root relocation/stack audit therefore ran
-  explicitly in read-only `--diagnostic-oversize` mode. It recognized all 8
-  auxiliary switch bounds, with zero buffer-partition and request-preparation
-  mismatches. This mode is diagnostic only, not execution or exactness credit.
+  candidate `99`, a 16-byte early-exit destination difference. This is not
+  exact acceptance.
+- Action 198 and Action 608 spans both match their target extents. Their
+  entry positions and the later Action 616+ family still carry a 16-byte
+  cumulative layout drift. Action 416 remains a major local mismatch:
+  candidate span 918 vs target 959 bytes.
+- Action 616's nested seven-entry table is indexed by the explicit natural
+  C++ expression `static_cast<unsigned int>(static_cast<int>(sequence_13e) - 1)`;
+  its default exits the function. The source auxiliary switch audit accepts
+  the unsigned `ja` guard while proving flags survive intervening non-flag
+  setup instructions. Focused Action 616 stack/request audit: 2 target request
+  sites and 2 source request sites, identical stack-buffer partition, zero
+  partition and request-preparation mismatches.
 
 TH075 remains a structural reference only: its exact Reimu Fighter Advance
 `0x0045DD70` (60,999 bytes) uses a shared `goto` label inside a switch under
