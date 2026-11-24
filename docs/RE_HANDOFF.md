@@ -279,3 +279,43 @@ Action410/414/416 each have a first local completion call followed by `break`, a
 TH075's `ReimuFighterAdvanceF1183.cpp` demonstrates natural switch-owned shared labels (`goto native_shared_getter`) with the label in a trailing include. Its exact unit is built with VC7.1 `/Od /Ob0`; TH105's current root is built with VC8/LTCG optimization, so the idiom is useful evidence but not a drop-in codegen recipe.
 
 Next experiment: keep the verified Action520/521 projectile tail unchanged, and isolate only the distinction between Action410's local virtual call and the Action520 shared virtual call. Continue using per-unit object builds and target-map comparisons; no full cold replay until a source candidate is close enough to justify the focused oracle run. No ASM, padding, byte grafts, or manual relocation edits.
+
+## 2026-11-24 Action520 shared next-sequence owner recovered
+
+The sole active function remains `Reimu_dispatch_action_state_vslot28` at
+`0x00478FA0`; no other function may be selected before canonical exact
+acceptance of this complete 81,550-byte root.
+
+A focused VC8 ordinary-object experiment has now recovered the target's
+shared return-tail ownership using natural C++ control flow:
+
+- The target shared slot-`+0x14` tail is root-relative `0xC356`, exactly
+  `0x360` bytes into Action520. The current candidate's Action520 begins at
+  object offset `0xC018`; its shared slot call is at `0xC378`, also exactly
+  `0x360` bytes into Action520. All 18 external sequence-completion edges now
+  branch to `0xC378`, not to Action410's local effect epilogue at `0x661A`.
+- The source keeps Action410, Action414 and Action416's first frame-three
+  effect completions local by expressing their slot-`+0x14` calls through a
+  typed C++ function pointer with the declared `unsigned char` return type.
+  Their effect direction is carried as a register-held `int` after the
+  original byte conversion. This prevents VC8 from absorbing the local effect
+  completion into the shared sequence-completion tail. No assembly, padding,
+  byte grafting or manual relocation edits are used.
+- Action416's mapped body is now 959/959 bytes and its 235 decoded instructions
+  match the target under the root-aware branch-owner normalization. Action520
+  is 881/881 bytes and its 215 decoded instructions also match under that
+  normalization. Action521 remains 794/794 bytes in the map.
+- The complete candidate callable prefix is 81,596 bytes, 46 bytes beyond the
+  81,550-byte target. All 126 target destination groups remain present with
+  zero split groups. Action410 is still 964/975 bytes and Action414 is
+  1,115/1,116 bytes; their remaining instruction/register differences and the
+  rest of the root remain open. This is a substantial local topology recovery,
+  **not** root exactness or oracle acceptance.
+- This update supersedes the preceding baseline statement that the external
+  sequence-completion edges still target Action410's `0x661D` tail. The
+  promoted source now places those edges at Action520's own `0xC378` tail.
+
+The promoted source was built with `scripts/compile-unit.sh` and checked only
+with the root target-map/object comparison. No full cold replay was run. Keep
+the active function lock unchanged and continue from the Action410/414
+instruction frontiers; do not mark the root exact or change functions.

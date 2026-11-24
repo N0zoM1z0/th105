@@ -3519,12 +3519,18 @@ reimu_action_320_advance:
         }
         if (sequence_13e == 0 && frame_timer_142 == 0) {
             if (frame_index_140 == (aerial ? 4 : 6) && byte_750 != 0) {
+                register int frame3_direction =
+                    static_cast<unsigned char>(facing_104);
                 emit_fighter_effect(62,
-                    static_cast<float>(static_cast<float>(facing_104 * (aerial ? 62 : 67)) + x_ec),
-                    static_cast<float>(y_f0 + (aerial ? 108.0 : 57.0)),
-                    static_cast<unsigned char>(facing_104), 1);
-                next_sequence_block();
-                break;
+                    static_cast<float>(static_cast<float>(
+                        static_cast<signed char>(frame3_direction) * 67) + x_ec),
+                    static_cast<float>(y_f0 + 57.0), frame3_direction, 1);
+                typedef unsigned char (__thiscall *Action410EffectNextSequenceSlot)(ReimuActionStatePreludeView *);
+                register void **action_vtable = *reinterpret_cast<void ***>(this);
+                register Action410EffectNextSequenceSlot action_slot =
+                    reinterpret_cast<Action410EffectNextSequenceSlot>(action_vtable[5]);
+                action_slot(this);
+                return;
             }
             if (frame_timer_142 == 0 && frame_index_140 == (aerial ? 5 : 8)) {
                 if (aerial)
@@ -3637,12 +3643,18 @@ reimu_action_320_advance:
         }
         if (sequence_13e == 0 && frame_timer_142 == 0) {
             if (frame_index_140 == (aerial ? 4 : 6) && byte_750 != 0) {
+                register int frame3_direction =
+                    static_cast<unsigned char>(facing_104);
                 emit_fighter_effect(62,
-                    static_cast<float>(static_cast<float>(facing_104 * (aerial ? 62 : 67)) + x_ec),
-                    static_cast<float>(y_f0 + (aerial ? 108.0 : 57.0)),
-                    static_cast<unsigned char>(facing_104), 1);
-                next_sequence_block();
-                break;
+                    static_cast<float>(static_cast<float>(
+                        static_cast<signed char>(frame3_direction) * 62) + x_ec),
+                    static_cast<float>(y_f0 + 108.0), frame3_direction, 1);
+                typedef unsigned char (__thiscall *Action414EffectNextSequenceSlot)(ReimuActionStatePreludeView *);
+                register void **action_vtable = *reinterpret_cast<void ***>(this);
+                register Action414EffectNextSequenceSlot action_slot =
+                    reinterpret_cast<Action414EffectNextSequenceSlot>(action_vtable[5]);
+                action_slot(this);
+                return;
             }
             if (frame_timer_142 == 0 && frame_index_140 == (aerial ? 5 : 8)) {
                 if (aerial)
@@ -3703,12 +3715,10 @@ reimu_action_320_advance:
         register int frame_one = 1;
         if (sequence_13e == 3)
             resolve_stage_surface_landing_transition();
-        if (sequence_13e == 0) {
-            if (frame_index_140 >= frame_four)
-                goto reimu_action416_gravity_frame_four;
-        } else if (sequence_13e == 2 && frame_index_140 >= frame_one) {
+        if (sequence_13e == 0 && frame_index_140 >= frame_four)
+            goto reimu_action416_gravity_frame_four;
+        if (sequence_13e == 2 && frame_index_140 >= frame_one)
             goto reimu_action416_gravity;
-        }
 reimu_action416_common:
         if (field_6c4 == 0)
             byte_750 = 0;
@@ -3720,31 +3730,41 @@ reimu_action416_common:
         if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0
                 && sequence_13e == 3)
             goto reimu_shot_action9_exit;
-        if (sequence_13e == 0 && frame_timer_142 == 0) {
-            if (frame_index_140 == 3 && byte_750 != 0) {
+        if (sequence_13e == 0) {
+            if (frame_timer_142 == 0 && frame_index_140 == 3 && byte_750 != 0) {
+                register int frame3_direction =
+                    static_cast<unsigned char>(facing_104);
                 emit_fighter_effect(62,
-                    static_cast<float>(static_cast<float>(facing_104 * 14) + x_ec),
-                    static_cast<float>(y_f0 + 197.0),
-                    static_cast<unsigned char>(facing_104), frame_one);
-                next_sequence_block();
-                break;
+                    static_cast<float>(static_cast<float>(
+                        static_cast<signed char>(frame3_direction) * 14) + x_ec),
+                    static_cast<float>(y_f0 + 197.0), frame3_direction, frame_one);
+                typedef unsigned char (__thiscall *Action416NextSequenceSlot)(ReimuActionStatePreludeView *);
+                register void **action_vtable = *reinterpret_cast<void ***>(this);
+                register Action416NextSequenceSlot action_slot =
+                    reinterpret_cast<Action416NextSequenceSlot>(action_vtable[5]);
+                action_slot(this);
+                return;
             }
-            if (frame_timer_142 == 0 && frame_index_140 == frame_four) {
-                velocity_x_f4 = -5.0f;
-                velocity_y_f8 = 6.5f;
-                acceleration_y_100 = 0.6f;
-                field_744 = 45.0f;
-                dispatch_character_wave_handle(2);
-                adjust_counter_482(200, 60);
-                state_180 = 1;
-                add_scaled_counter(50);
-                const float parameters[4] = {field_744, 10.0f, 1.0f, 0.0f};
-                spawn_owned_object_via_manager(801,
-                    static_cast<float>(static_cast<float>(facing_104 * 55) + x_ec),
-                    static_cast<float>(y_f0 + 80.0),
-                    static_cast<unsigned char>(facing_104), 1, parameters, frame_four);
-            }
+            goto reimu_action416_frame_four_check;
         }
+        goto reimu_action416_after_frame_four;
+reimu_action416_frame_four_check:
+        if (frame_timer_142 == 0 && frame_index_140 == frame_four) {
+            velocity_x_f4 = -5.0f;
+            velocity_y_f8 = 6.5f;
+            acceleration_y_100 = 0.6f;
+            field_744 = 45.0f;
+            dispatch_character_wave_handle(2);
+            adjust_counter_482(200, 60);
+            state_180 = 1;
+            add_scaled_counter(50);
+            const float parameters[4] = {field_744, 10.0f, 1.0f, 0.0f};
+            spawn_owned_object_via_manager(801,
+                static_cast<float>(static_cast<float>(facing_104 * 55) + x_ec),
+                static_cast<float>(y_f0 + 80.0),
+                static_cast<unsigned char>(facing_104), 1, parameters, frame_four);
+        }
+reimu_action416_after_frame_four:
         if (sequence_13e == 1 && frame_counter_144 >= 25) {
             next_sequence_block();
             return;
