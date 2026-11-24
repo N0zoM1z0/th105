@@ -54,8 +54,6 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
 
     int landing_sequence;
     const int selected_action = action_13c;
-    if (selected_action <= 300) {
-        if (selected_action != 300) {
     switch (selected_action) {
     case 0: {
         resolve_stage_surface_landing_transition();
@@ -2416,13 +2414,7 @@ reimu_landed_action_10:
                 && frame_index_140 == 0 && sequence_13e == 3)
             face_opponent_and_flip_horizontal_velocity();
         return;
-        default:
-        update_common_action_state();
-        return;
-    }
-    return;
-        } else {
-             {
+        case 300: {
         resolve_stage_surface_landing_transition();
         const unsigned char directional_result_300 =
             try_dispatch_directional_action_208_210(0);
@@ -2430,14 +2422,15 @@ reimu_landed_action_10:
             return;
         if (byte_47e != directional_result_300) {
             velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
-            if (velocity_x_f4 < 0.0f) {
+            if (0.0f > velocity_x_f4) {
                 velocity_x_f4 = 0.0f;
                 byte_47e = 0;
             }
         }
         if (advance_frame_and_dispatch())
             set_action(0);
-        if (frame_timer_142 == 0 && frame_index_140 == 3) {
+
+reimu_action_300_320_event_tail:        if (frame_timer_142 == 0 && frame_index_140 == 3) {
             dispatch_indexed_event_member(27);
             byte_47e = 0;
         }
@@ -2445,11 +2438,7 @@ reimu_landed_action_10:
     }
 
 // Shared source fragment for the first middle-table group; no function boundary.
-            }
-    }
-    if (selected_action <= 560) {
-    switch (selected_action) {
-    case 301:
+        case 301:
         resolve_stage_surface_landing_transition();
         if (try_dispatch_directional_action_208_210(0))
             return;
@@ -2871,20 +2860,11 @@ reimu_landed_action_10:
             byte_47e = 0;
         }
 reimu_action_320_advance:
-        if (advance_frame_and_dispatch()) {
-            // Action 320 reaches the same virtual +8 completion slot as
-            // action 300, but owns a distinct call site in the target.
-            typedef int (__thiscall *Action320SetActionSlot)(
-                ReimuActionStatePreludeView *, short);
-            Action320SetActionSlot volatile *action_slots =
-                reinterpret_cast<Action320SetActionSlot volatile *>(
-                    *reinterpret_cast<void ***>(this));
-            action_slots[2](this, 0);
-        }
-        if (frame_timer_142 == 0 && frame_index_140 == 3) {
-            dispatch_indexed_event_member(27);
-            byte_47e = 0;
-        }
+        if (advance_frame_and_dispatch())
+            set_action(0);
+
+        goto reimu_action_300_320_event_tail;
+
         return;
     }
         case 321:
@@ -3768,10 +3748,12 @@ reimu_action_320_advance:
         register int frame_one = 1;
         if (sequence_13e == 3)
             resolve_stage_surface_landing_transition();
-        if (sequence_13e == 0 && frame_index_140 >= frame_four)
-            goto reimu_action416_gravity_frame_four;
-        if (sequence_13e == 2 && frame_index_140 >= frame_one)
+        if (sequence_13e == 0) {
+            if (frame_index_140 >= frame_four)
+                goto reimu_action416_gravity_frame_four;
+        } else if (sequence_13e == 2 && frame_index_140 >= frame_one) {
             goto reimu_action416_gravity;
+        }
 reimu_action416_common:
         if (field_6c4 == 0)
             byte_750 = 0;
@@ -8377,14 +8359,7 @@ reimu_action416_gravity:
         return;
 
 // First high-table families; continuation of the same action dispatcher.
-        default:
-        update_common_action_state();
-        return;
-    }
-    return;
-    }
-    switch (selected_action) {
-    case 561:
+        case 561:
         if (sequence_13e == 0 || sequence_13e == 3)
             resolve_stage_surface_landing_transition();
         byte_17c = 3;
@@ -9948,6 +9923,8 @@ reimu_complete_action0_619:
                 const unsigned int mode = static_cast<unsigned int>(g_match_identifier);
                 float parameters[4];
                 switch (mode) {
+                default:
+                    return;
                 case 3: {
                     const float base = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
                     for (float i = 0.0f; i < 8.0f; i += 1.0f) {
@@ -10134,9 +10111,6 @@ reimu_complete_action0_619:
         }
         return;
         case 740: {
-        // Normal setup seeds this mode from GameConfig::default_game_type;
-        // the four-choice scenario cursor selects 0..3. Preserve the target
-        // out-of-range spill path for invalid persisted values.
         unsigned int mode = static_cast<unsigned int>(g_match_identifier);
         if (sequence_13e == 1) {
             // No default assignment: VC8 reproduces the target's indeterminate
@@ -10166,7 +10140,7 @@ reimu_complete_action0_619:
                 duration = 80;
                 break;
             }
-            if (frame_counter_144 % cadence == 0 && limit > word_730) {
+            if (frame_counter_144 % cadence == 0 && word_730 < limit) {
                 dispatch_character_wave_handle(8);
                 float parameters[3];
                 parameters[0] = static_cast<float>(10.0 - static_cast<float>(static_cast<unsigned int>(selector_random_roll(200))));
@@ -10418,7 +10392,6 @@ reimu_complete_action0_619:
         update_common_action_state();
         return;
     }
-    return;
 
 }
 
