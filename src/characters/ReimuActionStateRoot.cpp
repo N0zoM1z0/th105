@@ -54,7 +54,7 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
 
     int landing_sequence;
     const int selected_action = action_13c;
-    if (selected_action <= 300) {
+    if (selected_action < 300) {
     switch (selected_action) {
     case 0: {
         resolve_stage_surface_landing_transition();
@@ -2415,7 +2415,14 @@ reimu_landed_action_10:
                 && frame_index_140 == 0 && sequence_13e == 3)
             face_opponent_and_flip_horizontal_velocity();
         return;
-        case 300: {
+        default:
+        update_common_action_state();
+        return;
+    }
+    return;
+    }
+    if (selected_action == 300) {
+ {
         resolve_stage_surface_landing_transition();
         const unsigned char directional_result_300 =
             try_dispatch_directional_action_208_210(0);
@@ -2438,12 +2445,7 @@ reimu_landed_action_10:
     }
 
 // Shared source fragment for the first middle-table group; no function boundary.
-        default:
-        update_common_action_state();
-        return;
-    }
-    return;
-    }
+        }
     if (selected_action <= 560) {
     switch (selected_action) {
     case 301:

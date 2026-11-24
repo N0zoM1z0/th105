@@ -137,14 +137,15 @@ def generate(output, *, void_root=False, compact=False):
         raise ValueError("staged action-switch spelling changed")
     pieces = [text[:text.index(marker)]]
     groups = []
-    for region, predicate in (("low", lambda key: key <= 300),
+    for region, predicate in (("low", lambda key: key < 300),
                               ("mid", lambda key: 300 < key <= 560),
                               ("high", lambda key: key > 560)):
         if region != "high":
-            pieces.append(f"    if (selected_action <= {300 if region == 'low' else 560}) {{\n")
+            pieces.append(f"    if (selected_action {'<' if region == 'low' else '<='} {300 if region == 'low' else 560}) {{\n")
         pieces.append("    switch (selected_action) {\n")
-        # Shared retained-source groups are not original physical arm order.
-        # Emit the reviewed distinct target owners in their observed order.
+        # Action 300 is a direct arm between the low-action switch and the
+        # 301..560 table, not a member of either switch's destination table.
+        # Keep it out of the low switch so VC8 emits the original direct path.
         pending = sorted((key for key in bodies if predicate(key)), key=owners.__getitem__)
         while pending:
             key = pending[0]
@@ -163,6 +164,9 @@ def generate(output, *, void_root=False, compact=False):
                       "    return true;\n")
         if region != "high":
             pieces.append("    }\n")
+        if region == "low":
+            direct_300 = re.sub(r"\bselected_action\b", "300", bodies[300])
+            pieces.append("    if (selected_action == 300) {\n" + direct_300 + "    }\n")
     pieces.append("\n}\n\n} // namespace th105\n")
     output.mkdir(parents=True, exist_ok=True)
     generated = output / SOURCE.name
