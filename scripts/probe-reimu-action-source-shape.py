@@ -132,6 +132,16 @@ def generate(output, *, void_root=False, compact=False):
         raise ValueError("source keys differ from canonical nondefault actions")
 
     compact_text = text
+    if compact:
+        # The compact witness retains the original single-switch case layout.
+        # Reinsert the shared action-9 exit at its original owner (after 546)
+        # just as the expanded-region emitter does; otherwise the 416/546
+        # gotos are left with an undefined label.
+        compact_owner = "    case 550: case 551:"
+        if compact_text.count(compact_owner) != 1:
+            raise ValueError("compact Reimu shot-exit owner boundary changed")
+        compact_text = compact_text.replace(
+            compact_owner, shared_shot_exit + "\n" + compact_owner, 1)
     marker = "    switch (selected_action) {"
     if text.count(marker) != 1:
         raise ValueError("staged action-switch spelling changed")
