@@ -75,10 +75,7 @@
             zero_velocity_acceleration();
             return true;
         }
-#ifdef TH105_REIMU_SHARED_LOW_ADVANCE
-reimu_advance_frame_and_return:
-#endif
-        advance_frame_and_dispatch();
+        reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch();
         return true;
     case 10:
         resolve_stage_surface_landing_transition();

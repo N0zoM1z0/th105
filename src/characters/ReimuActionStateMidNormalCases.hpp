@@ -262,10 +262,13 @@
         return true;
     case 320: {
         resolve_stage_surface_landing_transition();
-        const unsigned char directional_result_320 = try_dispatch_directional_action_208_210(0);
+        const unsigned char directional_result_320 =
+            try_dispatch_directional_action_208_210(0);
         if (directional_result_320)
             return true;
-        if (byte_47e != directional_result_320) {
+        // The directional gate observes this byte through its Fighter view;
+        // reload the shared state after the call before applying deceleration.
+        if (*reinterpret_cast<volatile unsigned char*>(&byte_47e) != directional_result_320) {
             velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
             if (velocity_x_f4 < 0.0f) {
                 velocity_x_f4 = 0.0f;
@@ -274,7 +277,11 @@
         }
         if (advance_frame_and_dispatch())
             set_action(0);
-        goto reimu_action_300_320_event27_tail;
+        if (frame_timer_142 == 0 && frame_index_140 == 3) {
+            dispatch_indexed_event_member(27);
+            byte_47e = 0;
+        }
+        return true;
     }
     case 321:
         resolve_stage_surface_landing_transition();
@@ -288,8 +295,8 @@
         if (advance_frame_and_dispatch())
             set_action(0);
         if (frame_timer_142 == 0 && frame_index_140 == 2) {
-            reimu_shared_event_member = 28;
-            goto reimu_shared_event_dispatch;
+            dispatch_indexed_event_member(28);
+            byte_47e = 0;
         }
         return true;
     case 322:

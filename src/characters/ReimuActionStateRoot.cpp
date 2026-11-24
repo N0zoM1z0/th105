@@ -1,7 +1,6 @@
 #include "ReimuActionStateStaging.hpp"
 
 #define TH105_REIMU_SHARED_SEQUENCE_LANDINGS
-#define TH105_REIMU_SHARED_LOW_ADVANCE
 
 namespace th105 {
 
@@ -55,8 +54,7 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
 
     int landing_sequence;
     const int selected_action = action_13c;
-    unsigned int reimu_shared_event_member;
-    if (selected_action <= 226) {
+    if (selected_action <= 300) {
     switch (selected_action) {
     case 0: {
         resolve_stage_surface_landing_transition();
@@ -275,10 +273,7 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
             zero_velocity_acceleration();
             return;
         }
-#ifdef TH105_REIMU_SHARED_LOW_ADVANCE
-reimu_advance_frame_and_return:
-#endif
-        advance_frame_and_dispatch();
+        reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch();
         return;
         case 10:
         resolve_stage_surface_landing_transition();
@@ -1481,12 +1476,8 @@ reimu_advance_frame_and_return:
             if (byte_490)
                 field_6ac = static_cast<float>(word_730 * -2.0);
         }
-#ifdef TH105_REIMU_SHARED_LOW_ADVANCE
-        goto reimu_advance_frame_and_return;
-#else
         advance_frame_and_dispatch();
         return;
-#endif
         case 197:
 #ifdef TH105_REIMU_SHARED_SEQUENCE_LANDINGS
         if (197 != 199)
@@ -2424,16 +2415,10 @@ reimu_landed_action_10:
                 && frame_index_140 == 0 && sequence_13e == 3)
             face_opponent_and_flip_horizontal_velocity();
         return;
-        default:
-        update_common_action_state();
-        return;
-    }
-    return;
-    }
-    if (selected_action == 300) {
- {
+        case 300: {
         resolve_stage_surface_landing_transition();
-        const unsigned char directional_result_300 = try_dispatch_directional_action_208_210(0);
+        const unsigned char directional_result_300 =
+            try_dispatch_directional_action_208_210(0);
         if (directional_result_300)
             return;
         if (byte_47e != directional_result_300) {
@@ -2445,20 +2430,20 @@ reimu_landed_action_10:
         }
         if (advance_frame_and_dispatch())
             set_action(0);
-    }
-reimu_action_300_320_event27_tail:
         if (frame_timer_142 == 0 && frame_index_140 == 3) {
-            reimu_shared_event_member = 27;
-            goto reimu_shared_event_dispatch;
+            dispatch_indexed_event_member(27);
+            byte_47e = 0;
         }
         return;
-reimu_shared_event_dispatch:
-        dispatch_indexed_event_member(reimu_shared_event_member);
-        byte_47e = 0;
-        return;
+    }
 
 // Shared source fragment for the first middle-table group; no function boundary.
-        }
+        default:
+        update_common_action_state();
+        return;
+    }
+    return;
+    }
     if (selected_action <= 560) {
     switch (selected_action) {
     case 301:
@@ -2871,9 +2856,12 @@ reimu_shared_event_dispatch:
         return;
         case 320: {
         resolve_stage_surface_landing_transition();
-        const unsigned char directional_result_320 = try_dispatch_directional_action_208_210(0);
+        const unsigned char directional_result_320 =
+            try_dispatch_directional_action_208_210(0);
         if (directional_result_320)
             return;
+        // The directional gate observes this byte through its Fighter view;
+        // reload the shared state after the call before applying deceleration.
         if (*reinterpret_cast<volatile unsigned char*>(&byte_47e) != directional_result_320) {
             velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
             if (velocity_x_f4 < 0.0f) {
@@ -2883,7 +2871,11 @@ reimu_shared_event_dispatch:
         }
         if (advance_frame_and_dispatch())
             set_action(0);
-        goto reimu_action_300_320_event27_tail;
+        if (frame_timer_142 == 0 && frame_index_140 == 3) {
+            dispatch_indexed_event_member(27);
+            byte_47e = 0;
+        }
+        return;
     }
         case 321:
         resolve_stage_surface_landing_transition();
@@ -2897,8 +2889,8 @@ reimu_shared_event_dispatch:
         if (advance_frame_and_dispatch())
             set_action(0);
         if (frame_timer_142 == 0 && frame_index_140 == 2) {
-            reimu_shared_event_member = 28;
-            goto reimu_shared_event_dispatch;
+            dispatch_indexed_event_member(28);
+            byte_47e = 0;
         }
         return;
         case 322:

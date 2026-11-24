@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stddef.h>
+#include "characters/CharacterObjectRuntime.hpp"
 
 namespace th105 {
 

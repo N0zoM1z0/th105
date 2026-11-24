@@ -294,7 +294,8 @@
         return true;
     case 300: {
         resolve_stage_surface_landing_transition();
-        const unsigned char directional_result_300 = try_dispatch_directional_action_208_210(0);
+        const unsigned char directional_result_300 =
+            try_dispatch_directional_action_208_210(0);
         if (directional_result_300)
             return true;
         if (byte_47e != directional_result_300) {
@@ -306,14 +307,9 @@
         }
         if (advance_frame_and_dispatch())
             set_action(0);
-    }
-reimu_action_300_320_event27_tail:
         if (frame_timer_142 == 0 && frame_index_140 == 3) {
-            reimu_shared_event_member = 27;
-            goto reimu_shared_event_dispatch;
+            dispatch_indexed_event_member(27);
+            byte_47e = 0;
         }
         return true;
-reimu_shared_event_dispatch:
-        dispatch_indexed_event_member(reimu_shared_event_member);
-        byte_47e = 0;
-        return true;
+    }
