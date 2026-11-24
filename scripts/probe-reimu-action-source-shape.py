@@ -141,7 +141,9 @@ def generate(output, *, void_root=False, compact=False):
                               ("mid", lambda key: 300 < key <= 560),
                               ("high", lambda key: key > 560)):
         if region != "high":
-            pieces.append(f"    if (selected_action {'<' if region == 'low' else '<='} {300 if region == 'low' else 560}) {{\n")
+            pieces.append(f"    if (selected_action <= {300 if region == 'low' else 560}) {{\n")
+        if region == "low":
+            pieces.append("    if (selected_action != 300) {\n")
         pieces.append("    switch (selected_action) {\n")
         # Action 300 is a direct arm between the low-action switch and the
         # 301..560 table, not a member of either switch's destination table.
@@ -162,11 +164,11 @@ def generate(output, *, void_root=False, compact=False):
             pending = [other for other in pending if other not in shared]
         pieces.append("    default:\n        update_common_action_state();\n        return true;\n    }\n"
                       "    return true;\n")
-        if region != "high":
-            pieces.append("    }\n")
         if region == "low":
             direct_300 = re.sub(r"\bselected_action\b", "300", bodies[300])
-            pieces.append("    if (selected_action == 300) {\n" + direct_300 + "    }\n")
+            pieces.append("    } else {\n    " + direct_300 + "    }\n")
+        if region != "high":
+            pieces.append("    }\n")
     pieces.append("\n}\n\n} // namespace th105\n")
     output.mkdir(parents=True, exist_ok=True)
     generated = output / SOURCE.name
