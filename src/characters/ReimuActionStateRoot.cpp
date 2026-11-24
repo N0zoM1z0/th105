@@ -2863,7 +2863,7 @@ reimu_landed_action_10:
             try_dispatch_directional_action_208_210(0);
         if (directional_result_320)
             return;
-        if (*reinterpret_cast<volatile unsigned char*>(&byte_47e) == directional_result_320)
+        if (byte_47e == directional_result_320)
             goto reimu_action_320_advance;
         velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
         if (velocity_x_f4 < 0.0f) {
@@ -2871,8 +2871,16 @@ reimu_landed_action_10:
             byte_47e = 0;
         }
 reimu_action_320_advance:
-        if (advance_frame_and_dispatch())
-            set_action(0);
+        if (advance_frame_and_dispatch()) {
+            // Action 320 reaches the same virtual +8 completion slot as
+            // action 300, but owns a distinct call site in the target.
+            typedef int (__thiscall *Action320SetActionSlot)(
+                ReimuActionStatePreludeView *, short);
+            Action320SetActionSlot volatile *action_slots =
+                reinterpret_cast<Action320SetActionSlot volatile *>(
+                    *reinterpret_cast<void ***>(this));
+            action_slots[2](this, 0);
+        }
         if (frame_timer_142 == 0 && frame_index_140 == 3) {
             dispatch_indexed_event_member(27);
             byte_47e = 0;
