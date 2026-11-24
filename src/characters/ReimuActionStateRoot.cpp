@@ -9102,12 +9102,17 @@ reimu_action416_gravity:
                 acceleration_y_100 = 0.5f;
         }
         return;
-        case 616:
+        case 616: {
         if (sequence_13e == 8)
             resolve_stage_surface_landing_transition();
         publish_texture_state(6, 2);
-        switch (sequence_13e) {
-        case 1: case 2: {
+        const int sequence_five_frame = 5;
+        const int sequence_five_limit = sequence_five_frame + 115;
+        // The target indexes this seven-entry table with sequence - 1 and
+        // uses an unsigned upper-bound guard; retain that signed-load/unsigned
+        // range behavior for zero and negative sequence values.
+        switch (static_cast<unsigned int>(static_cast<int>(sequence_13e) - 1)) {
+        case 0: case 1: {
             velocity_y_f8 -= acceleration_y_100;
             const double next_y = static_cast<double>(velocity_y_f8) + y_f0;
             if (reimu_stage_surface_height_at_x(this) + 300.0 >= next_y && velocity_y_f8 < 0.0f) {
@@ -9126,13 +9131,13 @@ reimu_action416_gravity:
             }
             break;
         }
-        case 3:
+        case 2:
             y_f0 = static_cast<float>(reimu_stage_surface_height_at_x(this) + 280.0 + field_73c);
             field_73c = static_cast<float>(field_73c + 2.0);
             if (field_73c > 20.0f)
                 field_73c = 20.0f;
             break;
-        case 4: case 5: {
+        case 3: case 4: {
             velocity_x_f4 = static_cast<float>(velocity_x_f4 + static_cast<double>(0.2f));
             if (velocity_x_f4 > 8.0f)
                 velocity_x_f4 = 8.0f;
@@ -9145,7 +9150,7 @@ reimu_action416_gravity:
                     velocity_y_f8 = 0.0f;
                 }
             }
-            if (sequence_13e == 5 && frame_counter_144 >= 120) {
+            if (sequence_13e == 5 && frame_counter_144 >= sequence_five_limit) {
                 next_sequence_block();
                 velocity_y_f8 = 4.5f;
                 velocity_x_f4 = -4.0f;
@@ -9153,7 +9158,7 @@ reimu_action416_gravity:
             }
             break;
         }
-        case 6: case 7:
+        case 5: case 6:
             velocity_y_f8 -= acceleration_y_100;
             if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 zero_velocity_acceleration();
@@ -9161,6 +9166,8 @@ reimu_action416_gravity:
                 set_sequence(8);
             }
             break;
+        default:
+            return;
         }
         if (advance_frame_and_dispatch()) {
             goto reimu_complete_action0_619;
@@ -9180,9 +9187,11 @@ reimu_action416_gravity:
             emit_fighter_effect(115, static_cast<float>(static_cast<float>(facing_104 * 24) + x_ec),
                 static_cast<float>(y_f0 + 144.0), static_cast<unsigned char>(facing_104), 1);
         }
-        if (sequence_13e == 3 && frame_timer_142 == 0 && frame_index_140 == 5)
+        if (sequence_13e == 3 && frame_timer_142 == 0 && frame_index_140 == sequence_five_frame)
             set_word_48a(1);
         return;
+        }
+
         case 619:
         resolve_stage_surface_landing_transition();
         publish_texture_state(6, 2);

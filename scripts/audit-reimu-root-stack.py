@@ -23,7 +23,7 @@ ADDRESS, SIZE, SPAWN = 0x478FA0, 81550, 0x465190
 VOLATILE = {x.X86_REG_EAX, x.X86_REG_ECX, x.X86_REG_EDX}
 MATH_CALLS = {0x406360, 0x4063D0, 0x435D60}
 ACTIONS = (400, 401, 404, 406, 525, 526, 545, 546, 669)
-SUPPORTED_ACTIONS = (*ACTIONS, 550, 551, 520, 521, 522, 523)
+SUPPORTED_ACTIONS = (*ACTIONS, 550, 551, 520, 521, 522, 523, 616)
 
 
 def require(condition, message):
@@ -96,16 +96,27 @@ def qualify_source_switch_bounds(graph, tables, primary_tables):
                     and table['index_table_offset'] == table['destination_table_offset']+4*len(tables[address]),
                     'primary source destination/index ownership disagrees')
             continue
-        guard = graph.rows[index-1]
-        compare = next((candidate for candidate in reversed(graph.rows[max(0, index-5):index-1])
+        # VC8 may schedule non-flag-setting register setup between the
+        # unsigned range branch and the indirect jump (the target does the
+        # reverse: compare, setup, ja, jmp). Find the actual ja guarding the
+        # same index register, and prove flags survive both sides of it.
+        preceding = graph.rows[max(0, index-12):index]
+        compare = next((candidate for candidate in reversed(preceding)
                         if candidate.mnemonic == 'cmp'), None)
-        require(guard.mnemonic == 'ja' and compare is not None
+        guards = ([candidate for candidate in graph.rows
+                   if compare is not None and compare.address < candidate.address < row.address
+                   and candidate.mnemonic == 'ja'])
+        require(compare is not None and len(guards) == 1
                 and compare.operands[0].type == x.X86_OP_REG
                 and compare.operands[0].reg == operand.mem.index and operand.mem.scale == 4,
                 'source auxiliary switch lacks a matching unsigned index guard')
-        between = [r for r in graph.rows if compare.address < r.address < guard.address]
-        require(all(x.X86_REG_EFLAGS not in r.regs_access()[1] for r in between),
-                'source switch guard flags overwritten')
+        guard = guards[0]
+        before_guard = [r for r in graph.rows if compare.address < r.address < guard.address]
+        after_guard = [r for r in graph.rows if guard.address < r.address < row.address]
+        require(all(x.X86_REG_EFLAGS not in r.regs_access()[1] for r in before_guard),
+                'source switch comparison flags overwritten before unsigned guard')
+        require(all(x.X86_REG_EFLAGS not in r.regs_access()[1] for r in after_guard),
+                'source switch guard flags overwritten before indirect dispatch')
         bound, definitions = compare.operands[1], []
         if bound.type == x.X86_OP_IMM:
             value = bound.imm

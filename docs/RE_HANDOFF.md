@@ -103,3 +103,45 @@ trace inputs when they are needed to reproduce a live lead.
 - **Action 300/320 shared-tail experiments (2026-11-24):** the source-shape generator's `--single-switch --void-root` path was compiled and then replayed through direct-root LTCG by temporarily substituting both generated root source and staging header; the tracked files were restored afterward. Its 81,548-byte callable prefix is 2 bytes shorter than target, retains all 126 switch destination groups with zero split groups, and the direct linked/ordinary payload audit passes (82,920-byte payload, 1,283 HIGHLOW fields, 11 switches, zero buffer-partition mismatches). It is not exact: first mismatch remains `0x004791BD` (target displacement byte `a9`, candidate `99`, 16-byte epilogue displacement delta); Action 300 entry is 20 bytes late and its x87 clamp differs (`fcomp qword` path vs target `fldz/fcom st(1)/fstp st(1)`); Action 320 is 41 bytes early and spans 162 vs target 119 because VC8 moves the shared event tail after Action 320 instead of retaining the target backward edge to `0x0047CC2B`. A case-order experiment moving Action 320 before Action 300 moves its code 3,335 bytes early and is rejected. Separate-switch goto variants, including `do/while`, `switch` completion and volatile event-tail field reads, still have VC8 move the tail after Action 320; volatile timer/index accesses also introduce extra register loads. The 81,548-byte volatile-zero experiment is also rejected because it changes Action 300's target x87 compare sequence. None of these experiments replaces the tracked root. Reproduce the best single-switch replay with `scripts/probe-reimu-action-source-shape.py --void-root --single-switch --output-dir build/reimu-root-work/source-shape-single-switch-20261124`, then the direct-root probe using that generated `ReimuActionStateDispatch.cpp` and `ReimuActionStateStaging.hpp` as temporary tracked inputs; the preserved direct replay is in `build/reimu-root-work/ltcg-action320-single-switch-20261124`.
 - **Action 740 input provenance:** `CSelectScenario::on_scene_enter` seeds `MatchSetup.game_type` from `GameConfig.default_game_type` at `0x006FC5FC`; the four-choice cursor updates that field over 0..3. `prepare_match_runtime_by_mode` publishes it into `MatchSetup.match_identifier_00`, and `BattleControllerSetup` copies it to `g_match_identifier` at `0x006FA894`. The original out-of-range stack-spill path is retained for invalid persisted values; the bounded mode constants and spill reads are separately checked by `scripts/reimu_740_mode_facts.py`.
 - **Work rule:** keep this function locked, use focused root/provider replay only, and do not claim implementation/exact credit until the Factory accepts the complete root.
+
+## 2026-11-24 current continuation — Reimu single-switch root
+
+The active tracked source `src/characters/ReimuActionStateRoot.cpp` remains the
+full void-ABI, single-outer-switch natural C++ candidate. The tracked staging
+header is unchanged. Action 300 and Action 320 now use one source-level
+`reimu_action_300_320_event_tail` label: both action bodies advance through
+their own call sites and jump to the same event-27/reset tail. This is ordinary
+C++ control flow, not duplicated code, inline assembly, or padding.
+
+Latest direct-root VC8 `/O2 /GS- /GL + LTCG` replay after the Action 616 update:
+
+- Target callable: 81,550 bytes; candidate callable prefix: **81,548 bytes**.
+- Complete replay payload: 82,920 bytes; 1,283 HIGHLOW fields; 11 switches;
+  zero ordinary buffer-partition mismatches; linked and ordinary payloads agree.
+- First mismatch remains `0x004791BD`: target displacement byte `a9`,
+  candidate `99`. This is not exact acceptance; the early shared-exit/root
+  layout still needs work.
+- The 8 source auxiliary switch bounds are now audited successfully. Action
+  616's nested seven-entry table is indexed by the explicit natural C++
+  expression `static_cast<unsigned int>(static_cast<int>(sequence_13e) - 1)`;
+  its default exits the function. This preserves the target's signed load,
+  subtract-one, unsigned `ja` bound check, and indirect seven-way dispatch.
+- `scripts/audit-reimu-root-stack.py` now accepts non-flag-setting VC8 register
+  setup between the unsigned `ja` and the indirect jump, while verifying that
+  flags remain intact from the compare through the guard and from the guard
+  through dispatch. This matches both the compiler's legal scheduling and the
+  target's instruction ordering without weakening the bound proof.
+- Focused Action 616 stack/request audit: 2 target request sites and 2 source
+  request sites, identical stack-buffer partition, zero partition and request
+  preparation mismatches. The complete root stack audit also retains zero
+  partition mismatches across its existing selected action matrix.
+
+TH075 remains a structural reference only: its exact Reimu Fighter Advance
+`0x0045DD70` (60,999 bytes) uses a shared `goto` label inside a switch under
+VC7.1 `/Od /Ob0`. That supports natural C++ shared exits, not a compiler-profile
+assumption for TH105's VC8 root.
+
+**Lock unchanged:** `Reimu_dispatch_action_state_vslot28` at `0x00478FA0` is
+the only active function. Continue until the complete callable and owned data
+receive formal exact acceptance. Do not switch to another function. No ASM,
+padding, or exactness credit is claimed by this checkpoint.
