@@ -214,10 +214,12 @@
         register int frame_one = 1;
         if (sequence_13e == 3)
             resolve_stage_surface_landing_transition();
-        if (sequence_13e == 0 && frame_index_140 >= frame_four)
-            goto reimu_action416_gravity_frame_four;
-        if (sequence_13e == 2 && frame_index_140 >= frame_one)
+        if (sequence_13e == 0) {
+            if (frame_index_140 >= frame_four)
+                goto reimu_action416_gravity_frame_four;
+        } else if (sequence_13e == 2 && frame_index_140 >= frame_one) {
             goto reimu_action416_gravity;
+        }
 reimu_action416_common:
         if (field_6c4 == 0)
             byte_750 = 0;
