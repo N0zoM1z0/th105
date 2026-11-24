@@ -151,12 +151,22 @@ def audit(receipt_path):
     for name, digest in receipt['root_input']['source_sha256'].items():
         require(linked_pe.sha(ROOT / name) == digest, 'root source input changed')
     folder = receipt_path.parent
-    require(linked_pe.sha(folder / 'root-input/ReimuActionStateDispatch.cpp')
-            == receipt['root_input']['generated_source_sha256'], 'generated root input changed')
-    for header in (folder / 'ReimuActionStateStaging.hpp',
-                   folder / 'root-input/ReimuActionStateStaging.hpp'):
-        require(linked_pe.sha(header) == receipt['root_input']['generated_header_sha256'],
-                'generated root header changed')
+    if receipt['root_input'].get('schema') == 'th105-reimu-direct-root-source-v1':
+        root_source = ROOT / 'src/characters/ReimuActionStateRoot.cpp'
+        root_header = ROOT / 'src/characters/ReimuActionStateStaging.hpp'
+        require(linked_pe.sha(root_source) == receipt['root_input']['generated_source_sha256'],
+                'direct root source changed')
+        require(linked_pe.sha(folder / 'ReimuRoot.cpp') == linked_pe.sha(root_source),
+                'linked direct root source copy changed')
+        require(linked_pe.sha(folder / 'ReimuActionStateStaging.hpp') == linked_pe.sha(root_header),
+                'direct root staging header copy changed')
+    else:
+        require(linked_pe.sha(folder / 'root-input/ReimuActionStateDispatch.cpp')
+                == receipt['root_input']['generated_source_sha256'], 'generated root input changed')
+        for header in (folder / 'ReimuActionStateStaging.hpp',
+                       folder / 'root-input/ReimuActionStateStaging.hpp'):
+            require(linked_pe.sha(header) == receipt['root_input']['generated_header_sha256'],
+                    'generated root header changed')
     for filename, key in [('ReimuRoot.dll', 'image_sha256'), ('ReimuRoot.map', 'map_sha256'),
                           ('root.obj', 'root_object_sha256'), ('provider.obj', 'provider_object_sha256'),
                           ('data-bindings.obj', 'data_object_sha256')]:

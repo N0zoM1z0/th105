@@ -78,14 +78,32 @@ FREE_SELECTIONS = _iku.FREE_SELECTIONS
 select_free = _iku.select_free
 
 
-def prepare_units(out):
-    spec = importlib.util.spec_from_file_location("reimu_link_shape", ROOT / "scripts/probe-reimu-action-source-shape.py")
-    shape = importlib.util.module_from_spec(spec)
-    sys.modules[spec.name] = shape
-    spec.loader.exec_module(shape)
-    _, _, _, inputs = shape.generate(out / "root-input", void_root=True)
+def prepare_units(out, *, direct_root_source=False):
     header = "ReimuActionStateStaging.hpp"
-    (out / header).write_bytes((out / "root-input" / header).read_bytes())
+    if direct_root_source:
+        # Exercise the committed complete void-root translation unit directly.
+        # Do not silently replace it with the older 19-fragment shape generator.
+        source_path = ROOT / "src/characters/ReimuActionStateRoot.cpp"
+        header_path = ROOT / "src/characters/ReimuActionStateStaging.hpp"
+        (out / header).write_bytes(header_path.read_bytes())
+        inputs = {source_path, header_path}
+        root_input = {
+            "schema": "th105-reimu-direct-root-source-v1",
+            "source_sha256": {str(path.relative_to(ROOT)): linked_pe.sha(path)
+                              for path in sorted(inputs)},
+            "generated_source_sha256": linked_pe.sha(source_path),
+            "scope": "direct tracked ReimuActionStateRoot.cpp plus its tracked staging header",
+        }
+        root_source = source_path
+    else:
+        spec = importlib.util.spec_from_file_location("reimu_link_shape", ROOT / "scripts/probe-reimu-action-source-shape.py")
+        shape = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = shape
+        spec.loader.exec_module(shape)
+        _, _, _, inputs = shape.generate(out / "root-input", void_root=True)
+        (out / header).write_bytes((out / "root-input" / header).read_bytes())
+        root_input = None
+        root_source = out / "root-input/ReimuActionStateDispatch.cpp"
     word_source = out / "Word48a.cpp"
     word_source.write_bytes((
         '#include <stddef.h>\nnamespace th105 {\n'
@@ -99,7 +117,7 @@ def prepare_units(out):
     units = tomllib.loads((ROOT / "config/match-units.toml").read_text())["units"]
     binding = tomllib.loads((ROOT / "config/reimu-root-probe-bindings.toml").read_text())
     unit = {"kind":"probe", "profile":"vc8-sp1-probe-o2", "enable_gs":False,
-            "source":str((out / "root-input/ReimuActionStateDispatch.cpp").relative_to(ROOT)),
+            "source":str(root_source.relative_to(ROOT)),
             "object":str((out / "root.obj").relative_to(ROOT)),
             "functions":[{"address":"0x00478FA0", "size":81550, "symbol_base":SYMBOL,
                 "rel32_targets":[name+"="+address for name,address in binding["rel32"].items()],
@@ -110,7 +128,15 @@ def prepare_units(out):
         "functions":[{"address":"0x004776C0", "size":15,
             "symbol_base":"?set_word_48a@FighterWord48aLinkView@th105@@QAEXF@Z",
             "rel32_targets":[], "dir32_targets":[]}]}
-    return units, inputs
+    if root_input is None:
+        root_input = {
+            "schema": "th105-reimu-action-source-shape-v1",
+            "source_sha256": {str(path.relative_to(ROOT)): linked_pe.sha(path)
+                              for path in sorted(inputs)},
+            "generated_source_sha256": linked_pe.sha(root_source),
+            "scope": "expanded source fragments generated from ReimuActionStateDispatch.cpp",
+        }
+    return units, root_input
 
 
 def linked_provider_witnesses(pe, map_path, canonical, actuals):
@@ -145,7 +171,7 @@ def linked_provider_witnesses(pe, map_path, canonical, actuals):
     return result
 
 
-def probe(output):
+def probe(output, *, direct_root_source=False):
     canonical = linked_pe.comparator()
     target_sha = canonical.verify_target()
     tools, pins = linked_pe.pinned_tools()
@@ -154,7 +180,7 @@ def probe(output):
     if not out.is_relative_to(ROOT / "build") or out == ROOT / "build":
         raise ValueError("link products must occupy a subdirectory of build/")
     out.mkdir(parents=True, exist_ok=True)
-    units, root_input = prepare_units(out)
+    units, root_input = prepare_units(out, direct_root_source=direct_root_source)
     root_unit = units[UNIT]
     root_function, = root_unit["functions"]
     index = {}
@@ -420,9 +446,11 @@ def probe(output):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, default=ROOT / "build/reimu-ltcg")
+    parser.add_argument("--direct-root-source", action="store_true",
+                        help="link the tracked ReimuActionStateRoot.cpp instead of regenerating the fragment candidate")
     args = parser.parse_args()
     try:
-        result = probe(args.output_dir)
+        result = probe(args.output_dir, direct_root_source=args.direct_root_source)
         print(json.dumps(result, indent=2))
     except (KeyError, OSError, ValueError, RuntimeError) as error:
         print(f"Reimu genuine link failed: {error}", file=sys.stderr)
