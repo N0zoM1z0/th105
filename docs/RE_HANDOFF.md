@@ -86,3 +86,13 @@ owned switch data and relocations recorded in the match unit. Generated
 objects and listings can be rebuilt from their pinned inputs. Keep private
 trace inputs when they are needed to reproduce a live lead.
 [Local artifact policy](ARTIFACTS.md).
+
+## Active root lock — Reimu Fighter vslot28 (2026-11-24)
+
+- **Only active target:** `Reimu_dispatch_action_state_vslot28` at `0x00478FA0` (81,550-byte callable). Do not select another function until this root receives formal exact acceptance.
+- **Natural C++ candidate:** `src/characters/ReimuActionStateRoot.cpp`, declared by `src/characters/ReimuActionStateStaging.hpp`; `config/functions.csv` now points the root row at that source. The source is the full void-root candidate, not the earlier bool staging helper.
+- **Focused evidence:** the source-shape generator was rerun from the current action fragments and compiled with VC8 `/O2 /GS-`. Its `.text` bytes match the independently compiled committed root source. The giant-switch comparison retains all 126 target destination groups with zero split target groups across the three primary action regions; the eight nested switches remain part of the same callable.
+- **Provider ownership:** root call `0x004776C0` is bound to `private-reimu-word48a`, not the competing public leaf-setter view. This is recorded in `config/reimu-root-probe-bindings.toml` and is only a root-local provider choice.
+- **Exactness status:** **not exact**. A successful focused compile and switch-topology check are not a whole-root codegen/semantic replay. The root-specific LTCG link and canonical replay still need to finish and pass; action 740 remains a known semantic risk.
+- **Recent commits:** `gpt-web: add Reimu vslot28 C++ root candidate`; `gpt-web: pin Reimu root helper provider`.
+- **Work rule:** keep this function locked, use focused root/provider replay only, and do not claim implementation/exact credit until the Factory accepts the complete root.
