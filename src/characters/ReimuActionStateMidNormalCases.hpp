@@ -266,7 +266,7 @@
             try_dispatch_directional_action_208_210(0);
         if (directional_result_320)
             return true;
-        if (*reinterpret_cast<volatile unsigned char*>(&byte_47e) == directional_result_320)
+        if (byte_47e == directional_result_320)
             goto reimu_action_320_advance;
         velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
         if (velocity_x_f4 < 0.0f) {
