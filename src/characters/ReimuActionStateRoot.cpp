@@ -10134,6 +10134,9 @@ reimu_complete_action0_619:
         }
         return;
         case 740: {
+        // Normal setup seeds this mode from GameConfig::default_game_type;
+        // the four-choice scenario cursor selects 0..3. Preserve the target
+        // out-of-range spill path for invalid persisted values.
         unsigned int mode = static_cast<unsigned int>(g_match_identifier);
         if (sequence_13e == 1) {
             // No default assignment: VC8 reproduces the target's indeterminate
