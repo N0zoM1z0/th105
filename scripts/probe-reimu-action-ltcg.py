@@ -314,10 +314,18 @@ def probe(output, *, direct_root_source=False):
 
     instance = inspector.DEQUE_INSTANCE
     source = out / "ReimuRoot.cpp"
-    text = (ROOT / root_unit["source"]).read_text()
+    root_source_path = ROOT / root_unit["source"]
+    text = root_source_path.read_text()
     if text.count("namespace th105 {") != 1:
         raise ValueError("unexpected root source namespace")
-    source.write_bytes(text.replace("\n", "\r\n").encode())
+    if direct_root_source:
+        # The linked-COFF auditor authenticates this copy byte-for-byte against
+        # the tracked direct-root TU; preserve its original line endings.
+        source.write_bytes(root_source_path.read_bytes())
+    else:
+        # The fragment-generated candidate retains the probe's historical
+        # CRLF copy shape.
+        source.write_bytes(text.replace("\n", "\r\n").encode())
     provider = out / "NativeDeque.cpp"
     provider.write_text('#include "battle/SpellRuntime.hpp"\n#include <deque>\n' + instance + "\ntemplate unsigned& std::deque<unsigned>::operator[](size_type);\n")
     root_obj, provider_obj, ordinary_obj = out / "root.obj", out / "provider.obj", out / "ordinary.obj"
