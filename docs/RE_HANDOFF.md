@@ -151,3 +151,38 @@ assumption for TH105's VC8 root.
 the only active function. Continue until the complete callable and owned data
 receive formal exact acceptance. Do not switch to another function. No ASM,
 padding, or exactness claim is made by this checkpoint.
+
+## 2026-11-24 Action616 default-continuation correction
+
+The active function remains `Reimu_dispatch_action_state_vslot28` at
+`0x00478FA0`; no function switch. Action 616's seven-entry sequence table is
+indexed by signed `sequence - 1` and guarded by an unsigned upper-bound branch.
+The nested table's `ja` target is **not** a function return: target
+`0x00489C58` branches to `0x00489EF3`, where the shared post-switch action
+continuation begins (`sub_4351C0` and subsequent frame/event handling).
+Therefore `default: return;` was semantically wrong. The natural C++ source now
+uses `default: break;`, preserving the continuation for out-of-range sequence
+values.
+
+Fresh direct-root VC8 `/O2 /GS- /GL + LTCG` replay after this correction:
+
+- Candidate callable prefix: **81,564 bytes** (14 bytes beyond the 81,550-byte
+  target); complete replay payload 82,936 bytes; 1,283 HIGHLOW fields; 11
+  switches; all 126 target destination groups retained.
+- Linked and ordinary replay payloads agree byte-for-byte; ordinary request
+  buffer partition mismatches remain zero.
+- The first whole-root mismatch remains `0x004791BD`, but the candidate byte is
+  now `a7` against target `a9` (a 2-byte branch-displacement delta, previously
+  `99`). This is not exact acceptance.
+- Action 658's candidate entry and 740-byte span now exactly match the target;
+  only 6 bytes differ. Action 619's entry and 490-byte span also align, with 6
+  byte differences. Action 616 remains 2 bytes early at entry and spans 1,087
+  versus 1,085 target bytes.
+- Read-only diagnostic-oversize Action 616 stack/request audit: all 8 source
+  auxiliary bounds qualify; two target and two source request sites use the
+  same stack offsets `0x3F0` and `0x408`; zero buffer-partition mismatches and
+  zero request-preparation mismatches.
+
+The Action 616 default correction is a semantic fix, not an exactness claim.
+The 14-byte callable excess and remaining byte differences are open; do not
+widen the reviewed callable envelope or award canonical exact credit.

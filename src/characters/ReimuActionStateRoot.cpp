@@ -9132,7 +9132,8 @@ reimu_land_sequence_2:
             }
             break;
         default:
-            return;
+            // The target's unsigned range branch falls through to this shared post-switch continuation.
+            break;
         }
         if (advance_frame_and_dispatch()) {
             goto reimu_complete_action0_619;
