@@ -24,8 +24,8 @@ symbol = "?run_action_dispatch_root@ReimuActionStatePreludeView@th105@@QAEXXZ"
 "?finalize_sequence_entry@ReimuActionStatePreludeView@th105@@QAEXH@Z" = "0x0045D110"
 "?has_crossed_stage_surface_while_descending@ReimuActionStatePreludeView@th105@@QAEHXZ" = "0x005F9310"
 "?is_at_stage_surface@ReimuActionStatePreludeView@th105@@QAEEXZ" = "0x00435DC0"
-"?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z" = "0x004063D0"
-"?lookup_orientation_sine_quantized_abs@th105@@YANM@Z" = "0x00406360"
+"?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z" = "0x004063D0"
+"?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z" = "0x00406360"
 "?mt19937_next_u32@th105@@YAIXZ" = "0x004066B0"
 "?publish_battle_layout_scalar@ReimuActionStatePreludeView@th105@@QAEXM@Z" = "0x004359D0"
 "?publish_texture_state@ReimuActionStatePreludeView@th105@@QAEXCF@Z" = "0x0045F560"
@@ -218,3 +218,8 @@ symbol = "?run_action_dispatch_root@ReimuActionStatePreludeView@th105@@QAEXXZ"
 
 [data]
 "?g_match_identifier@th105@@3HA" = "0x006FA894"
+
+# This root's +0x48A setter call uses the private Reimu view alias. The
+# public leaf-setter unit also owns 0x4776C0 but is not the selected call view.
+[provider_units]
+"0x004776C0" = "private-reimu-word48a"
