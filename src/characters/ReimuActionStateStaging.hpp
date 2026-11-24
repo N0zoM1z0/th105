@@ -46,6 +46,8 @@ public:
     bool run_checked_low_dispatch();
     // Entry, low table and middle/high actions through798; later actions remain pending.
     bool run_checked_action_dispatch();
+    // Complete void-ABI candidate for the Reimu Fighter +0x28 action-state root.
+    void run_action_dispatch_root();
     void update_common_action_state();
     void publish_texture_state(signed char texture_index, short duration);
     void set_word_48a(short value);
