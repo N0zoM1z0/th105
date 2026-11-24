@@ -384,3 +384,33 @@ sequence of guards around the frame-three effect and frame-eight follow-up:
 
 Only the affected root object and case-map comparison were run; no full cold
 replay was run. Continue on this same root and do not switch functions.
+
+## 2026-11-24 Reimu root: shared Action0/2 and Action6-9 continuations
+
+The active lock remains the single 81,550-byte
+`Reimu_dispatch_action_state_vslot28` root. This checkpoint continues the same
+function; do not switch to another function until the complete root is exact
+and oracle-accepted.
+
+Natural C++ control-flow recovery now covers another cluster:
+
+- Action0 and Action2 share the same friction body and two distinct entries.
+  Action2 is again a 27-byte entry stub into Action0's zero-velocity and
+  friction continuations, rather than a duplicate full body.
+- Action0's floating-point stack cleanup and normal frame-advance exits now
+  route to Action9's common C++ labels. The emitted Action0/Action2 byte spans
+  match the target exactly: 213/213 and 27/27.
+- The Action6/7/8 landing-return sequence is shared with Action9's landing
+  tail. Their spans now match exactly: 194/194, 158/158, and 158/158. Action9
+  also matches its 112-byte target span. The common tail is represented by
+  ordinary C++ labels and gotos; no assembly or padding was introduced.
+- Action10 and Action306 also retain exact mapped spans in this candidate.
+- Action410 remains 970/975 and Action414 remains 1,102/1,116. Action320
+  remains 162/119, Action71 480/467, and Action72 180/184 in this checkpoint.
+  The callable prefix is 81,612 bytes (+62) versus the 81,550-byte target;
+  all 126 destination groups are present and no groups are split. The root is
+  not exact and has not received oracle acceptance.
+
+Validation was limited to compiling `ReimuActionStateRoot.cpp`, decoding its
+root object, and comparing the mapped case spans/branches. No full cold replay
+was run. Continue work only on this same root.

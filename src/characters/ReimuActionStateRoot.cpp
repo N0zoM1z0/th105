@@ -60,31 +60,27 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
             byte_47e = 0;
         if (!byte_47e) {
             zero_velocity_acceleration();
-        } else {
-            if (velocity_x_f4 > 0.0f) {
-                velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
-                if (velocity_x_f4 < 0.0f) {
-                    zero_velocity_acceleration();
-                    byte_47e = 0;
-                }
-            }
+            advance_frame_and_dispatch();
+            return;
+        }
+        if (velocity_x_f4 > 0.0f) {
+            velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
             if (velocity_x_f4 < 0.0f) {
-                velocity_x_f4 = static_cast<float>(velocity_x_f4 + 0.5);
-                if (velocity_x_f4 > 0.0f) {
-                    zero_velocity_acceleration();
-                    byte_47e = 0;
-                }
+                zero_velocity_acceleration();
+                byte_47e = 0;
             }
         }
-#ifdef TH105_REIMU_SHARED_LOW_ADVANCE
-        if (0 == 0 || 0 == 2)
-            goto reimu_advance_frame_and_return;
-#endif
-        const unsigned char completed = advance_frame_and_dispatch();
-        if ((0 == 1 || 0 == 3)
-                && completed && frame_index_140 == 0)
-            set_action(0 == 1 ? 2 : 0);
-        return;
+        if (velocity_x_f4 < 0.0f) {
+            velocity_x_f4 = static_cast<float>(velocity_x_f4 + 0.5);
+            if (velocity_x_f4 > 0.0f) {
+                zero_velocity_acceleration();
+                byte_47e = 0;
+                advance_frame_and_dispatch();
+                return;
+            }
+            goto reimu_action9_advance;
+        }
+        goto reimu_action9_fpu_cleanup;
     }
         case 1: {
         resolve_stage_surface_landing_transition();
@@ -118,37 +114,33 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
             set_action(1 == 1 ? 2 : 0);
         return;
     }
-        case 2: {
+    case 2: {
         resolve_stage_surface_landing_transition();
         if (2 == 0 && !velocity_x_f4)
             byte_47e = 0;
         if (!byte_47e) {
             zero_velocity_acceleration();
-        } else {
-            if (velocity_x_f4 > 0.0f) {
-                velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
-                if (velocity_x_f4 < 0.0f) {
-                    zero_velocity_acceleration();
-                    byte_47e = 0;
-                }
-            }
+            advance_frame_and_dispatch();
+            return;
+        }
+        if (velocity_x_f4 > 0.0f) {
+            velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
             if (velocity_x_f4 < 0.0f) {
-                velocity_x_f4 = static_cast<float>(velocity_x_f4 + 0.5);
-                if (velocity_x_f4 > 0.0f) {
-                    zero_velocity_acceleration();
-                    byte_47e = 0;
-                }
+                zero_velocity_acceleration();
+                byte_47e = 0;
             }
         }
-#ifdef TH105_REIMU_SHARED_LOW_ADVANCE
-        if (2 == 0 || 2 == 2)
-            goto reimu_advance_frame_and_return;
-#endif
-        const unsigned char completed = advance_frame_and_dispatch();
-        if ((2 == 1 || 2 == 3)
-                && completed && frame_index_140 == 0)
-            set_action(2 == 1 ? 2 : 0);
-        return;
+        if (velocity_x_f4 < 0.0f) {
+            velocity_x_f4 = static_cast<float>(velocity_x_f4 + 0.5);
+            if (velocity_x_f4 > 0.0f) {
+                zero_velocity_acceleration();
+                byte_47e = 0;
+                advance_frame_and_dispatch();
+                return;
+            }
+            goto reimu_action9_advance;
+        }
+        goto reimu_action9_fpu_cleanup;
     }
         case 3: {
         resolve_stage_surface_landing_transition();
@@ -265,12 +257,16 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
         if (!acceleration_y_100)
             acceleration_y_100 = 0.6f;
         velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
-        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-            set_action(10);
-            y_f0 = reimu_stage_surface_height_at_x(this);
-            zero_velocity_acceleration();
-            return;
-        }
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending()))
+            goto reimu_action9_landing_tail;
+        goto reimu_action9_advance;
+reimu_action9_landing_tail:
+        set_action(10);
+        y_f0 = reimu_stage_surface_height_at_x(this);
+        zero_velocity_acceleration();
+        return;
+reimu_action9_fpu_cleanup:
+reimu_action9_advance:
         reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch();
         return;
         case 10:
