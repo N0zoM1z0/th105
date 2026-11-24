@@ -265,3 +265,17 @@ The current direct-root baseline remains 81,548 callable bytes versus the
 and is still **not exact**. The next source experiment must preserve Action410's
 local return as its own tail while making only the later branch callers reach
 Action520's existing tail. No ASM, padding, or diagnostic-size widening.
+
+## Action520/521 return-tail revalidation (2026-11-24)
+
+The active function remains `ReimuActionStatePreludeView::run_action_dispatch_root()`; do not switch to another function until its whole callable region is exact. The currently focused mismatch is the shared `next_sequence_block()` return edge, not the Action520/521 projectile tail.
+
+A fresh call-site count corrected an earlier suspicion: the existing natural C++ baseline already reproduces the Action520/521 fifth-spawn tail. Target Action521 contains exactly four `spawn_owned_object_via_manager` calls (`0x4853bb`, `0x48546d`, `0x4854f7`, `0x48559c`) and then jumps `0x48561c -> 0x4852ad`; the baseline candidate also contains exactly four Action521 spawn calls (`0xc3fe`, `0xc4b0`, `0xc53a`, `0xc5df`) and jumps `0xc65e -> 0xc2ef`, where Action520's shared fifth spawn, wave dispatch and frame advance begin. Preserve this baseline structure; do not rewrite or duplicate the fifth spawn.
+
+The remaining concrete return-tail mismatch is that target external callers branch to the Action520-owned virtual call at `0x4852f6`, whereas the baseline candidate's corresponding external branches target the Action410 local completion call at `0x661d`. The candidate does already have a separate Action520-owned call at `0xc338` for Action520's own path, but external `next_sequence_block()` callers do not join it. Experiments that label the Action520 call and redirect 14 external callers cause VC8/LTCG to coalesce the call back into `0x661d`; Action521 also grows or shifts when its own terminal call is removed. These candidates remain isolated under ignored `build/reimu-root-work/action616-codegen-experiments-20261124/` and are not promoted.
+
+Action410/414/416 each have a first local completion call followed by `break`, and a later sequence-1 call followed by `return`. The first three local paths must remain distinct; only the later calls join the Action520-owned return tail. Converting the first local `break` paths to `return` did not prevent the compiler's tail coalescing.
+
+TH075's `ReimuFighterAdvanceF1183.cpp` demonstrates natural switch-owned shared labels (`goto native_shared_getter`) with the label in a trailing include. Its exact unit is built with VC7.1 `/Od /Ob0`; TH105's current root is built with VC8/LTCG optimization, so the idiom is useful evidence but not a drop-in codegen recipe.
+
+Next experiment: keep the verified Action520/521 projectile tail unchanged, and isolate only the distinction between Action410's local virtual call and the Action520 shared virtual call. Continue using per-unit object builds and target-map comparisons; no full cold replay until a source candidate is close enough to justify the focused oracle run. No ASM, padding, byte grafts, or manual relocation edits.
