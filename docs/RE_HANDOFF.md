@@ -351,3 +351,36 @@ Next work remains inside this root: close Action414's remaining register and
 instruction differences, then Action410 and the surrounding drift. Keep the
 full-function lock and avoid full cold replay; use only focused root object,
 relocation, and affected-case checks.
+
+## 2026-11-24 Action410 sequence-zero frame gate recovered
+
+The active lock remains the single 81,550-byte
+`Reimu_dispatch_action_state_vslot28` root. Action410 now uses a natural C++
+sequence of guards around the frame-three effect and frame-eight follow-up:
+
+- The sequence-nonzero path explicitly bypasses both sequence-zero frame gates.
+  Timer-nonzero, wrong-frame, and byte-gate paths continue to the frame-eight
+  check only within sequence zero. This preserves the original nested
+  `sequence == 0 && timer == 0` semantics; do not collapse the sequence-nonzero
+  edge into the frame-eight continuation.
+- VC8 now emits the 16-bit timer load and `test ax, ax` before the frame-index
+  comparison. It also emits the frame-index memory/word comparison directly,
+  rather than loading the frame index into EAX first. This recovers the target's
+  principal Action410 frame-gate register lifetime and branch structure.
+- The candidate still compares `byte_750` with immediate zero after the
+  compiler proves the timer is zero; the target compares it with `AL`. This is
+  a remaining instruction-level difference, not exactness.
+- Action410 maps to 970 bytes versus the target's 975 bytes. Its decoded
+  instruction sequence has 245 instructions on both sides; the current
+  root-aware normalized instruction ratio is about 0.93. The frame-three
+  effect block is laid out as a local block later in Action410, and its x87 /
+  register assignment still differs from the target. Keep working on those
+  exact differences.
+- The full candidate callable prefix remains 81,580 bytes (+30), with all 126
+  target destination groups present and zero split groups. Action414 remains
+  1,102/1,116 bytes; Action416 remains 959/959 bytes; Action520 remains
+  881/881 bytes; Action521 remains 794/794 bytes. The root is not exact and
+  has not received oracle acceptance.
+
+Only the affected root object and case-map comparison were run; no full cold
+replay was run. Continue on this same root and do not switch functions.

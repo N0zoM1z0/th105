@@ -3517,8 +3517,15 @@ reimu_action_320_advance:
             set_action(9);
             return;
         }
-        if (sequence_13e == 0 && frame_timer_142 == 0) {
-            if (frame_index_140 == (aerial ? 4 : 6) && byte_750 != 0) {
+        register unsigned short frame_timer_value = frame_timer_142;
+        if (sequence_13e != 0)
+            goto reimu_action410_after_frame_gates;
+        if (frame_timer_value != 0)
+            goto reimu_action410_frame3_done;
+        if (frame_index_140 != (aerial ? 4 : 6))
+            goto reimu_action410_frame3_done;
+        if (byte_750 == static_cast<unsigned char>(frame_timer_value))
+            goto reimu_action410_frame3_done;
                 register int frame3_direction =
                     static_cast<unsigned char>(facing_104);
                 emit_fighter_effect(62,
@@ -3531,8 +3538,8 @@ reimu_action_320_advance:
                     reinterpret_cast<Action410EffectNextSequenceSlot>(action_vtable[5]);
                 action_slot(this);
                 return;
-            }
-            if (frame_timer_142 == 0 && frame_index_140 == (aerial ? 5 : 8)) {
+reimu_action410_frame3_done:
+        if (frame_timer_value == 0 && frame_index_140 == (aerial ? 5 : 8)) {
                 if (aerial)
                     add_scaled_counter(50);
                 const float delta_x = static_cast<float>(
@@ -3554,8 +3561,8 @@ reimu_action_320_advance:
                     static_cast<float>(static_cast<float>(facing_104 * (aerial ? 62 : 48)) + x_ec),
                     static_cast<float>(y_f0 + (aerial ? 108.0 : 100.0)),
                     static_cast<unsigned char>(facing_104), 1, parameters, 4);
-            }
         }
+reimu_action410_after_frame_gates:
         if (sequence_13e == 1 && frame_counter_144 >= 25) {
             next_sequence_block();
             return;
