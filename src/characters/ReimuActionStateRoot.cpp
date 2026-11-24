@@ -3682,11 +3682,11 @@ reimu_landed_action_10:
             set_action(0);
         if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0
                 && sequence_13e == 1) {
-            goto reimu_action414_action9_exit;
+            set_action(9);
+            return;
         }
         if (aerial && frame_counter_144 == 0 && frame_timer_142 == 0
                 && frame_index_140 == 0 && sequence_13e == 3) {
-reimu_action414_action9_exit:
             set_action(9);
             return;
         }
@@ -3773,11 +3773,11 @@ reimu_action414_action9_exit:
             set_action(0);
         if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0
                 && sequence_13e == 1) {
-            goto reimu_shot_action9_exit;
+            set_action(9);
+            return;
         }
         if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0
                 && sequence_13e == 3) {
-reimu_shot_action9_exit:
             set_action(9);
             return;
         }
@@ -3825,6 +3825,9 @@ reimu_shot_action9_exit:
                 static_cast<float>(y_f0 + 80.0),
                 static_cast<unsigned char>(facing_104), 1, parameters, 4);
         }
+        return;
+reimu_shot_action9_exit:
+        set_action(9);
         return;
         case 418:
         if ((sequence_13e == 0 && frame_index_140 <= 2) || sequence_13e == 2)
