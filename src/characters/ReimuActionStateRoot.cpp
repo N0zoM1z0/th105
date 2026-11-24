@@ -2423,7 +2423,7 @@ reimu_landed_action_10:
             return;
         if (byte_47e != directional_result_300) {
             velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
-            if (velocity_x_f4 < 0.0f) {
+            if (0.0f > velocity_x_f4) {
                 velocity_x_f4 = 0.0f;
                 byte_47e = 0;
             }
@@ -2860,15 +2860,14 @@ reimu_landed_action_10:
             try_dispatch_directional_action_208_210(0);
         if (directional_result_320)
             return;
-        // The directional gate observes this byte through its Fighter view;
-        // reload the shared state after the call before applying deceleration.
-        if (*reinterpret_cast<volatile unsigned char*>(&byte_47e) != directional_result_320) {
-            velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
-            if (velocity_x_f4 < 0.0f) {
-                velocity_x_f4 = 0.0f;
-                byte_47e = 0;
-            }
+        if (*reinterpret_cast<volatile unsigned char*>(&byte_47e) == directional_result_320)
+            goto reimu_action_320_advance;
+        velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
+        if (velocity_x_f4 < 0.0f) {
+            velocity_x_f4 = 0.0f;
+            byte_47e = 0;
         }
+reimu_action_320_advance:
         if (advance_frame_and_dispatch())
             set_action(0);
         if (frame_timer_142 == 0 && frame_index_140 == 3) {
@@ -3753,44 +3752,36 @@ reimu_landed_action_10:
         }
         return;
     }
-        case 416:
+        case 416: {
+        register int frame_four = 4;
+        register int frame_one = 1;
         if (sequence_13e == 3)
             resolve_stage_surface_landing_transition();
-        if ((sequence_13e == 0 && frame_index_140 >= 4)
-                || (sequence_13e == 2 && frame_index_140 >= 1)) {
-            acceleration_y_100 = 0.6f;
-            velocity_y_f8 = static_cast<float>(velocity_y_f8 - static_cast<double>(0.6f));
-            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-                zero_velocity_acceleration();
-                y_f0 = reimu_stage_surface_height_at_x(this);
-                set_sequence(3);
-                return;
-            }
-        }
+        if (sequence_13e == 0 && frame_index_140 >= frame_four)
+            goto reimu_action416_gravity_frame_four;
+        if (sequence_13e == 2 && frame_index_140 >= frame_one)
+            goto reimu_action416_gravity;
+reimu_action416_common:
         if (field_6c4 == 0)
             byte_750 = 0;
         if (advance_frame_and_dispatch())
             set_action(0);
         if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0
-                && sequence_13e == 1) {
-            set_action(9);
-            return;
-        }
+                && sequence_13e == frame_one)
+            goto reimu_shot_action9_exit;
         if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0
-                && sequence_13e == 3) {
-            set_action(9);
-            return;
-        }
+                && sequence_13e == 3)
+            goto reimu_shot_action9_exit;
         if (sequence_13e == 0 && frame_timer_142 == 0) {
             if (frame_index_140 == 3 && byte_750 != 0) {
                 emit_fighter_effect(62,
                     static_cast<float>(static_cast<float>(facing_104 * 14) + x_ec),
                     static_cast<float>(y_f0 + 197.0),
-                    static_cast<unsigned char>(facing_104), 1);
+                    static_cast<unsigned char>(facing_104), frame_one);
                 next_sequence_block();
                 break;
             }
-            if (frame_timer_142 == 0 && frame_index_140 == 4) {
+            if (frame_timer_142 == 0 && frame_index_140 == frame_four) {
                 velocity_x_f4 = -5.0f;
                 velocity_y_f8 = 6.5f;
                 acceleration_y_100 = 0.6f;
@@ -3803,14 +3794,14 @@ reimu_landed_action_10:
                 spawn_owned_object_via_manager(801,
                     static_cast<float>(static_cast<float>(facing_104 * 55) + x_ec),
                     static_cast<float>(y_f0 + 80.0),
-                    static_cast<unsigned char>(facing_104), 1, parameters, 4);
+                    static_cast<unsigned char>(facing_104), 1, parameters, frame_four);
             }
         }
         if (sequence_13e == 1 && frame_counter_144 >= 25) {
             next_sequence_block();
             return;
         }
-        if (sequence_13e == 2 && frame_timer_142 == 0 && frame_index_140 == 1) {
+        if (sequence_13e == 2 && frame_timer_142 == 0 && frame_index_140 == frame_one) {
             velocity_x_f4 = -5.0f;
             velocity_y_f8 = 6.5f;
             acceleration_y_100 = 0.6f;
@@ -3823,12 +3814,21 @@ reimu_landed_action_10:
             spawn_owned_object_via_manager(801,
                 static_cast<float>(static_cast<float>(facing_104 * 55) + x_ec),
                 static_cast<float>(y_f0 + 80.0),
-                static_cast<unsigned char>(facing_104), 1, parameters, 4);
+                static_cast<unsigned char>(facing_104), 1, parameters, frame_four);
         }
         return;
-reimu_shot_action9_exit:
-        set_action(9);
-        return;
+reimu_action416_gravity_frame_four:
+reimu_action416_gravity:
+        acceleration_y_100 = 0.6f;
+        velocity_y_f8 = static_cast<float>(velocity_y_f8 - static_cast<double>(0.6f));
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
+            zero_velocity_acceleration();
+            y_f0 = reimu_stage_surface_height_at_x(this);
+            set_sequence(3);
+            return;
+        }
+        goto reimu_action416_common;
+    }
         case 418:
         if ((sequence_13e == 0 && frame_index_140 <= 2) || sequence_13e == 2)
             resolve_stage_surface_landing_transition();
@@ -7653,6 +7653,8 @@ reimu_shot_action9_exit:
         return;
     }
 
+
+
 // Shared550/551 body and direct560, ending before the high-table selector.
         case 541: {
         const bool fan = 541 == 545 || 541 == 546;
@@ -7845,6 +7847,8 @@ reimu_shot_action9_exit:
         }
         return;
     }
+
+
 
 // Shared550/551 body and direct560, ending before the high-table selector.
         case 545: {
@@ -8039,6 +8043,8 @@ reimu_shot_action9_exit:
         return;
     }
 
+
+
 // Shared550/551 body and direct560, ending before the high-table selector.
         case 546: {
         const bool fan = 546 == 545 || 546 == 546;
@@ -8232,8 +8238,13 @@ reimu_shot_action9_exit:
         return;
     }
 
+
+
 // Shared550/551 body and direct560, ending before the high-table selector.
-        case 550: case 551:
+    reimu_shot_action9_exit:
+    set_action(9);
+    return;
+    case 550: case 551:
         byte_17c = 10;
         if (frame_counter_144 == 0 && frame_timer_142 == 0
                 && frame_index_140 == 0 && sequence_13e == 2)

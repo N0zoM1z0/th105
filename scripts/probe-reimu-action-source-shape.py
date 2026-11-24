@@ -95,6 +95,16 @@ def generate(output, *, void_root=False, compact=False):
         return INCLUDE.sub(inline, path.read_text())
 
     text = INCLUDE.sub(inline, SOURCE.read_text())
+    # Action 416 and 546 share one source-level action-9 exit. Extract it
+    # before expanded case bodies are copied, then place it after target owner 546.
+    exit_begin = "// TH105_REIMU_SHOT_EXIT_BEGIN"
+    exit_end = "// TH105_REIMU_SHOT_EXIT_END"
+    if text.count(exit_begin) != 1 or text.count(exit_end) != 1:
+        raise ValueError("reviewed Reimu shot exit markers changed")
+    exit_start = text.index(exit_begin)
+    exit_stop = text.index(exit_end, exit_start) + len(exit_end)
+    shared_shot_exit = text[text.index("\n", exit_start) + 1:text.index(exit_end, exit_start)]
+    text = text[:exit_start] + text[exit_stop:]
     depth, labels = 0, []
     for token in TOKEN.finditer(text):
         raw = token.group(0)
@@ -146,6 +156,8 @@ def generate(output, *, void_root=False, compact=False):
                 body = re.sub(r"\bselected_action\b", str(key), body)
             pieces.append("    "+" ".join(f"case {other}:" for other in shared)+body)
             groups.append({"region": region, "keys": shared, "target_entry": hex(owners[key])})
+            if 546 in shared:
+                pieces.append(shared_shot_exit)
             pending = [other for other in pending if other not in shared]
         pieces.append("    default:\n        update_common_action_state();\n        return true;\n    }\n"
                       "    return true;\n")

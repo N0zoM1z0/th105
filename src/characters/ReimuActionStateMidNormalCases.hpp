@@ -266,15 +266,14 @@
             try_dispatch_directional_action_208_210(0);
         if (directional_result_320)
             return true;
-        // The directional gate observes this byte through its Fighter view;
-        // reload the shared state after the call before applying deceleration.
-        if (*reinterpret_cast<volatile unsigned char*>(&byte_47e) != directional_result_320) {
-            velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
-            if (velocity_x_f4 < 0.0f) {
-                velocity_x_f4 = 0.0f;
-                byte_47e = 0;
-            }
+        if (*reinterpret_cast<volatile unsigned char*>(&byte_47e) == directional_result_320)
+            goto reimu_action_320_advance;
+        velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
+        if (velocity_x_f4 < 0.0f) {
+            velocity_x_f4 = 0.0f;
+            byte_47e = 0;
         }
+reimu_action_320_advance:
         if (advance_frame_and_dispatch())
             set_action(0);
         if (frame_timer_142 == 0 && frame_index_140 == 3) {

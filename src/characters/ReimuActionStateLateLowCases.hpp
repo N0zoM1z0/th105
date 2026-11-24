@@ -300,7 +300,7 @@
             return true;
         if (byte_47e != directional_result_300) {
             velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
-            if (velocity_x_f4 < 0.0f) {
+            if (0.0f > velocity_x_f4) {
                 velocity_x_f4 = 0.0f;
                 byte_47e = 0;
             }

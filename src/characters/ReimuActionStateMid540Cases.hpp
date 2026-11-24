@@ -190,3 +190,9 @@
         }
         return true;
     }
+
+// TH105_REIMU_SHOT_EXIT_BEGIN
+reimu_shot_action9_exit:
+    set_action(9);
+    return true;
+// TH105_REIMU_SHOT_EXIT_END
