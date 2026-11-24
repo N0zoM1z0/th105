@@ -10155,7 +10155,7 @@ reimu_complete_action0_619:
                 duration = 80;
                 break;
             }
-            if (frame_counter_144 % cadence == 0 && word_730 < limit) {
+            if (frame_counter_144 % cadence == 0 && limit > word_730) {
                 dispatch_character_wave_handle(8);
                 float parameters[3];
                 parameters[0] = static_cast<float>(10.0 - static_cast<float>(static_cast<unsigned int>(selector_random_roll(200))));
