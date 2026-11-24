@@ -68,7 +68,7 @@ def void_source(text, header):
     return text, header, converted
 
 
-def generate(output, *, void_root=False, compact=False):
+def generate(output, *, void_root=False, compact=False, single_switch=False):
     canonical = load("reimu_shape_canonical", "compare-function.py")
     target_sha = canonical.verify_target()
     mapper = load("reimu_shape_mapper", "compare-giant-action-switches.py")
@@ -142,14 +142,46 @@ def generate(output, *, void_root=False, compact=False):
             raise ValueError("compact Reimu shot-exit owner boundary changed")
         compact_text = compact_text.replace(
             compact_owner, shared_shot_exit + "\n" + compact_owner, 1)
+    if compact and single_switch:
+        raise ValueError("compact and expanded single-switch modes are mutually exclusive")
     marker = "    switch (selected_action) {"
     if text.count(marker) != 1:
         raise ValueError("staged action-switch spelling changed")
     pieces = [text[:text.index(marker)]]
     groups = []
-    for region, predicate in (("low", lambda key: key < 300),
+    if single_switch:
+        # Preserve every target-owner body, but put all low/direct/mid/high
+        # actions back into one native C++ switch. Action 320 shares the
+        # event-27 tail physically owned by the direct Action 300 arm.
+        event_tail = re.compile(
+            r"[ \t]*if \(frame_timer_142 == 0 && frame_index_140 == 3\) \{"
+            r"[\s\S]*?dispatch_indexed_event_member\(27\);"
+            r"[\s\S]*?byte_47e = 0;[\s\S]*?\}")
+        tail300 = event_tail.search(bodies[300])
+        tail320 = event_tail.search(bodies[320])
+        if tail300 is None or tail320 is None:
+            raise ValueError("Action 300/320 shared event-27 tail source changed")
+        bodies[300] = bodies[300][:tail300.start()] + "\nreimu_action_300_320_event_tail:" + bodies[300][tail300.start():]
+        bodies[320] = bodies[320][:tail320.start()] + "\n        goto reimu_action_300_320_event_tail;\n" + bodies[320][tail320.end():]
+        pieces.append("    switch (selected_action) {\n")
+        pending = sorted(bodies, key=owners.__getitem__)
+        while pending:
+            key = pending[0]
+            shared = [other for other in pending if owners[other] == owners[key]]
+            if any(bodies[other] != bodies[key] for other in shared):
+                raise ValueError("shared target owner has different source bodies")
+            body = bodies[key]
+            if len(shared) == 1:
+                body = re.sub(r"\bselected_action\b", str(key), body)
+            pieces.append("    " + " ".join(f"case {other}:" for other in shared) + body)
+            groups.append({"region": "single", "keys": shared, "target_entry": hex(owners[key])})
+            if 546 in shared:
+                pieces.append(shared_shot_exit)
+            pending = [other for other in pending if other not in shared]
+        pieces.append("    default:\n        update_common_action_state();\n        return true;\n    }\n")
+    for region, predicate in (() if single_switch else (("low", lambda key: key < 300),
                               ("mid", lambda key: 300 < key <= 560),
-                              ("high", lambda key: key > 560)):
+                              ("high", lambda key: key > 560))):
         if region != "high":
             pieces.append(f"    if (selected_action <= {300 if region == 'low' else 560}) {{\n")
         if region == "low":
@@ -211,11 +243,12 @@ def main():
     parser.add_argument("--void-root", action="store_true",
                         help="emit void thiscall/default recovery in a private copied header")
     parser.add_argument("--compact", action="store_true", help="retain source case sharing for a native witness; no target owner-map claim")
+    parser.add_argument("--single-switch", action="store_true", help="emit expanded target-owner bodies in one switch and share the Action300/320 event-27 tail")
     args = parser.parse_args()
     output = args.output_dir.resolve()
     if not output.is_relative_to(ROOT / "build") or output == ROOT / "build":
         parser.error("generated probe files must occupy a subdirectory of build/")
-    mapper, root, target, report = generate(output, void_root=args.void_root, compact=args.compact)
+    mapper, root, target, report = generate(output, void_root=args.void_root, compact=args.compact, single_switch=args.single_switch)
     if not args.emit_only:
         obj = output / "ReimuActionStateDispatch.obj"
         with (output / "compile.log").open("w") as log:
