@@ -207,3 +207,61 @@ widen the reviewed callable envelope or award canonical exact credit.
   landing-tail ownership, but direct-root layout places Actions 608/616 16
   bytes early and Action658 14 bytes early. A smaller natural-C++ register
   representation is the next focused experiment; no assembly or padding.
+
+## 2026-11-24 Action520 shared next-sequence tail — current root focus
+
+The only active function remains `Reimu_dispatch_action_state_vslot28` at
+`0x00478FA0`. No function switch is permitted until the complete root receives
+canonical exact acceptance.
+
+The next-sequence return topology is now resolved at the instruction level:
+
+- The target's shared slot-`+0x14` call is at `0x004852F6` (root-relative
+  `0xC356`), immediately before the common epilogue. Eighteen branches reach
+  it from `0x00479C22`, `0x0047A54D`, `0x0047D273`, `0x0047F714`,
+  `0x0047FCAB`, `0x004800CB`, `0x00485DF3`, `0x00485E06`, `0x0048604F`,
+  `0x00486062`, `0x004863A6`, `0x00488C65`, `0x00488FAB`, `0x004892B2`,
+  `0x004892BF`, `0x004892D2`, `0x004893C0`, and `0x0048A282`.
+- Action 410 has two distinct completion paths. Its first local call at
+  `0x0047F59A` uses `mov edx,[esi]; mov eax,[edx+0x14]; call eax`, then its
+  own epilogue. Its later sequence/counter path branches at `0x0047F714` to
+  the Action520 shared call at `0x004852F6`. Actions 414 and 416 likewise
+  must not have their first local call blindly merged with their shared path.
+- The tracked natural-C++ baseline currently merges Action410's local call
+  with the external shared-tail callers at ordinary-object offset `0x661D`
+  (`mov eax,[esi]; mov edx,[eax+0x14]; call edx`). Action520's own local
+  call remains separately emitted at `0xC338`. Thus the external edges land
+  at the wrong tail even though the call instruction itself is valid.
+- Action608 is a useful focused witness: its target and candidate spans are
+  both 810 bytes and its 210 decoded instructions align. The target branch at
+  `0x00488FAB` reaches `0x004852F6`; the candidate branch at object offset
+  `0xFFFB` reaches `0x661D`. Sixteen of the 17 raw byte differences in this
+  span are relative-call displacements caused by the entry offset; the
+  remaining control-flow edge is the shared-tail ownership mismatch.
+- The Action520/521 final-spawn backward edge is already represented by the
+  tracked C++ baseline. Target Action521 jumps `0x0048561C -> 0x004852AD`;
+  the candidate jumps `0xC65E -> 0xC2EF`. Do not rewrite that already-correct
+  shared spawn tail while solving the separate next-sequence return tail.
+
+Focused natural-C++ experiments were compiled in the ignored
+`build/reimu-root-work/action616-codegen-experiments-20261124/` directory only;
+none was promoted to tracked source:
+
+- Routing the 14 external source call sites through an explicit Action520
+  label caused VC8 to clone/move the tail into a later case, rather than
+  preserving the target's Action520 ownership.
+- Extracting the final Action520/521 spawn block into a new shared source
+  label retained an 81,548-byte callable prefix, but the compiler placed the
+  new label after Action521. This was rejected; the baseline already has the
+  correct Action521-to-Action520 backward spawn edge.
+- Changing Action410's first local `break` to `return` separated some control
+  flow but moved the local tail into a later code region and shortened its
+  mapped span. It is not a promoted fix.
+- An alternate void-returning view for the same virtual slot did not prevent
+  the compiler from coalescing the local and shared tails.
+
+The current direct-root baseline remains 81,548 callable bytes versus the
+81,550-byte target, retains all 126 destination groups with zero split groups,
+and is still **not exact**. The next source experiment must preserve Action410's
+local return as its own tail while making only the later branch callers reach
+Action520's existing tail. No ASM, padding, or diagnostic-size widening.
