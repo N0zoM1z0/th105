@@ -13,6 +13,7 @@ bool ReimuActionStatePreludeView::run_checked_action_dispatch()
 #include "ReimuActionStatePreludeBody.hpp"
     int landing_sequence;
     const int selected_action = action_13c;
+    unsigned int reimu_shared_event_member;
     if (selected_action > 798)
         return false;
     switch (selected_action) {

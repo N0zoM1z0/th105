@@ -292,11 +292,12 @@
                 && frame_index_140 == 0 && sequence_13e == 3)
             face_opponent_and_flip_horizontal_velocity();
         return true;
-    case 300:
+    case 300: {
         resolve_stage_surface_landing_transition();
-        if (try_dispatch_directional_action_208_210(0))
+        const unsigned char directional_result_300 = try_dispatch_directional_action_208_210(0);
+        if (directional_result_300)
             return true;
-        if (byte_47e) {
+        if (byte_47e != directional_result_300) {
             velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
             if (velocity_x_f4 < 0.0f) {
                 velocity_x_f4 = 0.0f;
@@ -305,8 +306,14 @@
         }
         if (advance_frame_and_dispatch())
             set_action(0);
+    }
+reimu_action_300_320_event27_tail:
         if (frame_timer_142 == 0 && frame_index_140 == 3) {
-            dispatch_indexed_event_member(27);
-            byte_47e = 0;
+            reimu_shared_event_member = 27;
+            goto reimu_shared_event_dispatch;
         }
+        return true;
+reimu_shared_event_dispatch:
+        dispatch_indexed_event_member(reimu_shared_event_member);
+        byte_47e = 0;
         return true;

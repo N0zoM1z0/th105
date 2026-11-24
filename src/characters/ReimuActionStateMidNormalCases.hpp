@@ -260,11 +260,12 @@
         if (advance_frame_and_dispatch())
             set_action(0);
         return true;
-    case 320:
+    case 320: {
         resolve_stage_surface_landing_transition();
-        if (try_dispatch_directional_action_208_210(0))
+        const unsigned char directional_result_320 = try_dispatch_directional_action_208_210(0);
+        if (directional_result_320)
             return true;
-        if (byte_47e != 0) {
+        if (byte_47e != directional_result_320) {
             velocity_x_f4 = static_cast<float>(velocity_x_f4 - 0.5);
             if (velocity_x_f4 < 0.0f) {
                 velocity_x_f4 = 0.0f;
@@ -273,11 +274,8 @@
         }
         if (advance_frame_and_dispatch())
             set_action(0);
-        if (frame_timer_142 == 0 && frame_index_140 == 3) {
-            dispatch_indexed_event_member(27);
-            byte_47e = 0;
-        }
-        return true;
+        goto reimu_action_300_320_event27_tail;
+    }
     case 321:
         resolve_stage_surface_landing_transition();
         if (try_dispatch_directional_action_208_210(0))
@@ -290,8 +288,8 @@
         if (advance_frame_and_dispatch())
             set_action(0);
         if (frame_timer_142 == 0 && frame_index_140 == 2) {
-            dispatch_indexed_event_member(28);
-            byte_47e = 0;
+            reimu_shared_event_member = 28;
+            goto reimu_shared_event_dispatch;
         }
         return true;
     case 322:

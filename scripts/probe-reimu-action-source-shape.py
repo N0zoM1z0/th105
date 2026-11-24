@@ -63,7 +63,8 @@ def void_source(text, header):
         header = header.replace(declaration, declaration+"\n    void run_action_dispatch_root();")
     start = text.index("// One source path for the checked entry")
     end = text.index("void ReimuActionStatePreludeView::run_action_dispatch_root()", start)
-    text = text[:start]+"// Generated void-root candidate; indeterminate740 inputs remain bounded in analysis.\n"+text[end:]
+    text = text[:start]+("// Natural C++ reconstruction of the Reimu Fighter +0x28 action-state root.\n"
+                      "// Action 740 remains semantically provisional; exact whole-root replay is pending.\n")+text[end:]
     return text, header, converted
 
 
@@ -126,11 +127,11 @@ def generate(output, *, void_root=False, compact=False):
         raise ValueError("staged action-switch spelling changed")
     pieces = [text[:text.index(marker)]]
     groups = []
-    for region, predicate in (("low", lambda key: key <= 300),
+    for region, predicate in (("low", lambda key: key <= 226),
                               ("mid", lambda key: 300 < key <= 560),
                               ("high", lambda key: key > 560)):
         if region != "high":
-            pieces.append(f"    if (selected_action <= {300 if region == 'low' else 560}) {{\n")
+            pieces.append(f"    if (selected_action <= {226 if region == 'low' else 560}) {{\n")
         pieces.append("    switch (selected_action) {\n")
         # Shared retained-source groups are not original physical arm order.
         # Emit the reviewed distinct target owners in their observed order.
@@ -150,7 +151,11 @@ def generate(output, *, void_root=False, compact=False):
                       "    return true;\n")
         if region != "high":
             pieces.append("    }\n")
-    pieces.append("}\n\n} // namespace th105\n")
+        if region == "low":
+            body300 = re.sub(r"\bselected_action\b", "300", bodies[300])
+            pieces.append("    if (selected_action == 300) {\n" + body300 + "    }\n")
+            groups.append({"region": "direct", "keys": [300], "target_entry": hex(owners[300])})
+    pieces.append("\n}\n\n} // namespace th105\n")
     output.mkdir(parents=True, exist_ok=True)
     generated = output / SOURCE.name
     text = compact_text if compact else "".join(pieces)
