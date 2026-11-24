@@ -188,3 +188,22 @@ The 14-byte callable excess and remaining byte differences are open; do not
 widen the reviewed callable envelope or award canonical exact credit.
 
 - **2026-11-24 shared landing-tail ownership correction:** the target root has two distinct natural C++ landing-tail owners, not one common tail for Actions 197/198/199. Action 197 branches to the tail in Action 658 (`0x0048A701`); Action 198 branches to the tail in Action 608 (`0x00488FD5`). Each caller carries sequence 2 or 3 in the same callee-saved register; the owning 608/658 case supplies 3. Action 199 has no reachable gravity/landing branch. The tracked C++ now expresses those two `goto` relationships with a function-local `landing_sequence` assigned on every reachable owner path. A focused ordinary VC8 compile retains all 126 destination groups with zero split groups and a 81,548-byte code prefix (target 81,550). Action 198 and Action 608 spans now both match exactly (305 and 810 bytes); their remaining 15 and 17 byte differences are relocation/layout displacements while their entry offsets are still displaced. Action 658 remains 740/740 bytes with 18 byte differences, chiefly because its entry and three shared destinations are not yet aligned. Action 616's post-switch default remains a continuation (`break`), not an early return. This is not root exactness.
+
+## 2026-11-24 direct-root provenance and shared-landing checkpoint
+
+- Fixed `scripts/probe-reimu-action-ltcg.py --direct-root-source` so its
+  `ReimuRoot.cpp` copy preserves the tracked translation unit's exact bytes.
+  The old unconditional LF-to-CRLF conversion made the linked-COFF auditor
+  reject an otherwise valid direct-root link as `linked direct root source
+  copy changed`. Fragment-generated probes retain their historical CRLF copy.
+- The repaired direct-root VC8 `/GL + LTCG` probe now passes the complete
+  linked/ordinary payload correspondence and provenance audit for the tracked
+  root. Current payload is 82,920 bytes, callable code prefix 81,548 bytes,
+  1,283 HIGHLOW fields, 11 switches, and zero ordinary buffer-partition
+  mismatches. This is diagnostic, not target exactness.
+- First target mismatch is still `0x004791BD` (`99` candidate vs `a9` target),
+  a 16-byte early shared-exit destination. The current function-scope
+  `landing_sequence` variable preserves Action197->658 and Action198->608
+  landing-tail ownership, but direct-root layout places Actions 608/616 16
+  bytes early and Action658 14 bytes early. A smaller natural-C++ register
+  representation is the next focused experiment; no assembly or padding.
