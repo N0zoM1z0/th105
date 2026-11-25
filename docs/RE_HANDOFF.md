@@ -1164,3 +1164,11 @@ target bytes after the effect-sink relocation. The giant root's complete
 83,032 raw bytes and all 2,479 relocation offsets, types and symbol names
 are unchanged from the six-direct-effect control. This ordinary VC8
 control does not establish the original link-time visibility.
+
+With effect 126 retained, direct calls, explicit unsigned direction
+captures, byte-then-negation, and a separately evaluated second Y value
+all reproduce the same complete six-direct-effect payload. In action 201,
+the target zero-extends the facing byte before negating its low byte;
+the control negates a byte and zero-extends afterward. Recover the real
+dataflow or compiler context behind this difference rather than omitting
+the effect or inserting artificial state.
