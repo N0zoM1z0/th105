@@ -2307,12 +2307,10 @@ reimu_action_shared_landing_sequence3_tail:
         }
         if (sequence_13e == 2 && frame_counter_144 % 5 == 0) {
             const double x_base = static_cast<double>(x_ec) + 50.0;
-            const unsigned char direction = static_cast<unsigned char>(
-                225 == 226 ? facing_104 : -facing_104);
-            emit_fighter_effect(124,
+            emit_fighter_effect_byte_direction(124,
                 static_cast<float>(x_base - static_cast<float>(mt19937_next_u32() % 100)),
                 static_cast<float>(static_cast<float>(mt19937_next_u32() % 200) + y_f0),
-                direction, 1);
+                static_cast<unsigned char>(-facing_104), 1);
         }
         if (advance_frame_and_dispatch())
             set_action(9);
@@ -2325,10 +2323,9 @@ reimu_action_shared_landing_sequence3_tail:
             acceleration_y_100 = 0.45f;
             const float effect_y = static_cast<float>(y_f0 + (225 == 226 ? 110.0 : 120.0));
             const float effect_x = 225 == 226 ? static_cast<float>(facing_104 * 80 + x_ec) : x_ec;
-            const unsigned char direction = static_cast<unsigned char>(
-                225 == 226 ? facing_104 : -facing_104);
-            emit_fighter_effect(125, effect_x, effect_y, direction, 1);
-            emit_fighter_effect(126, x_ec,
+            emit_fighter_effect_byte_direction(125, effect_x, effect_y,
+                static_cast<unsigned char>(-facing_104), 1);
+            emit_fighter_effect_byte_direction(126, x_ec,
                 static_cast<float>(y_f0 + (225 == 226 ? 110.0 : 120.0)),
                 static_cast<unsigned char>(225 == 226 ? facing_104 : -facing_104), 1);
             dispatch_indexed_event_member(31);
@@ -10401,8 +10398,8 @@ reimu_action_650_651_landing_tail:
 // Shared landing tail for actions203/225/226. Action202 keeps its own
 // inline copy because VC8 otherwise outlines the target's hot fallthrough.
 reimu_landed_action_10_other:
-    zero_velocity_acceleration();
     y_f0 = reimu_stage_surface_height_at_x(this);
+    zero_velocity_acceleration();
     set_action(10);
     return;
 
