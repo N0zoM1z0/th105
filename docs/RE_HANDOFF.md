@@ -594,3 +594,47 @@ Next work remains inside this same function: recover the target's early
 register/stack lifetime and its three distinct call sites without padding,
 ASM, or synthetic helpers; then continue the 320/321 tail and 414/416 source
 shape. No full cold replay was run.
+
+## 2026-11-25 vslot28 prologue and 320/321 layout probes
+
+The locked callable remains `Reimu_dispatch_action_state_vslot28` at
+`0x00478FA0`. The best accepted source remains commit
+`ab2503ec` (`gpt-web: tune Reimu shared event tail layout`): linked code prefix
+81,552 bytes against 81,550 target, all 126 switch destination groups
+represented, zero split groups. Its focused spans are Action320 90/119,
+Action321 153/140, Action410 975/975, Action414 1102/1116, Action416 942/959,
+Action540 653/653, Action616 1085/1085, Action650 480/515 and Action651
+624/589. Do not infer exactness from the two-byte prefix difference.
+
+Prologue experiments were run with ordinary VC8 objects and focused switch
+maps, without ASM or padding:
+
+- Passing the three no-payload arguments through the pointer overload
+  (`static_cast<const float *>(0)`) did not change the prologue allocation;
+  it increased prefix to 81,568. The pre-existing uncommitted edit to
+  `ReimuActionStatePreludeBody.hpp` with these pointer casts is preserved, not
+  discarded; it is a separate shared prelude fragment and is not part of the
+  locked root's inline source.
+- `register int` / `register short` copies of 85, reordering the two word
+  stores, deriving zero as `word_7a2 - 85`, and changing the two word field
+  declarations to unsigned all retained `xor edi,edi` plus `mov ebx,55`.
+- Replacing the local action snapshot with direct `action_13c` reads moved the
+  prefix to 81,648; making the snapshot `short` moved it to 81,536 but expanded
+  Action321 to 195/140. Both were rejected.
+- A mutable event-index assigned in each case moved prefix to 81,628;
+  splitting the shared gate and call tail moved it to 81,596. Both were
+  rejected in favor of the 81,552-byte shared conditional tail.
+- Changing the spawn wrapper's direction parameter from `unsigned char` to
+  `int` compiled and linked through the direct-root LTCG probe, but increased
+  prefix to 81,564 and reduced candidate direct-call count from 1,186 to
+  1,173 (target count 1,189). The staging declaration remains byte-sized.
+
+The byte-sized baseline direct-root LTCG artifact remains
+`build/reimu-root-work/session-20261125-best-prefix-81552/ltcg`: ordinary and
+linked payloads agree byte-for-byte (82,924 bytes, 1,283 HIGHLOW fields, 11
+switches, zero buffer-partition mismatches). The first target mismatch remains
+`0x00478FB2`: target immediate word-zero store (`66`), candidate `xor edi,edi`
+(`33`) followed by a register store. No Oracle exactness acceptance or DLL
+execution is claimed. Continue on this same function; next investigate the
+three object-spawn argument/register lifetimes and the Action320/321 shared
+tail without weakening semantics. No full cold replay was run.
