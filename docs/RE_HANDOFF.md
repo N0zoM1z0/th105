@@ -1283,3 +1283,10 @@ local short branch in the target. Rewriting the same frame gate as explicit
 negative tests and a local advance label reproduces the entire candidate
 payload unchanged. Recovering the advance-tail owner requires a different
 shared context, not merely reversing these conditions.
+
+A further edge check maps target branch destinations into candidate rows
+when the owning row has the same span. Under that mapping all conditional
+and unconditional direct branches in 201–203, 224–225 and 320–321 reach
+the corresponding local or shared location. Three dispatcher edges in
+226 lead into unequal-length rows and remain unresolved by this check.
+Full-root strict replay remains required.
