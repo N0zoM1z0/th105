@@ -528,3 +528,39 @@ Current focused frontiers: Action320 166/119, Action321 161/140, Action410
 Action710 1573/1573. Equal spans do not imply equal bytes. Continue on this
 same function; the next high-value work is the early shared-return edge and
 the Action320/321 ownership/layout. No full cold replay was run.
+
+## 2026-11-25 runtime-selected shared event continuation
+
+The locked function remains `Reimu_dispatch_action_state_vslot28` at
+`0x00478FA0`. The shared event index for Actions300/320/321 is now selected
+once from the runtime action (`27` for 300/320, `28` for 321) and carried into
+the common C++ dispatch tail. The directional-action result for Actions300
+and 320 is likewise represented by one function-local result. This ordinary
+C++ control/data-flow change makes VC8/LTCG retain a shared event-call tail
+instead of emitting separate constant-specialized call/return bodies.
+
+The focused callable prefix fell from 81,628 to 81,564 bytes, leaving only
+14 bytes beyond the 81,550-byte target. All 126 target switch destination
+groups remain represented with zero split groups. Focused spans are Action320
+146/119, Action321 156/140, Action410 975/975, Action414 1102/1116, Action416
+942/959, Action540 653/653, Action616 1085/1085, Action650 480/515, and
+Action651 624/589. The Action650/651 shared landing owner remains one natural
+C++ tail; its combined extent is unchanged. Span equality is not byte
+exactness.
+
+A fresh direct-root VC8 `/O2 /GS- /GL + LTCG` link was verified against the
+exact tracked root source hash. The linked/ordinary replay payloads match
+byte-for-byte: 82,936 payload bytes, 1,283 HIGHLOW fields, 11 switches, and
+zero ordinary buffer-partition mismatches. The linked image was not executed;
+there is no Oracle exactness acceptance. The first byte mismatch moved from
+`0x004791BD` to the prologue at `0x00478FB2` (target `66`, candidate `33`),
+where the compiler chooses a different zero-store/register allocation. The
+remaining callable excess is 14 bytes.
+
+A separate experiment reusing `landing_sequence` as the event-index local
+caused the genuine direct-root link to fail on an unresolved deque operator
+symbol; that experiment was discarded and is not part of the tracked source.
+A byte-sized event-index variant also worsened the case map. Keep the
+validated `const int` runtime-selected index variant. Continue on this same
+root; next focus is the prologue register allocation and the remaining
+Action320/321 tail placement. No full cold replay was run.
