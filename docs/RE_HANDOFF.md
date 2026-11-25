@@ -1204,3 +1204,14 @@ with all 2,475 relocations resolved; its first target difference remains
 `0x004791BD`. This is a readability cleanup, not exact-match progress.
 The same complete replay remains identical after simplifying the constant
 velocity selections in actions 6–8.
+
+Across the original root, 12 `movzx` facing-byte loads are followed within
+seven disassembly lines by a byte negate of the same register. The selected
+SP1 object and the six-direct-effect control have no such pattern under the
+same ESI-based scan. A headless control with the existing VC8 RTM compiler
+(`cl.exe` SHA-256 `3cbf4306526c06a07d09fd4785ac290c7ac7b52355944e7b377e08f5d8e7ece7`,
+`c2.dll` SHA-256 `ebca6ef587d6e028b50cc79fe71dd6155230ecb51014295399e8f00e8865ff86`)
+also has none. Its complete replay resolves 2,475 relocations, has an
+81,544-byte callable prefix and first differs at `0x004791BD`; its root
+payload differs from SP1. This comparison uses each local compiler's own
+headers and does not identify the original compiler patch level.
