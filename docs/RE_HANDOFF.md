@@ -1090,3 +1090,13 @@ replays all 27 bytes exactly in the complete object; actions 71, 72, 320
 and 321 have no instruction-byte differences after masking relocation
 and direct-branch fields. Action 0 still differs structurally around its
 x87 cleanup and advance, and the complete root remains nonexact.
+
+In the low-0/2 advance control, action 0's first structural mismatch is
+the receiver load for `zero_velocity_acceleration`. A single headless
+VC8 trace captures the same node at `0x10C077B6` and at emission
+`0x10B2419F`: the late IR puts it after `fnstsw` and before the
+conditional test, while the emitter puts it before the preceding x87
+addition. The target loads the receiver only after the branch. The
+debugger object replays byte-for-byte with the ordinary control. Recover
+the original dependency or control-flow structure before altering the
+local expression; a later scheduler moved this node.
