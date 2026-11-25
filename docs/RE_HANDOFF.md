@@ -661,3 +661,41 @@ Unresolved frontiers remain Action320 90/119, Action321 153/140, Action414
 1102/1116, Action416 942/959, and the Action650/651 ownership split. Continue
 only in this function. No full cold replay or Oracle exactness acceptance was
 performed.
+
+## 2026-11-25 direct-root verification of 9717394 checkpoint
+
+Checkpoint `9717394b` restores the Reimu action-wave call sites and keeps the
+active root as the only callable under reconstruction. The direct-root VC8
+`/O2 /GS- /GL + LTCG` probe was rerun against that exact committed source at
+`build/reimu-root-work/session-20261125-head9717394-restored/ltcg`.
+
+The ordinary COFF and linked replay agree byte-for-byte: 82,924 payload bytes,
+1,283 HIGHLOW fields, 11 switches, and zero ordinary buffer-partition
+mismatches. Callable code prefix is 81,552 bytes versus 81,550 target. The
+first target mismatch is unchanged at `0x00478FB2` (target immediate word-zero
+store begins `66`; candidate begins `33 ff` and uses a register store). This
+confirms internal replay consistency, not target exactness; no Oracle acceptance
+or DLL execution is claimed.
+
+The current focused map after the checkpoint has Action412 325/323,
+Action414 1100/1116, Action416 942/959, while Action410 remains exact in span
+(975/975). Action320/321 remain 90/119 and 153/140. The 126 destination groups
+remain represented with zero split groups. Continue from this checkpoint on
+the same `Reimu_dispatch_action_state_vslot28`; no full cold replay was run.
+
+
+## 2026-11-25 shared Reimu sequence-3 landing continuation
+
+Action 201, Action 224, and Action 414 now share one natural C++ continuation for
+the grounded-height refresh and `set_sequence(3)`. Each case retains its own
+pre-tail velocity/acceleration effects before jumping to the shared label.
+Action 201 clears vertical velocity and acceleration; Action 224 clears only
+vertical velocity; Action 414 calls the existing full velocity/acceleration
+reset. This avoids duplicating the tail and gives the compiler a single
+sequence-value lifetime.
+
+The focused ordinary-COFF map remains 126 destination groups with zero split
+groups. Current relevant case spans: Action 201 587/611, Action 224 581/579,
+Action 414 1126/1116, Action 416 942/959. Action 414 is still not exact; its local
+register lifetime is being tuned against the target's EDI=3 / EBP=4 sequence.
+No full cold replay or Oracle acceptance was performed.
