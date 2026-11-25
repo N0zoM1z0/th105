@@ -804,37 +804,42 @@ corresponding effects use raw facing. The exact target argument sequences are
 recorded in the following correction section.
 
 
-## 2026-11-25 Action201 DX and effect-direction correction
+## 2026-11-25 Action201 DX lifetime restored through the switch
 
 Target Action201 begins at `0x0047ABCA` with `movzx eax, word ptr [esi+0x13e]`
-followed by `cmp ax, dx`. The target does not load `facing_104` before this
-comparison. The Reimu vtable entry is at `0x006C4154`; its vtable base is
-`0x006C412C`, so the entry is the `+0x28` virtual slot and resolves to
-`0x00478FA0`. Generic call sites load a `+0x28` virtual target into EDX before
-calling it, which is a plausible explanation for the stale DX value observed
-at Action201. The ordinary candidate still compares against a stack home for
-its uninitialized `frame_zero` local (`[esp+0x24]`), not DX; this register
-lifetime remains unresolved and Action201 is not exact.
+followed by `cmp ax, dx`. DX is established as zero by the common prelude at
+`0x00479121` (`xor edx, edx`), used by the timer and shared-state checks, and
+then survives the action jump-table dispatch into Action201. The earlier
+hypothesis that DX was stale from a virtual call was incorrect; there is no
+such vtable load on this path.
 
-The two Action201 effect arguments are now corrected to negative facing. The
-target at `0x0047ADAC` loads facing into ECX and negates CL before pushing it
-for effect 125; at `0x0047ADE9` it loads facing into EDX and negates DL before
+The candidate-only `reimu_shared_event_index` calculation (27/28) before the
+switch was the clobber: it overwrote EDX before Action201. The natural C++ root
+now selects event 27 in the Action300/320 tail and event 28 in the Action321
+tail, rather than precomputing a shared index before dispatch. Action201 now
+compares its sequence directly against zero. This restores the target's DX
+lifetime without inline assembly or padding.
+
+Focused byte checks on the ordinary COFF object:
+- 85 bytes from target `0x00479121` (the common timer prefix) match exactly.
+- The first 25 bytes of Action201 match exactly, including `cmp ax, dx`,
+  `mov edi, 3`, both conditional branches, `mov ecx, esi`, and the call opcode.
+  The raw COFF call displacement remains a relocation and is not byte-compared.
+
+The Action201 effect arguments remain corrected to negative facing. The target
+at `0x0047ADAC` loads facing into ECX and negates CL before pushing it for
+effect 125; at `0x0047ADE9` it loads facing into EDX and negates DL before
 effect 126. Action201 effect 124 also retains negative facing. Action200's
 effects 125/126 remain raw facing, matching their separate target sequences.
 
-The focused ordinary-object map after this correction reports target callable
-size 81,550 bytes, candidate metadata start 81,552 bytes, 126 target
-destination groups represented, and zero split groups. Focused spans:
-Action200 581/591, Action201 589/611, Action224 581/579, Action410 975/975,
-Action414 1128/1116, and Action416 957/959. The direct-root prologue is still
-not exact: the first mismatch is at offset `0x12`; the target uses an immediate
-zero store and EDI=85, while the candidate zeroes EDI for the first store and
-uses EBX=85 for the second. The `reimu_frame_85` local-lifetime experiment is
-kept as source progress, but does not close this prologue mismatch.
-
-This is a focused source/COFF checkpoint only. No Oracle acceptance or full
-cold replay was performed. Continue on the same locked
-`Reimu_dispatch_action_state_vslot28` function.
+The focused ordinary-object map reports target callable size 81,550 bytes,
+candidate metadata start 81,596 bytes, 126 target destination groups
+represented, and zero split groups. Focused spans: Action200 581/591,
+Action201 591/611, Action224 585/579, Action320 162/119, Action321 157/140,
+Action322 247/247, Action410 975/975, Action414 1128/1116, and Action416
+957/959. Action201 is substantially closer but is not exact; the full root is
+not exact. No Oracle acceptance or full cold replay was performed. Continue
+on the same locked `Reimu_dispatch_action_state_vslot28` function.
 
 
 ## 2026-11-25 Action416 frame-one register lifetime

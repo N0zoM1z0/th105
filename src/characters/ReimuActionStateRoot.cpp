@@ -55,22 +55,10 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
 
     register int frame_threshold;
     register short frame_one;
-    register short frame_zero;
     register int landing_sequence;
     unsigned char reimu_directional_result;
     const int selected_action = action_13c;
-    const unsigned int reimu_shared_event_index = selected_action == 321 ? 28u : 27u;
     goto reimu_action_dispatch_switch;
-reimu_action_shared_event_tail:
-    if (selected_action == 321) {
-        if (frame_timer_142 != 0 || frame_index_140 != 2)
-            return;
-    } else if (frame_timer_142 != 0 || frame_index_140 != 3) {
-        return;
-    }
-    dispatch_indexed_event_member(reimu_shared_event_index);
-    byte_47e = 0;
-    return;
 reimu_action_dispatch_switch:
     switch (selected_action) {
     case 0: {
@@ -1640,7 +1628,7 @@ reimu_action9_advance:
         return;
         case 201:
         landing_sequence = 3;
-        if (sequence_13e == frame_zero || sequence_13e == landing_sequence)
+        if (sequence_13e == 0 || sequence_13e == landing_sequence)
             resolve_stage_surface_landing_transition();
         if (sequence_13e == 1 || sequence_13e == 2)
             velocity_y_f8 = static_cast<float>(velocity_y_f8 - 0.5);
@@ -2405,7 +2393,11 @@ reimu_landed_action_10:
             set_action(0);
     }
 reimu_action_300_320_event_gate:
-    goto reimu_action_shared_event_tail;
+    if (frame_timer_142 == 0 && frame_index_140 == 3) {
+        dispatch_indexed_event_member(27);
+        byte_47e = 0;
+    }
+    return;
 
 // Shared source fragment for the first middle-table group; no function boundary.
         case 301:
@@ -2845,7 +2837,11 @@ reimu_action_320_advance:
         }
         if (advance_frame_and_dispatch())
             set_action(0);
-        goto reimu_action_shared_event_tail;
+        if (frame_timer_142 == 0 && frame_index_140 == 2) {
+            dispatch_indexed_event_member(28);
+            byte_47e = 0;
+        }
+        return;
         case 322:
         resolve_stage_surface_landing_transition();
         if (try_dispatch_directional_action_208_210(1))
