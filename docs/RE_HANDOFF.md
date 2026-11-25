@@ -1157,3 +1157,10 @@ then branches to action 202's landing tail. Both control traces reproduce
 their ordinary objects. This omission removes a real target call and is
 only a causal diagnostic. Recover the action-201 direction expression
 without dropping the effect, then check all landing owners.
+
+A private same-translation-unit control exposes the real effect-wrapper
+body while keeping its call out of line. That wrapper reproduces all 52
+target bytes after the effect-sink relocation. The giant root's complete
+83,032 raw bytes and all 2,479 relocation offsets, types and symbol names
+are unchanged from the six-direct-effect control. This ordinary VC8
+control does not establish the original link-time visibility.
