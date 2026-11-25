@@ -414,3 +414,39 @@ Natural C++ control-flow recovery now covers another cluster:
 Validation was limited to compiling `ReimuActionStateRoot.cpp`, decoding its
 root object, and comparing the mapped case spans/branches. No full cold replay
 was run. Continue work only on this same root.
+
+## 2026-11-25 Action410 timer/byte gate and effect block aligned
+
+The active lock remains the single 81,550-byte
+`Reimu_dispatch_action_state_vslot28` root. Action410 is still part of this
+root; do not switch functions before the whole root is exact and oracle-
+accepted.
+
+Action410 now uses a natural C++ `switch (frame_timer_value)` with a zero arm
+and a nonzero continuation, followed by an explicit unequal-byte effect body.
+This recovers the target's timer/frame register lifetime and inline effect
+layout without assembly or padding. The focused VC8 object maps Action410 to
+exactly 975/975 bytes and decodes 245/245 instructions. After normalizing
+relative calls and internal branch offsets, 241/245 instructions match; the
+only four remaining differences are external branch destinations into the
+shared Action520 tail and Action616 return tail. The frame-three x87/effect
+sequence, vtable-slot call, frame-eight gate, and internal branches now match.
+
+Those external destinations expose the next same-root layout work:
+
+- Action520 is 881/881 bytes, but its candidate entry/tail is 66 bytes later
+  than the target. Action410's branch to target `0x4852f6` therefore resolves
+  to candidate `0x485338` (both are the Action520-owned shared completion tail).
+- Action616's candidate return-tail owner is 96 bytes later than the target:
+  target `0x489d6a`, candidate `0x489dca`. Its current mapped span is 1,091
+  versus 1,085 target bytes.
+- The earlier Action320 and Action321 spans remain 162/119 and 157/140,
+  respectively. They account for 60 bytes of the +63 drift at Action410's
+  entry; continue recovering these earlier same-root continuations before
+  revisiting Action520/616 owner placement.
+
+The candidate callable prefix is 81,676 bytes (+126), with all 126 target
+unique destinations represented and zero split groups. Only the affected root
+translation unit, its mapped case spans, and the Action410 instruction/branch
+comparison were checked; no full cold replay was run. This checkpoint is not
+whole-root exactness and has no oracle acceptance.

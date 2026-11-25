@@ -3513,27 +3513,31 @@ reimu_action_320_advance:
             set_action(9);
             return;
         }
-        register unsigned short frame_timer_value = frame_timer_142;
         if (sequence_13e != 0)
             goto reimu_action410_after_frame_gates;
-        if (frame_timer_value != 0)
+        register unsigned short frame_timer_value = frame_timer_142;
+        switch (frame_timer_value) {
+        case 0:
+            break;
+        default:
             goto reimu_action410_frame3_done;
+        }
         if (frame_index_140 != (aerial ? 4 : 6))
             goto reimu_action410_frame3_done;
-        if (byte_750 == static_cast<unsigned char>(frame_timer_value))
-            goto reimu_action410_frame3_done;
-                register int frame3_direction =
-                    static_cast<unsigned char>(facing_104);
-                emit_fighter_effect(62,
-                    static_cast<float>(static_cast<float>(
-                        static_cast<signed char>(frame3_direction) * 67) + x_ec),
-                    static_cast<float>(y_f0 + 57.0), frame3_direction, 1);
-                typedef unsigned char (__thiscall *Action410EffectNextSequenceSlot)(ReimuActionStatePreludeView *);
-                register void **action_vtable = *reinterpret_cast<void ***>(this);
-                register Action410EffectNextSequenceSlot action_slot =
-                    reinterpret_cast<Action410EffectNextSequenceSlot>(action_vtable[5]);
-                action_slot(this);
-                return;
+        if (byte_750 != static_cast<unsigned char>(frame_timer_value)) {
+            register int frame3_direction =
+                static_cast<unsigned char>(facing_104);
+            emit_fighter_effect(62,
+                static_cast<float>(static_cast<float>(
+                    static_cast<signed char>(frame3_direction) * 67) + x_ec),
+                static_cast<float>(y_f0 + 57.0), frame3_direction, 1);
+            typedef unsigned char (__thiscall *Action410EffectNextSequenceSlot)(ReimuActionStatePreludeView *);
+            register void **action_vtable = *reinterpret_cast<void ***>(this);
+            register Action410EffectNextSequenceSlot action_slot =
+                reinterpret_cast<Action410EffectNextSequenceSlot>(action_vtable[5]);
+            action_slot(this);
+            return;
+        }
 reimu_action410_frame3_done:
         if (frame_timer_value == 0 && frame_index_140 == (aerial ? 5 : 8)) {
                 if (aerial)
