@@ -1053,3 +1053,20 @@ still has an 81,532-byte callable and 2,475 resolved relocations.
 A direct-root `/GL` link reproduces the entire ordinary payload. A
 physical-owner scan found the same random-call counts and immediately
 following constant divisors across the target and candidate switch spans.
+
+The four-copy landing control keeps separate blocks through C2 layout at
+`0x10B26CA8`. At `0x10C077B6`, only action 202's zero-motion call remains;
+the later retained tail has the target owner. Both headless debug objects
+replay identically to the ordinary four-copy object.
+
+In the combined landing/action-300 control, the only excess direct-call
+count is an extra `0x004351C0` advance in the action 71 physical span.
+The source uses two declarations for that same callee: action 9 uses
+`CharacterObjectRuntime`, while the other paths use the Reimu view.
+Giving action 9 the same declaration as the others removes the call-count
+delta and changes action 71 from 480/467 to 467/467 bytes. It moves
+action 9 from 112/112 to 116/112 and leaves the complete callable at
+81,596 bytes. Writing the low advances as separate calls moves the first
+full-root difference from `0x004791BD` to `0x004791E8`, but changes the
+71/72 spans and restores the extra advance call. Neither control is
+selected; investigate late tail selection and x87 cleanup together.
