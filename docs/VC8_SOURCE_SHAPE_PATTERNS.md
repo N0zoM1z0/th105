@@ -142,6 +142,15 @@ VC8 starts all branches as 2-byte short (`0x1c6`/`0x1c8`) and widens them to 6-b
 - Calling `static_cast<unsigned>(selector_random_roll(...))` directly inside outer call arguments (not through a `__forceinline` wrapper) preserves right-to-left stack argument evaluation order (actions `602`, `781`).
 - `switch (g_match_identifier) { case 1: ... case 2: ... case 3: ... }` emits the reverse-ordered `sub eax, 1; je` chain (action `730`).
 
+**LIFO weight-sorted stack-slot packing (`esp+0x10` vs `esp+0x20`) proven on `Aya_dispatch_action_state_vslot28` `0x00602250`:**
+Inspecting VC8 `/FA` listings shows `c2.dll` sorts non-address-taken stack temps and spilled locals by descending reference count and assigns them to a LIFO list of 8-byte-aligned stack slots (`-984` = `esp+0x20` first, prepending `-1000` = `esp+0x10` to the list head on the first live-range collision). Every lower-weight symbol scanned afterward hits the new head slot (`esp+0x10`). In Aya actions `720`/`721`, hoisting `float base;` before `switch (g_aya_action_match)` (13 uses -> placed in `esp+0x20`) and writing per-loop `for (float counter = 0.0f; ...)` (5 uses -> collides with `base`, prepending `esp+0x10` right between use-count 6 and 4) simultaneously resolved all 168 `esp+0x10` vs `esp+0x20` differences across 14 cases (`201`, `224`, `307`, `418`, `505..508`, `530`, `532`, `560`, `561`, `720`, `721`).
+
+**Additional source shapes proven on `Aya_dispatch_action_state_vslot28` `0x00602250` (65,601 / 66,704 bytes):**
+- Passing `aya_cosine(...) * radius * facing_104 + x_ec` and `aya_sine(...) * radius + (y_f0 + 100.0)` inline as `spawn(...)` arguments (without `double baseX`/`baseY`/`cosine` locals) prevents `mov al, [esi+0x104]` CSE across `movsx`/`movzx` and recovers all 13 `ORBIT_SPAWN` call sites (`case 740`).
+- Declaring button hold counters (`0x6bc`, `0x6c0`, `0x6c4`) as `unsigned int` and testing `> 0` emits unsigned `ja`/`jbe` (`cases 525..529`, `550..553`).
+- `int count; if (sbyte_608 >= 4) count = 4; if (sbyte_608 <= 3) count = 3; if (sbyte_608 <= 1) count = 2; for (int i = 0; i < count; ++i) { packet[0] = i * -20 + 20.0; ... }` emits the exact guard chain and VC8's synthesized induction variable (`sub dword ptr [esp+0x10], 0x14`) in `505..508`.
+- Writing `packet[0..2]` assignments inside both `if` and `else` branches lets VC8 head-merge the common stores above `jne` (`case 606`), and keeping `float dx = ...; aya_atan(related_170->y_f0 - y_f0, dx);` in `AIM_SHORT()` preserves target `fld [esp+0x70]; fadd [esi+0xf0]` ordering in `case 529`.
+
 **Extra checked-iterator range test after `begin()`.** A `+=` range check
 directly after the `begin()` check means `begin() + n`. Look for a seek or
 index helper called with 0. Proven on `CScenarioData::select_label` 0x455490, which also needed its search loop

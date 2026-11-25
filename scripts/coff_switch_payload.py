@@ -86,7 +86,7 @@ def inspect_register_bound(ins, bound_index, expected):
     if aliases and reg != bound.operands[0].reg:
         for index in range(bound_index - 1, -1, -1):
             inst = ins[index]
-            if (inst.mnemonic == 'jmp' or inst.group(capstone.CS_GRP_RET)
+            if (inst.group(capstone.CS_GRP_JUMP) or inst.group(capstone.CS_GRP_RET)
                     or (inst.group(capstone.CS_GRP_CALL)
                         and (inst.operands[0].type != x.X86_OP_IMM
                              or ins[0].address <= inst.operands[0].imm < code_end))):

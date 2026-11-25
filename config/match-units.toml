@@ -25958,7 +25958,7 @@ source = "src/characters/AyaActionState.cpp"
 object = "build/match-units/ExactFirst_AyaActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete114-action JP1.06a Aya Fighter root; current65692/native66704 remains nonexact+48. Native214 arithmetic branches,13 orbit/RNG argument lifetimes and510 layer branches are recovered. Frame3E8 and85 payload homes retained; full per-action direct/FP census agrees, five virtual physical-count differences remain. docs/AYA_ACTION_STATE_2026_10_28.md."
+notes = "Exact canonical JP 1.06a Aya action-state root 0x00602250 (65601 callable bytes, 66704-byte full switch envelope with 3 compact byte-index tables + 4 direct jump tables and 107/107 exact owners). Standalone typed AyaActionStateView/AyaPeerView layout with compile-time offset assertions, natural switch dispatch with post-switch advance, and direct signed/unsigned char direction parameters."
 
 [[units.exact-first-aya-action-state.functions]]
 address = "0x00602250"
@@ -25978,7 +25978,7 @@ rel32_targets = [
     "?layout@AyaActionStateView@th105@@QAEXM@Z=0x004359D0",
     "?aya_atan@th105@@YAMMM@Z=0x00406540",
     "?phase_counter@AyaActionStateView@th105@@QAEHH@Z=0x00478DF0",
-    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?dispatch_character_wave_handle@AyaActionStateView@th105@@QAEXI@Z=0x0045C030",
     "?set_oriented_components@AyaActionScratch@th105@@QAEXMM@Z=0x00435160",
     "?directional@AyaActionStateView@th105@@QAEEH@Z=0x00478EE0",
     "?reset@AyaActionScratch@th105@@QAEXXZ=0x00435110",
@@ -25988,14 +25988,14 @@ rel32_targets = [
     "?flip@AyaActionStateView@th105@@QAEXXZ=0x00478E60",
     "?aya_on_surface@th105@@YIHPAVAyaActionStateView@1@@Z=0x00435DC0",
     "?event@AyaActionStateView@th105@@QAEXI@Z=0x004359F0",
-    "?effect@AyaActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?effect@AyaActionStateView@th105@@QAEXHMMEH@Z=0x00435240",
     "?aya_random_u32@th105@@YAIXZ=0x004066B0",
     "?aya_surface@th105@@YIMPAVAyaActionStateView@1@@Z=0x00435D60",
     "?crossed@AyaActionStateView@th105@@QAEHXZ=0x005F9310",
     "?advance@AyaActionStateView@th105@@QAEEXZ=0x004351C0",
     "?zero_motion@AyaActionStateView@th105@@QAEXXZ=0x0045AF40",
     "?landing@AyaActionStateView@th105@@QAEEXZ=0x00473DD0",
-    "?spawn@AyaActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?spawn@AyaActionStateView@th105@@QAEHHMMCHPBXH@Z=0x00465190",
     "__ftol2_sse=0x0068A1A0",
 ]
 dir32_targets = [
@@ -26145,6 +26145,14 @@ dir32_targets = [
     "__real@c3340000=_aya_action_state_006c41e0",
     "?g_aya_action_match@th105@@3HA=_aya_action_state_match_identifier",
 ]
+switch_payload = { size = 66704, sha256 = "42401b4701e475fbaab7d19a542aec6edbe503082a2a0dc2a2e22407e71903a3", alignment_hex = "8d4900", table_offset = 65604, table_entries = 33, map_offset = 65736, map_size = 227, load_offset = 442, jump_offset = 449, additional_tables = [
+    { alignment_hex = "90", table_offset = 65964, table_entries = 27, map_offset = 66072, map_size = 118, load_offset = 10910, jump_offset = 10917 },
+    { alignment_hex = "8bff", table_offset = 66192, table_entries = 48, map_offset = 66384, map_size = 239, load_offset = 24664, jump_offset = 24671 },
+    { alignment_hex = "90", table_offset = 66624, table_entries = 4, jump_offset = 54842 },
+    { alignment_hex = "", table_offset = 66640, table_entries = 4, jump_offset = 56780 },
+    { alignment_hex = "", table_offset = 66656, table_entries = 4, jump_offset = 60560 },
+    { alignment_hex = "", table_offset = 66672, table_entries = 8, jump_offset = 64334 },
+] }
 
 [units.exact-first-sakuya-action-state]
 kind = "probe"

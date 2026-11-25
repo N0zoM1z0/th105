@@ -287,6 +287,43 @@ class CompactSwitchTests(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertEqual(reports[0]['validated_switch_payload'], proof)
 
+    def test_conditional_jump_in_register_bound_span_defers_to_cfg_proof(self):
+        address = 0x401000
+        # mov edi, 1 (5B @0); test ecx, ecx (2B @5); jne +2 -> @9 (2B @7);
+        # nop (1B @9); nop (1B @10); cmp eax, edi (2B @11); ja +7 -> @22 (2B @13);
+        # jmp dword ptr [eax*4 + table@24] (7B @15); ret (1B @22); ret (1B @23)
+        code = (
+            bytes.fromhex('bf0100000085c9750290903bc77707ff2485')
+            + struct.pack('<I', address + 24)
+            + bytes.fromhex('c3c3')
+        )
+        body = code + struct.pack('<II', address + 22, address + 23)
+        contract = dict(
+            size=len(body),
+            sha256=hashlib.sha256(body).hexdigest(),
+            alignment_hex='',
+            table_offset=24,
+            table_entries=2,
+            jump_offset=15,
+        )
+        relocations = [(at, 6, '$TABLE') for at in (18, 24, 28)]
+        report = payload.inspect(body, body, address, len(code), contract, relocations)
+        self.assertEqual((report['switch_tables'], report['table_entries']), (1, 2))
+
+        # Negative: conditional branch inside the span overwrites edi on one
+        # path, so the CFG reaching-constant proof must fail closed.
+        # mov edi, 1 (@0); test ecx, ecx (@5); jne +1 -> @10 (@7);
+        # inc edi (1B @9); nop (1B @10); cmp eax, edi (@11); ja +7 (@13); jmp (@15)
+        bad_code = (
+            bytes.fromhex('bf0100000085c9750147903bc77707ff2485')
+            + struct.pack('<I', address + 24)
+            + bytes.fromhex('c3c3')
+        )
+        bad_body = bad_code + struct.pack('<II', address + 22, address + 23)
+        bad_contract = dict(contract, sha256=hashlib.sha256(bad_body).hexdigest())
+        with self.assertRaisesRegex(ValueError, 'reaching constant'):
+            payload.inspect(bad_body, bad_body, address, len(bad_code), bad_contract, relocations)
+
 
 if __name__ == '__main__':
     unittest.main()
