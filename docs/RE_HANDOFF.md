@@ -1022,3 +1022,24 @@ still places the shared tail after 226. Recover the global block ordering
 before selecting that experiment. A direct-root `/GL` link replays the full
 82,904-byte payload identically to the ordinary object, including all 11
 switches and 2,475 relocation fields; it retains the same target mismatch.
+
+The four effect-124 paths in actions 202, 203, 225 and 226 draw the
+Y offset (`% 200`) before the X offset (`% 100`) in the target. The
+previous inline argument expressions compiled in the reverse order.
+Explicit float locals restore the target draw order in all four paths;
+the complete ordinary root remains 81,532 bytes with 2,475 resolved
+relocations and its first mismatch at `0x004791BD`.
+
+At the VC8 `0x10B26CA8` layout pass, a headless debugger trace of the
+shared-label form reconstructs all 3,492 blocks in C2 postorder. The
+switch visits action 226 first, whose block 900 discovers the shared
+landing block 518; the compiled tail therefore resides with 226. With
+four separately written landing tails, the same pass still has four
+distinct blocks, and the final object places their common tail in 202.
+Both traced objects replay identically to their ordinary builds. The
+four-copy control has 80 target-sized owner spans versus 79 for the
+shared-label form, but other owner spans move. Combining that control
+with the action-300 gate experiment yields 202/226/320/321 spans of
+549/728/119/140 bytes versus 545/731/119/140 in the target. Its complete
+81,612-byte callable remains nonexact. Recover the late tail-merge
+choice and remaining instruction differences before selecting it.
