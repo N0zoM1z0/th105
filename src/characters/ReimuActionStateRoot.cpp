@@ -1678,8 +1678,8 @@ reimu_action_shared_landing_sequence3_tail:
         case 202:
         velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
         if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-            // Keep Action202's landing edge inline; later actions use the
-            // separate shared tail below to preserve their own branch layout.
+// Actions 202, 203, 225, and 226 use the same landing sequence.
+reimu_landed_action_10_other:
             zero_velocity_acceleration();
             y_f0 = reimu_stage_surface_height_at_x(this);
             set_action(10);
@@ -10391,15 +10391,6 @@ reimu_action_650_651_landing_tail:
         update_common_action_state();
         return;
     }
-
-// Shared landing tail for actions203/225/226. Action202 keeps its own
-// inline copy because VC8 otherwise outlines the target's hot fallthrough.
-reimu_landed_action_10_other:
-    y_f0 = reimu_stage_surface_height_at_x(this);
-    zero_velocity_acceleration();
-    set_action(10);
-    return;
-
 }
 
 } // namespace th105

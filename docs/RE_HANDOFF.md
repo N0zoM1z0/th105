@@ -1006,3 +1006,19 @@ complete callable grows to 81,660 bytes and the 226 owner span grows from
 change spans. The earliest relocated difference stays at `0x004791BD`.
 The control shows that the 300 branch changes 320's physical block order;
 the complete original layout still needs recovery.
+
+
+The original landing edges for actions 203, 225 and 226 at `0x0047B13E`,
+`0x0047C80E` and `0x0047C9CE` all branch to action 202's shared tail at
+`0x0047AE4A`: clear motion, obtain the surface height, then set action 10.
+The root source now shares that actual tail and preserves its call order.
+With the existing action-300 form, the ordinary root has an 81,532-byte
+callable and 2,475 resolved relocations; its first difference remains
+`0x004791BD`. VC8 places the shared landing tail with action 226 instead
+of 202, leaving their physical spans at 612/731 and 514/545 bytes.
+The experimental action-300 form restores the 320 and 321 spans and,
+with this corrected landing, reduces its callable to 81,596 bytes, but
+still places the shared tail after 226. Recover the global block ordering
+before selecting that experiment. A direct-root `/GL` link replays the full
+82,904-byte payload identically to the ordinary object, including all 11
+switches and 2,475 relocation fields; it retains the same target mismatch.
