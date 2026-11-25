@@ -1248,3 +1248,10 @@ A raw `.text` scan finds 12 occurrences of the sink-global address
 write follows construction of the `0x004378F0` sink; the slot-3 consumer
 copies only the low direction byte. Check any indirect replacement and the
 staging-header consumers before promoting a byte-typed declaration.
+
+For the byte-direction plus six-direct-effect control, physical spans for
+201–203 and 224–225 also agree byte-for-byte after normalizing relative jump
+immediates and resolving direct-call destinations. Their jump destinations
+and the complete function remain to be reconciled; 226 has 102 positional
+differences under the same diagnostic, and 320 and 321 have 62 and 22.
+The scratch comparison is `build/reimu-root-work/terra-byte-direction/compare-spans.py`.
