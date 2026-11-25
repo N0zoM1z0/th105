@@ -1172,3 +1172,11 @@ the target zero-extends the facing byte before negating its low byte;
 the control negates a byte and zero-extends afterward. Recover the real
 dataflow or compiler context behind this difference rather than omitting
 the effect or inserting artificial state.
+
+For action 201's effect-126 direction, the existing expression and the
+byte-then-negation control enter `0x10C064F9` with 49,322 and 49,325
+function nodes respectively. By `0x10C0661B` both have 22,100 nodes and
+the direction lowers to the same negate (`0x23`) then zero-extension
+(`0xC2`) sequence. Both debug objects replay identically to their ordinary
+builds. The distinction is folded between these checkpoints; targeting
+only later scheduling cannot reverse this source-level conversion.
