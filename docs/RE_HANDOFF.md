@@ -791,31 +791,50 @@ materializing EBP=4 at the target point. Continue only on this root function.
 No full cold replay or Oracle acceptance was performed.
 
 
-## 2026-11-25 Action201 facing-dependent sequence gate
+## 2026-11-25 Action201 facing-gate hypothesis (superseded)
 
-The Action201 entry comparison is against the fighter's current facing byte,
-not a constant zero. The target loads `facing_104` into a register and compares
-the sequence word against it before the sequence-3 landing check. The natural
-root now models that with a function-local `frame_zero` snapshot assigned from
-`static_cast<unsigned char>(facing_104)`. The two Action201 effects 125/126
-also pass the raw facing byte, matching the target's `movzx`/push argument
-flow; the separate effect-124 direction remains independently modelled.
+The initial hypothesis that Action201 compares its sequence against
+`facing_104` was incorrect. The target at `0x0047ABCA` loads the sequence word
+and executes `cmp ax, dx`; there is no facing-byte load on this path. Do not
+use the facing snapshot as the semantic explanation for this comparison.
 
-The focused ordinary-object map now reports Action201 595/611 bytes (previous
-constant-zero form was 587/611), Action224 581/579, Action410 975/975,
-Action414 1128/1116, and Action416 942/959. The root still has 126 target
-destination groups represented with zero split groups. The Action201 compare
-currently uses CX rather than target DX, and the shared landing tail remains
-laid out after the Action414 gravity path instead of at the Action201 fallthrough.
-This is a verified source/COFF checkpoint, not whole-function exactness; no
-Oracle acceptance or full cold replay was performed.
+The Action201 effect-call direction hypothesis was also corrected later:
+effects 125 and 126 use negative facing in Action201, while Action200's
+corresponding effects use raw facing. The exact target argument sequences are
+recorded in the following correction section.
 
 
-The Action201 effect-call direction operands were corrected to pass the raw
-`facing_104` byte for effects 125 and 126, matching the target's two
-`movzx`/push sequences. This is separate from effect 124, whose negative-facing
-operand remains unchanged. The focused Action201 span is now 587/611 bytes; the
-change also restores the 81,552-byte candidate metadata boundary.
+## 2026-11-25 Action201 DX and effect-direction correction
+
+Target Action201 begins at `0x0047ABCA` with `movzx eax, word ptr [esi+0x13e]`
+followed by `cmp ax, dx`. The target does not load `facing_104` before this
+comparison. The Reimu vtable entry is at `0x006C4154`; its vtable base is
+`0x006C412C`, so the entry is the `+0x28` virtual slot and resolves to
+`0x00478FA0`. Generic call sites load a `+0x28` virtual target into EDX before
+calling it, which is a plausible explanation for the stale DX value observed
+at Action201. The ordinary candidate still compares against a stack home for
+its uninitialized `frame_zero` local (`[esp+0x24]`), not DX; this register
+lifetime remains unresolved and Action201 is not exact.
+
+The two Action201 effect arguments are now corrected to negative facing. The
+target at `0x0047ADAC` loads facing into ECX and negates CL before pushing it
+for effect 125; at `0x0047ADE9` it loads facing into EDX and negates DL before
+effect 126. Action201 effect 124 also retains negative facing. Action200's
+effects 125/126 remain raw facing, matching their separate target sequences.
+
+The focused ordinary-object map after this correction reports target callable
+size 81,550 bytes, candidate metadata start 81,552 bytes, 126 target
+destination groups represented, and zero split groups. Focused spans:
+Action200 581/591, Action201 589/611, Action224 581/579, Action410 975/975,
+Action414 1128/1116, and Action416 957/959. The direct-root prologue is still
+not exact: the first mismatch is at offset `0x12`; the target uses an immediate
+zero store and EDI=85, while the candidate zeroes EDI for the first store and
+uses EBX=85 for the second. The `reimu_frame_85` local-lifetime experiment is
+kept as source progress, but does not close this prologue mismatch.
+
+This is a focused source/COFF checkpoint only. No Oracle acceptance or full
+cold replay was performed. Continue on the same locked
+`Reimu_dispatch_action_state_vslot28` function.
 
 
 ## 2026-11-25 Action416 frame-one register lifetime

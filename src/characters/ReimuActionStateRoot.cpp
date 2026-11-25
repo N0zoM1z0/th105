@@ -8,8 +8,9 @@ namespace th105 {
 void ReimuActionStatePreludeView::run_action_dispatch_root()
 {
 // Shared source fragment; include only within the matching staging context.
-    register int reimu_frame_85 = 85;
+    register short reimu_frame_85;
     word_7a0 = 0;
+    reimu_frame_85 = 85;
     word_7a2 = static_cast<short>(reimu_frame_85);
     if (action_13c > 149 && action_13c < 159 && !byte_751) {
         byte_751 = 1;
@@ -1638,7 +1639,6 @@ reimu_action9_advance:
         }
         return;
         case 201:
-        frame_zero = static_cast<unsigned char>(facing_104);
         landing_sequence = 3;
         if (sequence_13e == frame_zero || sequence_13e == landing_sequence)
             resolve_stage_surface_landing_transition();
@@ -1673,9 +1673,9 @@ reimu_action9_advance:
                 velocity_x_f4 = -14.0f;
                 velocity_y_f8 = 4.0f;
                 const float effect_y = static_cast<float>(y_f0 + 80.0);
-                emit_fighter_effect(125, x_ec, effect_y, static_cast<unsigned char>(facing_104), 1);
+                emit_fighter_effect(125, x_ec, effect_y, static_cast<unsigned char>(-facing_104), 1);
                 emit_fighter_effect(126, x_ec, static_cast<float>(y_f0 + 80.0),
-                    static_cast<unsigned char>(facing_104), 1);
+                    static_cast<unsigned char>(-facing_104), 1);
                 dispatch_indexed_event_member(31);
             }
             return;
