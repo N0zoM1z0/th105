@@ -1105,3 +1105,14 @@ Action 226's constant case tests and ternaries have been simplified,
 and its nested landing path is indented. The complete ordinary payload
 replays identically to the pre-cleanup build with all 2,475 relocations;
 the function remains nonexact.
+
+The low-0/2 advance control's early receiver load is selected by the
+VC8 scheduler, not introduced by the encoder. A hardware watch catches
+its node relink at `c2.dll:0x10C721D5–DA`, called from `0x10C0792F`.
+At dequeue `0x10C72378`, the x87 add is ahead in the ready list with
+priority `0xDC00`, but its earliest issue field is 1; the receiver move
+has priority `0x0C00` and earliest issue 0. The current threshold is 0,
+so the `0x10C72360` comparison skips the add and selects the move.
+The traced complete payload matches the ordinary control. The target's
+later move therefore needs a real dependency or different scheduling
+context; a priority-only explanation is insufficient.
