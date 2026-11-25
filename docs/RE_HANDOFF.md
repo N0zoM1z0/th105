@@ -1303,3 +1303,12 @@ reaches it from the first test. The emitted code later sends the failed
 conditions to action 0's advance and retains a local advance for the
 successful path. The debugger build replays identically to the ordinary
 candidate, placing this divergence after the captured graph state.
+
+At the later C2 `0x10C077B6` snapshot, each of action 77's five branch
+nodes references the same label object through its opcode-`0x284` operand.
+Within the first 10,000 linear nodes, 12 conditional branches reference
+that label, including action 9's landing test and branches from other
+recovery actions. The debug object replays identically to the ordinary
+byte-direction gate control. This confirms that the late shared advance
+is a cross-case decision; the earlier graph's action-77-local block alone
+does not determine final placement.
