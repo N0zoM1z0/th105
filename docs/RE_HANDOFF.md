@@ -1268,3 +1268,11 @@ branch destinations and remaining 28 row lengths still differ. A simpler
 single event gate reproduces the prior 81,644-byte control exactly.
 The successful control is `build/reimu-root-work/terra-byte-direction/gate-advance.cpp`;
 its byte-direction header and bindings are in the same directory.
+
+The byte-direction gate control retains the earlier advance-call coupling:
+using the distinct `CharacterObjectRuntime` declaration at action 9 restores
+its 112-byte target span but adds an extra `0x004351C0` call and changes
+71/72 to 480/467 and 180/184 bytes. Using the common declaration leaves
+9 at 116/112 but preserves the target's direct-call counts. Action 9's
+conditional branch currently targets action 0's advance block; the target
+branches to the local advance after its separate x87 cleanup entry.
