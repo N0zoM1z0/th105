@@ -984,3 +984,12 @@ although the 321 span becomes 140/140 bytes. Guarding the existing shared
 label inside 320 moves the first root difference to `0x00478FB2` and
 produces an 81,536-byte callable. All three comparisons resolve their 2,476
 relocations. The tracked shared-tail form remains selected.
+
+The headless VC8 SP1 trace at `c2.dll:0x10B26CA8` reconstructs all 3,495
+blocks in the compiler's depth-first postorder. In that graph, the event-27
+gate is block 908. The traversal first enters it through block 1125 from
+action 320, even though action 300 also reaches it from block 906. The
+resulting block placement puts the gate with 320. The traced object's
+complete relocated section has the same hash and first target mismatch as
+the ordinary direct-root build. The original executable places the gate
+at `0x0047CC2B`, inside action 300, and reaches it from action 320.
