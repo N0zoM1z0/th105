@@ -9157,8 +9157,9 @@ reimu_action416_gravity:
             }
             break;
         default:
-            // The target's unsigned range branch falls through to this shared post-switch continuation.
-            break;
+            // The target's unsigned range branch returns through the shared
+            // default epilogue instead of entering the post-switch continuation.
+            return;
         }
         if (advance_frame_and_dispatch()) {
             goto reimu_complete_action0_619;
