@@ -1364,3 +1364,14 @@ extra stack-byte preparation, but the candidate changes from 103 to 100
 equal-length rows and action 214 remains 1,504/1,540 bytes. Keep it as
 `214-direct-direction.cpp` while resolving that action's other control and
 floating-point differences.
+
+In the `all-direct-direction` control, spelling the 650 and 651 landing
+sequences independently lets C2 place their shared 35-byte tail in 650,
+as the target does. The resulting `650-independent-landings.cpp` keeps
+an 81,532-byte prefix, all 2,477 resolved relocations, matching direct-call
+counts and 105 of 128 equal-length rows. Both 650 and 651 have zero
+positional differences after jump normalization and call resolution; 651's
+mapped branches also agree. One 650 branch instead targets candidate
+`0x0047FF92` versus target `0x004852F6`, so its shared destination needs
+separate comparison. Previously aligned 200–225 and 320–321 spans remain
+unchanged in this diagnostic.
