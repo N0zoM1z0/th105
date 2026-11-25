@@ -886,30 +886,34 @@ performed. Continue on the same locked Reimu_dispatch_action_state_vslot28
 function.
 
 
-## 2026-11-25 Action202 inline landing and byte-effect setup
+## 2026-11-25 Actions201-203 instruction-shape checkpoints
 
-Action202 now has the target's inline crossed-surface landing path. Its
-545-byte candidate span equals the 545-byte target span, and all 139
-normalized instruction signatures match across the block. The byte-direction
-adapter is also used for effects 124, 125, and 126; this reproduces the
-target's zero-extension and register lifetimes in those argument sequences.
-Action201 remains an exact 611-byte instruction-shape match with 174 matching
-instructions.
+Action201 has a 611-byte candidate span against 611 target bytes, with all
+174 normalized instruction signatures matching. Action202 now has the
+target's inline crossed-surface landing path and byte-direction argument
+setup: its 545-byte candidate span equals the 545-byte target span, and all
+139 normalized instruction signatures match. Action203 now also matches:
+its 429-byte candidate span equals the 429-byte target span, and all 103
+normalized instruction signatures match.
+
+The byte-direction adapter is used only to preserve the byte-width argument
+at the natural C++ call boundary; it forwards to the existing int-direction
+effect helper. No assembly or padding was introduced.
 
 VC8 moves a shared goto target out of line when Action202 and later actions
 all branch to the same label. To retain the target's hot Action202 fallthrough,
 the source keeps an inline Action202 landing block and a separate shared tail
-for Actions203/225/226. This is real C++ control flow, not assembly or padding,
-but it duplicates the landing operations and increases candidate metadata
-start to 81,628 bytes versus the 81,550-byte target. The previous checkpoint
-was 81,580 bytes. This is an interim tradeoff, not whole-root exactness.
+for Actions203/225/226. This duplicates the landing operations and increases
+candidate metadata start to 81,612 bytes versus the 81,550-byte target. The
+current focused map represents 126 target destination groups with zero split
+groups.
 
-Focused spans now include Action201 611/611, Action202 545/545,
-Action203 435/429, Action225 463/457, Action226 707/731, Action224 585/579,
-Action320 162/119, Action321 157/140, Action414 1102/1116, and Action416
-957/959. The map still represents 126 target destination groups with zero
-split groups. No Oracle acceptance or full cold replay was performed.
-Continue on the same locked Reimu_dispatch_action_state_vslot28 function.
+Other root cases remain outstanding: Action224 585/579, Action225 463/457,
+Action226 707/731, Action320 162/119, Action321 157/140, Action414 1102/1116,
+and Action416 957/959. These three case-level instruction-shape matches do
+not make the whole root function exact. No Oracle acceptance or full cold
+replay was performed. Continue on the same locked
+Reimu_dispatch_action_state_vslot28 function.
 
 
 ## 2026-11-25 Action416 frame-one register lifetime

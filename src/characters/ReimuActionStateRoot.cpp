@@ -1717,8 +1717,8 @@ reimu_action_shared_landing_sequence3_tail:
             velocity_y_f8 = 4.0f;
             acceleration_y_100 = 0.45f;
             const float effect_y = static_cast<float>(y_f0 + 120.0);
-            emit_fighter_effect(125, x_ec, effect_y, static_cast<unsigned char>(-facing_104), 1);
-            emit_fighter_effect(126, x_ec, static_cast<float>(y_f0 + 120.0),
+            emit_fighter_effect_byte_direction(125, x_ec, effect_y, static_cast<unsigned char>(-facing_104), 1);
+            emit_fighter_effect_byte_direction(126, x_ec, static_cast<float>(y_f0 + 120.0),
                 static_cast<unsigned char>(-facing_104), 1);
             dispatch_indexed_event_member(31);
         }
@@ -1728,12 +1728,10 @@ reimu_action_shared_landing_sequence3_tail:
         }
         if (sequence_13e == 1 && frame_counter_144 % 5 == 0) {
             const double x_base = static_cast<double>(x_ec) + 50.0;
-            const unsigned char direction = static_cast<unsigned char>(
-                -facing_104);
-            emit_fighter_effect(124,
+            emit_fighter_effect_byte_direction(124,
                 static_cast<float>(x_base - static_cast<float>(mt19937_next_u32() % 100)),
                 static_cast<float>(static_cast<float>(mt19937_next_u32() % 200) + y_f0),
-                direction, 1);
+                static_cast<unsigned char>(-facing_104), 1);
         }
         advance_frame_and_dispatch();
         if (frame_counter_144 == 0 && frame_timer_142 == 0
