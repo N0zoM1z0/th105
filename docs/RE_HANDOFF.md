@@ -1043,3 +1043,13 @@ with the action-300 gate experiment yields 202/226/320/321 spans of
 549/728/119/140 bytes versus 545/731/119/140 in the target. Its complete
 81,612-byte callable remains nonexact. Recover the late tail-merge
 choice and remaining instruction differences before selecting it.
+
+The same target draw order occurs at action 201 `0x0047AC89` and action
+224 `0x0047C666`; the earlier candidate reversed both. Their effect-124
+expressions now use the same explicit Y-then-X sequence. Action 200
+already emitted that order and remains unchanged. The seven affected
+actions all emit `% 200` followed by `% 100`; the complete ordinary root
+still has an 81,532-byte callable and 2,475 resolved relocations.
+A direct-root `/GL` link reproduces the entire ordinary payload. A
+physical-owner scan found the same random-call counts and immediately
+following constant divisors across the target and candidate switch spans.
