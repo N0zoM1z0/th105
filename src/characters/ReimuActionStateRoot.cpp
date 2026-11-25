@@ -1678,23 +1678,19 @@ reimu_action_shared_landing_sequence3_tail:
         case 202:
         velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
         if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-// Shared target landing tail for actions202/203/225/226 at47AE4A.
-// Include once per staging method; the label denotes actual incoming edges.
-reimu_landed_action_10:
+            // Keep Action202's landing edge inline; later actions use the
+            // separate shared tail below to preserve their own branch layout.
             zero_velocity_acceleration();
             y_f0 = reimu_stage_surface_height_at_x(this);
             set_action(10);
             return;
-
         }
         if (sequence_13e == 1 && frame_counter_144 % 5 == 0) {
             const double x_base = static_cast<double>(x_ec) + 50.0;
-            const unsigned char direction = static_cast<unsigned char>(
-                facing_104);
-            emit_fighter_effect(124,
+            emit_fighter_effect_byte_direction(124,
                 static_cast<float>(x_base - static_cast<float>(mt19937_next_u32() % 100)),
                 static_cast<float>(static_cast<float>(mt19937_next_u32() % 200) + y_f0),
-                direction, 1);
+                static_cast<unsigned char>(facing_104), 1);
         }
         advance_frame_and_dispatch();
         if (sequence_13e == 0 && frame_index_140 == 3 && frame_timer_142 == 0) {
@@ -1704,8 +1700,9 @@ reimu_landed_action_10:
             acceleration_y_100 = 0.45f;
             const float effect_y = static_cast<float>(y_f0 + 110.0);
             const float effect_x = static_cast<float>(facing_104 * 80 + x_ec);
-            emit_fighter_effect(125, effect_x, effect_y, static_cast<unsigned char>(facing_104), 1);
-            emit_fighter_effect(126, x_ec, static_cast<float>(y_f0 + 110.0),
+            emit_fighter_effect_byte_direction(125, effect_x, effect_y,
+                static_cast<unsigned char>(facing_104), 1);
+            emit_fighter_effect_byte_direction(126, x_ec, static_cast<float>(y_f0 + 110.0),
                 static_cast<unsigned char>(facing_104), 1);
             dispatch_indexed_event_member(31);
         }
@@ -1727,7 +1724,7 @@ reimu_landed_action_10:
         }
         velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
         if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-            goto reimu_landed_action_10;
+            goto reimu_landed_action_10_other;
         }
         if (sequence_13e == 1 && frame_counter_144 % 5 == 0) {
             const double x_base = static_cast<double>(x_ec) + 50.0;
@@ -2308,7 +2305,7 @@ reimu_landed_action_10:
         if (225 == 226 || sequence_13e >= 1)
             velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
         if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-            goto reimu_landed_action_10;
+            goto reimu_landed_action_10_other;
         }
         if (sequence_13e == 2 && frame_counter_144 % 5 == 0) {
             const double x_base = static_cast<double>(x_ec) + 50.0;
@@ -2346,7 +2343,7 @@ reimu_landed_action_10:
         if (226 == 226 || sequence_13e >= 1)
             velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
         if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-            goto reimu_landed_action_10;
+            goto reimu_landed_action_10_other;
         }
         if (sequence_13e == 2 && frame_counter_144 % 5 == 0) {
             const double x_base = static_cast<double>(x_ec) + 50.0;
@@ -10402,6 +10399,14 @@ reimu_action_650_651_landing_tail:
         update_common_action_state();
         return;
     }
+
+// Shared landing tail for actions203/225/226. Action202 keeps its own
+// inline copy because VC8 otherwise outlines the target's hot fallthrough.
+reimu_landed_action_10_other:
+    zero_velocity_acceleration();
+    y_f0 = reimu_stage_surface_height_at_x(this);
+    set_action(10);
+    return;
 
 }
 
