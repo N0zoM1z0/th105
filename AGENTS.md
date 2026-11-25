@@ -153,7 +153,7 @@ repository evidence and read back metadata writes.
 
 ## Handoff and commit
 
-Use `gpt-6.2-sol: <summary>` for new commit subjects. Preserve existing commits
+Use `gpt-6.1-sol: <summary>` for new commit subjects. Preserve existing commits
 with their historical prefixes.
 
 For reconstruction changes, run focused affected comparisons, then:

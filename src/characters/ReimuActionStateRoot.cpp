@@ -3613,11 +3613,7 @@ reimu_action416_common:
                     static_cast<float>(static_cast<float>(
                         static_cast<signed char>(frame3_direction) * 14) + x_ec),
                     static_cast<float>(y_f0 + 197.0), frame3_direction, frame_one);
-                typedef unsigned char (__thiscall *Action416NextSequenceSlot)(ReimuActionStatePreludeView *);
-                register void **action_vtable = *reinterpret_cast<void ***>(this);
-                register Action416NextSequenceSlot action_slot =
-                    reinterpret_cast<Action416NextSequenceSlot>(action_vtable[5]);
-                action_slot(this);
+                next_sequence_block();
                 return;
             }
             goto reimu_action416_frame_threshold_check;
