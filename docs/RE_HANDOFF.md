@@ -1120,3 +1120,20 @@ context; a priority-only explanation is insufficient.
 Action 225's constant comparisons and unreachable case-226 alternatives
 have likewise been removed. Its complete ordinary root payload is
 identical to the prior build after all 2,475 relocations are replayed.
+
+TH075-style nested velocity branches preserve the target order of the
+action-0 x87 comparison and receiver load: C2's late IR leaves the load
+after the conditional branch. The control's shared advance nevertheless
+lands in action 0 instead of the target's action 9. Making only action 0
+or 2 use the nested form duplicates the shared velocity body in action 2;
+a common explicit label also puts that body there.
+
+For action 202, calling `emit_fighter_effect` directly with its actual
+integer direction makes VC8 reproduce the target's argument preparation:
+direction is pushed before the `% 200` and `% 100` draws. Explicit
+float locals preserve the draw order but prepare the arguments later.
+Applying the direct call to all six affected cases restores that local
+shape, while changing the landing-tail merge and duplicating the reset
+and surface calls. An explicit shared landing removes the extra calls
+but places the tail in 226. Keep the committed semantic correction while
+recovering these coupled compiler choices.
