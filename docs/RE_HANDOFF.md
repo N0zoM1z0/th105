@@ -867,10 +867,22 @@ Focused checks on the current ordinary COFF object:
 - Action201's focused span is now 613/611 (candidate/target), two bytes over.
 - The 126 target destination groups remain represented with zero split groups.
 
-The random effect-124 argument lowering remains unresolved: its direction
-load/negation register width and temporary-stack ordering still differ from
-the target. Action201 is not exact. No Oracle acceptance or full cold replay
-was performed. Continue on the same locked Reimu_dispatch_action_state_vslot28
+The effect-124 argument setup is now expressed through the same inline
+byte-direction adapter used by effects 125/126. This recovers the target's
+movzx edx, byte ptr [esi+0x104], x-base load, neg dl, and argument push
+ordering. The focused ordinary-object comparison now has 174 instructions
+and 611 bytes for both candidate and target; all normalized instruction
+signatures match across the entire Action201 block, including register
+choices, stack offsets, and non-relocated immediates. Absolute-address
+constant operands and rel32 call destinations are normalized because the
+COFF object still carries relocations. This is a full Action201 block
+instruction-shape match, not a whole-root exactness claim.
+
+The focused map still reports candidate metadata start 81,580 bytes against
+the 81,550-byte target callable, with 126 target destination groups and zero
+split groups. Other action spans remain outstanding (notably Actions200,
+202, 224, 320, 321, and 414). No Oracle acceptance or full cold replay was
+performed. Continue on the same locked Reimu_dispatch_action_state_vslot28
 function.
 
 
