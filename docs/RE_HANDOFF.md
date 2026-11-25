@@ -1290,3 +1290,8 @@ and unconditional direct branches in 201–203, 224–225 and 320–321 reach
 the corresponding local or shared location. Three dispatcher edges in
 226 lead into unequal-length rows and remain unresolved by this check.
 Full-root strict replay remains required.
+
+The same branch-masked and call-resolved comparison finds zero positional
+differences for low actions 1–8 and 71–76, 78. Actions 0, 9 and 77 remain
+nonmatching; their shared advance and x87 cleanup placement need to be
+solved together. These are physical-span diagnostics, not match units.
