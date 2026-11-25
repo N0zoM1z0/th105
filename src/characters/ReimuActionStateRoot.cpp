@@ -2366,11 +2366,9 @@ reimu_action_shared_landing_sequence3_tail:
         }
         if (frame_counter_144 != 0 || frame_timer_142 != 0 || frame_index_140 != 0)
             return;
-        if (sequence_13e == 3) {
+        if (sequence_13e == 3)
             face_opponent_and_flip_horizontal_velocity();
-            return;
-        }
-        // Action226's non-sequence-3 path shares Action300's transition tail.
+        return;
         case 300: {
         resolve_stage_surface_landing_transition();
         reimu_directional_result = try_dispatch_directional_action_208_210(0);
