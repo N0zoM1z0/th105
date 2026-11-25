@@ -1276,3 +1276,10 @@ its 112-byte target span but adds an extra `0x004351C0` call and changes
 9 at 116/112 but preserves the target's direct-call counts. Action 9's
 conditional branch currently targets action 0's advance block; the target
 branches to the local advance after its separate x87 cleanup entry.
+
+In the byte-direction gate control, action 77's five failure branches go
+to the advance in action 0, making each branch four bytes longer than the
+local short branch in the target. Rewriting the same frame gate as explicit
+negative tests and a local advance label reproduces the entire candidate
+payload unchanged. Recovering the advance-tail owner requires a different
+shared context, not merely reversing these conditions.
