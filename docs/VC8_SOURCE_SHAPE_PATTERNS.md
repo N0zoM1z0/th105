@@ -126,7 +126,21 @@ In 12 of the 13 roster Fighter `+0x28` roots (and in Iku's `case 781`, the one e
 Under `/O2`, `0x10B307E0` rejects merging a 2-byte `call eax; jmp L_ret` tail (`2 <= 20`) unless the retained branch's `[branch + 0x1c]` (`saved_bytes`, capped at 20) was already raised by an earlier >20-byte merge. An artificial shared label placed right after `case 201` raises `case 201`'s `saved_bytes` to 20 before `case 214` is scanned, pulling both `214` and `404` onto `case 201`'s label where `0x10B30D90(214)` then swaps `214` into `404`. Inlining the landing statements in `case 226` and `case 414` raises `case 201`'s `saved_bytes` *after* `case 214` and *before* `case 404`, leaving `214` on `L_ret` while pulling `404`/`414` onto `case 201`'s label. Proven on `Reimu_dispatch_action_state_vslot28` `0x00478FA0`.
 
 **`signed char` direction parameter enables `push ebx` (`-1`) reuse.**
-Declaring `spawn_owned_object_via_manager`'s direction parameter as `signed char` (matching `facing_104`) lets VC8 emit 1-byte `push ebx` (reusing prologue `or ebx, -1`) instead of 5-byte `push 0xff` in Reimu action `730` (`0x0048C37A`). Proven on `Reimu_dispatch_action_state_vslot28` `0x00478FA0`.
+Declaring `spawn_owned_object_via_manager`'s direction parameter as `signed char` (matching `facing_104`) lets VC8 emit 1-byte `push ebx` (reusing prologue `or ebx, -1`) instead of 5-byte `push 0xff` in Reimu action `730` (`0x0048C37A`). Proven on `Reimu_dispatch_action_state_vslot28` `0x00478FA0` and `Iku_dispatch_action_state_vslot28` `0x00620920`.
+
+**Early `return;` inside `__forceinline` helpers reorders `L_ret` predecessors in `c2.dll:0x10B307E0`.**
+In `TailMerge`, when two matching tails both satisfy `0x10B30D90` (`CanFoldBranch`), the first predecessor on the target label's list stays inline while later ones jump into it. Moving `case 214` and `cases 400..406` out of `__forceinline` helpers that contained early `return;` statements restored the original `L_ret` predecessor order, fixing four simultaneous tail-merge swaps (`214 -> 309`, `650 -> 201`, `406/416/417 -> 404`, and `414 -> 9`) in `Iku_dispatch_action_state_vslot28` `0x00620920`.
+
+**`c2.dll:0x10C56F50` (`WidenBranches`) widens forward branches with `disp = 116..121` via phantom alignment slack.**
+VC8 starts all branches as 2-byte short (`0x1c6`/`0x1c8`) and widens them to 6-byte near (`0xf`/`0x10`) in a fixpoint loop (`0x10B24EE0`). For a forward branch whose target label has not yet been visited in the current pass, `0x10C56F75` adds the pass's cumulative widening delta (`[esp+0x1c]`) to the label's previous-pass offset, while loop 16-byte alignment (`0x10B25058`) adjusts `current_offset` without updating that delta. Earlier 1–2 byte size deltas change modulo-16 alignment padding upstream, which changes the phantom slack added to later forward spans (`603` `+121`, `740` `+119`, `797` `+116`). Restoring upstream exact sizes (here, nested `if (frame_timer_142 == 0) { if (frame_index_140 == 14) ... }` in `404`/`406` so `emit_fighter_effect_433cc0` emits `push 1`) automatically restores all three 6-byte `0F 85` encodings. Proven on `Iku_dispatch_action_state_vslot28` `0x00620920`.
+
+**Small x87 / integer idioms proven on `Iku_dispatch_action_state_vslot28` `0x00620920`:**
+- `if (cond) spawn(..., 1, ...); else spawn(..., -1, ...);` tail-merges `call 0x465190` instead of a ternary `int` local.
+- `+ static_cast<float>(word_738 + 100)` emits `fiadd dword ptr [esp+0x14]` without spilling (action `780`).
+- `static_cast<signed char>(1 - 2 * (static_cast<unsigned>(selector_random_roll(100)) < 50))` emits `cmp eax, 0x32; setb al; mov ecx, 1; add al, al; sub cl, al` (action `781`).
+- `double step_y = field_73c; field_740 = static_cast<float>(step_y + field_740);` preserves `fld [esi+0x73c]; fadd [esi+0x740]` even when `field_740` appeared earlier in the function (action `781`).
+- Calling `static_cast<unsigned>(selector_random_roll(...))` directly inside outer call arguments (not through a `__forceinline` wrapper) preserves right-to-left stack argument evaluation order (actions `602`, `781`).
+- `switch (g_match_identifier) { case 1: ... case 2: ... case 3: ... }` emits the reverse-ordered `sub eax, 1; je` chain (action `730`).
 
 **Extra checked-iterator range test after `begin()`.** A `+=` range check
 directly after the `begin()` check means `begin() + n`. Look for a seek or

@@ -19145,7 +19145,7 @@ source = "src/characters/IkuActionState.cpp"
 object = "build/match-units/GptWeb_IkuActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a Iku620920 source hypothesis:110 action IDs, original prelude/early exits/default. Source-sharing status/private helpers are inlined into the actual void entry and have no claimed original callable boundaries. All root CALL relocations name genuine target dependencies;35 new literal keys are observed root-owned width/value pairs. Whole59038 comparison is strict and nonexact; no partial byte credit. "
+notes = "Exact canonical JP 1.06a Iku action-state root 0x00620920 (59038 callable bytes, 60194-byte full switch envelope with 3 compact byte-index tables and 109/109 exact owners). Standalone typed IkuActionStateView/IkuPeerView layout with compile-time offset assertions, natural switch dispatch with post-switch advance_frame_and_dispatch, and direct signed/unsigned char direction parameters."
 
 [[units.gpt-web-iku-action-state.functions]]
 address = "0x00620920"
@@ -19158,10 +19158,10 @@ rel32_targets = [
   "?advance_secondary_event_effect_cycle@IkuActionStateView@th105@@QAEXXZ=0x00473F90",
   "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
   "?copy_action_word_176_to_174@IkuActionStateView@th105@@QAEXXZ=0x0045B250",
-  "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+  "?dispatch_character_wave_handle@IkuActionStateView@th105@@QAEXI@Z=0x0045C030",
   "?dispatch_indexed_event_member@IkuActionStateView@th105@@QAEXI@Z=0x004359F0",
   "?dispatch_indexed_sequence_window_45c8b0@IkuActionStateView@th105@@QAEXCHH@Z=0x0045DEB0",
-  "?emit_fighter_effect_433cc0@IkuActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+  "?emit_fighter_effect_433cc0@IkuActionStateView@th105@@QAEXHMMEH@Z=0x00435240",
   "?face_opponent_and_flip_horizontal_velocity@IkuActionStateView@th105@@QAEXXZ=0x00478E60",
   "?finalize_sequence_entry@IkuActionStateView@th105@@QAEXH@Z=0x0045D110",
   "?has_crossed_stage_surface_while_descending@IkuActionStateView@th105@@QAEHXZ=0x005F9310",
@@ -19177,7 +19177,7 @@ rel32_targets = [
   "?set_shared_first_target@IkuActionStateView@th105@@QAECCM@Z=0x00476AB0",
   "?set_shared_second_target@IkuActionStateView@th105@@QAECCM@Z=0x00476AD0",
   "?set_shared_third_target@IkuActionStateView@th105@@QAECCM@Z=0x00476AF0",
-  "?spawn_owned_object_via_manager@IkuActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+  "?spawn_owned_object_via_manager@IkuActionStateView@th105@@QAEHHMMCHPBXH@Z=0x00465190",
   "?stage_surface_height_at_x@th105@@YIMPAVIkuActionStateView@1@@Z=0x00435D60",
   "?try_dispatch_directional_action_208_210@IkuActionStateView@th105@@QAEEH@Z=0x00478EE0",
   "?update_common_action_state@IkuActionStateView@th105@@QAEXXZ=0x004740C0",
@@ -19318,6 +19318,10 @@ dir32_targets = [
   "__real@c3340000=__real@c3340000",
   "__real@c3480000=__real@c3480000",
 ]
+switch_payload = { size = 60194, sha256 = "d252f0bb5b25a4f07b03d35c6c258af3b374e236a39f03c86cdd6caee32cf98c", alignment_hex = "8bff", table_offset = 59040, table_entries = 33, map_offset = 59172, map_size = 227, load_offset = 500, jump_offset = 507, additional_tables = [
+  { alignment_hex = "90", table_offset = 59400, table_entries = 42, map_offset = 59568, map_size = 247, load_offset = 11813, jump_offset = 11820 },
+  { alignment_hex = "90", table_offset = 59816, table_entries = 35, map_offset = 59956, map_size = 238, load_offset = 34700, jump_offset = 34707 },
+] }
 
 [units.gpt-web-score-sequence-result]
 kind = "probe"
