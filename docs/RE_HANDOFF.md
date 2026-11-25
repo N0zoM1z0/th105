@@ -1312,3 +1312,13 @@ recovery actions. The debug object replays identically to the ordinary
 byte-direction gate control. This confirms that the late shared advance
 is a cross-case decision; the earlier graph's action-77-local block alone
 does not determine final placement.
+
+A hardware watch armed at `0x10C0661B` catches the first action-77 branch
+being retargeted: C2's `0x10BF2BFD` replaces its opcode-`0x284` operand,
+whose old label differs from the shared late-IR label. The new operand
+references that shared label. The captured C2 stack includes return sites
+`0x10BF315D`, `0x10BF327A`, `0x10B2857E` and `0x10B2A347`; static code
+shows a list splice and reference update rather than a final emitter-only
+change. A later write zeroes the freed old operand and is memory cleanup.
+The debug object has the same complete relocated hash as the ordinary
+candidate. Trace the caller that selects these two labels next.
