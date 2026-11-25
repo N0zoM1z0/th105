@@ -1137,3 +1137,14 @@ shape, while changing the landing-tail merge and duplicating the reset
 and surface calls. An explicit shared landing removes the extra calls
 but places the tail in 226. Keep the committed semantic correction while
 recovering these coupled compiler choices.
+
+In the six-direct-effect control, action 202 and 203 retain separate
+landing tails. Their final virtual slot-8 target uses EAX and EDX,
+respectively; the target shared tail uses EDX. At VC8 allocator search
+`0x10BDA65C`, the action-202 search starts at EAX, while action 203
+starts at ECX. ECX is occupied at both sites, so action 203 selects EDX.
+Hardware watches at `0x10BDA597` confirm both assignments, and the
+debugger's complete replay matches the ordinary object. The tail-pair
+comparison trace timed out before reaching the selected pair; the
+register difference is not yet proof of why the merger retained both.
+Trace the cursor immediately before action 202 next.
