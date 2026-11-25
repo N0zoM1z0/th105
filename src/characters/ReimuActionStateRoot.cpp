@@ -54,7 +54,7 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
     register int landing_sequence;
     register int frame_four;
     unsigned char reimu_directional_result;
-    int frame_one = 1;
+    register int frame_one = 1;
     const int selected_action = action_13c;
     const unsigned int reimu_shared_event_index = selected_action == 321 ? 28u : 27u;
     goto reimu_action_dispatch_switch;
@@ -3725,7 +3725,8 @@ reimu_action414_set_action9_exit:
         return;
     }
         case 416: {
-        if (sequence_13e == 3)
+        landing_sequence = 3;
+        if (sequence_13e == landing_sequence)
             resolve_stage_surface_landing_transition();
         frame_four = 4;
         if (sequence_13e == 0 && frame_index_140 >= frame_four)

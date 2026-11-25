@@ -699,3 +699,17 @@ groups. Current relevant case spans: Action 201 587/611, Action 224 581/579,
 Action 414 1126/1116, Action 416 942/959. Action 414 is still not exact; its local
 register lifetime is being tuned against the target's EDI=3 / EBP=4 sequence.
 No full cold replay or Oracle acceptance was performed.
+
+
+## 2026-11-25 Action414/416 shared register lifetimes
+
+Action 416 now uses the same `landing_sequence` local as Action 414 for its
+sequence-3 landing test, and the shared frame-one/frame-four locals remain
+visible across both cases. This is a source-level lifetime consolidation, not
+assembly or padding. The target uses EDI=3, EBP=4, and EBX=1 at the paired
+action prologues; the focused map is recorded below for the next register
+allocation iteration.
+
+Current focused spans: Action 414 1126/1116 and Action 416 942/959; the complete
+root map still has 126 destination groups and 0 split groups. Neither action
+is declared exact. No full cold replay or Oracle acceptance was performed.
