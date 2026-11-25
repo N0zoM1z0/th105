@@ -1357,3 +1357,10 @@ call-target resolution; 226 differs only in two switch-address bytes.
 The first complete-root difference remains `0x004791BD`, and the original
 callable is 81,550 bytes. The private byte-direction header remains an ABI
 hypothesis; no exact credit is claimed.
+
+Action 214 also prepares its effect direction before the trigonometric
+calls. Replacing its byte temporary with a direct argument removes the
+extra stack-byte preparation, but the candidate changes from 103 to 100
+equal-length rows and action 214 remains 1,504/1,540 bytes. Keep it as
+`214-direct-direction.cpp` while resolving that action's other control and
+floating-point differences.
