@@ -1672,9 +1672,9 @@ reimu_action9_advance:
                 velocity_x_f4 = -14.0f;
                 velocity_y_f8 = 4.0f;
                 const float effect_y = static_cast<float>(y_f0 + 80.0);
-                emit_fighter_effect(125, x_ec, effect_y, static_cast<unsigned char>(-facing_104), 1);
+                emit_fighter_effect(125, x_ec, effect_y, static_cast<unsigned char>(facing_104), 1);
                 emit_fighter_effect(126, x_ec, static_cast<float>(y_f0 + 80.0),
-                    static_cast<unsigned char>(-facing_104), 1);
+                    static_cast<unsigned char>(facing_104), 1);
                 dispatch_indexed_event_member(31);
             }
             return;

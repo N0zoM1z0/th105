@@ -809,3 +809,10 @@ currently uses CX rather than target DX, and the shared landing tail remains
 laid out after the Action414 gravity path instead of at the Action201 fallthrough.
 This is a verified source/COFF checkpoint, not whole-function exactness; no
 Oracle acceptance or full cold replay was performed.
+
+
+The Action201 effect-call direction operands were corrected to pass the raw
+`facing_104` byte for effects 125 and 126, matching the target's two
+`movzx`/push sequences. This is separate from effect 124, whose negative-facing
+operand remains unchanged. The focused Action201 span is now 587/611 bytes; the
+change also restores the 81,552-byte candidate metadata boundary.
