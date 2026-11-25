@@ -1011,3 +1011,64 @@ destination_table = "0x00660554"
 destination_count = 72
 index_table = "0x00660674"
 expected_physical_groups = 72
+
+[[roots]]
+name = "aya-vslot28"
+address = "0x00602250"
+callable_end = "0x00612291"
+metadata_end = "0x006126E0"
+expected_unique_destinations = 106
+expected_direct_call_sites = 1011
+expected_direct_call_targets = 33
+expected_ret_opcodes = 146
+
+[[roots.regions]]
+name = "low"
+case_min = 0
+case_max = 226
+destination_table = "0x00612294"
+destination_count = 33
+index_table = "0x00612318"
+expected_physical_groups = 33
+
+[[roots.regions]]
+name = "mid"
+case_min = 301
+case_max = 418
+destination_table = "0x006123FC"
+destination_count = 27
+index_table = "0x00612468"
+expected_physical_groups = 27
+
+[[roots.regions]]
+name = "high"
+case_min = 502
+case_max = 740
+destination_table = "0x006124E0"
+destination_count = 48
+index_table = "0x006125A0"
+expected_physical_groups = 48
+
+[[roots.auxiliary_switches]]
+name = "action720-match-identifier"
+dispatch = "0x0060F88A"
+destination_table = "0x00612690"
+destinations = ["0x0060FD43", "0x0060FBE3", "0x0060FA83", "0x0060F891"]
+
+[[roots.auxiliary_switches]]
+name = "action721-match-identifier"
+dispatch = "0x0061001C"
+destination_table = "0x006126A0"
+destinations = ["0x006104B3", "0x00610361", "0x0061020F", "0x00610023"]
+
+[[roots.auxiliary_switches]]
+name = "action740-match-identifier"
+dispatch = "0x00610EE0"
+destination_table = "0x006126B0"
+destinations = ["0x00610EF3", "0x00610EF3", "0x00610EEF", "0x00610EE7"]
+
+[[roots.auxiliary_switches]]
+name = "top-791-798"
+dispatch = "0x00611D9E"
+destination_table = "0x006126C0"
+destinations = ["0x00611DA5", "0x00612282", "0x00612282", "0x00612282", "0x00611F6E", "0x00612282", "0x00611FCD", "0x00612138"]
