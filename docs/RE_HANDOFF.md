@@ -1334,3 +1334,15 @@ incorporating the selected readability cleanups for actions 0–8, 77 and
 `build/reimu-root-work/terra-byte-direction/gate-clean-all.cpp`; it retains
 all 2,477 resolved relocations and the 81,580-byte callable prefix. The
 byte-typed header remains private pending cross-module ABI reconciliation.
+
+Action 200's target checks `field_6b8` before evaluating directed input;
+each branch reads and multiplies facing and `field_6b4` separately. In the
+byte-direction gate candidate, replacing the captured effect direction with
+the direct expression and evaluating directed input within each branch
+makes all 591 bytes of the action-200 physical span agree after jump
+normalization and call-target resolution. The complete candidate grows to
+81,596 bytes, retains matching direct-call counts and changes several other
+rows, including 400, 404, 500 and 540. The control is
+`build/reimu-root-work/terra-byte-direction/200-directed-branch.cpp`.
+On the selected integer-direction baseline, the branch-local change alone
+moves 79 matching row lengths to 72; it remains an experimental source shape.
