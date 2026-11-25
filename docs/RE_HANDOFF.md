@@ -450,3 +450,43 @@ unique destinations represented and zero split groups. Only the affected root
 translation unit, its mapped case spans, and the Action410 instruction/branch
 comparison were checked; no full cold replay was run. This checkpoint is not
 whole-root exactness and has no oracle acceptance.
+
+## 2026-11-25 Reimu shared event-index continuation
+
+The only active function remains `Reimu_dispatch_action_state_vslot28` at
+`0x00478FA0`. Keep this complete root locked until canonical exact acceptance;
+Action 300/320/321 are internal frontiers, not separate function selections.
+
+Action 300 and Action 320's frame-timer-zero/frame-3 event gate, plus Action
+321's timer-zero/frame-2 event, now use one natural C++ event-index continuation.
+The source records 27 or 28 in a function-local integer and routes to one
+ordinary C++ call/flag-clear/return tail. No assembly, padding, byte grafts or
+relocation edits are used. VC8 still specializes the constant event values
+into separate call sequences, so target machine-level tail sharing is not yet
+recovered; this remains a useful source-structure checkpoint, not an exact
+claim.
+
+A fresh direct-root VC8 `/O2 /GS- /GL + LTCG` link compiled the tracked
+`ReimuActionStateRoot.cpp` and staging header. The linked/ordinary payloads
+match byte-for-byte (83,000 bytes, 1,283 HIGHLOW fields, 11 switches), with
+zero ordinary buffer-partition mismatches. All 126 target switch destination
+groups remain represented with zero split groups. The candidate callable
+prefix is 81,628 bytes versus the 81,550-byte target, 48 bytes shorter than
+the preceding 81,676-byte candidate.
+
+The focused case map now has target-sized spans for Actions 540 (653), 604
+(363), 605 (443), 606 (360), 608 (810), and 658 (740). Span equality is not
+byte exactness. Remaining visible frontiers include Action 320 (166/119),
+Action 321 (161/140), Action 414 (1,102/1,116), Action 616 (1,087/1,085),
+and Action 740 (533/535). Action 410 remains 975/975.
+
+The first whole-root byte difference remains at `0x004791BD`, in the early
+shared-return `jne`: target destination `0x00489D6A`; candidate root-relative
+destination is 0x40 bytes later. The full root is not exact and has no Oracle
+acceptance. This was a focused direct-root link and case-map comparison; no
+full cold replay was run.
+
+TH075's exact Reimu Fighter Advance uses the same broad natural-C++ `goto`
+shared-tail idiom, but its VC7.1 `/Od /Ob0` profile is only a structural
+reference, not a TH105 VC8/LTCG codegen recipe. Continue on this same root,
+starting with the shared-return destination and the Action 320/321 tails.

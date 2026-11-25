@@ -52,6 +52,7 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
         return;
 
     int landing_sequence;
+    int reimu_shared_event_index;
     const int selected_action = action_13c;
     switch (selected_action) {
     case 0: {
@@ -2381,9 +2382,10 @@ reimu_landed_action_10:
         if (advance_frame_and_dispatch())
             set_action(0);
 
-reimu_action_300_320_event_tail:        if (frame_timer_142 == 0 && frame_index_140 == 3) {
-            dispatch_indexed_event_member(27);
-            byte_47e = 0;
+reimu_action_300_320_event_gate:
+        if (frame_timer_142 == 0 && frame_index_140 == 3) {
+            reimu_shared_event_index = 27;
+            goto reimu_action_shared_event_tail;
         }
         return;
     }
@@ -2814,9 +2816,7 @@ reimu_action_320_advance:
         if (advance_frame_and_dispatch())
             set_action(0);
 
-        goto reimu_action_300_320_event_tail;
-
-        return;
+        goto reimu_action_300_320_event_gate;
     }
         case 321:
         resolve_stage_surface_landing_transition();
@@ -2830,8 +2830,8 @@ reimu_action_320_advance:
         if (advance_frame_and_dispatch())
             set_action(0);
         if (frame_timer_142 == 0 && frame_index_140 == 2) {
-            dispatch_indexed_event_member(28);
-            byte_47e = 0;
+            reimu_shared_event_index = 28;
+            goto reimu_action_shared_event_tail;
         }
         return;
         case 322:
@@ -10383,6 +10383,10 @@ reimu_complete_action0_619:
         update_common_action_state();
         return;
     }
+reimu_action_shared_event_tail:
+    dispatch_indexed_event_member(reimu_shared_event_index);
+    byte_47e = 0;
+    return;
 
 }
 
