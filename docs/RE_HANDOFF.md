@@ -1327,3 +1327,10 @@ Simplified action 77's retained macro-expanded body to its actual reachable
 conditions and operations. The selected root's full relocated payload is
 unchanged, with all 2,475 relocations resolved; its first target difference
 is still `0x004791BD`.
+
+The best byte-direction gate candidate also replays identically after
+incorporating the selected readability cleanups for actions 0–8, 77 and
+225–226. Its cleaner source is
+`build/reimu-root-work/terra-byte-direction/gate-clean-all.cpp`; it retains
+all 2,477 resolved relocations and the 81,580-byte callable prefix. The
+byte-typed header remains private pending cross-module ABI reconciliation.
