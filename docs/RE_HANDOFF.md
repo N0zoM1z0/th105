@@ -996,3 +996,13 @@ at `0x0047CC2B`, inside action 300, and reaches it from action 320.
 Reversing the action-320 advance condition and spelling both advance paths
 with explicit jumps each reproduce the complete ordinary section byte for
 byte, including its relocation replay. They do not change this traversal.
+
+Duplicating the event-27 gate only on the non-advancing branch of action
+300 changes the ownership: the 320 path now jumps back into 300, and both
+320 and 321 have their native 119- and 140-byte spans. Action 320 also
+emits the native x87 comparison and virtual-slot register order. The
+complete callable grows to 81,660 bytes and the 226 owner span grows from
+612 to 767 bytes against 731 native. Actions 400, 401, 406 and 500 also
+change spans. The earliest relocated difference stays at `0x004791BD`.
+The control shows that the 300 branch changes 320's physical block order;
+the complete original layout still needs recovery.
