@@ -1191,12 +1191,11 @@ is which target-backed type or dataflow difference changes the high-level
 node order or lowering inputs while retaining the effect and RNG behavior.
 
 TH075 Reimu's analogous backward command state also spawns effects 125
-and 126 with negated signed-byte facing, then plays sound 31. Its effect
-helper takes a signed-byte direction, whereas the exact TH105 `0x00435240`
-helper forwards the full integer direction. The TH075 sequence corroborates
-the behavior but its helper declaration cannot be transplanted. In TH105,
-rewriting effect 126 as unsigned subtraction followed by byte conversion
-also replays the complete six-direct-effect payload unchanged.
+and 126 with negated signed-byte facing, then plays sound 31. Its helper
+declares a signed-byte direction. In TH105, `0x00435240` forwards the full
+argument slot, but this alone does not determine its source type. Rewriting
+effect 126 as unsigned subtraction followed by byte conversion replays the
+complete six-direct-effect payload unchanged.
 
 Removed constant macro-expansion conditions in action cases 0–5. The
 selected root still replays the complete 82,904-byte payload identically
@@ -1220,3 +1219,23 @@ An SP1 `/O2 /Os` control has no matching direction pattern either. It
 changes the root `.text` from 82,904 to 73,289 bytes and the relocation
 audit cannot identify the low switch table, so keep the existing `/O2`
 profile while investigating the target's source and compiler context.
+
+The sink constructed at `0x004378F0` installs primary vtable `0x006C1490`;
+slot `+0x0C` points to `0x00437C00`, which reads the direction slot as a
+byte and stores it at object offset `0x104`. A focused VC8 control shows
+that both an `int`-to-`int` wrapper and an unsigned-byte-to-byte wrapper
+produce the 52-byte `0x00435240` instruction shape; a byte-to-int wrapper
+instead inserts a byte extension. Thus the wrapper alone does not settle
+the original type.
+
+In a private root/header copy, declaring the effect direction unsigned byte
+produces all 12 target-style facing load/byte-negate patterns; the selected
+int declaration produces none. The complete replay resolves all 2,476
+relocations and retains 126 switch destinations, but its 81,556-byte prefix
+still differs at `0x004791BD`. Combining that declaration with the existing
+six-direct-effect control yields 81,644 bytes with all 2,478 relocations
+resolved; actions 201–203 and 224–225 have the target physical spans, while
+226 and 320–321 still do not. The declaration remains a hypothesis until
+the full call chain, alternate sink implementations and shared consumers
+are reconciled. Investigate the changed tail placement and effect calls before
+selecting it.
