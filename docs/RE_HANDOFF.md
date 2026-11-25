@@ -1239,3 +1239,12 @@ resolved; actions 201–203 and 224–225 have the target physical spans, while
 the full call chain, alternate sink implementations and shared consumers
 are reconciled. Investigate the changed tail placement and effect calls before
 selecting it.
+
+Changing only the private effect declaration from unsigned byte to signed
+byte gives an identical complete relocated payload, so these observations
+do not distinguish signedness. TH075's signed byte is useful corroboration.
+A raw `.text` scan finds 12 occurrences of the sink-global address
+`0x006FBCB0`: one direct write at `0x00439062` and 11 direct reads. The
+write follows construction of the `0x004378F0` sink; the slot-3 consumer
+copies only the low direction byte. Check any indirect replacement and the
+staging-header consumers before promoting a byte-typed declaration.
