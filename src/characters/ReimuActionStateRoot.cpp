@@ -1441,7 +1441,7 @@ reimu_action9_advance:
             word_7a0 = 0;
             word_7a2 = static_cast<short>(reimu_frame_85);
             field_108 = static_cast<float>(word_7a0);
-            field_10c = static_cast<float>(reimu_frame_85);
+            field_10c = static_cast<float>(word_7a2);
         }
         return;
         case 145:

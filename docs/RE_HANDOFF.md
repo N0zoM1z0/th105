@@ -968,3 +968,11 @@ The 126 target action groups remain unsplit. The callable is 81,548 bytes
 against 81,550 in the target, and the first target difference remains at
 `0x004791BD`. This replay includes the pre-existing uncommitted action 89
 `word_7a2` read and does not establish a separate result for that edit.
+
+The Action 89 field read is now checked independently. The target reads
+the signed word at `0x0047A4AC` before converting it to float. Restoring
+the constant conversion in a private build shortens this action from the
+target's 379 bytes to 370 and introduces the `__real@42aa0000` relocation,
+which is absent from the target root. Reading `word_7a2` restores the
+379-byte action span and the relocation audit. The full root remains
+nonexact at `0x004791BD`.
