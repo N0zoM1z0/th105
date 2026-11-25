@@ -955,3 +955,16 @@ destination groups remain represented with zero split groups. Action416 is
 now 16 bytes longer than target (the previous form was 17 bytes shorter), so
 the remaining tail and effect-path layout still need alignment. No Oracle
 acceptance or full cold replay was performed.
+
+## 2026-11-25 byte-direction adapter replay
+
+VC8 left 18 calls to `emit_fighter_effect_byte_direction` out of line, which
+prevented the ordinary root relocation audit from resolving the real effect
+call. The adapter now uses `__forceinline`, preserving its unsigned-byte
+conversion and exposing the target's `0x00435240` calls directly. No accepted
+unit depends on this staging header. The direct-root LTCG and ordinary COFF
+replay agree for all 82,920 payload bytes and 2,477 qualified relocations.
+The 126 target action groups remain unsplit. The callable is 81,548 bytes
+against 81,550 in the target, and the first target difference remains at
+`0x004791BD`. This replay includes the pre-existing uncommitted action 89
+`word_7a2` read and does not establish a separate result for that edit.
