@@ -1180,3 +1180,12 @@ the direction lowers to the same negate (`0x23`) then zero-extension
 (`0xC2`) sequence. Both debug objects replay identically to their ordinary
 builds. The distinction is folded between these checkpoints; targeting
 only later scheduling cannot reverse this source-level conversion.
+
+The direction nodes remain high-level through `0x10C070A3` inside C2's
+`0x10C06FA0` processing; the earlier call at `0x10C06FE8` does not lower
+them. Hardware write watches on the same compile identify `0x10C476B1`
+as the negate-node opcode write (`0x293` to `0x23`) and `0x10C475CB` as
+the zero-extension write (`0x291` to `0xC2`). Both traced objects replay
+the complete ordinary six-direct-effect payload. The next useful question
+is which target-backed type or dataflow difference changes the high-level
+node order or lowering inputs while retaining the effect and RNG behavior.
