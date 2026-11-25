@@ -1100,3 +1100,8 @@ addition. The target loads the receiver only after the branch. The
 debugger object replays byte-for-byte with the ordinary control. Recover
 the original dependency or control-flow structure before altering the
 local expression; a later scheduler moved this node.
+
+Action 226's constant case tests and ternaries have been simplified,
+and its nested landing path is indented. The complete ordinary payload
+replays identically to the pre-cleanup build with all 2,475 relocations;
+the function remains nonexact.
