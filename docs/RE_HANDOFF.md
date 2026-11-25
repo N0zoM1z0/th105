@@ -1070,3 +1070,12 @@ action 9 from 112/112 to 116/112 and leaves the complete callable at
 full-root difference from `0x004791BD` to `0x004791E8`, but changes the
 71/72 spans and restores the extra advance call. Neither control is
 selected; investigate late tail selection and x87 cleanup together.
+
+Splitting the low advance calls only in action 0 or only in action 2
+adds 160 or 144 callable bytes in the combined control. In each build
+the action-2 physical span grows from 27 bytes to 151 or 162: C2 moves
+a copy of the common horizontal-speed handling there. Splitting both
+actions returns that span to 27, but leaves the separate 71/72 and
+advance-call regressions noted above. The combined two-action build and
+a build that also splits action 9 have identical complete replay hashes.
+This isolates the source coupling to actions 0 and 2, not action 9.
