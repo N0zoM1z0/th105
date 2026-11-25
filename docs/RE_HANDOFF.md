@@ -1255,3 +1255,16 @@ immediates and resolving direct-call destinations. Their jump destinations
 and the complete function remain to be reconciled; 226 has 102 positional
 differences under the same diagnostic, and 320 and 321 have 62 and 22.
 The scratch comparison is `build/reimu-root-work/terra-byte-direction/compare-spans.py`.
+
+With the byte-direction/six-direct control, spelling action 300's event
+check inside the advancing branch makes VC8 retain the shared event gate
+in action 300. The 81,580-byte candidate has all direct-call counts equal
+to target and 100 of 128 physical switch rows have equal lengths. After
+normalizing jump immediates and resolving call destinations, actions
+201–203, 224–225 and 320–321 have no positional byte differences; action
+226 has only two differing bytes in middle-switch metadata addresses.
+This is diagnostic, not exact credit: the complete function, metadata,
+branch destinations and remaining 28 row lengths still differ. A simpler
+single event gate reproduces the prior 81,644-byte control exactly.
+The successful control is `build/reimu-root-work/terra-byte-direction/gate-advance.cpp`;
+its byte-direction header and bindings are in the same directory.
