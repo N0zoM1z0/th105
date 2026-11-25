@@ -993,3 +993,6 @@ resulting block placement puts the gate with 320. The traced object's
 complete relocated section has the same hash and first target mismatch as
 the ordinary direct-root build. The original executable places the gate
 at `0x0047CC2B`, inside action 300, and reaches it from action 320.
+Reversing the action-320 advance condition and spelling both advance paths
+with explicit jumps each reproduce the complete ordinary section byte for
+byte, including its relocation replay. They do not change this traversal.
