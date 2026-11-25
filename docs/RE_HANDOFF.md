@@ -842,28 +842,36 @@ not exact. No Oracle acceptance or full cold replay was performed. Continue
 on the same locked `Reimu_dispatch_action_state_vslot28` function.
 
 
-## 2026-11-25 Action201 inline landing tail
+## 2026-11-25 Action201 inline landing and byte-effect argument setup
 
-Action201's crossed-surface / sequence-below-3 branch now owns its landing
-tail directly in the case instead of jumping to the shared landing label used
-by other actions. This is a natural C++ control-flow change, not assembly or
-padding. The ordinary object now contains the same 17-instruction landing
-shape as the target from the has_crossed_stage_surface_while_descending
-result through the virtual sequence setter and epilogue; relocated call and
-branch displacements are excluded from the shape comparison.
+Action201's crossed-surface / sequence-below-3 branch owns its landing tail
+directly in the case instead of jumping to the shared landing label used by
+other actions. This is a natural C++ control-flow change, not assembly or
+padding. The ordinary object contains the same 17-instruction landing shape
+as the target from the has_crossed_stage_surface_while_descending result
+through the virtual sequence setter and epilogue; relocated call and branch
+displacements are excluded from the shape comparison.
+
+The staging view now has an inline byte-direction adapter that forwards to the
+existing int-direction effect helper. Action201 effects 125 and 126 use this
+adapter, preserving their byte-width direction values until the original
+int-parameter call. Focused instruction-shape comparison confirms both
+argument-setup sequences match the target exactly through their helper calls:
+14 instructions for effect 125 and 15 for effect 126. No assembly or padding
+was introduced.
 
 Focused checks on the current ordinary COFF object:
 - Action201's first 25 bytes still match the target, including cmp ax, dx.
 - The common timer/state-guard prefix still matches for 85 consecutive bytes.
-- Action201's focused span is now 617/611 (candidate/target), six bytes over.
-  The prior shared-tail form was 591/611, twenty bytes short.
+- Action201 effects 125 and 126 each match the target instruction shape exactly.
+- Action201's focused span is now 613/611 (candidate/target), two bytes over.
 - The 126 target destination groups remain represented with zero split groups.
 
-The random effect-124 argument lowering is still being explored. The
-candidate currently zero-extends and negates the facing value through a
-different register/width sequence than the target; do not call Action201 exact
-yet. No Oracle acceptance or full cold replay was performed. Continue on the
-same locked Reimu_dispatch_action_state_vslot28 function.
+The random effect-124 argument lowering remains unresolved: its direction
+load/negation register width and temporary-stack ordering still differ from
+the target. Action201 is not exact. No Oracle acceptance or full cold replay
+was performed. Continue on the same locked Reimu_dispatch_action_state_vslot28
+function.
 
 
 ## 2026-11-25 Action416 frame-one register lifetime

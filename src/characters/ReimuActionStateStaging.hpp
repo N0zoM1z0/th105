@@ -71,6 +71,11 @@ public:
     unsigned char is_at_stage_surface();
     void face_opponent_and_flip_horizontal_velocity();
     void emit_fighter_effect(int code, float x, float y, int direction, int trailing);
+    void emit_fighter_effect_byte_direction(
+        int code, float x, float y, unsigned char direction, int trailing)
+    {
+        emit_fighter_effect(code, x, y, static_cast<int>(direction), trailing);
+    }
     signed char classify_fighter_x_boundary();
     void publish_battle_layout_scalar(float value);
     void dispatch_indexed_event_member(unsigned int event);
