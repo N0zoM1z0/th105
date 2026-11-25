@@ -749,3 +749,27 @@ layout, and the root prologue mismatch. The linked-root probe was run in
 `build/reimu-root-work/session-20261125-action414-dynamic-landing-no-frameone/ltcg`;
 no DLL execution or Oracle exactness acceptance is claimed. No full cold replay
 was run.
+
+
+## 2026-11-25 Action201 fallthrough into the shared sequence-3 tail
+
+The same locked `Reimu_dispatch_action_state_vslot28` now models Action201's
+landing path as a true C++ fallthrough into
+`reimu_action_shared_landing_sequence3_tail`: when the stage-crossing check
+and sequence window succeed, Action201 zeros vertical velocity and
+acceleration, then falls directly into the shared stage-height assignment and
+`set_sequence(landing_sequence)`. Its non-landing path is kept in the `else`
+arm and returns before the label. Actions224 and414 still branch to that same
+owner after supplying their own velocity resets. This mirrors the target's
+`0x0047AD08 -> 0x0047AD16` fallthrough and its two external incoming branches.
+
+The focused ordinary-object map reports callable target size 81550 bytes, candidate metadata start 81620 bytes, 126 target destination groups, and 0 split groups. Focused spans:
+Action201: target 611 bytes, candidate 587 bytes
+Action224: target 579 bytes, candidate 581 bytes
+Action414: target 1116 bytes, candidate 1128 bytes
+Action416: target 959 bytes, candidate 973 bytes
+
+A direct-root VC8/LTCG probe was rerun for this source in
+`build/reimu-root-work/session-20261125-action201-fallthrough-shared-tail/ltcg`.
+This remains a partial function recovery: no whole-function exactness or
+Oracle acceptance is claimed. No full cold replay was run.

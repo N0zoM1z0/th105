@@ -1658,24 +1658,25 @@ reimu_action9_advance:
                 && sequence_13e < landing_sequence) {
             velocity_y_f8 = 0.0f;
             acceleration_y_100 = 0.0f;
-            goto reimu_action_shared_landing_sequence3_tail;
         }
-        if (advance_frame_and_dispatch()) {
-            set_action(0);
-            velocity_x_f4 = 0.0f;
+        else {
+            if (advance_frame_and_dispatch()) {
+                set_action(0);
+                velocity_x_f4 = 0.0f;
+                return;
+            }
+            if (frame_counter_144 == 0 && frame_timer_142 == 0
+                    && frame_index_140 == 0 && sequence_13e == 1) {
+                velocity_x_f4 = -14.0f;
+                velocity_y_f8 = 4.0f;
+                const float effect_y = static_cast<float>(y_f0 + 80.0);
+                emit_fighter_effect(125, x_ec, effect_y, static_cast<unsigned char>(-facing_104), 1);
+                emit_fighter_effect(126, x_ec, static_cast<float>(y_f0 + 80.0),
+                    static_cast<unsigned char>(-facing_104), 1);
+                dispatch_indexed_event_member(31);
+            }
             return;
         }
-        if (frame_counter_144 == 0 && frame_timer_142 == 0
-                && frame_index_140 == 0 && sequence_13e == 1) {
-            velocity_x_f4 = -14.0f;
-            velocity_y_f8 = 4.0f;
-            const float effect_y = static_cast<float>(y_f0 + 80.0);
-            emit_fighter_effect(125, x_ec, effect_y, static_cast<unsigned char>(-facing_104), 1);
-            emit_fighter_effect(126, x_ec, static_cast<float>(y_f0 + 80.0),
-                static_cast<unsigned char>(-facing_104), 1);
-            dispatch_indexed_event_member(31);
-        }
-        return;
 reimu_action_shared_landing_sequence3_tail:
     y_f0 = reimu_stage_surface_height_at_x(this);
     set_sequence(landing_sequence);
@@ -3629,10 +3630,10 @@ reimu_action410_after_frame_gates:
         return;
         case 414: {
         const bool aerial = true;
+        frame_four = 4;
         landing_sequence = 3;
         if (!aerial || sequence_13e == landing_sequence)
             resolve_stage_surface_landing_transition();
-        frame_four = 4;
         if (aerial && ((sequence_13e == 0 && frame_index_140 >= 8)
                 || (sequence_13e == 2 && frame_index_140 >= frame_four))) {
             acceleration_y_100 = 0.6f;
@@ -3725,13 +3726,13 @@ reimu_action414_set_action9_exit:
         return;
     }
         case 416: {
+        frame_four = 4;
+        frame_one = 1;
         landing_sequence = 3;
         if (sequence_13e == landing_sequence)
             resolve_stage_surface_landing_transition();
-        frame_four = 4;
         if (sequence_13e == 0 && frame_index_140 >= frame_four)
             goto reimu_action416_gravity_frame_four;
-        frame_one = 1;
         if (sequence_13e == 2 && frame_index_140 >= frame_one)
             goto reimu_action416_gravity;
 reimu_action416_common:
