@@ -2271,11 +2271,10 @@ reimu_action_shared_landing_sequence3_tail:
         }
         if (!is_at_stage_surface() && frame_counter_144 % 5 == 0) {
             const double x_base = static_cast<double>(x_ec) + 50.0;
-            const unsigned char direction = static_cast<unsigned char>(-facing_104);
-            emit_fighter_effect(124,
+            emit_fighter_effect_byte_direction(124,
                 static_cast<float>(x_base - static_cast<float>(mt19937_next_u32() % 100)),
                 static_cast<float>(static_cast<float>(mt19937_next_u32() % 200) + y_f0),
-                direction, 1);
+                static_cast<unsigned char>(-facing_104), 1);
         }
         if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())
                 && sequence_13e < landing_sequence) {
@@ -2293,8 +2292,8 @@ reimu_action_shared_landing_sequence3_tail:
             velocity_x_f4 = -14.0f;
             velocity_y_f8 = 4.0f;
             const float effect_y = static_cast<float>(y_f0 + 80.0);
-            emit_fighter_effect(125, x_ec, effect_y, static_cast<unsigned char>(-facing_104), 1);
-            emit_fighter_effect(126, x_ec, static_cast<float>(y_f0 + 80.0),
+            emit_fighter_effect_byte_direction(125, x_ec, effect_y, static_cast<unsigned char>(-facing_104), 1);
+            emit_fighter_effect_byte_direction(126, x_ec, static_cast<float>(y_f0 + 80.0),
                 static_cast<unsigned char>(-facing_104), 1);
             dispatch_indexed_event_member(31);
         }

@@ -921,6 +921,24 @@ COFF build; the shared-tail change shifted register allocation slightly.
 No Oracle acceptance or full cold replay was performed. Continue on the same
 locked Reimu_dispatch_action_state_vslot28 function.
 
+## 2026-11-25 Action224 byte-direction effect setup
+
+Action224 effects 124, 125, and 126 now use the byte-direction adapter. The
+focused normalized instruction comparison is reduced to three case-entry
+mismatches: the candidate uses `test ax, ax` and an immediate compare against
+1, while the target uses the preserved zero in DX, materializes EDI=3, and
+restores ECX=1 after the stage-surface helper call. All remaining 144
+instruction signatures, including the three effect argument setups, match.
+The focused span is 570/579 bytes (candidate/target), 147/149 instructions.
+This is not an exact case or whole-root claim; the remaining mismatch is now
+isolated to the root prelude's DX/EDI/ECX register lifetimes and the initial
+sequence gate.
+
+The ordinary COFF map still represents 126 target destination groups with
+zero split groups. No Oracle acceptance or full cold replay was performed.
+Continue on the same locked Reimu_dispatch_action_state_vslot28 function.
+
+
 ## 2026-11-25 Action416 frame-one register lifetime
 
 Action416's frame-one threshold is now a short register local assigned from
