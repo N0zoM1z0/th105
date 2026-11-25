@@ -1148,3 +1148,12 @@ debugger's complete replay matches the ordinary object. The tail-pair
 comparison trace timed out before reaching the selected pair; the
 register difference is not yet proof of why the merger retained both.
 Trace the cursor immediately before action 202 next.
+
+The last allocator requests before action 202 include action 201's
+effect-126 direction, followed by action 202's virtual-table base. A
+private control omitting that effect changes action 202's target search
+start from EAX to ECX; ECX is occupied, so VC8 selects EDX and action 203
+then branches to action 202's landing tail. Both control traces reproduce
+their ordinary objects. This omission removes a real target call and is
+only a causal diagnostic. Recover the action-201 direction expression
+without dropping the effect, then check all landing owners.
