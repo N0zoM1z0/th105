@@ -131,6 +131,31 @@ class CompactSwitchTests(unittest.TestCase):
             with self.subTest(offset=offset), self.assertRaisesRegex(ValueError, 'unsupported instruction'):
                 payload.inspect(raw, raw, address, size, updated, relocs)
 
+    def test_scheduled_edi_five_and_lea_ebp_preserve_flags(self):
+        # cmp eax, 1; mov edi, 5; lea ebp, [edi + 0x73]
+        compare = bytes.fromhex('83f801 bf05000000 8d6f73')
+        body, address, size, contract, relocs = fixture(compare=compare)
+        payload.inspect(body, body, address, size, contract, relocs)
+        # Clobbering selector eax with lea eax, [edi + 0x73] must fail.
+        bad, updated = changed(body, contract, 8, bytes.fromhex('8d4773'))
+        with self.assertRaisesRegex(ValueError, 'unsupported instruction'):
+            payload.inspect(bad, bad, address, size, updated, relocs)
+
+    def test_cfg_register_bound_across_early_return_and_negative_clobber(self):
+        # 3x nop; mov ebp, 1; test eax, eax; jne +1; ret; cmp eax, ebp; ja default; ...
+        compare = bytes.fromhex('909090 bd01000000 85c0 7501 c3 3bc5')
+        body, address, size, contract, relocs = fixture(compare=compare)
+        payload.inspect(body, body, address, size, contract, relocs)
+        # Wrong constant (mov ebp, 2) must fail.
+        wrong, updated = changed(body, contract, 4, b'\x02')
+        with self.assertRaisesRegex(ValueError, 'reaching constant'):
+            payload.inspect(wrong, wrong, address, size, updated, relocs)
+        # Path bypassing mov ebp, 1 must fail.
+        bypass_compare = bytes.fromhex('90 85c0 7405 bd01000000 7501 c3 3bc5')
+        b2, a2, s2, c2, r2 = fixture(compare=bypass_compare)
+        with self.assertRaisesRegex(ValueError, 'reaching constant'):
+            payload.inspect(b2, b2, a2, s2, c2, r2)
+
     def test_local_relocations_cannot_be_missing_duplicated_or_added_to_map(self):
         b, a, n, c, r = fixture()
         bad = [r[:-1], r + [r[-1]], r + [(c['map_offset'], 6, '$FAKE')],

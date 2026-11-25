@@ -119,6 +119,15 @@ inline member on that object instead of `owner.member.field = value`.
 the loop's pointer induction variable. A local such as `row = items[i]` can
 move that choice. Both were proven on `CTitle::render` 0x425740.
 
+**Post-switch `advance_frame_and_dispatch()` places the shared `fstp st(0); call advance; ret` tail in `case 9` (or a later `break` case).**
+In 12 of the 13 roster Fighter `+0x28` roots (and in Iku's `case 781`, the one exception), `case 0` never owns `fstp st(0); mov ecx, esi; call 0x4351c0; ret` and `case 9` does not hoist `mov ecx, esi` above `je`. Putting `advance_frame_and_dispatch();` immediately after the `switch` and exiting `case 0, 2, 4, 5, 9` with `break;` causes `c2.dll:0x10B281E0` to place the shared `advance` block right after `case 9` *before* x87 lowering (`0x10C28970`), which inserts `fstp st(0)` at `0x47973A`, blocks `mov ecx, esi` hoisting in `case 9`, and automatically keeps `6/7/8/9/306` distinct from `208..223`. Proven on `Reimu_dispatch_action_state_vslot28` `0x00478FA0` (81,550 / 82,924 bytes).
+
+**`c2.dll:0x10B30B97` tail-merge `saved_bytes` accumulator separates `case 214` from `case 404`.**
+Under `/O2`, `0x10B307E0` rejects merging a 2-byte `call eax; jmp L_ret` tail (`2 <= 20`) unless the retained branch's `[branch + 0x1c]` (`saved_bytes`, capped at 20) was already raised by an earlier >20-byte merge. An artificial shared label placed right after `case 201` raises `case 201`'s `saved_bytes` to 20 before `case 214` is scanned, pulling both `214` and `404` onto `case 201`'s label where `0x10B30D90(214)` then swaps `214` into `404`. Inlining the landing statements in `case 226` and `case 414` raises `case 201`'s `saved_bytes` *after* `case 214` and *before* `case 404`, leaving `214` on `L_ret` while pulling `404`/`414` onto `case 201`'s label. Proven on `Reimu_dispatch_action_state_vslot28` `0x00478FA0`.
+
+**`signed char` direction parameter enables `push ebx` (`-1`) reuse.**
+Declaring `spawn_owned_object_via_manager`'s direction parameter as `signed char` (matching `facing_104`) lets VC8 emit 1-byte `push ebx` (reusing prologue `or ebx, -1`) instead of 5-byte `push 0xff` in Reimu action `730` (`0x0048C37A`). Proven on `Reimu_dispatch_action_state_vslot28` `0x00478FA0`.
+
 **Extra checked-iterator range test after `begin()`.** A `+=` range check
 directly after the `begin()` check means `begin() + n`. Look for a seek or
 index helper called with 0. Proven on `CScenarioData::select_label` 0x455490, which also needed its search loop

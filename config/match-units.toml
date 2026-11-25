@@ -31125,3 +31125,66 @@ dir32_targets = [
  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=g_render_mode_manager_device_base",
 ]
+
+[units.neon-reimu-action-state-root]
+kind = "probe"
+source = "src/characters/ReimuActionStateRoot.cpp"
+object = "build/match-units/Neon_ReimuActionStateRoot.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Exact VC8 SP1 comparison of Reimu Fighter +0x28 action-state root 0x00478FA0 covering all 81550 callable bytes and the complete 82924-byte envelope with all 11 owned switch tables."
+
+[[units.neon-reimu-action-state-root.functions]]
+address = "0x00478FA0"
+symbol_base = "?run_action_dispatch_root@ReimuActionStatePreludeView@th105@@QAEXXZ"
+rel32_targets = [
+  "?add_scaled_counter@ReimuActionStatePreludeView@th105@@QAEHH@Z=0x00478DF0",
+  "?adjust_counter_482@ReimuActionStatePreludeView@th105@@QAEXFH@Z=0x0046BF30",
+  "?advance_frame_and_dispatch@ReimuActionStatePreludeView@th105@@QAEEXZ=0x004351C0",
+  "?advance_secondary_event_effect_cycle@ReimuActionStatePreludeView@th105@@QAEXXZ=0x00473F90",
+  "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
+  "?classify_fighter_x_boundary@ReimuActionStatePreludeView@th105@@QAECXZ=0x00435910",
+  "?copy_action_word_176_to_174@ReimuActionStatePreludeView@th105@@QAEXXZ=0x0045B250",
+  "?dispatch_character_wave_handle@ReimuActionStatePreludeView@th105@@QAEXI@Z=0x0045C030",
+  "?dispatch_indexed_event_member@ReimuActionStatePreludeView@th105@@QAEXI@Z=0x004359F0",
+  "?dispatch_indexed_sequence_window_45c8b0@ReimuActionStatePreludeView@th105@@QAEXCHH@Z=0x0045DEB0",
+  "?emit_fighter_effect@ReimuActionStatePreludeView@th105@@QAEXHMMEH@Z=0x00435240",
+  "?face_opponent_and_flip_horizontal_velocity@ReimuActionStatePreludeView@th105@@QAEXXZ=0x00478E60",
+  "?finalize_sequence_entry@ReimuActionStatePreludeView@th105@@QAEXH@Z=0x0045D110",
+  "?has_crossed_stage_surface_while_descending@ReimuActionStatePreludeView@th105@@QAEHXZ=0x005F9310",
+  "?is_at_stage_surface@ReimuActionStatePreludeView@th105@@QAEEXZ=0x00435DC0",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
+  "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
+  "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
+  "?publish_battle_layout_scalar@ReimuActionStatePreludeView@th105@@QAEXM@Z=0x004359D0",
+  "?publish_texture_state@ReimuActionStatePreludeView@th105@@QAEXCF@Z=0x0045F560",
+  "?reimu_stage_surface_height_at_x@th105@@YIMPAVReimuActionStatePreludeView@1@@Z=0x00435D60",
+  "?reset_fighter_action_scratch@ReimuRecoverySpriteView@th105@@QAEXXZ=0x00435110",
+  "?resolve_stage_surface_landing_transition@ReimuActionStatePreludeView@th105@@QAEEXZ=0x00473DD0",
+  "?selector_random_range@ReimuRandomReceiverView@th105@@QAEHHH@Z=0x004351A0",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?set_word_48a@ReimuActionStatePreludeView@th105@@QAEXF@Z=0x004776C0",
+  "?spawn_owned_object_via_manager@ReimuActionStatePreludeView@th105@@QAEHHMMCHHH@Z=0x00465190",
+  "?spawn_owned_object_via_manager@ReimuActionStatePreludeView@th105@@QAEHHMMCHPBMH@Z=0x00465190",
+  "?sqrt_float_value@th105@@YAMM@Z=0x00478DD0",
+  "?try_dispatch_directional_action_208_210@ReimuActionStatePreludeView@th105@@QAEEH@Z=0x00478EE0",
+  "?update_common_action_state@ReimuActionStatePreludeView@th105@@QAEXXZ=0x004740C0",
+  "?zero_velocity_acceleration@ReimuActionStatePreludeView@th105@@QAEXXZ=0x0045AF40",
+  "__ftol2_sse=0x0068A1A0",
+]
+dir32_targets = [
+  "__real@4062000000000000=_reimu_entry_006c3cf8",
+  "__real@406c400000000000=_aya_action_state_006c3d00",
+]
+switch_payload = { size = 82924, sha256 = "7b5fd9cde0df608689a7d13b8921c701597a5b952a19b75f0bfe9990cd141efc", alignment_hex = "8bff", table_offset = 81552, table_entries = 45, map_offset = 81732, map_size = 227, load_offset = 599, jump_offset = 606, additional_tables = [
+  { alignment_hex = "90", table_offset = 81960, table_entries = 50, map_offset = 82160, map_size = 251, load_offset = 15584, jump_offset = 15591 },
+  { alignment_hex = "90", table_offset = 82412, table_entries = 4, jump_offset = 58694 },
+  { alignment_hex = "", table_offset = 82428, table_entries = 33, map_offset = 82560, map_size = 238, load_offset = 60135, jump_offset = 60142 },
+  { alignment_hex = "8bff", table_offset = 82800, table_entries = 7, jump_offset = 68798 },
+  { alignment_hex = "", table_offset = 82828, table_entries = 4, jump_offset = 74239 },
+  { alignment_hex = "", table_offset = 82844, table_entries = 4, jump_offset = 75764 },
+  { alignment_hex = "", table_offset = 82860, table_entries = 4, jump_offset = 77565 },
+  { alignment_hex = "", table_offset = 82876, table_entries = 4, jump_offset = 78909 },
+  { alignment_hex = "", table_offset = 82892, table_entries = 4, jump_offset = 79768 },
+  { alignment_hex = "", table_offset = 82908, table_entries = 4, jump_offset = 80136 },
+] }

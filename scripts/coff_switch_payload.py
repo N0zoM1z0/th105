@@ -34,7 +34,7 @@ NONVOLATILE_ALIASES = {
 def validate_contract(contract, code_size):
     if not isinstance(contract, dict) or not PAYLOAD_FIELDS <= contract.keys():
         raise ValueError('compact switch requires exact payload fields')
-    if type(code_size) is not int or not 0 < code_size <= 65536:
+    if type(code_size) is not int or not 0 < code_size <= 262144:
         raise ValueError('compact switch requires a bounded complete code size')
     if not re.fullmatch('[0-9a-f]{64}', str(contract['sha256'])):
         raise ValueError('compact switch requires a full target payload hash')
@@ -90,7 +90,7 @@ def inspect_register_bound(ins, bound_index, expected):
                     or (inst.group(capstone.CS_GRP_CALL)
                         and (inst.operands[0].type != x.X86_OP_IMM
                              or ins[0].address <= inst.operands[0].imm < code_end))):
-                break
+                return None
             if aliases.isdisjoint(inst.regs_access()[1]):
                 continue
             if (inst.mnemonic == 'mov' and inst.operands[0].type == x.X86_OP_REG
@@ -101,6 +101,55 @@ def inspect_register_bound(ins, bound_index, expected):
                 return {step.address for step in ins[index + 1:bound_index + 1]}
             break
     raise ValueError('compact switch register bound lacks a reaching constant')
+
+
+def verify_cfg_register_bound(address, code_size, by, dispatches, tail_jumps, bound_addr, reg, expected):
+    aliases = NONVOLATILE_ALIASES.get(reg)
+    if not aliases:
+        raise ValueError('compact switch register bound lacks a reaching constant')
+    code_end = address + code_size
+    # Forward dataflow lattice over reachable CFG: None = unvisited, int = exact constant, 'TOP' = unknown.
+    in_state = {address: 'TOP'}
+    worklist = [address]
+
+    def merge(dst, val):
+        prev = in_state.get(dst)
+        if prev is None:
+            in_state[dst] = val
+            worklist.append(dst)
+        elif prev != val and prev != 'TOP':
+            in_state[dst] = 'TOP'
+            worklist.append(dst)
+
+    while worklist:
+        at = worklist.pop()
+        val = in_state[at]
+        inst = by[at]
+        if inst.mnemonic in ('ret', 'int3', 'ud2') or at in tail_jumps:
+            continue
+        if at in dispatches:
+            for dst in dispatches[at]:
+                merge(dst, val)
+            continue
+        out_val = val
+        if inst.group(capstone.CS_GRP_CALL):
+            if inst.operands[0].type == x.X86_OP_IMM and address <= inst.operands[0].imm < code_end:
+                out_val = 'TOP'
+        elif not aliases.isdisjoint(inst.regs_access()[1]):
+            if (inst.mnemonic == 'mov' and len(inst.operands) == 2
+                    and inst.operands[0].type == x.X86_OP_REG and inst.operands[0].reg == reg
+                    and inst.operands[1].type == x.X86_OP_IMM):
+                out_val = inst.operands[1].imm
+            else:
+                out_val = 'TOP'
+        if inst.group(capstone.CS_GRP_JUMP):
+            merge(inst.operands[0].imm, out_val)
+            if inst.mnemonic == 'jmp':
+                continue
+        merge(at + inst.size, out_val)
+
+    if in_state.get(bound_addr) != expected:
+        raise ValueError('compact switch register bound lacks a reaching constant')
 
 
 def inspect_table(target, address, start, contract, relocations, ins, by):
@@ -147,18 +196,26 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
     guard = ins[number - 1]
     scheduled = []
     bound_index = number - 2
-    # VC8 can schedule flag-preserving saves and stores between CMP and JA.
-    while bound_index > 0 and ins[bound_index].mnemonic in ('push', 'mov', 'fst', 'fstp'):
+    # VC8 can schedule flag-preserving saves, stores and address setup between CMP and JA.
+    while bound_index > 0 and ins[bound_index].mnemonic in ('push', 'mov', 'lea', 'fst', 'fstp'):
         store = ins[bound_index]
         dest = store.operands[0]
         if dest.type == x.X86_OP_REG and dest.reg == x.X86_REG_EDI:
             saves_edi = store.mnemonic == 'push' and selector != x.X86_REG_ESP
-            sets_one = (store.mnemonic == 'mov' and selector != x.X86_REG_EDI
-                        and store.operands[1].type == x.X86_OP_IMM and store.operands[1].imm == 1)
-            if saves_edi or sets_one:
+            sets_const = (store.mnemonic == 'mov' and selector != x.X86_REG_EDI
+                          and store.operands[1].type == x.X86_OP_IMM and store.operands[1].imm in (1, 5))
+            if saves_edi or sets_const:
                 scheduled.append(store)
                 bound_index -= 1
                 continue
+        if (store.mnemonic == 'lea' and dest.type == x.X86_OP_REG
+                and dest.reg == x.X86_REG_EBP and selector != x.X86_REG_EBP
+                and store.operands[1].type == x.X86_OP_MEM
+                and store.operands[1].mem.base == x.X86_REG_EDI
+                and not store.operands[1].mem.index and not store.operands[1].mem.segment):
+            scheduled.append(store)
+            bound_index -= 1
+            continue
         if (dest.type != x.X86_OP_MEM or dest.mem.index or dest.mem.segment
                 or not 0 <= dest.mem.disp <= 65535):
             raise ValueError('unsupported instruction between compact-switch bound and guard')
@@ -180,8 +237,12 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
             or bound.address <= guard.operands[0].imm < jump.address + jump.size):
         raise ValueError('compact switch bound/index/default disagree')
     limit = bound.operands[1]
+    deferred_bound = None
     if limit.type == x.X86_OP_REG:
         protected_bound = inspect_register_bound(ins, bound_index, case_count - 1)
+        if protected_bound is None:
+            protected_bound = set()
+            deferred_bound = (bound.address, limit.reg, case_count - 1)
     elif limit.type == x.X86_OP_IMM and limit.imm == case_count - 1:
         protected_bound = set()
     else:
@@ -194,7 +255,7 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
             raise ValueError('compact switch address lacks its local DIR32 proof')
     destinations = struct.unpack_from('<' + 'I' * contract['table_entries'], target, table)
     forbidden = {instruction.address for instruction in [*relocated, *scheduled, *dispatch_prefix, guard]}
-    return jump.address, destinations, forbidden | protected_bound
+    return jump.address, destinations, forbidden | protected_bound, deferred_bound
 
 
 def virtual_tail_setup(ins, index):
@@ -255,13 +316,17 @@ def inspect(canonical, target, address, code_size, contract, relocations, tail_t
         raise ValueError('switch code does not decode through its complete boundary')
     dispatches = {}
     forbidden = set()
+    deferred_bounds = []
     start = code_size
     for table in tables:
-        jump, destinations, protected = inspect_table(target, address, start, table, relocations, ins, by)
+        jump, destinations, protected, deferred = inspect_table(
+            target, address, start, table, relocations, ins, by)
         if jump in dispatches:
             raise ValueError('compact switch dispatch is shared by multiple tables')
         dispatches[jump] = destinations
         forbidden.update(protected)
+        if deferred is not None:
+            deferred_bounds.append(deferred)
         start = table['table_offset'] + 4 * table['table_entries'] + table.get('map_size', 0)
     virtual_tails = {address + offset for offset in contract.get('virtual_tail_jumps', [])}
     if virtual_tails:
@@ -305,6 +370,9 @@ def inspect(canonical, target, address, code_size, contract, relocations, tail_t
                     raise ValueError('call bypasses the compact-switch guard or enters an instruction')
     if indirect != dispatches.keys() | virtual_tails:
         raise ValueError('unsupported additional indirect branch in compact-switch code')
+    for bound_addr, reg, expected in deferred_bounds:
+        verify_cfg_register_bound(
+            address, code_size, by, dispatches, tail_jumps, bound_addr, reg, expected)
     # Close every reachable path without interpreting metadata as executable code.
     pending, reached = [address], set()
     while pending:
