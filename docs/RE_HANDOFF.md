@@ -638,3 +638,26 @@ switches, zero buffer-partition mismatches). The first target mismatch remains
 execution is claimed. Continue on this same function; next investigate the
 three object-spawn argument/register lifetimes and the Action320/321 shared
 tail without weakening semantics. No full cold replay was run.
+
+## 2026-11-25 Action404/406 branch-local wave increment recovery
+
+Still the same `Reimu_dispatch_action_state_vslot28` callable. The target has
+two `dispatch_character_wave_handle` calls in each of Actions404 and406; the
+prior C++ caused VC8 to tail-merge each pair into one call. A shared
+function-scope `register int reimu_frame_one = 1`, used by the first branch's
+`word_732` increment and by Action416's frame-one checks, preserves the two
+branch tails without ASM, padding, or helper extraction.
+
+Focused map now reports Action404 1535/1535 and Action406 1413/1413. The whole
+callable prefix remains 81,552/81,550 bytes; all 126 destination groups remain
+represented with zero split groups. A fresh direct-root VC8 LTCG build
+completed; the ordinary object and linked payload agree exactly. The
+replayed direct-call field count improved from 1,186 to 1,188 (one below the
+target's 1,189). The target/candidate `dispatch_character_wave_handle` call
+count now agrees at 77. Action404/406 span equality does not prove byte
+identity; the first root mismatch remains at `0x00478FB2` in the prologue.
+
+Unresolved frontiers remain Action320 90/119, Action321 153/140, Action414
+1102/1116, Action416 942/959, and the Action650/651 ownership split. Continue
+only in this function. No full cold replay or Oracle exactness acceptance was
+performed.

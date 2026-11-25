@@ -53,6 +53,8 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
 
     int landing_sequence;
     unsigned char reimu_directional_result;
+    register int frame_four = 4;
+    register int frame_one = 1;
     const int selected_action = action_13c;
     const unsigned int reimu_shared_event_index = selected_action == 321 ? 28u : 27u;
     goto reimu_action_dispatch_switch;
@@ -3650,7 +3652,7 @@ reimu_action414_set_action9_exit:
             return;
         }
         if (sequence_13e == 0 && frame_timer_142 == 0) {
-            if (frame_index_140 == (aerial ? 4 : 6) && byte_750 != 0) {
+            if (frame_index_140 == (aerial ? frame_four : 6) && byte_750 != 0) {
                 register int frame3_direction =
                     static_cast<unsigned char>(facing_104);
                 emit_fighter_effect(62,
@@ -3664,7 +3666,7 @@ reimu_action414_set_action9_exit:
                 action_slot(this);
                 return;
             }
-            if (frame_timer_142 == 0 && frame_index_140 == (aerial ? 5 : 8)) {
+            if (frame_timer_142 == 0 && frame_index_140 == (aerial ? frame_four + frame_one : 8)) {
                 if (aerial)
                     add_scaled_counter(50);
                 const float delta_x = static_cast<float>(
@@ -3693,7 +3695,7 @@ reimu_action414_set_action9_exit:
             return;
         }
         if (sequence_13e == 2 && frame_timer_142 == 0
-                && frame_index_140 == (aerial ? 1 : 2)) {
+                && frame_index_140 == (aerial ? frame_one : 2)) {
             if (aerial)
                 add_scaled_counter(50);
             const float delta_x = static_cast<float>(
@@ -3719,8 +3721,6 @@ reimu_action414_set_action9_exit:
         return;
     }
         case 416: {
-        register int frame_four = 4;
-        register int frame_one = 1;
         if (sequence_13e == 3)
             resolve_stage_surface_landing_transition();
         if (sequence_13e == 0 && frame_index_140 >= frame_four)
