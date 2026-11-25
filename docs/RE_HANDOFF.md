@@ -842,6 +842,30 @@ not exact. No Oracle acceptance or full cold replay was performed. Continue
 on the same locked `Reimu_dispatch_action_state_vslot28` function.
 
 
+## 2026-11-25 Action201 inline landing tail
+
+Action201's crossed-surface / sequence-below-3 branch now owns its landing
+tail directly in the case instead of jumping to the shared landing label used
+by other actions. This is a natural C++ control-flow change, not assembly or
+padding. The ordinary object now contains the same 17-instruction landing
+shape as the target from the has_crossed_stage_surface_while_descending
+result through the virtual sequence setter and epilogue; relocated call and
+branch displacements are excluded from the shape comparison.
+
+Focused checks on the current ordinary COFF object:
+- Action201's first 25 bytes still match the target, including cmp ax, dx.
+- The common timer/state-guard prefix still matches for 85 consecutive bytes.
+- Action201's focused span is now 617/611 (candidate/target), six bytes over.
+  The prior shared-tail form was 591/611, twenty bytes short.
+- The 126 target destination groups remain represented with zero split groups.
+
+The random effect-124 argument lowering is still being explored. The
+candidate currently zero-extends and negates the facing value through a
+different register/width sequence than the target; do not call Action201 exact
+yet. No Oracle acceptance or full cold replay was performed. Continue on the
+same locked Reimu_dispatch_action_state_vslot28 function.
+
+
 ## 2026-11-25 Action416 frame-one register lifetime
 
 Action416's frame-one threshold is now a short register local assigned from

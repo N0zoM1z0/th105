@@ -1649,6 +1649,9 @@ reimu_action9_advance:
                 && sequence_13e < landing_sequence) {
             velocity_y_f8 = 0.0f;
             acceleration_y_100 = 0.0f;
+            y_f0 = reimu_stage_surface_height_at_x(this);
+            set_sequence(landing_sequence);
+            return;
         }
         else {
             if (advance_frame_and_dispatch()) {
