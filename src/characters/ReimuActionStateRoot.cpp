@@ -54,7 +54,19 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
     int landing_sequence;
     unsigned char reimu_directional_result;
     const int selected_action = action_13c;
-    const int reimu_shared_event_index = selected_action == 321 ? 28 : 27;
+    const unsigned int reimu_shared_event_index = selected_action == 321 ? 28u : 27u;
+    goto reimu_action_dispatch_switch;
+reimu_action_shared_event_tail:
+    if (selected_action == 321) {
+        if (frame_timer_142 != 0 || frame_index_140 != 2)
+            return;
+    } else if (frame_timer_142 != 0 || frame_index_140 != 3) {
+        return;
+    }
+    dispatch_indexed_event_member(reimu_shared_event_index);
+    byte_47e = 0;
+    return;
+reimu_action_dispatch_switch:
     switch (selected_action) {
     case 0: {
         resolve_stage_surface_landing_transition();
@@ -2383,12 +2395,7 @@ reimu_landed_action_10:
             set_action(0);
     }
 reimu_action_300_320_event_gate:
-    if (frame_timer_142 != 0 || frame_index_140 != 3)
-        return;
-reimu_action_shared_event_tail:
-    dispatch_indexed_event_member(reimu_shared_event_index);
-    byte_47e = 0;
-    return;
+    goto reimu_action_shared_event_tail;
 
 // Shared source fragment for the first middle-table group; no function boundary.
         case 301:
@@ -2828,9 +2835,7 @@ reimu_action_320_advance:
         }
         if (advance_frame_and_dispatch())
             set_action(0);
-        if (frame_timer_142 == 0 && frame_index_140 == 2)
-            goto reimu_action_shared_event_tail;
-        return;
+        goto reimu_action_shared_event_tail;
         case 322:
         resolve_stage_surface_landing_transition();
         if (try_dispatch_directional_action_208_210(1))

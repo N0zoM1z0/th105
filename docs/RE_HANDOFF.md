@@ -564,3 +564,33 @@ A byte-sized event-index variant also worsened the case map. Keep the
 validated `const int` runtime-selected index variant. Continue on this same
 root; next focus is the prologue register allocation and the remaining
 Action320/321 tail placement. No full cold replay was run.
+
+## 2026-11-25 shared-event tail layout experiment (continuation of vslot28)
+
+The active function remains `Reimu_dispatch_action_state_vslot28` at
+`0x00478FA0`; no other callable has been selected. A source-only control-flow
+experiment hoisted the Action300/320/321 event gate into one shared tail whose
+frame check depends on the selected action. This reduced the linked callable
+prefix to 81,552 bytes versus the target's 81,550, with all 126 target switch
+destination groups present and no split groups. It is only a length/layout
+metric, not byte exactness.
+
+Focused spans for this experiment: Action320 90/119, Action321 153/140,
+Action410 975/975, Action414 1102/1116, Action416 942/959, Action540 653/653,
+Action616 1085/1085, Action650 480/515, Action651 624/589. The 320/321 shared
+tail currently merges an `advance_frame_and_dispatch` path that the target
+keeps distinct; the candidate direct-call count is 1,186 versus 1,189 in the
+target. Do not accept the short prefix as exactness.
+
+A direct-root VC8 `/O2 /GS- /GL + LTCG` build completed. The ordinary COFF and
+linked payload replay agree byte-for-byte (82,924 bytes, 1,283 HIGHLOW fields,
+11 switches, zero ordinary buffer-partition mismatches). The target comparison
+still fails at the start of the callable: `0x00478FB2` target `66` versus
+candidate `33`, caused by the compiler choosing `xor edi,edi` plus a register
+store for `word_7a0`, while the target uses an immediate zero store and keeps
+`edi=0x55`. No Oracle exactness acceptance or DLL execution is claimed.
+
+Next work remains inside this same function: recover the target's early
+register/stack lifetime and its three distinct call sites without padding,
+ASM, or synthetic helpers; then continue the 320/321 tail and 414/416 source
+shape. No full cold replay was run.
