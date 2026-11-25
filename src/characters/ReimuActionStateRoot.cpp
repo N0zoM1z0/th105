@@ -53,6 +53,7 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
 
     register int frame_threshold;
     register int frame_one;
+    register short frame_zero;
     register int landing_sequence;
     unsigned char reimu_directional_result;
     const int selected_action = action_13c;
@@ -1636,8 +1637,9 @@ reimu_action9_advance:
         }
         return;
         case 201:
+        frame_zero = static_cast<unsigned char>(facing_104);
         landing_sequence = 3;
-        if (sequence_13e == 0 || sequence_13e == landing_sequence)
+        if (sequence_13e == frame_zero || sequence_13e == landing_sequence)
             resolve_stage_surface_landing_transition();
         if (sequence_13e == 1 || sequence_13e == 2)
             velocity_y_f8 = static_cast<float>(velocity_y_f8 - 0.5);

@@ -789,3 +789,23 @@ Action508 1896/1895, Action512 1845/1844, Action513 1890/1889. Action414 remains
 non-exact: its threshold comparison still folds to immediate 4 rather than
 materializing EBP=4 at the target point. Continue only on this root function.
 No full cold replay or Oracle acceptance was performed.
+
+
+## 2026-11-25 Action201 facing-dependent sequence gate
+
+The Action201 entry comparison is against the fighter's current facing byte,
+not a constant zero. The target loads `facing_104` into a register and compares
+the sequence word against it before the sequence-3 landing check. The natural
+root now models that with a function-local `frame_zero` snapshot assigned from
+`static_cast<unsigned char>(facing_104)`. The two Action201 effects 125/126
+also pass the raw facing byte, matching the target's `movzx`/push argument
+flow; the separate effect-124 direction remains independently modelled.
+
+The focused ordinary-object map now reports Action201 595/611 bytes (previous
+constant-zero form was 587/611), Action224 581/579, Action410 975/975,
+Action414 1128/1116, and Action416 942/959. The root still has 126 target
+destination groups represented with zero split groups. The Action201 compare
+currently uses CX rather than target DX, and the shared landing tail remains
+laid out after the Action414 gravity path instead of at the Action201 fallthrough.
+This is a verified source/COFF checkpoint, not whole-function exactness; no
+Oracle acceptance or full cold replay was performed.
