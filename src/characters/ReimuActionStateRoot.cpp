@@ -1088,140 +1088,31 @@ reimu_action9_advance:
     }
 // Shared source fragment; include only within the matching staging context.
         case 77: {
-// Shared source fragment; include only within the matching staging context.
-    if (77 == 71 || 77 == 74) {
+        angle_12c = static_cast<float>(angle_12c - 30.0);
+        velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
+            dispatch_indexed_event_member(22);
+            // The target truncates each velocity before its wrapping WORD product.
+            word_730 = static_cast<short>(static_cast<short>(static_cast<int>(velocity_x_f4)) * 100);
+            word_732 = static_cast<short>(static_cast<short>(static_cast<int>(velocity_y_f8)) * 100);
+            zero_velocity_acceleration();
+            y_f0 = reimu_stage_surface_height_at_x(this);
+            set_action(97);
+            angle_12c = 0.0f;
+            publish_battle_layout_scalar(2.0f);
+            reinterpret_cast<ReimuRecoverySpriteView *>(
+                reinterpret_cast<unsigned char *>(this) + 4)->reset_fighter_action_scratch();
+            return;
+        }
         if (frame_counter_144 == 0 && frame_timer_142 == 0
                 && frame_index_140 == 0 && sequence_13e == 1 && word_7a4 == 0) {
             word_7a4 = 1;
             spawn_owned_object_via_manager(951, x_ec, y_f0,
                 static_cast<unsigned char>(facing_104), 1, 0, 0);
         }
-    }
-    if ((77 == 71 || 77 == 72 || 77 == 74)
-            && sequence_13e == 1 && velocity_y_f8 < 2.0f) {
-        next_sequence_block();
-        return;
-    }
-
-    if (77 == 74) {
-        if (classify_fighter_x_boundary() && velocity_x_f4 <= -25.0) {
-            set_action(76);
-            return;
-        }
-        if (classify_fighter_x_boundary() && velocity_x_f4 <= -15.0) {
-            set_action(78);
-            return;
-        }
-    }
-    if ((77 == 76 && sequence_13e > 0) || 77 == 77)
-        angle_12c = static_cast<float>(angle_12c - 30.0);
-    if (77 != 73 && 77 != 75) {
-        velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
-        if (77 == 71 && velocity_y_f8 > 0.0f)
-            velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
-    }
-
-    if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-        if (77 >= 76)
-            dispatch_indexed_event_member(22);
-        // The target truncates each velocity before its wrapping WORD product.
-        word_730 = static_cast<short>(static_cast<short>(static_cast<int>(velocity_x_f4)) * 100);
-        word_732 = static_cast<short>(static_cast<short>(static_cast<int>(velocity_y_f8)) * 100);
-        zero_velocity_acceleration();
-        y_f0 = reimu_stage_surface_height_at_x(this);
-        set_action(97);
-        if (77 == 76 || 77 == 77)
-            angle_12c = 0.0f;
-        publish_battle_layout_scalar(77 == 73 || 77 == 75
-            ? 5.0f : 77 == 76 ? 4.0f : 2.0f);
-        if (77 == 76 || 77 == 77)
-            reinterpret_cast<ReimuRecoverySpriteView *>(
-                reinterpret_cast<unsigned char *>(this) + 4)->reset_fighter_action_scratch();
-        if (77 < 76)
-            dispatch_indexed_event_member(22);
-        return;
-    }
-
-    if (77 == 75) {
-        if (classify_fighter_x_boundary() && velocity_x_f4 <= -25.0) {
-            set_action(76);
-            return;
-        }
-        if (classify_fighter_x_boundary() && velocity_x_f4 <= -15.0) {
-            set_action(78);
-            return;
-        }
-    }
-    if (77 == 73 || 77 == 75) {
         advance_frame_and_dispatch();
-        if (frame_counter_144 == 0 && frame_timer_142 == 0
-                && frame_index_140 == 0 && sequence_13e == 1) {
-            if (word_7a4 == 0) {
-                word_7a4 = 1;
-                spawn_owned_object_via_manager(951, x_ec, y_f0,
-                    static_cast<unsigned char>(facing_104), 1, 0, 0);
-            }
-            if (velocity_y_f8) {
-                if (!velocity_x_f4) {
-                    set_sequence(3);
-                    return;
-                }
-                set_sequence(2);
-                return;
-            }
-        }
-        if (77 == 75)
-            return;
-        word_730 = static_cast<short>(word_730 - 1);
-        if (word_730 < 0)
-            word_730 = 0;
-    } else if (77 == 71 && word_730 > 0) {
-        --word_730;
-    }
-    if (77 == 71 || 77 == 72 || 77 == 73) {
-        if (classify_fighter_x_boundary() && velocity_x_f4 < 0.0f) {
-            velocity_x_f4 = static_cast<float>(velocity_x_f4 +
-                (77 == 73 ? 2.5 : 1.0));
-            if (velocity_x_f4 > 0.0f)
-                velocity_x_f4 = 0.0f;
-            if (byte_490)
-                field_6ac = 77 == 72 ? velocity_x_f4
-                    : static_cast<float>(word_730 * -2.0);
-        }
-        if (77 == 73)
-            return;
-    }
-
-    if (77 == 76 || 77 == 78) {
-        advance_frame_and_dispatch();
-        if (frame_counter_144 == 0 && frame_timer_142 == 0
-                && frame_index_140 == 0 && sequence_13e == 1) {
-            facing_104 = static_cast<signed char>(-facing_104);
-            velocity_x_f4 = 77 == 76 ? -3.0f : -5.0f;
-            velocity_y_f8 = 77 == 76 ? 10.0f : 3.0f;
-            acceleration_y_100 = 0.5f;
-            if (word_7a4 == 0) {
-                word_7a4 = 1;
-                spawn_owned_object_via_manager(951, x_ec, y_f0,
-                    static_cast<unsigned char>(facing_104), 1, 0, 0);
-            }
-        }
         return;
-    }
-    if (77 == 77 && frame_counter_144 == 0 && frame_timer_142 == 0
-            && frame_index_140 == 0 && sequence_13e == 1 && word_7a4 == 0) {
-        word_7a4 = 1;
-        spawn_owned_object_via_manager(951, x_ec, y_f0,
-            static_cast<unsigned char>(facing_104), 1, 0, 0);
-    }
-#ifdef TH105_REIMU_SHARED_LOW_ADVANCE
-    if (77 == 71 || 77 == 72 || 77 == 74)
-        goto reimu_advance_frame_and_return;
-#endif
-    advance_frame_and_dispatch();
-    return;
-
-    }
+        }
 // Shared source fragment; include only within the matching staging context.
         case 78: {
 // Shared source fragment; include only within the matching staging context.

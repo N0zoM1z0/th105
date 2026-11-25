@@ -1322,3 +1322,8 @@ shows a list splice and reference update rather than a final emitter-only
 change. A later write zeroes the freed old operand and is memory cleanup.
 The debug object has the same complete relocated hash as the ordinary
 candidate. Trace the caller that selects these two labels next.
+
+Simplified action 77's retained macro-expanded body to its actual reachable
+conditions and operations. The selected root's full relocated payload is
+unchanged, with all 2,475 relocations resolved; its first target difference
+is still `0x004791BD`.
