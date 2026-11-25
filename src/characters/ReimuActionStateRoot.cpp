@@ -2299,7 +2299,7 @@ reimu_landed_action_10_other:
         }
         return;
         case 225:
-        if (225 == 226 || sequence_13e >= 1)
+        if (sequence_13e >= 1)
             velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
         if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             goto reimu_landed_action_10_other;
@@ -2315,23 +2315,18 @@ reimu_landed_action_10_other:
             set_action(9);
         if (frame_counter_144 == 0 && frame_timer_142 == 0
                 && frame_index_140 == 0 && sequence_13e == 1) {
-            if (225 == 226)
-                word_730 = 0;
-            velocity_x_f4 = 225 == 226 ? 10.0f : -10.0f;
+            velocity_x_f4 = -10.0f;
             velocity_y_f8 = 4.0f;
             acceleration_y_100 = 0.45f;
-            const float effect_y = static_cast<float>(y_f0 + (225 == 226 ? 110.0 : 120.0));
-            const float effect_x = 225 == 226 ? static_cast<float>(facing_104 * 80 + x_ec) : x_ec;
+            const float effect_y = static_cast<float>(y_f0 + 120.0);
+            const float effect_x = x_ec;
             emit_fighter_effect_byte_direction(125, effect_x, effect_y,
                 static_cast<unsigned char>(-facing_104), 1);
             emit_fighter_effect_byte_direction(126, x_ec,
-                static_cast<float>(y_f0 + (225 == 226 ? 110.0 : 120.0)),
-                static_cast<unsigned char>(225 == 226 ? facing_104 : -facing_104), 1);
+                static_cast<float>(y_f0 + 120.0),
+                static_cast<unsigned char>(-facing_104), 1);
             dispatch_indexed_event_member(31);
         }
-        if (225 == 226 && frame_counter_144 == 0 && frame_timer_142 == 0
-                && frame_index_140 == 0 && sequence_13e == 3)
-            face_opponent_and_flip_horizontal_velocity();
         return;
         case 226:
         velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);

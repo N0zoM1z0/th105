@@ -1116,3 +1116,7 @@ so the `0x10C72360` comparison skips the add and selects the move.
 The traced complete payload matches the ordinary control. The target's
 later move therefore needs a real dependency or different scheduling
 context; a priority-only explanation is insufficient.
+
+Action 225's constant comparisons and unreachable case-226 alternatives
+have likewise been removed. Its complete ordinary root payload is
+identical to the prior build after all 2,475 relocations are replayed.
