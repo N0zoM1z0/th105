@@ -1375,3 +1375,11 @@ mapped branches also agree. One 650 branch instead targets candidate
 `0x0047FF92` versus target `0x004852F6`, so its shared destination needs
 separate comparison. Previously aligned 200–225 and 320–321 spans remain
 unchanged in this diagnostic.
+
+The remaining action-650 external branch targets a 17-byte virtual-slot-20
+call and return: target `0x004852F6` belongs to action 520, whereas the
+candidate's identical bytes at `0x0047FF92` belong to action 416. Its
+semantics agree, but the physical owner still differs. Applying independent
+650/651 landings to the selected integer-direction root instead emits an
+extra height and reset call, leaving 651 at 624/589 bytes; the byte-direction
+candidate is the context in which C2 performs the target merge.
