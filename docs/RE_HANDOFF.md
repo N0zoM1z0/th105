@@ -816,3 +816,20 @@ The Action201 effect-call direction operands were corrected to pass the raw
 `movzx`/push sequences. This is separate from effect 124, whose negative-facing
 operand remains unchanged. The focused Action201 span is now 587/611 bytes; the
 change also restores the 81,552-byte candidate metadata boundary.
+
+
+## 2026-11-25 Action416 frame-one register lifetime
+
+Action416's frame-one threshold is now a short register local assigned from
+the dispatch snapshot (`selected_action - 415`) after the sequence-3 landing
+transition. The focused ordinary-object entry now materializes the target's
+`EBP=4` and `EBX=1` thresholds in the same early sequence gates, while keeping
+`EDI=3` for the landing sequence. This is a natural C++ lifetime experiment;
+it does not yet make the whole action exact.
+
+Focused spans after this change: Action201 587/611, Action224 581/579,
+Action410 975/975, Action414 1128/1116, Action416 975/959. The 126 target
+destination groups remain represented with zero split groups. Action416 is
+now 16 bytes longer than target (the previous form was 17 bytes shorter), so
+the remaining tail and effect-path layout still need alignment. No Oracle
+acceptance or full cold replay was performed.

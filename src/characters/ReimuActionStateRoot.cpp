@@ -8,8 +8,9 @@ namespace th105 {
 void ReimuActionStatePreludeView::run_action_dispatch_root()
 {
 // Shared source fragment; include only within the matching staging context.
+    register int reimu_frame_85 = 85;
     word_7a0 = 0;
-    word_7a2 = 85;
+    word_7a2 = static_cast<short>(reimu_frame_85);
     if (action_13c > 149 && action_13c < 159 && !byte_751) {
         byte_751 = 1;
         // Each call can change owner state. Preserve the three later action
@@ -52,7 +53,7 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
         return;
 
     register int frame_threshold;
-    register int frame_one;
+    register short frame_one;
     register short frame_zero;
     register int landing_sequence;
     unsigned char reimu_directional_result;
@@ -1449,9 +1450,9 @@ reimu_action9_advance:
             velocity_y_f8 = static_cast<float>(static_cast<float>(-static_cast<int>(word_732)) * static_cast<double>(0.0025f));
             acceleration_y_100 = 0.25f;
             word_7a0 = 0;
-            word_7a2 = 85;
+            word_7a2 = static_cast<short>(reimu_frame_85);
             field_108 = static_cast<float>(word_7a0);
-            field_10c = static_cast<float>(word_7a2);
+            field_10c = static_cast<float>(reimu_frame_85);
         }
         return;
         case 145:
@@ -3729,10 +3730,10 @@ reimu_action414_set_action9_exit:
     }
         case 416: {
         frame_threshold = 4;
-        frame_one = 1;
         landing_sequence = 3;
         if (sequence_13e == landing_sequence)
             resolve_stage_surface_landing_transition();
+        frame_one = action_13c - 415;
         if (sequence_13e == 0 && frame_index_140 >= frame_threshold)
             goto reimu_action416_gravity_frame_threshold;
         if (sequence_13e == 2 && frame_index_140 >= frame_one)
