@@ -886,40 +886,41 @@ performed. Continue on the same locked Reimu_dispatch_action_state_vslot28
 function.
 
 
-## 2026-11-25 Action226 terminal path corrected
+## 2026-11-25 Action226 shared landing branch direction
 
-The earlier hypothesis that Action226's non-sequence-3 path falls through
-into Action300 was wrong. Target code at 0x0047CBB0 compares the sequence
-against 3 and unconditionally jumps to 0x0047B039, where the preserved
-comparison flags select the shared facing-transition/return path. A non-3
+The Action226 terminal-path correction remains in place: target code at
+0x0047CBB0 compares the sequence against 3 and jumps to 0x0047B039, where the
+preserved flags select the shared facing-transition/return path. A non-3
 sequence exits; sequence 3 invokes the opponent-facing transition and exits.
-The source now returns after this optional sequence-3 transition instead of
-falling through to Action300.
+There is no fallthrough from Action226 into Action300.
 
-This restores the target's cmp word ptr [esi+0x13e], 3; jmp shape and improves
-the surrounding source layout. Focused ordinary-COFF map:
+Action226's crossed-surface branch now uses the inverted C++ control-flow
+shape: the nonlanding path is the body of an if (!crossed) block, followed by
+a goto to the shared landing tail. This makes VC8 emit test al, al; jne to the
+landing block, matching the target branch direction at 0x0047C9CE. The target
+destination is the earlier shared tail at 0x0047AE4A; the candidate still
+places that shared block later in the case span.
+
+Focused ordinary-COFF map:
 - Target callable: 81,550 bytes; candidate metadata start: 81,628 bytes.
 - 126 target destination groups represented; zero split groups.
-- Actions201, 202, 203, 224, and 225 now each have exact candidate/target
-  spans and identical normalized instruction signatures:
-  611/611 (174 instructions), 545/545 (139), 429/429 (103),
-  579/579 (149), and 457/457 (118).
-- Action226 remains 723/731 bytes (181/178 instructions); Actions301 226/226,
-  302 701/699, 320 162/119, 321 157/140, 322 247/247, 410 975/975,
-  414 1102/1116, and 416 957/959.
+- Actions201, 202, 203, 224, and 225 retain exact candidate/target spans and
+  identical normalized instruction signatures: 611/611 (174 instructions),
+  545/545 (139), 429/429 (103), 579/579 (149), and 457/457 (118).
+- Action226 improved from 723/731 to 727/731 bytes (181/178 instructions).
+  Actions301 226/226, 302 701/699, 320 162/119, 321 157/140,
+  322 247/247, 410 975/975, 414 1102/1116, and 416 957/959.
 
-The remaining Action226 differences are now isolated:
-1. The target branches at 0x0047C9CE to the shared landing tail at
-   0x0047AE4A; the candidate still lays that tail inline after the condition.
-   IDA xrefs show the target tail is shared by Actions202/203/225/226.
-2. The target's frame-index-3 event-27 gate is inline at 0x0047CC2B;
-   the candidate still jumps to an out-of-line event gate.
-3. The candidate COFF jump-table operands lack the final absolute table bases;
-   these are link relocations and must be checked in the linked replay.
+Remaining Action226 differences:
+1. The shared landing block is still laid out after the Action226 condition
+   rather than at the earlier target address 0x0047AE4A.
+2. The target's frame-index-3 event-27 gate is inline at 0x0047CC2B; the
+   candidate still jumps to an out-of-line event gate.
+3. The candidate COFF jump-table operands lack final absolute table bases;
+   these are link relocations and must be checked in linked replay.
 
-The previous Action226-to-Action300 fallthrough was a source-level mistake,
-not target behavior. No Oracle acceptance or full cold replay was performed.
-Continue on the same locked Reimu_dispatch_action_state_vslot28 function.
+No Oracle acceptance or full cold replay was performed. Continue on the same
+locked Reimu_dispatch_action_state_vslot28 function.
 
 ## 2026-11-25 Action224 byte-direction effect setup
 

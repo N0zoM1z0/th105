@@ -2336,9 +2336,7 @@ reimu_action_shared_landing_sequence3_tail:
         case 226:
         if (226 == 226 || sequence_13e >= 1)
             velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
-        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-            goto reimu_landed_action_10_other;
-        }
+        if (!static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
         if (sequence_13e == 2 && frame_counter_144 % 5 == 0) {
             const double x_base = static_cast<double>(x_ec) + 50.0;
             emit_fighter_effect_byte_direction(124,
@@ -2369,6 +2367,8 @@ reimu_action_shared_landing_sequence3_tail:
         if (sequence_13e == 3)
             face_opponent_and_flip_horizontal_velocity();
         return;
+        }
+        goto reimu_landed_action_10_other;
         case 300: {
         resolve_stage_surface_landing_transition();
         reimu_directional_result = try_dispatch_directional_action_208_210(0);
