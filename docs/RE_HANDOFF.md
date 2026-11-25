@@ -1189,3 +1189,11 @@ the zero-extension write (`0x291` to `0xC2`). Both traced objects replay
 the complete ordinary six-direct-effect payload. The next useful question
 is which target-backed type or dataflow difference changes the high-level
 node order or lowering inputs while retaining the effect and RNG behavior.
+
+TH075 Reimu's analogous backward command state also spawns effects 125
+and 126 with negated signed-byte facing, then plays sound 31. Its effect
+helper takes a signed-byte direction, whereas the exact TH105 `0x00435240`
+helper forwards the full integer direction. The TH075 sequence corroborates
+the behavior but its helper declaration cannot be transplanted. In TH105,
+rewriting effect 126 as unsigned subtraction followed by byte conversion
+also replays the complete six-direct-effect payload unchanged.
