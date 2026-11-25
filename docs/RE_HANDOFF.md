@@ -773,3 +773,19 @@ A direct-root VC8/LTCG probe was rerun for this source in
 `build/reimu-root-work/session-20261125-action201-fallthrough-shared-tail/ltcg`.
 This remains a partial function recovery: no whole-function exactness or
 Oracle acceptance is claimed. No full cold replay was run.
+
+
+## 2026-11-25 shared EBP frame/sequence threshold
+
+The active root now uses one natural C++ `frame_threshold` local across the
+Action414/416 and Action507/508/512/513 families. It is assigned 4 in the
+Reimu action pair and 5 in the related aerial-action family, matching the
+target's EBP reuse (EBP=4 at 414/416; EBP=5 at 507/508/512/513). The focused
+map now shows the latter family within one byte of target per case, and the
+Action507 candidate begins with `mov ebp, 5; cmp [sequence], bp`.
+
+Focused spans: Action414 1128/1116, Action416 942/959, Action507 1930/1929,
+Action508 1896/1895, Action512 1845/1844, Action513 1890/1889. Action414 remains
+non-exact: its threshold comparison still folds to immediate 4 rather than
+materializing EBP=4 at the target point. Continue only on this root function.
+No full cold replay or Oracle acceptance was performed.

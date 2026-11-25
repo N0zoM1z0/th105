@@ -51,7 +51,7 @@ void ReimuActionStatePreludeView::run_action_dispatch_root()
     if (word_186 != 0 || peer_170->word_48c != 0)
         return;
 
-    register int frame_four;
+    register int frame_threshold;
     register int frame_one;
     register int landing_sequence;
     unsigned char reimu_directional_result;
@@ -3630,12 +3630,12 @@ reimu_action410_after_frame_gates:
         return;
         case 414: {
         const bool aerial = true;
-        frame_four = 4;
+        frame_threshold = 4;
         landing_sequence = 3;
         if (!aerial || sequence_13e == landing_sequence)
             resolve_stage_surface_landing_transition();
         if (aerial && ((sequence_13e == 0 && frame_index_140 >= 8)
-                || (sequence_13e == 2 && frame_index_140 >= frame_four))) {
+                || (sequence_13e == 2 && frame_index_140 >= frame_threshold))) {
             acceleration_y_100 = 0.6f;
             velocity_y_f8 = static_cast<float>(velocity_y_f8 - static_cast<double>(0.6f));
             if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
@@ -3657,7 +3657,7 @@ reimu_action414_set_action9_exit:
             return;
         }
         if (sequence_13e == 0 && frame_timer_142 == 0) {
-            if (frame_index_140 == (aerial ? frame_four : 6) && byte_750 != 0) {
+            if (frame_index_140 == (aerial ? frame_threshold : 6) && byte_750 != 0) {
                 register int frame3_direction =
                     static_cast<unsigned char>(facing_104);
                 emit_fighter_effect(62,
@@ -3692,7 +3692,7 @@ reimu_action414_set_action9_exit:
                 spawn_owned_object_via_manager(801,
                     static_cast<float>(static_cast<float>(facing_104 * (aerial ? 62 : 48)) + x_ec),
                     static_cast<float>(y_f0 + (aerial ? 108.0 : 100.0)),
-                    static_cast<unsigned char>(facing_104), 1, parameters, frame_four);
+                    static_cast<unsigned char>(facing_104), 1, parameters, frame_threshold);
             }
         }
         if (sequence_13e == 1 && frame_counter_144 >= 25) {
@@ -3721,18 +3721,18 @@ reimu_action414_set_action9_exit:
             spawn_owned_object_via_manager(801,
                 static_cast<float>(static_cast<float>(facing_104 * (aerial ? 62 : 48)) + x_ec),
                 static_cast<float>(y_f0 + (aerial ? 108.0 : 100.0)),
-                static_cast<unsigned char>(facing_104), 1, parameters, frame_four);
+                static_cast<unsigned char>(facing_104), 1, parameters, frame_threshold);
         }
         return;
     }
         case 416: {
-        frame_four = 4;
+        frame_threshold = 4;
         frame_one = 1;
         landing_sequence = 3;
         if (sequence_13e == landing_sequence)
             resolve_stage_surface_landing_transition();
-        if (sequence_13e == 0 && frame_index_140 >= frame_four)
-            goto reimu_action416_gravity_frame_four;
+        if (sequence_13e == 0 && frame_index_140 >= frame_threshold)
+            goto reimu_action416_gravity_frame_threshold;
         if (sequence_13e == 2 && frame_index_140 >= frame_one)
             goto reimu_action416_gravity;
 reimu_action416_common:
@@ -3761,11 +3761,11 @@ reimu_action416_common:
                 action_slot(this);
                 return;
             }
-            goto reimu_action416_frame_four_check;
+            goto reimu_action416_frame_threshold_check;
         }
-        goto reimu_action416_after_frame_four;
-reimu_action416_frame_four_check:
-        if (frame_timer_142 == 0 && frame_index_140 == frame_four) {
+        goto reimu_action416_after_frame_threshold;
+reimu_action416_frame_threshold_check:
+        if (frame_timer_142 == 0 && frame_index_140 == frame_threshold) {
             velocity_x_f4 = -5.0f;
             velocity_y_f8 = 6.5f;
             acceleration_y_100 = 0.6f;
@@ -3778,9 +3778,9 @@ reimu_action416_frame_four_check:
             spawn_owned_object_via_manager(801,
                 static_cast<float>(static_cast<float>(facing_104 * 55) + x_ec),
                 static_cast<float>(y_f0 + 80.0),
-                static_cast<unsigned char>(facing_104), 1, parameters, frame_four);
+                static_cast<unsigned char>(facing_104), 1, parameters, frame_threshold);
         }
-reimu_action416_after_frame_four:
+reimu_action416_after_frame_threshold:
         if (sequence_13e == 1 && frame_counter_144 >= 25) {
             next_sequence_block();
             return;
@@ -3798,10 +3798,10 @@ reimu_action416_after_frame_four:
             spawn_owned_object_via_manager(801,
                 static_cast<float>(static_cast<float>(facing_104 * 55) + x_ec),
                 static_cast<float>(y_f0 + 80.0),
-                static_cast<unsigned char>(facing_104), 1, parameters, frame_four);
+                static_cast<unsigned char>(facing_104), 1, parameters, frame_threshold);
         }
         return;
-reimu_action416_gravity_frame_four:
+reimu_action416_gravity_frame_threshold:
 reimu_action416_gravity:
         acceleration_y_100 = 0.6f;
         velocity_y_f8 = static_cast<float>(velocity_y_f8 - static_cast<double>(0.6f));
@@ -5432,12 +5432,14 @@ reimu_action416_gravity:
         const bool second_input = 507 == 501 || 507 == 503
             || 507 == 506 || 507 == 508
             || 507 == 511 || 507 == 513;
-        if (!aerial || sequence_13e == 5)
+        frame_threshold = 5;
+        if (!aerial || sequence_13e == frame_threshold)
             resolve_stage_surface_landing_transition();
         byte_17c = wide ? 8 : alternate ? 4 : 0;
-        if (sequence_13e <= 1 && (second_input ? field_6c4 : field_6c0) == 0)
+        frame_one = 1;
+        if (sequence_13e <= frame_one && (second_input ? field_6c4 : field_6c0) == 0)
             byte_750 = 0;
-        if (aerial && sequence_13e < 5) {
+        if (aerial && sequence_13e < frame_threshold) {
             if (sequence_13e == 4) {
                 acceleration_y_100 = 0.6f;
                 velocity_y_f8 = static_cast<float>(velocity_y_f8 - static_cast<double>(0.6f));
@@ -5450,7 +5452,7 @@ reimu_action416_gravity:
             }
         }
         if (sequence_13e == 2 && frame_timer_142 == 0
-                && frame_index_140 == (aerial ? 1 : 2)) {
+                && frame_index_140 == (aerial ? frame_one : 2)) {
             adjust_counter_482(200, 120);
             state_180 = 1;
             add_scaled_counter(50);
@@ -5696,12 +5698,14 @@ reimu_action416_gravity:
         const bool second_input = 508 == 501 || 508 == 503
             || 508 == 506 || 508 == 508
             || 508 == 511 || 508 == 513;
-        if (!aerial || sequence_13e == 5)
+        frame_threshold = 5;
+        if (!aerial || sequence_13e == frame_threshold)
             resolve_stage_surface_landing_transition();
         byte_17c = wide ? 8 : alternate ? 4 : 0;
-        if (sequence_13e <= 1 && (second_input ? field_6c4 : field_6c0) == 0)
+        frame_one = 1;
+        if (sequence_13e <= frame_one && (second_input ? field_6c4 : field_6c0) == 0)
             byte_750 = 0;
-        if (aerial && sequence_13e < 5) {
+        if (aerial && sequence_13e < frame_threshold) {
             if (sequence_13e == 4) {
                 acceleration_y_100 = 0.6f;
                 velocity_y_f8 = static_cast<float>(velocity_y_f8 - static_cast<double>(0.6f));
@@ -5714,7 +5718,7 @@ reimu_action416_gravity:
             }
         }
         if (sequence_13e == 2 && frame_timer_142 == 0
-                && frame_index_140 == (aerial ? 1 : 2)) {
+                && frame_index_140 == (aerial ? frame_one : 2)) {
             adjust_counter_482(200, 120);
             state_180 = 1;
             add_scaled_counter(50);
@@ -6488,12 +6492,14 @@ reimu_action416_gravity:
         const bool second_input = 512 == 501 || 512 == 503
             || 512 == 506 || 512 == 508
             || 512 == 511 || 512 == 513;
-        if (!aerial || sequence_13e == 5)
+        frame_threshold = 5;
+        if (!aerial || sequence_13e == frame_threshold)
             resolve_stage_surface_landing_transition();
         byte_17c = wide ? 8 : alternate ? 4 : 0;
-        if (sequence_13e <= 1 && (second_input ? field_6c4 : field_6c0) == 0)
+        frame_one = 1;
+        if (sequence_13e <= frame_one && (second_input ? field_6c4 : field_6c0) == 0)
             byte_750 = 0;
-        if (aerial && sequence_13e < 5) {
+        if (aerial && sequence_13e < frame_threshold) {
             if (sequence_13e == 4) {
                 acceleration_y_100 = 0.6f;
                 velocity_y_f8 = static_cast<float>(velocity_y_f8 - static_cast<double>(0.6f));
@@ -6506,7 +6512,7 @@ reimu_action416_gravity:
             }
         }
         if (sequence_13e == 2 && frame_timer_142 == 0
-                && frame_index_140 == (aerial ? 1 : 2)) {
+                && frame_index_140 == (aerial ? frame_one : 2)) {
             adjust_counter_482(200, 120);
             state_180 = 1;
             add_scaled_counter(50);
@@ -6752,12 +6758,14 @@ reimu_action416_gravity:
         const bool second_input = 513 == 501 || 513 == 503
             || 513 == 506 || 513 == 508
             || 513 == 511 || 513 == 513;
-        if (!aerial || sequence_13e == 5)
+        frame_threshold = 5;
+        if (!aerial || sequence_13e == frame_threshold)
             resolve_stage_surface_landing_transition();
         byte_17c = wide ? 8 : alternate ? 4 : 0;
-        if (sequence_13e <= 1 && (second_input ? field_6c4 : field_6c0) == 0)
+        frame_one = 1;
+        if (sequence_13e <= frame_one && (second_input ? field_6c4 : field_6c0) == 0)
             byte_750 = 0;
-        if (aerial && sequence_13e < 5) {
+        if (aerial && sequence_13e < frame_threshold) {
             if (sequence_13e == 4) {
                 acceleration_y_100 = 0.6f;
                 velocity_y_f8 = static_cast<float>(velocity_y_f8 - static_cast<double>(0.6f));
@@ -6770,7 +6778,7 @@ reimu_action416_gravity:
             }
         }
         if (sequence_13e == 2 && frame_timer_142 == 0
-                && frame_index_140 == (aerial ? 1 : 2)) {
+                && frame_index_140 == (aerial ? frame_one : 2)) {
             adjust_counter_482(200, 120);
             state_180 = 1;
             add_scaled_counter(50);
