@@ -490,3 +490,41 @@ TH075's exact Reimu Fighter Advance uses the same broad natural-C++ `goto`
 shared-tail idiom, but its VC7.1 `/Od /Ob0` profile is only a structural
 reference, not a TH105 VC8/LTCG codegen recipe. Continue on this same root,
 starting with the shared-return destination and the Action 320/321 tails.
+
+## 2026-11-25 Action616 direction flow and Action650/651 landing owner
+
+The active callable remains `Reimu_dispatch_action_state_vslot28` at
+`0x00478FA0`. No function switch is permitted before canonical whole-function
+exactness.
+
+Action616's frame-zero effect now keeps the unsigned facing byte as the event
+direction while explicitly converting it back to signed-char for the `* 24`
+horizontal offset. This is ordinary C++ and preserves the signed/unsigned
+split in the target. The focused destination map now gives Action616 exactly
+1085/1085 bytes (previously 1087/1085); this is span equality, not byte
+exactness.
+
+Actions650 and 651 now share one natural C++ landing continuation. Both
+sequence-window crossing paths route to `reimu_action_650_651_landing_tail`,
+which performs stage-height assignment, velocity reset, sequence 4, and return.
+The source label is owned after Action650; the VC8 optimizer schedules its
+machine-code block with the later high action, so the mapped spans are 480/515
+for Action650 and 624/589 for Action651. Their combined span remains 1104
+bytes, equal to the target combined extent. This is a code-layout/ownership
+mismatch, not a claimed exact recovery.
+
+A fresh direct-root VC8 `/O2 /GS- /GL + LTCG` build compiled the tracked root
+and staging header. The ordinary COFF and linked payload replay match exactly:
+83,000 payload bytes, 1,283 HIGHLOW fields, 11 switches, zero buffer-partition
+mismatches, all 126 target switch destination groups represented, and zero
+split groups. The callable prefix is 81,628 bytes against 81,550 target bytes
+(+78). The first whole-root mismatch remains `0x004791BD`: target `a9`,
+candidate `e9`, a shared-return branch destination still 64 bytes late. The
+linked image was not executed and this has no Oracle exactness acceptance.
+
+Current focused frontiers: Action320 166/119, Action321 161/140, Action410
+975/975, Action414 1102/1116, Action416 959/959, Action540 653/653, Action616
+1085/1085, Action650 480/515, Action651 624/589, Action658 740/740, and
+Action710 1573/1573. Equal spans do not imply equal bytes. Continue on this
+same function; the next high-value work is the early shared-return edge and
+the Action320/321 ownership/layout. No full cold replay was run.

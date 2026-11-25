@@ -9166,8 +9166,10 @@ reimu_action416_gravity:
             advance_secondary_event_effect_cycle();
             set_word_48a(120);
             dispatch_indexed_event_member(23);
-            emit_fighter_effect(115, static_cast<float>(static_cast<float>(facing_104 * 24) + x_ec),
-                static_cast<float>(y_f0 + 144.0), static_cast<unsigned char>(facing_104), 1);
+            const unsigned int direction_bits = static_cast<unsigned char>(facing_104);
+            emit_fighter_effect(115,
+                static_cast<float>(static_cast<float>(static_cast<signed char>(direction_bits) * 24) + x_ec),
+                static_cast<float>(y_f0 + 144.0), direction_bits, 1);
         }
         if (sequence_13e == 3 && frame_timer_142 == 0 && frame_index_140 == sequence_five_frame)
             set_word_48a(1);
@@ -9228,12 +9230,8 @@ reimu_complete_action0_619:
         }
         if (650 == 650 && sequence_13e > 1 && sequence_13e < 4) {
             velocity_y_f8 -= acceleration_y_100;
-            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-                y_f0 = reimu_stage_surface_height_at_x(this);
-                zero_velocity_acceleration();
-                set_sequence(4);
-                return;
-            }
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending()))
+                goto reimu_action_650_651_landing_tail;
         }
         if (sequence_13e == 1 && word_730 < (650 == 650 ? 5 : 10)
                 && frame_counter_144 % 5 == 0) {
@@ -9278,6 +9276,11 @@ reimu_complete_action0_619:
         }
         return;
     }
+reimu_action_650_651_landing_tail:
+    y_f0 = reimu_stage_surface_height_at_x(this);
+    zero_velocity_acceleration();
+    set_sequence(4);
+    return;
         case 651: {
         if (sequence_13e == 4)
             resolve_stage_surface_landing_transition();
@@ -9318,12 +9321,8 @@ reimu_complete_action0_619:
         }
         if (651 == 651 && sequence_13e > 1 && sequence_13e < 4) {
             velocity_y_f8 -= acceleration_y_100;
-            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-                y_f0 = reimu_stage_surface_height_at_x(this);
-                zero_velocity_acceleration();
-                set_sequence(4);
-                return;
-            }
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending()))
+                goto reimu_action_650_651_landing_tail;
         }
         if (advance_frame_and_dispatch())
             set_action(0);
