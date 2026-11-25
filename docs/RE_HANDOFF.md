@@ -1197,3 +1197,8 @@ helper forwards the full integer direction. The TH075 sequence corroborates
 the behavior but its helper declaration cannot be transplanted. In TH105,
 rewriting effect 126 as unsigned subtraction followed by byte conversion
 also replays the complete six-direct-effect payload unchanged.
+
+Removed constant macro-expansion conditions in action cases 0–5. The
+selected root still replays the complete 82,904-byte payload identically
+with all 2,475 relocations resolved; its first target difference remains
+`0x004791BD`. This is a readability cleanup, not exact-match progress.

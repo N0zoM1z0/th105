@@ -63,7 +63,7 @@ reimu_action_dispatch_switch:
     switch (selected_action) {
     case 0: {
         resolve_stage_surface_landing_transition();
-        if (0 == 0 && !velocity_x_f4)
+        if (!velocity_x_f4)
             byte_47e = 0;
         if (!byte_47e) {
             zero_velocity_acceleration();
@@ -91,8 +91,6 @@ reimu_action_dispatch_switch:
     }
         case 1: {
         resolve_stage_surface_landing_transition();
-        if (1 == 0 && !velocity_x_f4)
-            byte_47e = 0;
         if (!byte_47e) {
             zero_velocity_acceleration();
         } else {
@@ -111,20 +109,13 @@ reimu_action_dispatch_switch:
                 }
             }
         }
-#ifdef TH105_REIMU_SHARED_LOW_ADVANCE
-        if (1 == 0 || 1 == 2)
-            goto reimu_advance_frame_and_return;
-#endif
         const unsigned char completed = advance_frame_and_dispatch();
-        if ((1 == 1 || 1 == 3)
-                && completed && frame_index_140 == 0)
-            set_action(1 == 1 ? 2 : 0);
+        if (completed && frame_index_140 == 0)
+            set_action(2);
         return;
     }
     case 2: {
         resolve_stage_surface_landing_transition();
-        if (2 == 0 && !velocity_x_f4)
-            byte_47e = 0;
         if (!byte_47e) {
             zero_velocity_acceleration();
             advance_frame_and_dispatch();
@@ -151,8 +142,6 @@ reimu_action_dispatch_switch:
     }
         case 3: {
         resolve_stage_surface_landing_transition();
-        if (3 == 0 && !velocity_x_f4)
-            byte_47e = 0;
         if (!byte_47e) {
             zero_velocity_acceleration();
         } else {
@@ -171,24 +160,19 @@ reimu_action_dispatch_switch:
                 }
             }
         }
-#ifdef TH105_REIMU_SHARED_LOW_ADVANCE
-        if (3 == 0 || 3 == 2)
-            goto reimu_advance_frame_and_return;
-#endif
         const unsigned char completed = advance_frame_and_dispatch();
-        if ((3 == 1 || 3 == 3)
-                && completed && frame_index_140 == 0)
-            set_action(3 == 1 ? 2 : 0);
+        if (completed && frame_index_140 == 0)
+            set_action(0);
         return;
     }
         case 4:
         resolve_stage_surface_landing_transition();
-        velocity_x_f4 = 4 == 4 ? 4.5f : -4.5f;
+        velocity_x_f4 = 4.5f;
         advance_frame_and_dispatch();
         return;
         case 5:
         resolve_stage_surface_landing_transition();
-        velocity_x_f4 = 5 == 4 ? 4.5f : -4.5f;
+        velocity_x_f4 = -4.5f;
         advance_frame_and_dispatch();
         return;
         case 6:
