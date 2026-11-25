@@ -1215,3 +1215,8 @@ also has none. Its complete replay resolves 2,475 relocations, has an
 81,544-byte callable prefix and first differs at `0x004791BD`; its root
 payload differs from SP1. This comparison uses each local compiler's own
 headers and does not identify the original compiler patch level.
+
+An SP1 `/O2 /Os` control has no matching direction pattern either. It
+changes the root `.text` from 82,904 to 73,289 bytes and the relocation
+audit cannot identify the low switch table, so keep the existing `/O2`
+profile while investigating the target's source and compiler context.
