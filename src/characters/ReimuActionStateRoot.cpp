@@ -192,7 +192,7 @@ reimu_action_dispatch_switch:
         advance_frame_and_dispatch();
         if (frame_counter_144 == 0 && frame_timer_142 == 0
                 && frame_index_140 == 0 && sequence_13e == 1) {
-            velocity_x_f4 = 6 == 6 ? 0.0f : 6 == 7 ? 4.0f : -4.0f;
+            velocity_x_f4 = 0.0f;
             velocity_y_f8 = 15.0f;
             acceleration_y_100 = 0.55f;
             byte_47e = 0;
@@ -215,7 +215,7 @@ reimu_action_dispatch_switch:
         advance_frame_and_dispatch();
         if (frame_counter_144 == 0 && frame_timer_142 == 0
                 && frame_index_140 == 0 && sequence_13e == 1) {
-            velocity_x_f4 = 7 == 6 ? 0.0f : 7 == 7 ? 4.0f : -4.0f;
+            velocity_x_f4 = 4.0f;
             velocity_y_f8 = 15.0f;
             acceleration_y_100 = 0.55f;
             byte_47e = 0;
@@ -238,7 +238,7 @@ reimu_action_dispatch_switch:
         advance_frame_and_dispatch();
         if (frame_counter_144 == 0 && frame_timer_142 == 0
                 && frame_index_140 == 0 && sequence_13e == 1) {
-            velocity_x_f4 = 8 == 6 ? 0.0f : 8 == 7 ? 4.0f : -4.0f;
+            velocity_x_f4 = -4.0f;
             velocity_y_f8 = 15.0f;
             acceleration_y_100 = 0.55f;
             byte_47e = 0;
