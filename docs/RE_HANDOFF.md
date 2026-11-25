@@ -713,3 +713,39 @@ allocation iteration.
 Current focused spans: Action 414 1126/1116 and Action 416 942/959; the complete
 root map still has 126 destination groups and 0 split groups. Neither action
 is declared exact. No full cold replay or Oracle acceptance was performed.
+
+
+## 2026-11-25 shared sequence-3 landing tail and Action414 register lifetime
+
+The locked callable remains `Reimu_dispatch_action_state_vslot28` at
+`0x00478FA0`. The target has one sequence-3 landing continuation at
+`0x0047AD16`: Action201 reaches it by fallthrough after zeroing vertical
+velocity and acceleration, while Actions224 and 414 branch to it from
+`0x0047C6ED` and `0x0047FA2A`. The continuation assigns stage-surface height,
+sets sequence 3, and returns.
+
+The natural C++ root now has one `reimu_action_shared_landing_sequence3_tail`
+for all three paths. Action201 supplies velocity/acceleration zeroing,
+Action224 supplies vertical-velocity zeroing, and Action414 calls the full
+velocity/acceleration reset before joining the same tail. The tail carries the
+shared `landing_sequence` value through `set_sequence`, so the candidate now
+uses EDI for sequence 3 and EBP for frame 4 in Action414. Action414's frame-1
+and frame-5 checks use their immediate constants rather than extending the
+shared `frame_one` register lifetime.
+
+The direct-root focused map reports target callable size 81,550 bytes,
+candidate metadata start 81552 bytes,
+126 target destination groups represented, and
+0 split groups. Focused spans:
+Action201: target 611 bytes, candidate 587 bytes at candidate offset 7238
+Action224: target 579 bytes, candidate 581 bytes at candidate offset 13799
+Action414: target 1116 bytes, candidate 1128 bytes at candidate offset 27135
+Action416: target 959 bytes, candidate 942 bytes at candidate offset 28263
+
+This is not whole-function exactness: equal destination coverage and close
+spans do not establish byte equality. Continue on this same function; the
+remaining work includes the Action414 local code shape, Action201's shared-tail
+layout, and the root prologue mismatch. The linked-root probe was run in
+`build/reimu-root-work/session-20261125-action414-dynamic-landing-no-frameone/ltcg`;
+no DLL execution or Oracle exactness acceptance is claimed. No full cold replay
+was run.
