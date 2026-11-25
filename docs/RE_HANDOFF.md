@@ -1346,3 +1346,14 @@ rows, including 400, 404, 500 and 540. The control is
 `build/reimu-root-work/terra-byte-direction/200-directed-branch.cpp`.
 On the selected integer-direction baseline, the branch-local change alone
 moves 79 matching row lengths to 72; it remains an experimental source shape.
+
+The `all-direct-direction.cpp` control applies the same direct facing
+argument to target-backed effect-123/124 sites in actions 208, 211 and
+220–223, following the action-200 branch-local input change. Its 81,532-byte
+prefix has 2,477 resolved relocations, no direct-call count deltas and 103
+of 128 equal-length physical rows. Actions 200–203, 208, 211, 220–225 and
+320–321 have zero positional differences after jump normalization and
+call-target resolution; 226 differs only in two switch-address bytes.
+The first complete-root difference remains `0x004791BD`, and the original
+callable is 81,550 bytes. The private byte-direction header remains an ABI
+hypothesis; no exact credit is claimed.
