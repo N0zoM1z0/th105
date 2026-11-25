@@ -1079,3 +1079,14 @@ actions returns that span to 27, but leaves the separate 71/72 and
 advance-call regressions noted above. The combined two-action build and
 a build that also splits action 9 have identical complete replay hashes.
 This isolates the source coupling to actions 0 and 2, not action 9.
+
+The direct-call discrepancy was split by physical owner: the selected
+root has one extra advance in action 71's span and one missing from
+the span containing action 300. Combining the corrected 300 flow with
+the single advance declaration makes every switch owner's advance-call
+count agree with the target. Separately spelling only the normal advance
+paths of both actions 0 and 2 leaves those counts intact. Action 2 then
+replays all 27 bytes exactly in the complete object; actions 71, 72, 320
+and 321 have no instruction-byte differences after masking relocation
+and direct-branch fields. Action 0 still differs structurally around its
+x87 cleanup and advance, and the complete root remains nonexact.
