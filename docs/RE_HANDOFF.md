@@ -1295,3 +1295,11 @@ The same branch-masked and call-resolved comparison finds zero positional
 differences for low actions 1–8 and 71–76, 78. Actions 0, 9 and 77 remain
 nonmatching; their shared advance and x87 cleanup placement need to be
 solved together. These are physical-span diagnostics, not match units.
+
+At C2 `0x10B26CA8`, the byte-direction gate control has 3,493 blocks and
+its recorded order matches depth-first postorder. Action 77's five frame
+tests and success path all point to its own block 334; the DFS first
+reaches it from the first test. The emitted code later sends the failed
+conditions to action 0's advance and retains a local advance for the
+successful path. The debugger build replays identically to the ordinary
+candidate, placing this divergence after the captured graph state.
