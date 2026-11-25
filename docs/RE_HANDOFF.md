@@ -976,3 +976,11 @@ target's 379 bytes to 370 and introduces the `__real@42aa0000` relocation,
 which is absent from the target root. Reading `word_7a2` restores the
 379-byte action span and the relocation audit. The full root remains
 nonexact at `0x004791BD`.
+
+For actions 300 and 320, duplicating the event-27 gate in the 320 source
+or spelling it as an early return produces the same complete relocated
+section. VC8 places the 320 entry 3,423 bytes before its native location,
+although the 321 span becomes 140/140 bytes. Guarding the existing shared
+label inside 320 moves the first root difference to `0x00478FB2` and
+produces an 81,536-byte callable. All three comparisons resolve their 2,476
+relocations. The tracked shared-tail form remains selected.
