@@ -693,3 +693,67 @@ Four original signed integer gates at `0x4F1992`, `0x4F24F1`, `0x4F29A1`, and `0
 Four repeated timer gates at `0x4F00BE`, `0x4F03EE`, `0x4F1BC5`, and `0x4F1C11` compare against 15 or 12 in the original. Equivalent source forms recover their local signed comparisons and branches. Integer behavior is unchanged; the 43,916-byte candidate remains non-exact.
 
 The timer gates at `0x4F250D` and `0x4F29BD` and spawn-count gate at `0x4F2B7A` now use the equivalent original bounds 18 and 7. Focused compilation recovers their local signed comparisons and branches. Integer behavior is unchanged; the complete candidate remains non-exact.
+
+## Current raw-PE matching findings, 2026-11-26
+
+The current target-backed corrections are in the complete, unselected Alice
+source. Actions 308/309 must read facing inside each iteration of their six
+object-849 requests. Native requests at `4ECC7B` and `4ECDF1` loop back through
+`4ECBFA` and `4ECD6A`, respectively, with a fresh byte-104 load before the next request;
+the former source cached facing across all six callbacks. Negating the converted
+float index before multiplying by double 60 also preserves the native
+`fild; fchs; fmul` calculation.
+
+Action 321 passes zero to `478EE0` at `4ED056`, subtracts double 1.0 from
+horizontal velocity (`6CD160`, used at `4ED077`), and stores float 10.0
+(`6D6EEC`, loaded at `4ED0DA`). The former values 1, 0.5 and 7.5 were incorrect.
+Action 402's stores at `4ED676`, `4ED684` and `4ED693` form `{0,0,7}`;
+the former source transposed the last two elements.
+
+The raw switch manifest now includes all thirteen nested tables: eight
+five-destination difficulty tables and five four-destination story tables.
+Together with the primary maps there are sixteen tables, 165 destination words
+and 685 byte indices. Two nested tables occupy `[4F48EC,4F4914)`, between the
+mid index map and the high destination table. The final table ends at `4F4B78`;
+eight `INT3` bytes precede the next function at `4F4B80`. Map them with:
+
+```bash
+scripts/repo-python scripts/map-giant-action-switches.py alice-vslot28 --json
+```
+
+Private typed reconstruction recovers further useful source constraints:
+
+- Independent timer/frame guards in 412, 507/508 and 414–416 preserve the native
+  timer reads. Separate entry guards in 414–416 and 543 preserve time-counter
+  lifetimes; cached sequence locals in 547/548 remove native comparisons.
+- In 570/571, select the angle with `if (index > 0) ... else 0`, and assign
+  packet element two once per conditional arm. Initializing either value before
+  its branch adds stores absent from the target. These corrections retain the
+  real count-four requests and their unwritten fourth word.
+- Updating 310's velocity member directly before widening it for predictive
+  landing recovers its native float temporary; an extra named float changes
+  that temporary's home.
+
+The current three-float-storage candidate recovers the native `0x410` frame
+and the complete packet-home census. Restoring four floats to 570/571 produces
+`0x418` and moves many unrelated homes, including the two request buffers.
+This strengthens the twelve-byte storage hypothesis, but the original
+array declaration remains unknown: the native manager really copies sixteen
+bytes. No array change has been selected in the retained source.
+
+The retained-source checkpoint's complete canonical comparison remains nonexact
+at `+8`, `0x418/0x410`. The private typed candidate also remains nonexact despite
+matching many local instruction paths: its physical tail sharing, call-site
+counts and switch addresses differ. The unresolved areas include 404/406's
+cached zero timer value, the shared 411/412/415/416 request suffix and 540's final
+request. The internal three-byte alignment instruction and terminal eight-byte
+alignment scope must be settled for full acceptance.
+
+Current private evidence is in `build/alice-root-work-codex/`: `CURRENT.md`,
+`target-map.json`, `checkpoint-canonical.json`, `local-facts-target.txt`,
+`loop-facing-target.txt`, and the named typed-source comparison reports.
+Reproduce the retained-source comparison with:
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-alice-fighter-update --compare --json
+```

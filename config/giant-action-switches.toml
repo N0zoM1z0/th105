@@ -164,6 +164,72 @@ destination_count = 40
 index_table = "0x004F49B4"
 expected_physical_groups = 40
 
+[[roots.auxiliary_switches]]
+name = "nested_1"
+dispatch = "0x004EF0EB"
+destination_table = "0x004F48EC"
+destinations = ["0x004EF0F2", "0x004EF0FD", "0x004EF0FD", "0x004EF106", "0x004EF106"]
+[[roots.auxiliary_switches]]
+name = "nested_2"
+dispatch = "0x004EF23C"
+destination_table = "0x004F4900"
+destinations = ["0x004EF243", "0x004EF24C", "0x004EF24C", "0x004EF257", "0x004EF257"]
+[[roots.auxiliary_switches]]
+name = "nested_3"
+dispatch = "0x004EF511"
+destination_table = "0x004F4AB0"
+destinations = ["0x004EF518", "0x004EF523", "0x004EF523", "0x004EF52C", "0x004EF52C"]
+[[roots.auxiliary_switches]]
+name = "nested_4"
+dispatch = "0x004EF662"
+destination_table = "0x004F4AC4"
+destinations = ["0x004EF669", "0x004EF672", "0x004EF672", "0x004EF67D", "0x004EF67D"]
+[[roots.auxiliary_switches]]
+name = "nested_5"
+dispatch = "0x004EF8D7"
+destination_table = "0x004F4AD8"
+destinations = ["0x004EF8DE", "0x004EF8E9", "0x004EF8E9", "0x004EF8F2", "0x004EF8F2"]
+[[roots.auxiliary_switches]]
+name = "nested_6"
+dispatch = "0x004EFA28"
+destination_table = "0x004F4AEC"
+destinations = ["0x004EFA2F", "0x004EFA38", "0x004EFA38", "0x004EFA43", "0x004EFA43"]
+[[roots.auxiliary_switches]]
+name = "nested_7"
+dispatch = "0x004EFC9D"
+destination_table = "0x004F4B00"
+destinations = ["0x004EFCA4", "0x004EFCAF", "0x004EFCAF", "0x004EFCB8", "0x004EFCB8"]
+[[roots.auxiliary_switches]]
+name = "nested_8"
+dispatch = "0x004EFDEE"
+destination_table = "0x004F4B14"
+destinations = ["0x004EFDF5", "0x004EFDFE", "0x004EFDFE", "0x004EFE09", "0x004EFE09"]
+[[roots.auxiliary_switches]]
+name = "nested_9"
+dispatch = "0x004F3508"
+destination_table = "0x004F4B28"
+destinations = ["0x004F3781", "0x004F3520", "0x004F3770", "0x004F350F"]
+[[roots.auxiliary_switches]]
+name = "nested_10"
+dispatch = "0x004F3769"
+destination_table = "0x004F4B38"
+destinations = ["0x004F3781", "0x004F3520", "0x004F3770", "0x004F350F"]
+[[roots.auxiliary_switches]]
+name = "nested_11"
+dispatch = "0x004F382B"
+destination_table = "0x004F4B48"
+destinations = ["0x004F3A72", "0x004F39B2", "0x004F38F2", "0x004F3832"]
+[[roots.auxiliary_switches]]
+name = "nested_12"
+dispatch = "0x004F3BDA"
+destination_table = "0x004F4B58"
+destinations = ["0x004F3E55", "0x004F3D8F", "0x004F3CB7", "0x004F3BE1"]
+[[roots.auxiliary_switches]]
+name = "nested_13"
+dispatch = "0x004F40E4"
+destination_table = "0x004F4B68"
+destinations = ["0x004F42F4", "0x004F4247", "0x004F4199", "0x004F40EB"]
+
 [[roots]]
 name = "default-cpu-action-policy"
 address = "0x005F1F80"

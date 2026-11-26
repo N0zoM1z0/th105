@@ -5,6 +5,26 @@ Target: original Japanese TH10.5 v1.06a, SHA-256
 Follow [AGENTS.md](../AGENTS.md), [shared tools](SHARED_TOOLS.md) and the
 [reconstruction workflow](RE_WORKFLOW.md). Keep compiler/analyzer work serial.
 
+## Active: Alice Fighter `+0x28` (`0x004E9F50`)
+
+Alice remains identified, unselected and nonexact. The current scope uses the
+hash-attested raw PE. Its 42,721-byte callable and 44,080-byte envelope contain
+three primary switches and thirteen nested switches, now recorded in
+`config/giant-action-switches.toml`.
+
+The retained source now corrects 308/309's facing reads inside their six-request
+loops, 321's gate/velocity constants and 402's `{0,0,7}` request. The complete
+`exact-first-alice-fighter-update` comparison still fails at `+8`, frame
+`0x418` versus native `0x410`; no exact credit changes. See the
+[current Alice findings](ALICE_FIGHTER_UPDATE_2026_10_25.md#current-raw-pe-matching-findings-2026-11-26).
+
+Private typed work is in `build/alice-root-work-codex/`; read `CURRENT.md` for
+the selected source, commands and closed controls. It recovers the native frame
+and packet homes but still differs in physical tail sharing. Continue with
+404/406's timer lifetime and the shared request tails. The three-float storage
+hypothesis for 570/571, the internal alignment instruction and the final eight
+alignment bytes still need a complete acceptance decision.
+
 ## Completed: Sakuya Fighter `+0x28` (`0x004CADB0`)
 
 `exact-first-sakuya-action-state` is canonically exact from the standalone
@@ -58,12 +78,9 @@ validate these changes. No shared gameplay layout or callee changed.
 
 ## Next useful action
 
-Continue with Alice `0x004E9F50`, one bounded root at a time. Its complete
-41,721-byte source hypothesis / 44,080-byte envelope and existing switch map
-provide the next smaller Fighter giant. Read
-[the Alice note](ALICE_FIGHTER_UPDATE_2026_10_25.md),
-`src/characters/AliceFighterActionState.cpp` and
-`exact-first-alice-fighter-update` before selecting or changing source.
+Continue the active Alice `0x004E9F50` scope, one bounded root at a time.
+Use the current findings and private `CURRENT.md` above; the retained source
+is still a hypothesis.
 The user wants the remaining roots completed individually to canonical exactness.
 
 Keep receiver layouts character-scoped. Recompare directly affected accepted

@@ -1324,7 +1324,6 @@ void AliceFighterActionStateView::dispatch_action_state()
 
     case 308: {
         float spawn_payload[3];
-        int facing;
         int i;
 
         F(0xf8) =
@@ -1344,16 +1343,15 @@ void AliceFighterActionStateView::dispatch_action_state()
             dispatch_indexed_event_member(0x1Du);
         if (!U(0x13e)) {
             if (!U(0x142) && U(0x140) == 4) {
-                facing = B(0x104);
                 for (i = 0; i < 6; ++i) {
-                    spawn_payload[0] = static_cast<float>(-static_cast<double>(i) * 60.0);
+                    spawn_payload[0] = static_cast<float>(-static_cast<float>(i) * 60.0);
                     spawn_payload[1] = 13.0f;
                     spawn_payload[2] = 17.0f;
                     spawn_owned_object_via_manager(
                         849,
-                        F(0xec) + static_cast<float>(25 * static_cast<signed char>(facing)),
+                        F(0xec) + static_cast<float>(25 * C(0x104)),
                         static_cast<float>(F(0xf0) + 95.0),
-                        facing,
+                        B(0x104),
                         1,
                         spawn_payload,
                         3);
@@ -1372,7 +1370,6 @@ void AliceFighterActionStateView::dispatch_action_state()
 
     case 309: {
         float spawn_payload[3];
-        int facing;
         int i;
 
         F(0xf8) =
@@ -1393,16 +1390,15 @@ void AliceFighterActionStateView::dispatch_action_state()
         if (!U(0x13e)
             && !U(0x142)
             && U(0x140) == 3) {
-            facing = B(0x104);
             for (i = 0; i < 6; ++i) {
-                spawn_payload[0] = static_cast<float>(-static_cast<double>(i) * 60.0);
+                spawn_payload[0] = static_cast<float>(-static_cast<float>(i) * 60.0);
                 spawn_payload[1] = 13.0f;
                 spawn_payload[2] = 24.0f;
                 spawn_owned_object_via_manager(
                     849,
-                    F(0xec) + static_cast<float>(30 * static_cast<signed char>(facing)),
+                    F(0xec) + static_cast<float>(30 * C(0x104)),
                     static_cast<float>(F(0xf0) + 120.0),
-                    facing,
+                    B(0x104),
                     1,
                     spawn_payload,
                     3);
@@ -1483,9 +1479,9 @@ void AliceFighterActionStateView::dispatch_action_state()
 
     case 321:
         resolve_stage_surface_landing_transition();
-        if (!try_dispatch_directional_action_208_210(1)) {
+        if (!try_dispatch_directional_action_208_210(0)) {
             if (*reinterpret_cast<__int16 *>(raw + 320) > 3) {
-                adjusted = static_cast<float>(F(0xf4) - 0.5);
+                adjusted = static_cast<float>(F(0xf4) - 1.0);
                 F(0xf4) = adjusted;
                 if (adjusted < 0.0f)
                     F(0xf4) = 0.0f;
@@ -1494,7 +1490,7 @@ void AliceFighterActionStateView::dispatch_action_state()
                 set_action_and_finalize(0);
             if (!U(0x142) && U(0x140) == 3) {
                 dispatch_indexed_event_member(0x1Cu);
-                F(0xf4) = 7.5f;
+                F(0xf4) = 10.0f;
                 B(0x47e) = 0;
             }
         }
@@ -1626,8 +1622,8 @@ void AliceFighterActionStateView::dispatch_action_state()
         if (!U(0x142)
             && U(0x140) == 4) {
             spawn_payload[0] = 0.0f;
-            spawn_payload[1] = 7.0f;
-            spawn_payload[2] = 0.0f;
+            spawn_payload[1] = 0.0f;
+            spawn_payload[2] = 7.0f;
             facing = B(0x104);
             spawn_owned_object_via_manager(801,
                 F(0xec) + static_cast<float>(20 * static_cast<signed char>(facing)),
