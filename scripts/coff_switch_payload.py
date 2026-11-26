@@ -200,6 +200,22 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
     while bound_index > 0 and ins[bound_index].mnemonic in ('push', 'mov', 'lea', 'fst', 'fstp'):
         store = ins[bound_index]
         dest = store.operands[0]
+        # Youmu action720 schedules its two work-counter constants here.
+        # Full-register MOV/LEA preserve CMP flags; neither may replace the selector.
+        if (store.mnemonic == 'mov' and dest.type == x.X86_OP_REG
+                and dest.reg == x.X86_REG_EDX and selector != x.X86_REG_EDX
+                and store.operands[1].type == x.X86_OP_IMM):
+            scheduled.append(store)
+            bound_index -= 1
+            continue
+        if (store.mnemonic == 'lea' and dest.type == x.X86_OP_REG
+                and dest.reg == x.X86_REG_ECX and selector != x.X86_REG_ECX
+                and store.operands[1].type == x.X86_OP_MEM
+                and store.operands[1].mem.base == x.X86_REG_EDX
+                and not store.operands[1].mem.index and not store.operands[1].mem.segment):
+            scheduled.append(store)
+            bound_index -= 1
+            continue
         if dest.type == x.X86_OP_REG and dest.reg == x.X86_REG_EDI:
             saves_edi = store.mnemonic == 'push' and selector != x.X86_REG_ESP
             sets_const = (store.mnemonic == 'mov' and selector != x.X86_REG_EDI

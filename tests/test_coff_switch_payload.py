@@ -156,6 +156,24 @@ class CompactSwitchTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'reaching constant'):
             payload.inspect(b2, b2, a2, s2, c2, r2)
 
+    def test_scheduled_edx_constant_and_lea_ecx_preserve_selector_and_guard(self):
+        # Youmu action720: cmp eax, limit; mov edx, 10; lea ecx, [edx+10]; ja default.
+        compare = bytes.fromhex('9090909090909090 83f801 ba0a000000 8d4a0a')
+        body, address, size, contract, relocs = fixture(compare=compare)
+        payload.inspect(body, body, address, size, contract, relocs)
+        for offset, value in ((11, b'\xb8'),       # MOV clobbers selector EAX.
+                              (16, b'\x8d\x42\x0a'),  # LEA clobbers selector EAX.
+                              (16, b'\x83\xc1\x0a'),  # ADD clobbers CMP flags.
+                              (16, b'\x8d\x4c\x0a')):  # Truncated/indexed LEA.
+            bad, updated = changed(body, contract, offset, value)
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                payload.inspect(bad, bad, address, size, updated, relocs)
+        for destination in (11, 16):
+            bad, updated = changed(body, contract, 0, bytes((0x75, destination - 2)))
+            with self.subTest(destination=destination), self.assertRaisesRegex(
+                    ValueError, 'branch escapes code or bypasses'):
+                payload.inspect(bad, bad, address, size, updated, relocs)
+
     def test_local_relocations_cannot_be_missing_duplicated_or_added_to_map(self):
         b, a, n, c, r = fixture()
         bad = [r[:-1], r + [r[-1]], r + [(c['map_offset'], 6, '$FAKE')],

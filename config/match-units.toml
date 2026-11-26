@@ -17484,7 +17484,7 @@ source = "src/characters/YoumuActionState.cpp"
 object = "build/match-units/GptWeb_YoumuActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current-target ordinary-C++ source covers complete37692-byte Youmu vslot28 callable. Fresh canonical comparison remains nonexact after202 bytes at+0xCA target64/candidate38; metadata+0x9310 versus target+0x933C (44 bytes short). All97 destinations/33 low entries remain distinct;31/98 strict owner diagnostics gain mid500/501/505/506 with no losses and zero exact credit. Raw traversal9912 instructions/all37692 bytes has no unresolved indirect jumps. Local spawn input is const void*:465190 forwards the pointer,53B1C0 copies count*4 bytes, and53B0A0 installs6C5114 with this consumer at slot4. Original pointer element type/constness/prototype are not unique. All56 original integer-address casts are removed; only this unit spawn REL32 symbol spelling changes, destination465190 unchanged. Action601 now rounds X within its two actual branch call arguments, preparing trailing arguments before the signed product, outgoing-Y store, FILD/self-X add and dword rounding. One unsigned direction snapshot supports both full direction and signed multiplication. Four unused scalar declarations removed byte-neutrally. Existing facing11-site, typed virtual, zero/effect, angle/association, payload/float/index/shared-return recoveries remain. All138 guards and49 physical spawn payloads remain covered/resolved; normalized payload-address leads decrease6->2, leaving605/710. Arithmetic349/349 has two multiset leads696/710; load/store leads12. Root physical slots8/C/14/1C target107/31/12/2 versus candidate106/33/13/2 remain diagnostic. Earlier601 branch-call negative is phase-scoped and superseded with independent lifetime recoveries and explicit argument rounding.710-only loses low11; both601/710 lose15 prior owners despite only4-byte size deficit, so they remain private. No shared ABI/header/helper/compiler/global relocation/partition change; default SP1 remains a probe. Original types, control-byte upper bits, stack homes, physical tails, register lifetimes, numerical/exception closure and compiler/TU context remain unknown. Follow-up controls and complete shared-return incoming edges:. Source remains unchanged at31/98; explicit sharing misplaces or overmerges tails, and float-return caller controls are byte-neutral. No assembly requirement is established in this bounded scope."
+notes = "Exact canonical JP 1.06a Youmu action-state root: 37692 callable / 38816 complete envelope bytes, 3 compact byte-index switches plus action720 direct switch, 98/98 instruction/edge-identical owners. Typed receiver/opponent fields with checked offsets, natural control flow, and byte-width effect/spawn parameters."
 
 [[units.gpt-web-youmu-vslot28-full-root.functions]]
 address = "0x00530200"
@@ -17499,7 +17499,7 @@ rel32_targets = [
   "?dispatch_character_wave_handle@YoumuActionStateView@th105@@QAEXI@Z=0x0045C030",
   "?dispatch_indexed_event_member@YoumuActionStateView@th105@@QAEXI@Z=0x004359F0",
   "?dispatch_indexed_sequence_window_45c8b0@YoumuActionStateView@th105@@QAEXCHH@Z=0x0045DEB0",
-  "?emit_fighter_effect_433cc0@YoumuActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+  "?emit_fighter_effect_433cc0@YoumuActionStateView@th105@@QAEXHMMEH@Z=0x00435240",
   "?face_opponent_and_flip_horizontal_velocity@YoumuActionStateView@th105@@QAEXXZ=0x00478E60",
   "?finalize_sequence_entry@YoumuActionStateView@th105@@QAEXH@Z=0x0045D110",
   "?has_crossed_stage_surface_while_descending@YoumuActionStateView@th105@@QAEHXZ=0x005F9310",
@@ -17513,12 +17513,11 @@ rel32_targets = [
   "?resolve_stage_surface_landing_transition@YoumuActionStateView@th105@@QAEEXZ=0x00473DD0",
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
   "?set_oriented_components_f0_f4@YoumuActionStateView@th105@@QAEXMM@Z=0x00435160",
-  "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z=0x00435160",
-  "?spawn_owned_object_via_manager@YoumuActionStateView@th105@@QAEHHMMHEPBXH@Z=0x00465190",
+  "?set_oriented_components_f0_f4@FighterActionScratchView@th105@@QAEXMM@Z=0x00435160",
+  "?spawn_owned_object_via_manager@YoumuActionStateView@th105@@QAEHHMMCCPBXH@Z=0x00465190",
   "?stage_surface_height_at_x@th105@@YIMPAVYoumuActionStateView@1@@Z=0x00435D60",
   "?try_dispatch_directional_action_208_210@YoumuActionStateView@th105@@QAEEH@Z=0x00478EE0",
   "?update_common_action_state@YoumuActionStateView@th105@@QAEXXZ=0x004740C0",
-  "?zero_velocity_acceleration@FighterPeerActionStateView@th105@@QAEXXZ=0x0045AF40",
   "?zero_velocity_acceleration@YoumuActionStateView@th105@@QAEXXZ=0x0045AF40",
   "__ftol2_sse=0x0068A1A0",
 ]
@@ -17632,6 +17631,22 @@ dir32_targets = [
   "__real@c2b40000=__real@c2b40000",
   "__real@c2be0000=__real@c2be0000",
   "__real@c2f00000=__real@c2f00000",
+]
+
+[units.gpt-web-youmu-vslot28-full-root.functions.switch_payload]
+size = 38816
+sha256 = "07283bd567ce8a199d6d14db90f27218521b465e4a7a2954c231ae9b259b16b3"
+alignment_hex = ""
+table_offset = 37692
+table_entries = 33
+map_offset = 37824
+map_size = 227
+load_offset = 260
+jump_offset = 267
+additional_tables = [
+    { alignment_hex = "90", table_offset = 38052, table_entries = 44, map_offset = 38228, map_size = 246, load_offset = 10569, jump_offset = 10576 },
+    { alignment_hex = "8bff", table_offset = 38476, table_entries = 22, map_offset = 38564, map_size = 234, load_offset = 25945, jump_offset = 25952 },
+    { alignment_hex = "8bff", table_offset = 38800, table_entries = 4, jump_offset = 35434 },
 ]
 
 [units.gpt-web-default-cpu-action-policy]

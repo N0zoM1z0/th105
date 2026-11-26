@@ -3,72 +3,62 @@
 Target executable: original Japanese TH10.5 v1.06a, SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 Follow [AGENTS.md](../AGENTS.md), [the shared runtime](SHARED_TOOLS.md) and
-[the reconstruction workflow](RE_WORKFLOW.md). Keep this game's Wine prefix,
-analysis projects and private worktrees; run compiler and analyzer jobs
-serially.
+[the reconstruction workflow](RE_WORKFLOW.md). Run compiler/analyzer jobs
+serially and preserve this game's Wine prefix and private analysis state.
 
-## Completed: Aya Fighter `+0x28` action-state root (`0x00602250`) and Giant-Root Playbook
+## Completed: Youmu Fighter `+0x28` action-state root (`0x00530200`)
 
-`Aya_dispatch_action_state_vslot28` at `0x00602250` is now **100% canonically
-exact** under VC8 SP1 `/O2 /GS- /GR /EHsc /MT` in match unit
-`exact-first-aya-action-state`:
+`Youmu_dispatch_action_state_vslot28` is canonically exact in
+`gpt-web-youmu-vslot28-full-root`, compiled with VC8 SP1
+`/O2 /GS- /GR /EHsc /MT` from
+[YoumuActionState.cpp](../src/characters/YoumuActionState.cpp).
 
-- **Source**: [AyaActionState.cpp](../src/characters/AyaActionState.cpp)
-  (standalone typed `AyaActionStateView` and `AyaPeerView` layouts with
-  compile-time `offsetof` assertions; obsolete `AyaActionState.hpp` removed).
-- **Exact envelope**: 65,601 callable bytes (16,856 instructions, 107/107
-  instruction/edge-identical owners), 1,103 metadata bytes (3 compact
-  byte-index switch tables: 33/27/48 entries, 584 index bytes, plus 4 direct
-  jump tables in actions `720`, `721`, `740`, `791..798`, and original
-  `8d4900`/`90`/`8bff` alignment padding), total 66,704 bytes
-  (`0x00602250..0x006126E0`), 2,133 relocations (1,011 direct calls across 33
-  targets), zero byte differences.
-- **Canonical SHA-256**: callable
-  `04c7620574e00d6f05bb615a095188ee2c60e94cc9d94dbad2eed56b92ab7fd5`; complete
-  66,704-byte switch envelope
-  `42401b4701e475fbaab7d19a542aec6edbe503082a2a0dc2a2e22407e71903a3`.
-- **Reusable methodology & tooling**:
-  - [GIANT_ACTION_ROOT_PLAYBOOK.md](GIANT_ACTION_ROOT_PLAYBOOK.md) documents
-    the reusable 5-step opening pass, shared Fighter offsets, VC8 `c2.dll`
-    rules (`TailMerge`, `WidenBranches`, LIFO stack-slot packing), and
-    promotion checklist.
-  - [scripts/giant-root-iterate.py](../scripts/giant-root-iterate.py) provides
-    single-command compile, per-owner audit, call-count census, and disassembly
-    diffs for any root in `config/giant-action-switches.toml`.
-  - [scripts/coff_switch_payload.py](../scripts/coff_switch_payload.py) now
-    defers conditional jumps inside a register-bound span to the existing sound
-    CFG reaching-constant check (`verify_cfg_register_bound`), with positive
-    and negative unit tests in
-    [tests/test_coff_switch_payload.py](../tests/test_coff_switch_payload.py).
-- **Verification**:
-  ```bash
-  WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-aya-action-state --compare --json
-  scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-aya-action-state aya-vslot28 build/match-units/ExactFirst_AyaActionState.obj
-  scripts/repo-python -m unittest tests/test_coff_switch_payload.py
-  ```
+- All 37,692 callable bytes and the complete 38,816-byte envelope
+  (`0x00530200..0x005399A0`, exclusive end) match with zero differences.
+  Metadata comprises three compact switches, action720's direct switch,
+  707 byte indices, 103 destination words and the original alignment.
+- All 1,126 relocations are replayed: 598 REL32 calls across 29 targets and
+  528 DIR32 relocations. The owner audit is 98/98; raw control flow reaches
+  all 9,912 instructions with no unresolved indirect exits.
+- Callable SHA-256:
+  `19f2d4fba4f6ea626b69a28f4717d0fcfae06ea97e95ddb24e656e0ea518ed74`.
+  Complete envelope SHA-256:
+  `07283bd567ce8a199d6d14db90f27218521b465e4a7a2954c231ae9b259b16b3`.
 
-## Previously completed Fighter `+0x28` action-state roots
+Reproduce acceptance with:
 
-- **Iku (`0x00620920`)**: `Iku_dispatch_action_state_vslot28` (59,038 callable /
-  60,194 envelope, 3 switch tables, 109/109 exact owners, 1,770 relocations) is
-  100% canonically exact in `gpt-web-iku-action-state` (`ee6a5e7f`).
-- **Reimu (`0x00478FA0`)**: `Reimu_dispatch_action_state_vslot28` (81,550
-  callable / 82,924 envelope, 11 switch tables, 2,477 relocations) is 100%
-  canonically exact in `neon-reimu-action-state-root` (`473165f6`).
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit gpt-web-youmu-vslot28-full-root --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit gpt-web-youmu-vslot28-full-root youmu-vslot28 build/match-units/GptWeb_YoumuActionState.obj
+```
+
+The [giant-root playbook](GIANT_ACTION_ROOT_PLAYBOOK.md#youmu-source-shape-findings)
+records the useful new findings: float member copies affected global stack
+packing; cached opponent pointers changed load scheduling; and combining two
+independent early exits changed both physical tail selection and volatile
+register allocation. Original source spelling remains unknown.
+
+`coff_switch_payload.py` now verifies action720's flag-preserving
+`mov edx, immediate; lea ecx, [edx+disp]` between CMP and JA while protecting
+the selector and rejecting jumps into that setup. Its 22 focused tests pass.
+Existing Aya, Iku and Reimu objects retain complete canonical exact comparisons
+with the updated verifier; these were object rechecks, not fresh compiler builds.
+
+## Previously completed Fighter `+0x28` roots
+
+- **Aya (`0x00602250`)**: 65,601 callable / 66,704 envelope bytes,
+  107/107 owners, unit `exact-first-aya-action-state`.
+- **Iku (`0x00620920`)**: 59,038 callable / 60,194 envelope bytes,
+  109/109 owners, unit `gpt-web-iku-action-state` (`ee6a5e7f`).
+- **Reimu (`0x00478FA0`)**: 81,550 callable / 82,924 envelope bytes,
+  unit `neon-reimu-action-state-root` (`473165f6`).
 
 ## Next useful action
 
-Apply [GIANT_ACTION_ROOT_PLAYBOOK.md](GIANT_ACTION_ROOT_PLAYBOOK.md) and
-[scripts/giant-root-iterate.py](../scripts/giant-root-iterate.py) to the next
-roster Fighter `+0x28` action-state root (e.g., Marisa `0x004A3710`, Sakuya
-`0x004CADB0`, Alice `0x004E9F50`, Patchouli `0x0050F200`, Youmu `0x00530200`,
-Remilia `0x00545090`, Yuyuko `0x0055D850`, Yukari `0x0057B030`, Suika
-`0x00598990`, Udonge `0x005BFD50`, Komachi `0x005E20E0`, or Tenshi
-`0x0063D3E0`).
+Apply the playbook and `scripts/giant-root-iterate.py` to another roster Fighter
+root, for example Sakuya `0x004CADB0` or Marisa `0x004A3710`. Check its own
+field widths and call arguments before transferring a source shape.
 
-## Open notes
-
-- `ReimuActionStateRoot.cpp`, `IkuActionState.cpp`, and `AyaActionState.cpp`
-  use character-scoped typed receiver views rather than a unified
-  cross-character `Fighter` header. Any future shared-header unification must
-  re-verify all three exact units for zero differences.
+The four accepted roots retain character-scoped receiver views. A future shared
+layout/header change must recompare its directly affected accepted units. No
+shared gameplay header or callee implementation changed in the Youmu work.

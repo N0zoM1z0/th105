@@ -8,6 +8,7 @@ Proven exact on:
 - `Reimu_dispatch_action_state_vslot28` (`0x00478FA0`, 81,550 callable / 82,924 envelope, 11 switch tables)
 - `Iku_dispatch_action_state_vslot28` (`0x00620920`, 59,038 callable / 60,194 envelope, 3 switch tables)
 - `Aya_dispatch_action_state_vslot28` (`0x00602250`, 65,601 callable / 66,704 envelope, 7 switch tables)
+- `Youmu_dispatch_action_state_vslot28` (`0x00530200`, 37,692 callable / 38,816 envelope, 4 switch tables)
 
 Update this playbook and [scripts/giant-root-iterate.py](../scripts/giant-root-iterate.py)
 whenever a new root reveals a reusable pattern or compiler rule.
@@ -216,3 +217,61 @@ Detailed proofs live in [VC8_SOURCE_SHAPE_PATTERNS.md](VC8_SOURCE_SHAPE_PATTERNS
 6. Delete scratch directories under `build/<char>-root-work/`, update
    [RE_HANDOFF.md](RE_HANDOFF.md) and this playbook with any new findings, and
    commit cleanly.
+
+## Youmu source-shape findings
+
+`Youmu_dispatch_action_state_vslot28` at `0x00530200` now matches all
+37,692 callable bytes and its complete 38,816-byte envelope under VC8 SP1
+`/O2 /GS- /GR /EHsc /MT`, in unit `gpt-web-youmu-vslot28-full-root`.
+[The source](../src/characters/YoumuActionState.cpp) and its
+[manifest contract](../config/match-units.toml) reproduce four switches,
+707 index bytes, 1,126 relocations and 98/98 instruction/edge-identical owners.
+Callable SHA-256 is
+`19f2d4fba4f6ea626b69a28f4717d0fcfae06ea97e95ddb24e656e0ea518ed74`;
+full-envelope SHA-256 is
+`07283bd567ce8a199d6d14db90f27218521b465e4a7a2954c231ae9b259b16b3`.
+Use the same build/audit commands as Section 6 with this unit and `youmu-vslot28`.
+
+The target observations and successful source controls support these additions
+to the opening pass:
+
+- **Keep float member updates direct.** Decompiler-created float copies such as
+  `float next = velocity_x - amount; velocity_x = next; if (next < 0) ...`
+  allocated competing stack slots across this root. Updating and testing the
+  typed member directly recovered the target's shared rounding slots. Preserve
+  explicit float rounding when removing a carrier that was subsequently widened
+  to double; merely deleting that rounding changes the expression.
+- **Read the opponent through the member at each operation.** Removing cached
+  opponent pointers in actions525/526 recovered the target's pointer reloads,
+  virtual-call registers and complete physical owners. A same-layout receiver
+  or inheritance-only rewrite did not resolve those cached lifetimes.
+- **Retain independent early exits.** In actions302 and603, write
+  `if (advance()) { set_action(0); return; }` followed by
+  `if (sequence_entry(1)) { set_action(0); return; }`. Combining these into one
+  `if (advance() || sequence_entry(1))` retained the instruction count but selected
+  the wrong physical action-zero tail in302 and a different volatile-register
+  cycle in603. Splitting them resolved the final differences. Copying the
+  opponent X into a local, moving/initializing the payload array, adding an
+  inlined emitter wrapper and changing the action parameter from short to int
+  did not fix that register cycle.
+- **Structure the whole action before adjusting local registers.** Removing
+  action603's shared `goto` labels and writing its sequence0/2/3/4 blocks
+  naturally recovered late constant lifetimes and downstream alignment together.
+  An early local rewrite could reduce the owner count while correcting real
+  arithmetic or argument scheduling; revisit global stack placement afterward.
+- **Preserve signed byte reads separately from unsigned snapshots.** Youmu's
+  `byte_184` comparisons are signed, two `byte_47e` tests read it as signed char,
+  and the direction snapshots used by actions600/730 are zero-extended before
+  their signed arithmetic. Collapsing these distinctions lost otherwise equal
+  owners. The exact local spawn view uses signed char for both direction and
+  the control byte forwarded to factory `+0x33c`; the effect direction is
+  unsigned char. Original declarations are not uniquely determined by the
+  compatible caller view.
+
+Action720 also exposes a verifier scheduling case at `0x00538C5D`: after
+`cmp eax, 3`, VC8 emits `mov edx, 10; lea ecx, [edx+10]` before `ja` and the
+four-entry direct jump table. These instructions preserve EFLAGS and EAX.
+The verifier accepts these specific register forms only when neither replaces
+the selector, and still rejects branches into the protected setup. Positive,
+selector-clobber, flag-clobber and bypass cases are in
+[the focused tests](../tests/test_coff_switch_payload.py).
