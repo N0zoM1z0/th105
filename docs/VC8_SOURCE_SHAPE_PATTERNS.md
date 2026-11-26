@@ -947,3 +947,20 @@ trace objects replay identically to the clean 55,066-byte candidate. The
 Tenshi debugger control matches its complete 48,968-byte target payload,
 including relocation replay. All debugger/compiler jobs are closed. Patchouli
 remains nonexact; the source property behind its zero-cost interval is open.
+
+On the updated Patchouli source at `d72a7ba2`, four hardware probes cover both
+source and destination cost updates: subtracts at `10B10957`/`10B10F85`, adds
+at `10B109C5`/`10B11007`. The split interval spanning the prefix has sixteen
+`Enterload` deductions of two and sixteen use credits of two, all at block
+weight one. Its final cost is exactly zero. Later splits leave smaller local
+ranges with observed costs four, two and zero. This identifies the allocator
+stage to compare with native control flow, before physical x87 mapping. The
+source or compiler context behind the different placement remains unknown.
+
+Private `c2-current-zero-cost-events.json` retains the operand/tuple records;
+`c2-current-prefix-before-costs.json` pins the root and mapped-byte checks.
+The resulting `costs-gdb-trace.obj` replays identically to the current clean
+55,082-byte candidate, including relocations. Its comparison remains nonexact.
+For this GDB, a Python `Breakpoint.stop()` callback also ran on hits that did
+not satisfy its `.condition`. Filter the callback before logging; the retained
+trace removes the unrelated initial records. All trace jobs ended normally.

@@ -136,14 +136,16 @@ calls short by one each. The prefix loses the zero that the target carries into
 the switch; 409 and 730 also have residual local sharing/lifetime differences.
 Source selection and exact ledgers are unchanged.
 
-The calibrated GDB/Wine compiler trace now observes the zero dying before x87
-mapping. In the f04698c5 candidate, general Color's class-one path sees spill
-cost zero for the prefix interval; FPColor is skipped by the module flag gate.
-The exact Tenshi control has cost ten under the same flags and still matches
-its complete payload. Follow general Spillcosts/SpillObvious/SpillOrDefer and
-the zero's real source uses. Evidence and addresses are in the final section
-of `docs/VC8_SOURCE_SHAPE_PATTERNS.md`; all native jobs are closed. Read private
-`build/patchouli-root-work-codex/CURRENT.md` for current inputs and closed probes.
+The calibrated GDB/Wine trace follows general Color's class-one path; the
+module flag gate skips FPColor. On d72a7ba2, the prefix interval receives sixteen
+use credits and sixteen Enterload deductions, two each, for net spill cost
+zero. Later splitting replaces that long lifetime with smaller local ranges.
+The exact Tenshi control has positive cost under the same flags. Compare the
+candidate's entry-load placement and CFG with the native paths before changing
+another literal or stack-mapping instruction. Evidence and addresses are in
+the final section of `docs/VC8_SOURCE_SHAPE_PATTERNS.md`; all native jobs are
+closed. Read private `build/patchouli-root-work-codex/CURRENT.md` for current
+inputs and closed probes.
 The rounded-velocity 222 trials remain diagnostic: they restore entries but
 share a non-native suffix and still lack an advance call.
 
