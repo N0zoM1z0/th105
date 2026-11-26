@@ -76,16 +76,16 @@ public:
     }
     __forceinline void release_flight(int sequence) {
         if(static_cast<unsigned char>(facing_104)==1) {
-            if(related_170->x_ec<x_ec) {
+            if(x_ec>related_170->x_ec) {
                 facing_104=-1;velocity_x_f4=-velocity_x_f4;
-            }
-            select_sequence(sequence);
+                select_sequence(sequence);
+            } else select_sequence(sequence);
         } else {
-            if(related_170->x_ec>x_ec) {
+            if(x_ec<related_170->x_ec) {
                 facing_104=-facing_104;
                 velocity_x_f4=-velocity_x_f4;
-            }
-            select_sequence(sequence);
+                select_sequence(sequence);
+            } else select_sequence(sequence);
         }
     }
 
@@ -93,7 +93,7 @@ public:
         int direction=static_cast<unsigned char>(facing_104);
         float y=yoff==0.0?y_f0:(yoff<0.0?static_cast<float>(y_f0-(-yoff)):static_cast<float>(y_f0+yoff));
         float x=xoff==0?x_ec:(xoff<0?
-            static_cast<float>(x_ec-static_cast<double>(-xoff*static_cast<signed char>(direction))):
+            static_cast<float>(x_ec-static_cast<float>(-xoff*static_cast<signed char>(direction))):
             static_cast<float>(xoff*static_cast<signed char>(direction)+static_cast<double>(x_ec)));
         spawn(object,x,y,direction,1,p,count);
     }
@@ -101,7 +101,7 @@ public:
         for(int angle=0;angle<360;angle+=45) {
             p[0]=static_cast<float>(patchouli_random(30)+angle);
             if(p[0]<0.0f || p[0]<180.0f)word_730=1;else word_730=-1;
-            spawn(820,patchouli_cosine(-p[0])*50.0+x_ec+static_cast<double>(xoff*facing_104),
+            spawn(820,patchouli_cosine(-p[0])*50.0+x_ec+static_cast<float>(xoff*facing_104),
                   patchouli_sine(-p[0])*50.0*0.25+y_f0,
                   static_cast<unsigned char>(facing_104),static_cast<unsigned char>(word_730),p,3);
         }
@@ -116,7 +116,7 @@ public:
     __forceinline void charge_effect(int xoff,double height) {
         int direction=static_cast<unsigned char>(facing_104);
         float y=static_cast<float>(y_f0+height);
-        float x=xoff<0?static_cast<float>(x_ec-static_cast<double>(-xoff*static_cast<signed char>(direction))):
+        float x=xoff<0?static_cast<float>(x_ec-static_cast<float>(-xoff*static_cast<signed char>(direction))):
             static_cast<float>(xoff*static_cast<signed char>(direction)+static_cast<double>(x_ec));
         effect(62,x,y,direction,1);next_sequence_block();
     }
@@ -127,10 +127,10 @@ public:
     }
     __forceinline void ground_fan_tick(int xoff,double height) {
         if(word_730>0) {
-            short tick=++word_730;
-            if(sequence_index_13e) {
-                if(tick%3==1 && word_732<5)fan800_emit(xoff,height,30.0);
-            } else if(tick%3==1 && word_732<3)fan800_emit(xoff,height,15.0);
+            ++word_730;
+            if(!sequence_index_13e) {
+                if(word_730%3==1 && word_732<3)fan800_emit(xoff,height,15.0);
+            } else if(word_730%3==1 && word_732<5)fan800_emit(xoff,height,30.0);
         }
     }
     __forceinline void air_fan_tick(int xoff,double height) {

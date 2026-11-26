@@ -244,3 +244,37 @@ payload contract runs after code equality and has not passed. Reproduce with the
 unit command above; current private comparison is
 `build/patchouli-root-work-codex/public-typed-ring.json`. Source selection and
 exact ledgers remain unchanged.
+
+## Native frame and flight ownership, 2026-11-26
+
+Direct 830 request arguments recover the native 0x460 frame without changing
+compiler flags or the direction parameter views. The prior 580/581 source
+spilled a direction byte across sine and cosine. Native 519A5E reads the
+unsigned direction for the outgoing argument before sine, then 519ABB reloads
+signed facing after cosine.
+Writing the complete coordinate expressions in `spawn(...)` removes those
+spills. Direct surface-query arguments similarly remove the extra float
+store/reload pairs in 520/521.
+
+Flight 214 now reads input and sequence members directly. Cached direction
+products and a short sequence local had changed computation placement and
+introduced an extra zero extension. The ordinary input decision tree, default
+weather branch first, self-X as the comparison's left operand, and callbacks
+inside each turn/no-turn branch recover native sharing. Sequence 3 keeps its
+callback/frame restoration within those branches. The candidate's 2,211-byte
+owner differs from the 2,213-byte target only by the missing entry x87 pop at
+510F3E in the instruction/edge diagnostic. The whole-root comparison remains
+the acceptance gate.
+
+Ground fans process sequence zero first and test the incremented counter member
+directly. Small integer coordinate offsets use float conversion where the
+native code uses `fiadd` or `fisub`. The reviewed integer bounds and branch
+order also recover the local shapes in 304, 321, 520/521 and 585.
+
+The fresh public unit report is
+`build/patchouli-root-work-codex/public-argument-flight.json`: first mismatch
++0x9B, frame 0x460, candidate code 53,876 bytes and section 55,030 bytes. Native
+210/222 still merge, with four direct-call targets each short by one. The
+prefix still discards its x87 zero instead of carrying it into the switch;
+other owner differences also remain. No source-selection or exact ledger
+changed, and the payload contract has not passed.

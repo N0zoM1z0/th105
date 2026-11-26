@@ -122,21 +122,24 @@ validate these changes. No shared gameplay layout or callee changed.
 
 ## Next useful action
 
-Patchouli `0x0050F200` is the active bounded scope. The public candidate now
-uses typed members with checked offsets and direct ring-emission arguments.
-Its leading difficulty table and three sparse tables have a complete strict
-payload contract. The fresh full build reaches code comparison but remains
-nonexact at +8: frame 0x468 versus 0x460; candidate section 55,174 bytes.
-Surface-query and zero-motion call counts now agree. Native 210/222 still
-merge, leaving four direct-call targets short by one each. No source-selection
-or exact credit changed. Current report:
-`build/patchouli-root-work-codex/public-typed-ring.json`.
+Patchouli `0x0050F200` is the active bounded scope. The typed public source now
+recovers the native 0x460 frame through direct 580/581 request arguments.
+Flight 214's instruction/edge diagnostic differs only by its missing entry x87
+pop; 520/521 and 585 have the same remaining pop difference. The full unit still
+fails at +0x9B, with a 55,030-byte candidate section. Its strict contract covers
+all four switch tables, indices and alignment, and has not passed.
 
-The private `222_velocity` trial uses a real rounded float velocity temporary.
-It restores distinct low-table entries and all but one direct-call count, but
-shares a non-native suffix and remains diagnostic. Compare that source property
-against the native stores before retaining it. Inspect x87 zero liveness and
-scratch lifetimes next; do not repeat the closed probes in private `CURRENT.md`.
+Native 210/222 still merge, leaving advance, on-surface, landing and crossed
+calls short by one each. The prefix loses the zero that the target carries into
+the switch. Other local differences remain, including frame-read structure in
+401 and the manual effect arguments in 301/302. Current strict report:
+`build/patchouli-root-work-codex/public-argument-flight.json`. Source selection
+and exact ledgers are unchanged.
+
+The current private `222_current_velocity` trial restores distinct entries with
+a rounded float temporary, but shares a non-native suffix and still lacks one
+advance call. It remains diagnostic. Read private `CURRENT.md` before choosing
+a trial; the resolved frame and flight source properties need no further sweep.
 
 Read `src/characters/PatchouliActionState.cpp`, its header,
 `docs/PATCHOULI_ACTION_STATE_2026_10_27.md` and
