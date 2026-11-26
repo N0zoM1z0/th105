@@ -1,5 +1,5 @@
 #include "characters/YuyukoActionState.hpp"
-// Complete JP1.06a55D850 candidate, not selected or exact.
+// Canonical JP1.06a 0x0055D850 Yuyuko Fighter +0x28 action-state root.
 // See docs/YUYUKO_ACTION_STATE_2026_10_28.md.
 namespace th105 {
 void YuyukoActionStateView::dispatch_action_state_vslot28()
@@ -902,11 +902,19 @@ case 502:
 
         if(sequence_index_13e==2)landing();byte_17c=0;
         if(sequence_index_13e<2)velocity_y_f8-=acceleration_y_100;
-        if(!sequence_index_13e && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
-            select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+        if(!sequence_index_13e) {
+            if(frame_index_140>=11) {
+                if(static_cast<unsigned char>(crossed())) {
+                    select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+                }
+            }
         }
-        if(sequence_index_13e==1 && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
-            select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+        if(sequence_index_13e==1) {
+            if(frame_index_140>=11) {
+                if(static_cast<unsigned char>(crossed())) {
+                    select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+                }
+            }
         }
         if(advance())set_action_and_finalize(0);
         if((!time_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_index_13e==1)){set_action_and_finalize(9);return;}
@@ -917,11 +925,19 @@ case 503:
 
         if(sequence_index_13e==2)landing();byte_17c=0;
         if(sequence_index_13e<2)velocity_y_f8-=acceleration_y_100;
-        if(!sequence_index_13e && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
-            select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+        if(!sequence_index_13e) {
+            if(frame_index_140>=11) {
+                if(static_cast<unsigned char>(crossed())) {
+                    select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+                }
+            }
         }
-        if(sequence_index_13e==1 && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
-            select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+        if(sequence_index_13e==1) {
+            if(frame_index_140>=11) {
+                if(static_cast<unsigned char>(crossed())) {
+                    select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+                }
+            }
         }
         if(advance())set_action_and_finalize(0);
         if((!time_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_index_13e==1)){set_action_and_finalize(9);return;}
@@ -938,11 +954,19 @@ case 507:
 
         if(sequence_index_13e==2)landing();byte_17c=4;
         if(sequence_index_13e<2)velocity_y_f8-=acceleration_y_100;
-        if(!sequence_index_13e && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
-            select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+        if(!sequence_index_13e) {
+            if(frame_index_140>=11) {
+                if(static_cast<unsigned char>(crossed())) {
+                    select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+                }
+            }
         }
-        if(sequence_index_13e==1 && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
-            select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+        if(sequence_index_13e==1) {
+            if(frame_index_140>=11) {
+                if(static_cast<unsigned char>(crossed())) {
+                    select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+                }
+            }
         }
         if(advance())set_action_and_finalize(0);
         if((!time_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_index_13e==1)){set_action_and_finalize(9);return;}
@@ -953,11 +977,19 @@ case 508:
 
         if(sequence_index_13e==2)landing();byte_17c=4;
         if(sequence_index_13e<2)velocity_y_f8-=acceleration_y_100;
-        if(!sequence_index_13e && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
-            select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+        if(!sequence_index_13e) {
+            if(frame_index_140>=11) {
+                if(static_cast<unsigned char>(crossed())) {
+                    select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+                }
+            }
         }
-        if(sequence_index_13e==1 && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
-            select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+        if(sequence_index_13e==1) {
+            if(frame_index_140>=11) {
+                if(static_cast<unsigned char>(crossed())) {
+                    select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+                }
+            }
         }
         if(advance())set_action_and_finalize(0);
         if((!time_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_index_13e==1)){set_action_and_finalize(9);return;}
@@ -982,7 +1014,9 @@ case 511:{
 }
 case 512:{
         if(sequence_index_13e==1)landing();
-        if(!sequence_index_13e && static_cast<unsigned char>(crossed())){zero_motion();y_f0=yuyuko_surface(this);next_sequence_block();word_730=0;}
+        if(!sequence_index_13e) {
+            if(static_cast<unsigned char>(crossed())){zero_motion();y_f0=yuyuko_surface(this);next_sequence_block();word_730=0;}
+        }
         byte_17c=8;if(word_730==1)arc812_emit(16.0f,12.0,16.0);
         if(advance())set_action_and_finalize(0);
         if((!time_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_index_13e==1)){set_action_and_finalize(9);return;}
@@ -992,7 +1026,9 @@ case 512:{
 }
 case 513:{
         if(sequence_index_13e==1)landing();
-        if(!sequence_index_13e && static_cast<unsigned char>(crossed())){zero_motion();y_f0=yuyuko_surface(this);next_sequence_block();word_730=0;}
+        if(!sequence_index_13e) {
+            if(static_cast<unsigned char>(crossed())){zero_motion();y_f0=yuyuko_surface(this);next_sequence_block();word_730=0;}
+        }
         byte_17c=8;if(word_730==1)arc812_emit(30.0f,10.0,20.0);
         if(advance())set_action_and_finalize(0);
         if((!time_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_index_13e==1)){set_action_and_finalize(9);return;}

@@ -426,6 +426,37 @@ class CompactSwitchTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'reaching constant'):
             payload.inspect(bad_body, bad_body, address, len(bad_code), bad_contract, relocations)
 
+    def test_scheduled_nonvolatile_immediates_between_selector_load_and_dispatch(self):
+        # Yuyuko high switch schedules mov edi, 3; mov bl, 0xff between movzx and jmp.
+        address = 0x401000
+        prefix = bytes.fromhex('bf03000000 b3ff')
+        load = 5
+        jump = load + 7 + len(prefix)
+        case0, case1, default = jump + 7, jump + 10, jump + 16
+        code_size = default + 3
+        table, index = code_size + 2, code_size + 10
+        body = (bytes.fromhex('83f801 77') + bytes([default - load])
+                + bytes.fromhex('0fb680') + struct.pack('<I', address + index)
+                + prefix
+                + bytes.fromhex('ff2485') + struct.pack('<I', address + table)
+                + bytes.fromhex('31c0c3 b801000000c3 31c0c3 8bff')
+                + struct.pack('<II', address + case0, address + case1) + b'\x00\x01')
+        contract = dict(size=len(body), sha256=hashlib.sha256(body).hexdigest(),
+                        alignment_hex='8bff', table_offset=table, table_entries=2,
+                        map_offset=index, map_size=2, load_offset=load, jump_offset=jump)
+        relocs = [(load + 3, 6, '$MAP'), (jump + 3, 6, '$TABLE'),
+                  (table, 6, '$CASE0'), (table + 4, 6, '$CASE1')]
+        report = payload.inspect(body, body, address, code_size, contract, relocs)
+        self.assertEqual(report['reachable_code_bytes'], code_size)
+
+        # Negative: clobbering selector index (mov al, 0xff), writing volatile reg
+        # (mov eax, 3), or non-immediate mov (mov edi, eax) must fail closed.
+        for bad_prefix in ('b803000000 b3ff', 'bf03000000 b0ff', '8bf8909090 b3ff'):
+            bad, bad_contract = changed(body, contract, load + 7, bytes.fromhex(bad_prefix))
+            with self.subTest(bad_prefix=bad_prefix), self.assertRaisesRegex(
+                    ValueError, 'unsupported instruction between switch selector load and dispatch'):
+                payload.inspect(bad, bad, address, code_size, bad_contract, relocs)
+
 
 if __name__ == '__main__':
     unittest.main()

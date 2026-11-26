@@ -31,6 +31,21 @@ NONVOLATILE_ALIASES = {
 }
 
 
+def allowed_dispatch_prefix(inst, index_reg):
+    if (inst.mnemonic == 'push' and len(inst.operands) == 1
+            and inst.operands[0].type == x.X86_OP_REG
+            and inst.operands[0].reg in (x.X86_REG_EBX, x.X86_REG_EBP, x.X86_REG_EDI)):
+        return True
+    if (inst.mnemonic == 'mov' and len(inst.operands) == 2
+            and inst.operands[0].type == x.X86_OP_REG
+            and inst.operands[1].type == x.X86_OP_IMM):
+        dst_reg = inst.operands[0].reg
+        for parent, aliases in NONVOLATILE_ALIASES.items():
+            if parent != x.X86_REG_ESI and dst_reg in aliases:
+                return index_reg not in aliases
+    return False
+
+
 def validate_contract(contract, code_size):
     if not isinstance(contract, dict) or not PAYLOAD_FIELDS <= contract.keys():
         raise ValueError('compact switch requires exact payload fields')
@@ -202,9 +217,7 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
             raise ValueError('compact switch indices omit or escape jump entries')
         dispatch_prefix = ins[ins.index(load) + 1:ins.index(jump)]
         if len(dispatch_prefix) > 2 or any(
-                inst.mnemonic != 'push' or len(inst.operands) != 1
-                or inst.operands[0].type != x.X86_OP_REG
-                or inst.operands[0].reg not in (x.X86_REG_EBX, x.X86_REG_EBP, x.X86_REG_EDI)
+                not allowed_dispatch_prefix(inst, jm.index)
                 for inst in dispatch_prefix):
             raise ValueError('unsupported instruction between switch selector load and dispatch')
     number = ins.index(relocated[-1])

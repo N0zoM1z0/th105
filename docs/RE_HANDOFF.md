@@ -5,37 +5,39 @@ Target: original Japanese TH10.5 v1.06a, SHA-256
 Follow [AGENTS.md](../AGENTS.md), [shared tools](SHARED_TOOLS.md) and the
 [reconstruction workflow](RE_WORKFLOW.md). Keep compiler/analyzer work serial.
 
-## Current checkpoint: Yuyuko Fighter `+0x28` (`0x0055D850`)
+## Completed: Yuyuko Fighter `+0x28` (`0x0055D850`)
 
-The [typed candidate](../src/characters/YuyukoActionState.cpp) and
-[checked receiver](../src/characters/YuyukoActionState.hpp) remain unselected
-and nonexact. `exact-first-yuyuko-action-state` now covers the complete
-59,672-byte payload and all five switch tables. Raw PE traversal closes all
-14,783 instructions / 58,619 callable bytes without unresolved exits.
+`exact-first-yuyuko-action-state` is canonical exact from the character-scoped
+[source](../src/characters/YuyukoActionState.cpp) and
+[checked receiver](../src/characters/YuyukoActionState.hpp), under VC8 SP1
+`/O2 /GS- /GR /EHsc /MT`.
 
-The user explicitly requested a pause after organizing this checkpoint.
-Resume this bounded scope when instructed.
+- All 58,619 callable code bytes and the complete 59,672-byte five-table switch
+  payload `[0x0055D850,0x0056C168)` match with zero differences.
+- All 1,714 relocations agree: 885 REL32 calls across 27 targets and 829 DIR32
+  fields. Five tables contain 118 destination words, 576 index bytes and 5
+  alignment bytes.
+- The owner audit is 109/109. Raw CFG reaches all 14,783 instructions / 58,619
+  authored bytes with zero unreachable alignment bytes.
+- Code SHA-256: `d42fe81e99b173281b6ccecb8e4f6c60ee89d5b0e1ac1cee244eb9f22cd12a47`;
+  payload SHA-256: `f8a241c5d1d735d0c660f406b87a4cb00545d31a0ca66b67b129f3afefe5afd9`.
 
-The fresh build first differs at `+0x1B9`, in the relative JA displacement to the
-final default owner. The frame is `0x4E8`; the candidate section is 59,660 bytes
-against the target's 59,672 bytes, and the official owner diagnostic is 100/109.
-All 885 direct calls across 27 targets agree in count, and the floating
-instruction sequences agree for every owner. No exact progress is recorded.
+Reproduce with:
 
-The [Yuyuko note](YUYUKO_ACTION_STATE_2026_10_28.md) records the alpha clamps,
-counter/angle member reads, independent branch scopes, counted 810 loops and
-820/900 declaration order. Remaining source-level differences are EBX=1 in
-502/503/507/508 and EDI=1 in 512/513. The 710/720 table operands and final
-alignment depend on those layouts. First native definition: `0x005649E6`.
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-yuyuko-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-yuyuko-action-state yuyuko-vslot28 build/match-units/ExactFirst_YuyukoActionState.obj --json
+```
 
-Private current results: `build/yuyuko-root-work-codex/{canonical,owners}.json`
-and `current-audit.txt`; `CURRENT.md` identifies the retained context. Obsolete
-trial outputs and source backups were removed. Reproduce with the two focused
-commands in the note. No shared gameplay header, compiler flag, accepted callee
-or acceptance ledger changed.
-
-Patchouli was freshly recompiled and verified: 55,610 bytes with zero differences,
-and 106/106 owners.
+Private results: `build/yuyuko-root-work-codex/{canonical,owners}.json`.
+The [Yuyuko note](YUYUKO_ACTION_STATE_2026_10_28.md) records the nested
+`if (!sequence_index_13e)` / `if (frame_index_140 >= 11)` / `if (crossed())`
+guards in `502`/`503`/`507`/`508` and `512`/`513` that reordered merge-block
+predecessors in VC8's `InsertAdditionalSplits` greedy region grouping so the
+local `EBX=1` and `EDI=1` intervals survive coloring, plus the narrow
+`coff_switch_payload.py` dispatch-prefix rule for `mov edi, 3; mov bl, 0xff`
+between `movzx` and `jmp` (with positive/negative unit tests and existing-object
+smokes). No shared gameplay source, layout or compiler flags changed.
 
 ## Completed: Patchouli Fighter `+0x28` (`0x0050F200`)
 

@@ -974,3 +974,19 @@ cases, adding two `+2` net intervals (`+4` total) so general `Color` kept
 `case 221:` as separate switch cases also matched VC8's 17-iteration
 `FgDoLateFlowOpts` (`0x10B2C950`) merge order, merging `209`/`212`/`221` while
 leaving `210` and `222` distinct.
+
+**Nested `if` vs flat `&&` reorders merge predecessors in `InsertAdditionalSplits`.**
+When a long-lived constant (`imm == 1`) loses its last free register across a
+switch dispatch header, VC8's `InsertAdditionalSplits` (`0x10B15D50`) greedily
+groups blocks into regions in layout order by scanning each block's predecessor
+list for the first compatible region. If a case starts with non-call guards
+followed by a call guard, flat `if (a && b && call())` places the non-call
+guard edges (which still belong to the switch header's near-saturated region)
+ahead of the call block's fresh region in the merge block's predecessor list,
+pulling the merge block back into the switch header's region and severing the
+case's local constant interval. Nesting `if (a) { if (b) { if (call()) ... } }`
+reorders the merge block's predecessors so the call block's region comes first,
+keeping the post-guard constant uses in one region. Proven on Yuyuko `0x0055D850`
+cases `502`/`503`/`507`/`508` (`mov ebx, 1`) and `512`/`513` (`mov edi, 1`),
+closing the 58,619/59,672-byte root to 109/109 canonical exact
+([note](YUYUKO_ACTION_STATE_2026_10_28.md)).

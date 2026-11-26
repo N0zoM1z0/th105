@@ -786,7 +786,6 @@ dispatch = "0x0050F4FC"
 destination_table = "0x0051C6B4"
 destinations = ["0x0050F58E", "0x0050F574", "0x0050F55A", "0x0050F503"]
 
-# Yuyuko action-owner mapping is diagnostic only; no exact credit.
 [[roots]]
 name = "yuyuko-vslot28"
 address = "0x0055D850"

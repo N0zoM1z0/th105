@@ -1,6 +1,66 @@
 # Yuyuko action-state root 55D850
 
-## Current typed checkpoint, 2026-11-26
+## Canonical exact match, 2026-11-26
+
+Yuyuko `0x0055D850` (`exact-first-yuyuko-action-state`) is canonical exact from
+the character-scoped [source](../src/characters/YuyukoActionState.cpp) and
+[checked receiver](../src/characters/YuyukoActionState.hpp) under VC8 SP1
+`/O2 /GS- /GR /EHsc /MT` against the original Japanese TH10.5 v1.06a PE
+(SHA-256 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`).
+
+- All 58,619 callable code bytes `[0x0055D850, 0x0056BD4B)` (SHA-256
+  `d42fe81e99b173281b6ccecb8e4f6c60ee89d5b0e1ac1cee244eb9f22cd12a47`) and the
+  complete 59,672-byte five-table switch payload `[0x0055D850, 0x0056C168)`
+  (SHA-256 `f8a241c5d1d735d0c660f406b87a4cb00545d31a0ca66b67b129f3afefe5afd9`)
+  match with zero differences.
+- All 1,714 relocations agree: 885 REL32 direct calls across 27 targets and
+  829 DIR32 fields. Five tables contain 118 destination words, 576 index bytes
+  and 5 alignment bytes.
+- The owner audit is 109/109. Raw CFG traversal reaches all 14,783 instructions
+  / 58,619 bytes with zero unreachable alignment bytes.
+
+### Resolution of the six local `1` constant intervals
+
+Hardware-breakpoint tracing of VC8 C2's `InsertAdditionalSplits` (`0x10B15D50`)
+on `c2.dll` (`497d1ffe57f75db8b458167bdea475f3962829e139b355a2672a4ef51c716413`)
+pinpointed the exact cause of all six remaining diffs (`502`/`503`/`507`/`508`
+missing `mov ebx, 1`, and `512`/`513` missing `mov edi, 1`):
+
+- When `EBP = 90` was colored, the global `imm == 1` interval lost its last
+  available register (`EBP`) and entered `InsertAdditionalSplits`, which
+  greedily groups blocks into regions in layout order by scanning each block's
+  predecessor list for the first compatible region.
+- The high-switch dispatch block (`+0x6EC8..+0x6ED6`) uses
+  `{EAX, EBX, EBP, ESI, EDI}`, leaving `ECX`/`EDX` free in its region (`reg 19`).
+  Because cases `502`/`503`/`507`/`508` and `512`/`513` begin with non-call
+  sequence guards, their entry blocks joined `reg 19`.
+- With flat `&&` (`if (!sequence_index_13e && frame_index_140 >= 11 && crossed())`
+  in `502`/`503`/`507`/`508`, and `if (!sequence_index_13e && crossed())` in
+  `512`/`513`), the non-call guard edges (`reg 19`) appeared ahead of the
+  `crossed()` call block's fresh region in the merge block's predecessor list.
+  As a result, the merge block (`sequence_index_13e == 1` in `502`/`503`/`507`/`508`,
+  `word_730 == 1` in `512`/`513`) was pulled back into `reg 19` and split away
+  from the later `1` uses, causing `RewriteSplitGlobregs` to fold those isolated
+  uses to immediate `1` and spill the remaining fragments.
+- Nesting the guards (`if (!sequence_index_13e) { if (frame_index_140 >= 11) { if (crossed()) ... } }`
+  in `502`/`503`/`507`/`508`, and `if (!sequence_index_13e) { if (crossed()) ... }`
+  in `512`/`513`) places the call block's region first in the merge block's
+  predecessor list, keeping the local `1` intervals intact (`mov ebx, 1` in
+  `502`/`503`/`507`/`508`, `mov edi, 1` in `512`/`513`) and closing the
+  downstream `710`/`720` table base and `low:11` alignment diffs.
+- `scripts/coff_switch_payload.py` was narrowly extended to allow up to two
+  selector-disjoint nonvolatile immediate loads (`mov edi, 3; mov bl, 0xff` at
+  `+0x6ECF..+0x6ED4`) between `movzx` and `jmp` in compact switch dispatch,
+  backed by positive and negative unit tests in `tests/test_coff_switch_payload.py`.
+
+Reproduce with:
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-yuyuko-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-yuyuko-action-state yuyuko-vslot28 build/match-units/ExactFirst_YuyukoActionState.obj --json
+```
+
+## Previous typed checkpoint, 2026-11-26
 
 Yuyuko `0x0055D850` now has a character-local receiver with checked member
 offsets and a complete five-table comparison contract. It remains unselected

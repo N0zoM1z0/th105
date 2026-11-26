@@ -24078,7 +24078,7 @@ source = "src/characters/YuyukoActionState.cpp"
 object = "build/match-units/ExactFirst_YuyukoActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Typed unselected 55D850 candidate; 58619-byte callable / 59672-byte complete five-table payload. CFG closed; constant allocation and physical tail sharing remain nonexact. docs/YUYUKO_ACTION_STATE_2026_10_28.md."
+notes = "Canonical JP1.06a Yuyuko Fighter +0x28 root: 58619 callable code bytes, 59672-byte complete five-table switch payload, 118 destination words, 576 indices, 1714 relocations, 109/109 owners. docs/YUYUKO_ACTION_STATE_2026_10_28.md."
 
 [[units.exact-first-yuyuko-action-state.functions]]
 address = "0x0055D850"
