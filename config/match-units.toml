@@ -24078,22 +24078,22 @@ source = "src/characters/YuyukoActionState.cpp"
 object = "build/match-units/ExactFirst_YuyukoActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete unselected55D850 candidate:116 actions; target58619/full59672. Native CFG closed; semantic and physical-owner review remains. No implementation/exact credit; docs/YUYUKO_ACTION_STATE_2026_10_28.md."
+notes = "Typed unselected 55D850 candidate; 58619-byte callable / 59672-byte complete five-table payload. CFG closed; constant allocation and physical tail sharing remain nonexact. docs/YUYUKO_ACTION_STATE_2026_10_28.md."
 
 [[units.exact-first-yuyuko-action-state.functions]]
 address = "0x0055D850"
 symbol_base = "?dispatch_action_state_vslot28@YuyukoActionStateView@th105@@QAEXXZ"
 rel32_targets = [
-    "?spawn@YuyukoActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?spawn@YuyukoActionStateView@th105@@QAEHHMMCHPBXH@Z=0x00465190",
     "?landing@YuyukoActionStateView@th105@@QAEEXZ=0x00473DD0",
     "?zero_motion@YuyukoActionStateView@th105@@QAEXXZ=0x0045AF40",
     "?advance@YuyukoActionStateView@th105@@QAEEXZ=0x004351C0",
     "?crossed@YuyukoActionStateView@th105@@QAEHXZ=0x005F9310",
     "?yuyuko_surface@th105@@YIMPAVYuyukoActionStateView@1@@Z=0x00435D60",
     "?yuyuko_random_u32@th105@@YAIXZ=0x004066B0",
-    "?effect@YuyukoActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?effect@YuyukoActionStateView@th105@@QAEXHMMEH@Z=0x00435240",
     "?event@YuyukoActionStateView@th105@@QAEXI@Z=0x004359F0",
-    "?yuyuko_on_surface@th105@@YIEPAVYuyukoActionStateView@1@@Z=0x00435DC0",
+    "?yuyuko_on_surface@th105@@YIHPAVYuyukoActionStateView@1@@Z=0x00435DC0",
     "?flip@YuyukoActionStateView@th105@@QAEXXZ=0x00478E60",
     "__ftol2_sse=0x0068A1A0",
     "?yuyuko_cosine@th105@@YAMM@Z=0x004063D0",
@@ -24101,7 +24101,7 @@ rel32_targets = [
     "?counter@YuyukoActionStateView@th105@@QAEXFH@Z=0x0046BF30",
     "?reset@YuyukoActionScratch@th105@@QAEXXZ=0x00435110",
     "?directional@YuyukoActionStateView@th105@@QAEEH@Z=0x00478EE0",
-    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?dispatch_character_wave_handle@YuyukoActionStateView@th105@@QAEXI@Z=0x0045C030",
     "?phase_counter@YuyukoActionStateView@th105@@QAEHH@Z=0x00478DF0",
     "?yuyuko_atan@th105@@YAMMM@Z=0x00406540",
     "?yuyuko_random@th105@@YAIH@Z=0x004067D0",
@@ -24111,6 +24111,23 @@ rel32_targets = [
     "?finalize@YuyukoActionStateView@th105@@QAEXH@Z=0x0045D110",
     "?copy_health@YuyukoActionStateView@th105@@QAEXXZ=0x0045B250",
     "?common_update@YuyukoActionStateView@th105@@QAEXXZ=0x004740C0",
+]
+
+[units.exact-first-yuyuko-action-state.functions.switch_payload]
+size = 59672
+sha256 = "f8a241c5d1d735d0c660f406b87a4cb00545d31a0ca66b67b129f3afefe5afd9"
+alignment_hex = "90"
+table_offset = 58620
+table_entries = 31
+map_offset = 58744
+map_size = 227
+load_offset = 445
+jump_offset = 452
+additional_tables = [
+    { alignment_hex = "90", table_offset = 58972, table_entries = 28, map_offset = 59084, map_size = 118, load_offset = 11017, jump_offset = 11024 },
+    { alignment_hex = "8bff", table_offset = 59204, table_entries = 51, map_offset = 59408, map_size = 231, load_offset = 28360, jump_offset = 28374 },
+    { alignment_hex = "90", table_offset = 59640, table_entries = 4, jump_offset = 53225 },
+    { alignment_hex = "", table_offset = 59656, table_entries = 4, jump_offset = 54937 },
 ]
 
 [units.exact-first-yukari-action-state]

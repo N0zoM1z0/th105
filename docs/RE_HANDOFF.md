@@ -5,6 +5,33 @@ Target: original Japanese TH10.5 v1.06a, SHA-256
 Follow [AGENTS.md](../AGENTS.md), [shared tools](SHARED_TOOLS.md) and the
 [reconstruction workflow](RE_WORKFLOW.md). Keep compiler/analyzer work serial.
 
+## Current checkpoint: Yuyuko Fighter `+0x28` (`0x0055D850`)
+
+The [typed candidate](../src/characters/YuyukoActionState.cpp) and
+[checked receiver](../src/characters/YuyukoActionState.hpp) remain unselected
+and nonexact. `exact-first-yuyuko-action-state` now covers the complete
+59,672-byte payload and all five switch tables. Raw PE traversal closes all
+14,783 instructions / 58,619 callable bytes without unresolved exits.
+
+The fresh build fails at `+0x1B`: target assigns 90 to EBP, candidate to EBX.
+The frame is correctly `0x4E8`; the candidate section is 59,208 bytes and the
+official owner audit is 11/109. Remaining call deltas are advance -1, spawn -2,
+sequence-window +4 and secondary-cycle +4. No exact progress is recorded.
+
+The [Yuyuko note](YUYUKO_ACTION_STATE_2026_10_28.md) records the recovered field
+widths, binary32 trig ABI, direct argument evaluation, negative-offset FISUB
+forms and 601/651, 607/657 packet order. The next investigation is the integer
+constant allocation and its effect on physical tail sharing. Candidate 720's
+FADD operand order also remains unresolved.
+
+Private results: `build/yuyuko-root-work-codex/{canonical,owners}.json`.
+Reproduce with the two focused commands in the note. No shared gameplay header,
+compiler flag or accepted callee changed. The user requested stopping after
+this checkpoint's commit; wait for their next instruction.
+
+Patchouli was freshly recompiled and verified: 55,610 bytes with zero differences,
+and 106/106 owners.
+
 ## Completed: Patchouli Fighter `+0x28` (`0x0050F200`)
 
 `exact-first-patchouli-action-state` is canonical exact from the character-scoped
@@ -155,10 +182,7 @@ validate these changes. No shared gameplay layout or callee changed.
 
 ## Next useful action
 
-Patchouli `0x0050F200` is now canonically exact (106/106 owners, 55,610/55,610
-bytes). Continue the remaining giant Fighter `+0x28` roots individually to
-canonical exactness (next candidates include Yuyuko `0x0055D850`, Yukari,
-Remilia, Komachi, Udonge).
-
-Keep receiver layouts character-scoped. Recompare directly affected accepted
-units after shared input changes.
+Resume Yuyuko `0x0055D850` after the user's next instruction. Explain the integer
+constant allocation and 510/545/601/602/604/605 tail sharing, then replay the
+complete function and switch payload. Keep this scope separate from later
+giant roots and retain exact credit only for a complete zero-difference result.

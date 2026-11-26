@@ -1,83 +1,82 @@
 # Yuyuko action-state root 55D850
 
-## Evidence and status
+## Current typed checkpoint, 2026-11-26
 
-Complete 116-action C++ candidate, unselected and nonexact. No implementation
-or exact credit is added. The target is original Japanese TH105 1.06a with
-SHA256 56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e.
-Factory IDA metadata was successfully checked October 28; the direct repository
-IDA launcher still lacks mcp 1.26.0. This checkpoint's new refinements use the
-hash-attested raw PE, not an assumed fully attested current IDA session.
+Yuyuko `0x0055D850` now has a character-local receiver with checked member
+offsets and a complete five-table comparison contract. It remains unselected
+and nonexact. The evidence comes from the hash-attested original Japanese
+TH105 1.06a PE, SHA-256
+`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`,
+and serial VC8 SP1 `/O2 /GS- /GR /EHsc /MT` builds.
 
-Native callable 55D850..56BD4B contains 58619 bytes,14783 decoded/reachable
-instructions,124 RETs and 885 direct calls to 27 targets. Raw control-flow
-traversal closes all three action tables and both nested difficulty tables,
-with no unreached instruction ranges or unresolved indirect exits. Full
-payload through 56C168 is 59672 bytes, SHA256
-f8a241c5d1d735d0c660f406b87a4cb00545d31a0ca66b67b129f3afefe5afd9.
-The one byte before the first table is outside the callable boundary.
+The callable `[0x0055D850,0x0056BD4B)` contains 58,619 bytes. Fresh raw traversal
+reaches all 14,783 instructions, 124 RETs and 885 direct calls to 27 targets,
+with no unresolved exits or unreached ranges. The complete payload ends at
+`0x0056C168`: 59,672 bytes, 118 destination words, 576 index bytes and five
+alignment bytes across three action switches and two difficulty switches.
+Payload SHA-256:
+`f8a241c5d1d735d0c660f406b87a4cb00545d31a0ca66b67b129f3afefe5afd9`.
 
-The low/mid/high tables have 31/28/51 physical groups. Nested tables 56C148 and
-56C158 belong to actions 710 and 720. Their observed destinations, not a
-compiler's inferred function extent, close the boundary. Declaration-only
-helpers and a pointer-only receiver extension do not recover a complete
-nominal Fighter layout or confer callee ownership.
+### Observed source and ABI corrections
 
-## Focused result
+- The former sine/cosine declarations returned `double` although their target
+  providers `0x00406360` / `0x004063D0` round their returns to binary32. They now
+  return `float`, resolving the canonical comparator's unknown external target.
+- The receiver replaces the raw `at<T>` accesses and shared animation-base
+  dependency. Eight reviewed virtual slots and every named offset have compile
+  checks. Effect direction is unsigned byte; spawn direction is signed byte.
+  On-surface returns an integer and its callers explicitly consume AL.
+- Native `0x0056B99B..0x0056B9B0` and `0x0056BB6A..0x0056BB7F` write separate
+  16-bit fields: `76C=0`, `76A=1`, followed by `766=0`, `768=0` and `764=0`.
+  The old candidate combined `76A`/`76C` into a dword store. Both halfwords are
+  now represented and written separately.
+- Direct spawn expressions preserve the outgoing direction argument before
+  trig/RNG calls and the signed facing reread afterward. Mirrored orbit X keeps
+  its pre-sine double snapshot. The native `0x4E8` frame is recovered.
+- Negative integer offsets use float conversion before subtraction, recovering
+  FISUB in 302/304/305, 562 and the negative petal offsets. The spell ring keeps
+  its double angle and writes each rounded packet angle independently.
+- Packet addresses place 651 immediately after 601 and 657 immediately after
+  607. Moving the source cases into those positions restores their stack-home
+  order and removes the two surplus surface/zero-motion calls in 657.
+- Independent entry/frame guards, the repeated flight-release conditions and
+  the post-switch advance follow the target control flow. Difficulty cases use
+  the observed physical order 3/2/1/0. The original 725 fallthrough into 726,
+  sine(n-6) ring geometry and two-cosine 731 coordinates remain present.
 
-Public source: src/characters/YuyukoActionState.cpp and .hpp.
-Unit: exact-first-yuyuko-action-state. Both private and public builds emit
-59456 full bytes versus 59672; first mismatch is+8 (frame immediate 4F0 versus
-native 4E8). Canonical candidate SHA256:
-893e55b4e6e1976682b96b24c1b5245becea1c35b6f0c40b5299741ddaff5323.
-The full audit reports 56540 unequal/missing positional bytes. This is a strict
-mismatch diagnostic, not a semantic similarity score or accepted byte count.
+### Full comparison and remaining work
+
+The fresh canonical build fails at `+0x1B` (`0x0055D86B`): target
+`mov ebp,90`, candidate `mov ebx,90`. Both frames are `0x4E8`. The candidate's
+complete section is 59,208 bytes, including 58,156 bytes before switch data;
+the target payload is 59,672 bytes. The official owner audit is 11/109.
+These diagnostics add no implementation selection or exact credit.
+
+Observed direct-call deltas are advance `-1`, spawn `-2`, sequence-window `+4`
+and secondary-cycle `+4`. The missing sites are shared physical tails in
+510/545; the extra pairs occur in 601/602/604/605. The candidate keeps one in
+EBP across those cases, while the target uses EBX initially and later creates
+case-local constants. Explaining this allocation difference is the next useful
+step before tuning local jump widths. The precise source lifetime or control
+flow responsible remains unknown; no LTCG limitation has been established.
+
+The 720 angle still loads `field_740` separately and uses FADDP where the target
+uses FADD from memory. Reversing the written operands or introducing a double
+step local did not fix it. A function-wide fan index added a live value and
+worsened the prefix; it was removed. Changing the 751 flag to bool or incrementing
+it under its zero guard was byte-neutral and was also reverted.
 
 Reproduce serially:
 
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-yuyuko-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-yuyuko-action-state yuyuko-vslot28 build/match-units/ExactFirst_YuyukoActionState.obj --json
 ```
-taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-yuyuko-action-state --compare --json
-scripts/repo-python scripts/compare-giant-action-switches.py yuyuko-vslot28 build/match-units/ExactFirst_YuyukoActionState.obj --json
-```
 
-Expected comparison exit status is nonzero until exact. No whole-corpus cold build
-is needed: new source/header, append-only unit and literal bindings have no existing
-accepted consumers. Existing receipts remain unchanged; the final local CI remains
-mandatory before commit.
-
-## Target-backed corrections and remaining questions
-
-- Action 562 effect offset is integer 23 times signed facing, followed by FP
-  subtraction (567581/56759B onward), not a double 23 multiply. The initially
-  emitted double 23 had no native literal witness and was removed, not bound.
-- Actions 10 and 200 have separate native virtual-call exits. Explicit branches
-  reproduce their call counts instead of folding action IDs into a ternary.
-- Zero horizontal flash offsets use direct X, without an artificial FP+0.
-- Spell-ring angle n*30 is retained as double for the later +15; mirrored X is
-  captured in a double home before sine/cosine calls (56875B/5688AB). These
-  lifetimes are observable raw storage facts, not padding to alter the frame.
-- Action 720's complete per-difficulty emission pair preserves four first-call
-  sites and one shared second-call tail. Moving a boolean result outside the
-  switch merged all first calls; a goto-only rewrite was byte-neutral. Keeping
-  the real pair together restores five reachable spawn sites and FP-op counts.
-- Action 562 keeps independent live packets and per-branch base/coordinate
-  evaluation before the shared spawn tail. The resulting call and FP-operation
-  counts now agree. Counts alone do not prove instruction equality.
-- Current per-action call-count diagnostic differs only for 710: native 4 versus
-  candidate 5 virtual sites. FP-operation counts differ for 600/603: native 8
-  versus candidate 7 FCHS sites. Their evaluation/alias lifetimes need further
-  raw review. These diagnostics traverse reachable physical sites, not dynamic
-  execution counts; they are not acceptance criteria.
-- Preserve native 725 fallthrough to 726 except its entry 4 return. Preserve the
-  unusual ring 820/900 sine(n-6) geometry and 731's two cosine coordinates.
-- General unordered FP predicates, external-callback alias effects, payload
-  homes and physical tail sharing remain review topics. Source coverage and
-  compilation do not establish complete semantics or exactness.
-
-Eleven new float/double literals were bound by emitted bytes and unique native
-operand addresses. No target patches, assembly, fake dependencies or forced
-registers were used. Existing tracking totals remain 1427 exact functions and
-413799 authored bytes, incrementally validated rather than freshly rebuilt.
+Private current results are `build/yuyuko-root-work-codex/canonical.json` and
+`owners.json`. The source/header have no accepted consumers. Existing exact
+receipts are preserved; no whole-corpus comparison was run. The following notes
+record earlier candidate work and its failed attempts.
 
 ## Physical-owner refinement
 

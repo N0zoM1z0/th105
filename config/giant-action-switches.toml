@@ -823,6 +823,18 @@ destination_count = 51
 index_table = "0x0056C060"
 expected_physical_groups = 51
 
+[[roots.auxiliary_switches]]
+name = "action710-difficulty"
+dispatch = "0x0056A839"
+destination_table = "0x0056C148"
+destinations = ["0x0056AC12", "0x0056AAD3", "0x0056A98C", "0x0056A840"]
+
+[[roots.auxiliary_switches]]
+name = "action720-difficulty"
+dispatch = "0x0056AEE9"
+destination_table = "0x0056C158"
+destinations = ["0x0056B1B9", "0x0056B0CB", "0x0056AFDE", "0x0056AEF0"]
+
 # Yukari action-owner mapping is diagnostic only; no exact credit.
 [[roots]]
 name = "yukari-vslot28"
