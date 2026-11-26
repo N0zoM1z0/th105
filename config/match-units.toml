@@ -24028,7 +24028,7 @@ notes = "Complete unselected50F200 candidate:109 actions; target54452/full55610.
 address = "0x0050F200"
 symbol_base = "?dispatch_action_state_vslot28@PatchouliActionStateView@th105@@QAEXXZ"
 rel32_targets = [
-    "?spawn@PatchouliActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?spawn@PatchouliActionStateView@th105@@QAEHHMMCHPBXH@Z=0x00465190",
     "?patchouli_random@th105@@YAIH@Z=0x004067D0",
     "?patchouli_sine@th105@@YAMM@Z=0x00406360",
     "?patchouli_cosine@th105@@YAMM@Z=0x004063D0",
@@ -24038,15 +24038,15 @@ rel32_targets = [
     "?crossed@PatchouliActionStateView@th105@@QAEHXZ=0x005F9310",
     "?patchouli_surface@th105@@YIMPAVPatchouliActionStateView@1@@Z=0x00435D60",
     "?patchouli_random_u32@th105@@YAIXZ=0x004066B0",
-    "?effect@PatchouliActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?effect@PatchouliActionStateView@th105@@QAEXHMMEH@Z=0x00435240",
     "?event@PatchouliActionStateView@th105@@QAEXI@Z=0x004359F0",
-    "?patchouli_on_surface@th105@@YIEPAVPatchouliActionStateView@1@@Z=0x00435DC0",
+    "?patchouli_on_surface@th105@@YIHPAVPatchouliActionStateView@1@@Z=0x00435DC0",
     "?flip@PatchouliActionStateView@th105@@QAEXXZ=0x00478E60",
     "__ftol2_sse=0x0068A1A0",
     "?counter@PatchouliActionStateView@th105@@QAEXFH@Z=0x0046BF30",
     "?reset@PatchouliActionScratch@th105@@QAEXXZ=0x00435110",
     "?directional@PatchouliActionStateView@th105@@QAEEH@Z=0x00478EE0",
-    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?dispatch_character_wave_handle@PatchouliActionStateView@th105@@QAEXI@Z=0x0045C030",
     "?phase_counter@PatchouliActionStateView@th105@@QAEHH@Z=0x00478DF0",
     "?patchouli_atan@th105@@YAMMM@Z=0x00406540",
     "?layout@PatchouliActionStateView@th105@@QAEXM@Z=0x004359D0",
@@ -24057,6 +24057,19 @@ rel32_targets = [
     "?finalize@PatchouliActionStateView@th105@@QAEXH@Z=0x0045D110",
     "?copy_health@PatchouliActionStateView@th105@@QAEXXZ=0x0045B250",
     "?common_update@PatchouliActionStateView@th105@@QAEXXZ=0x004740C0",
+]
+
+[units.exact-first-patchouli-action-state.functions.switch_payload]
+size = 55610
+sha256 = "d4d73f175e4f8b37667f04472df8c5db8cbec0ca20414d4107df08a007779043"
+alignment_hex = ""
+table_offset = 54452
+table_entries = 4
+jump_offset = 764
+additional_tables = [
+    { alignment_hex = "", table_offset = 54468, table_entries = 32, map_offset = 54596, map_size = 227, load_offset = 2026, jump_offset = 2033 },
+    { alignment_hex = "90", table_offset = 54824, table_entries = 43, map_offset = 54996, map_size = 246, load_offset = 12590, jump_offset = 12597 },
+    { alignment_hex = "8bff", table_offset = 55244, table_entries = 32, map_offset = 55372, map_size = 238, load_offset = 39188, jump_offset = 39195 },
 ]
 
 [units.exact-first-yuyuko-action-state]

@@ -122,13 +122,21 @@ validate these changes. No shared gameplay layout or callee changed.
 
 ## Next useful action
 
-Patchouli `0x0050F200` is the active bounded scope. Its leading four-word
-difficulty table is now mapped as metadata, with focused negative cases and
-existing-object owner smokes passing. Private typed-source trials and current
-findings are in `build/patchouli-root-work-codex/`; source-selection and exact
-ledgers remain unchanged. The public sine/cosine declarations now agree with
-the float-return lookup contract, so the full unit reaches byte comparison.
-It remains nonexact; native 210/222 are still merged in the candidate.
+Patchouli `0x0050F200` is the active bounded scope. The public candidate now
+uses typed members with checked offsets and direct ring-emission arguments.
+Its leading difficulty table and three sparse tables have a complete strict
+payload contract. The fresh full build reaches code comparison but remains
+nonexact at +8: frame 0x468 versus 0x460; candidate section 55,174 bytes.
+Surface-query and zero-motion call counts now agree. Native 210/222 still
+merge, leaving four direct-call targets short by one each. No source-selection
+or exact credit changed. Current report:
+`build/patchouli-root-work-codex/public-typed-ring.json`.
+
+The private `222_velocity` trial uses a real rounded float velocity temporary.
+It restores distinct low-table entries and all but one direct-call count, but
+shares a non-native suffix and remains diagnostic. Compare that source property
+against the native stores before retaining it. Inspect x87 zero liveness and
+scratch lifetimes next; do not repeat the closed probes in private `CURRENT.md`.
 
 Read `src/characters/PatchouliActionState.cpp`, its header,
 `docs/PATCHOULI_ACTION_STATE_2026_10_27.md` and

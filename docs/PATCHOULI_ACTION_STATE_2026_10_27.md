@@ -217,3 +217,30 @@ native 210/222 still share one candidate entry. The report is
 Private source trials also include a 65-member receiver with checked offsets.
 Control flow, outgoing direction views and argument lifetimes remain under
 review; no source selection or exact credit has been added.
+
+## Typed receiver and ring argument flow, 2026-11-26
+
+The current public candidate uses ordinary typed members with 65 checked offsets
+and the eight observed virtual prefix slots. Direction arguments use the
+low-byte views supported by the call sites; on-surface keeps its int return and
+consumers explicitly test the low byte. These declarations describe this caller;
+the complete original class and source-level parameter types remain unknown.
+
+Ring 820 writes its layer member inside each `if/else` branch. A ternary
+assignment instead selected an integer temporary before a common member store.
+The separate assignments reproduce the target stores, including the native
+nonvolatile register holding one. Surface-ring emission also evaluates facing
+and layer directly in the outgoing arguments, preserving the double vertical
+offset across the surface query. Cached direction/layer locals had changed
+physical cleanup sharing between 540 and 541. The current complete code now has
+the target surface-query and zero-motion call counts.
+
+The unit now specifies the entire 55,610-byte envelope: the leading difficulty
+table, three sparse tables, all 111 destination words, 711 index bytes and three
+alignment bytes. The ordinary strict build still fails at code offset +8:
+frame 0x468 versus 0x460. Its section is 55,174 bytes. Native 210/222 still merge
+in the candidate; four direct-call targets are each short by one. The configured
+payload contract runs after code equality and has not passed. Reproduce with the
+unit command above; current private comparison is
+`build/patchouli-root-work-codex/public-typed-ring.json`. Source selection and
+exact ledgers remain unchanged.
