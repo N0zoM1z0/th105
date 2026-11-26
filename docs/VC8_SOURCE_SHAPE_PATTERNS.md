@@ -917,10 +917,33 @@ against this DLL. Original envelopes are private `c2-fp2-*.json` under
 names without changing the analysis database. `read-c2-pdb.py` reproduces the
 symbol/address inspection.
 
-For `50F200`, the next question is which earlier register definition and live
-range produces the zero at the main dispatch. WineDbg's CL-entry breakpoint
-was a positive calibration, but its C2 breakpoints and single-step commands
-issued at a DLL-load stop did not interrupt the compilation. Those misses do
-not establish that a compiler pass was skipped. The resulting object still
-replays identically to the clean 55,066-byte candidate. Patchouli remains
-nonexact; these compiler observations supply no authored exact credit.
+GDB hardware breakpoints through WineDbg's `--gdb --no-start` proxy provide
+working execution control. Root-name conditions distinguish the dispatcher
+from earlier inline-helper compilations. Runtime samples at the five attested
+addresses still match the DLL. WineDbg commands issued at its DLL-load stop
+remain an unsuccessful method; a missed breakpoint there proves no skipped
+pass. The debugger reads compiler state without modifying code or data.
+
+For the Patchouli source at `f04698c5`, the zero `__real@00000000` is already
+dead before physical x87 mapping. At `X87MapGFxToSTx + 0x74`, after liveness
+construction, the prefix clamp store marks GF1's last use. Its successor's
+live-in/live-out masks are both zero. Private `c2-runtime-before-map.json`
+and `c2-runtime-after-liveness.json` retain the function IR and block evidence.
+
+The relevant allocator in this profile is the general `Color` routine at
+`10B0CF40`, including register class one. At its `10B0D0BF` gate, module flags
+`+44C = 0805C100` select the path that skips `FPColor`; the class-one loop is
+positively observed. The prefix zero interval has initial spill cost `+40 = 0` at
+`10B0D33B`, with different start/end blocks. The corresponding Tenshi interval
+has cost ten under the same flags. Thus `FPSpillWorthless` is not the active
+cost decision to investigate here. Follow general `Spillcosts` (`10B10420`),
+`SpillObvious` (`10B11560`) and `SpillOrDefer` (`10B0D690`), and reconcile the
+zero's real source uses before changing its lifetime.
+
+Private `c2-{patchouli,tenshi}-{after-globregs,color-fp}-globregs.json` and
+`c2-patchouli-zero-before-color.json` retain those records and the first 200
+blocks' zero references. Both Patchouli
+trace objects replay identically to the clean 55,066-byte candidate. The
+Tenshi debugger control matches its complete 48,968-byte target payload,
+including relocation replay. All debugger/compiler jobs are closed. Patchouli
+remains nonexact; the source property behind its zero-cost interval is open.

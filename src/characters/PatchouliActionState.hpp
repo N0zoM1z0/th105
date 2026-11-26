@@ -59,8 +59,8 @@ public:
         }
     }
     __forceinline void ground_face() {
-        if(related_170->x_ec<static_cast<double>(x_ec))facing_104=-1;
-        if(related_170->x_ec>static_cast<double>(x_ec))facing_104=1;
+        if(x_ec>static_cast<double>(related_170->x_ec))facing_104=-1;
+        if(x_ec<static_cast<double>(related_170->x_ec))facing_104=1;
     }
     __forceinline void dash_dust(bool reverse) {
         double base=x_ec+50.0;

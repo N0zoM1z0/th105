@@ -309,3 +309,28 @@ The full public build remains nonexact at +0x9B, with native frame 0x460,
 object replays identically to private `local_owner_repairs`. The unresolved
 210/222 merge, x87 zero lifetime and other local differences remain. This
 checkpoint changes no source-selection or exact ledger entries.
+
+## Facing operands and repeated frame checks, 2026-11-26
+
+The prefix facing tests need the peer coordinate as their left source operand:
+`peer.x > x` and `peer.x < x`. In the ground-facing helper, the self coordinate
+instead goes on the left, with the peer explicitly promoted to double. These
+ordinary comparison spellings recover the target's `fld` order and status-word
+tests at 50F2F3..50F32E and in actions 197–199. Removing promotion alone had
+been byte-neutral; reversing which coordinate appears first is material.
+
+Actions 197/198 also need separate complete timer/frame guards around facing
+and velocity reset. This recovers `EDI = 6` and immediate-zero timer tests.
+Their former outer timer guard prevented that constant reuse. The private
+`facing_timer_repairs` instruction/edge diagnostic now differs in 197, 198 and
+199 only by each missing two-byte entry x87 pop. The complete root remains
+nonexact, so these local shapes confer no exact credit.
+
+The calibrated compiler trace identifies an earlier zero-cost register
+interval in the `f04698c5` source, before x87 stack mapping. The final section
+of [VC8 source patterns](VC8_SOURCE_SHAPE_PATTERNS.md#pinned-c2-x87-liveness-investigation-2026-11-26)
+records the active general allocator and the exact Tenshi control. The remaining
+source cause, the 210/222 merge and the complete switch comparison are open.
+The fresh public build has 53,928 code bytes and a 55,082-byte section; its
+first mismatch remains +0x9B. Current strict evidence is
+`build/patchouli-root-work-codex/public-facing-timer-repairs.json`.

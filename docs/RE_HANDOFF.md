@@ -123,28 +123,29 @@ validate these changes. No shared gameplay layout or callee changed.
 ## Next useful action
 
 Patchouli `0x0050F200` is the active bounded scope. The public source preserves
-the native 0x460 frame and now recovers timer scopes in 308/401/406, fan counter
-reads and branch order, burst initialization order, and independent skill-limit
-assignments in 560/561. The reviewed local instruction differences in those
-scopes largely reduce to missing x87 pops. Complete comparison still fails at
-+0x9B: candidate code 53,912 bytes, section 55,066 bytes. Its strict contract
-covers all four switch tables, indices and alignment, and has not passed.
+the native 0x460 frame. Separate timer/frame guards restore 197/198's EDI=6;
+self-first ground-facing comparisons and peer-first prefix comparisons restore
+the target's floating operand order. The 197–199 instruction/edge diagnostic
+now differs locally only by each missing entry x87 pop. Full comparison still
+fails at +0x9B: candidate code 53,928 bytes, section 55,082 bytes. Its complete
+switch contract has not passed. Current strict report:
+`build/patchouli-root-work-codex/public-facing-timer-repairs.json`.
 
 Native 210/222 still merge, leaving advance, on-surface, landing and crossed
 calls short by one each. The prefix loses the zero that the target carries into
-the switch. Other local differences remain, including 197/198's timer-register
-placement and the operand order in their facing comparisons. Current strict
-report: `build/patchouli-root-work-codex/public-local-owner-repairs.json`.
+the switch; 409 and 730 also have residual local sharing/lifetime differences.
 Source selection and exact ledgers are unchanged.
 
-The current private `222_current_velocity` trial restores distinct entries with
-a rounded float temporary, but shares a non-native suffix and still lacks one
-advance call. It remains diagnostic. Read private `CURRENT.md` before choosing
-a trial. The pinned C2 investigation now identifies the x87 liveness and stack
-mapping routines; see the final section of `docs/VC8_SOURCE_SHAPE_PATTERNS.md`.
-Trace the zero's earlier register definition/live range with a calibrated
-backend stop. WineDbg's DLL-load-stop breakpoint results remain inconclusive.
-The private note also records closed literal, conversion and facing probes.
+The calibrated GDB/Wine compiler trace now observes the zero dying before x87
+mapping. In the f04698c5 candidate, general Color's class-one path sees spill
+cost zero for the prefix interval; FPColor is skipped by the module flag gate.
+The exact Tenshi control has cost ten under the same flags and still matches
+its complete payload. Follow general Spillcosts/SpillObvious/SpillOrDefer and
+the zero's real source uses. Evidence and addresses are in the final section
+of `docs/VC8_SOURCE_SHAPE_PATTERNS.md`; all native jobs are closed. Read private
+`build/patchouli-root-work-codex/CURRENT.md` for current inputs and closed probes.
+The rounded-velocity 222 trials remain diagnostic: they restore entries but
+share a non-native suffix and still lack an advance call.
 
 Read `src/characters/PatchouliActionState.cpp`, its header,
 `docs/PATCHOULI_ACTION_STATE_2026_10_27.md` and

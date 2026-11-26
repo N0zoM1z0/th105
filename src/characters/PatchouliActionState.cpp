@@ -14,8 +14,8 @@ void PatchouliActionStateView::dispatch_action_state_vslot28()
         field_7b4=static_cast<float>(field_7b4-(static_cast<double>(0.4f)-byte_606*static_cast<double>(0.05f)));
         if(field_7b4<0.0f)field_7b4=0.0f;
         field_6ac=-field_7b4;
-        if((x_ec<related_170->x_ec && related_170->facing_104==1) ||
-           (x_ec>related_170->x_ec && related_170->facing_104==-1))field_6ac=field_7b4;
+        if((related_170->x_ec>x_ec && related_170->facing_104==1) ||
+           (related_170->x_ec<x_ec && related_170->facing_104==-1))field_6ac=field_7b4;
     }
     if(word_7b0>0)--word_7b0;
     if(action_id_13c>149 && action_id_13c<159 && !byte_751) {
@@ -139,8 +139,7 @@ case 197:
         set_action_and_finalize(0);
         if(field_6b8>0)set_action_and_finalize(1);
     }
-    if(frame_timer_142)return;
-    if(frame_index_140==6)ground_face();
+    if(!frame_timer_142 && frame_index_140==6)ground_face();
     if(!frame_timer_142 && frame_index_140==6)velocity_x_f4=0.0f;
     return;
 case 198:
@@ -150,10 +149,8 @@ case 198:
         set_action_and_finalize(0);
         if(field_6b8>0)set_action_and_finalize(1);
     }
-    if(!frame_timer_142) {
-        if(frame_index_140==6)ground_face();
-        if(!frame_timer_142 && frame_index_140==6)velocity_x_f4=0.0f;
-    }
+    if(!frame_timer_142 && frame_index_140==6)ground_face();
+    if(!frame_timer_142 && frame_index_140==6)velocity_x_f4=0.0f;
     return;
 case 199:
     landing();
