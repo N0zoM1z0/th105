@@ -203,11 +203,14 @@ def load_manifest(*, binary_contracts: bool = True) -> dict[str, Any]:
                         f"match unit {name!r} function {address} needs one reviewed owned extent"
                     )
             if "switch_payload" in function:
-                if unit["kind"] != "probe" or function.get("owned_extent") or function.get("contiguous_span"):
-                    raise ValueError("compact-switch payload requires one ordinary COFF candidate extent")
+                if unit["kind"] != "probe" or function.get("contiguous_span"):
+                    raise ValueError("compact-switch payload requires one reviewed COFF candidate extent")
                 if binary_contracts:
-                    from coff_switch_payload import validate_contract as validate_switch_payload
-                    validate_switch_payload(function["switch_payload"], int(ledger[address]["size"]))
+                    from coff_switch_payload import function_code_size, validate_contract as validate_switch_payload
+                    validate_switch_payload(
+                        function["switch_payload"],
+                        function_code_size(function, list(ledger.values())),
+                    )
             for mapping in function.get("rel32_targets", []):
                 if not isinstance(mapping, str) or not REL32_TARGET.fullmatch(mapping):
                     raise ValueError(

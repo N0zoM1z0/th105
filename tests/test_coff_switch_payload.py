@@ -45,6 +45,33 @@ def changed(raw, contract, offset, value):
 
 
 class CompactSwitchTests(unittest.TestCase):
+    def test_owned_code_boundary_keeps_remote_code_inside_the_payload(self):
+        body, address, size, contract, relocations = fixture()
+        rows = [dict(address=hex(address), size='4')]
+        function = dict(address=hex(address), owned_extent=True)
+        with mock.patch('function_byte_ownership.load', return_value={
+                address: dict(extent_end=address + size - 1)}) as load:
+            boundary = payload.function_code_size(function, rows, require_bytes=True)
+        load.assert_called_once_with({address: rows[0]}, require_bytes=True)
+        self.assertEqual(boundary, size)
+        self.assertEqual(payload.inspect(body, body, address, boundary, contract,
+                                        relocations)['reachable_code_bytes'], size)
+        with self.assertRaises(ValueError):
+            payload.validate_contract(contract, int(rows[0]['size']))
+
+    def test_owned_payload_requires_attested_ownership_and_one_boundary_mode(self):
+        function = dict(address='0x401000', owned_extent=True)
+        rows = [dict(address='0x401000', size='4')]
+        with mock.patch('function_byte_ownership.load', return_value={}):
+            with self.assertRaisesRegex(ValueError, 'reviewed function-byte ownership'):
+                payload.function_code_size(function, rows, require_bytes=True)
+        with mock.patch('function_byte_ownership.load', side_effect=ValueError('chunk hash differs')):
+            with self.assertRaisesRegex(ValueError, 'chunk hash differs'):
+                payload.function_code_size(function, rows, require_bytes=True)
+        with self.assertRaisesRegex(ValueError, 'contiguous span'):
+            payload.function_code_size(dict(function, contiguous_span=True), rows)
+        self.assertEqual(payload.function_code_size(dict(address='0x401000'), rows), 4)
+
     def test_entire_payload_and_optional_flags_preserving_spill(self):
         for spill in (False, True):
             b, a, n, c, r = fixture(spill)
@@ -98,6 +125,19 @@ class CompactSwitchTests(unittest.TestCase):
             raw, contract = changed(b, c, at, value)
             with self.subTest(offset=at), self.assertRaises(ValueError):
                 payload.inspect(raw, raw, a, n, contract, r)
+
+    def test_scheduled_float_store_preserves_the_bound_and_guard(self):
+        # Sakuya story730 keeps zero on x87 while writing its first packet field.
+        body, address, size, contract, relocations = fixture(
+            compare=bytes.fromhex('d9ee83f801d954247c'),
+            default_code=bytes.fromhex('31c031d2c3'))
+        payload.inspect(body, body, address, size, contract, relocations)
+        for store in ('dd5c247c', 'd954847c'):
+            body, address, size, contract, relocations = fixture(
+                compare=bytes.fromhex('d9ee83f801' + store),
+                default_code=bytes.fromhex('31c031d2c3'))
+            with self.subTest(store=store), self.assertRaises(ValueError):
+                payload.inspect(body, body, address, size, contract, relocations)
 
     def test_register_bound_must_be_constant_on_every_incoming_path(self):
         compare = b'\x90' * 8 + bytes.fromhex('bb01000000 90909090 3bc3')

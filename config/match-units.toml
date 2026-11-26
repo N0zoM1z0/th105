@@ -26193,7 +26193,7 @@ source = "src/characters/SakuyaActionState.cpp"
 object = "build/match-units/ExactFirst_SakuyaActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete manual113-action/default source for Sakuya Fighter4cadb0, target75042/full76336. Independently attested raw CFG and Ghidra navigation; fourteen tables/three remaps. Whole replay nonexact; no partial credit. docs/SAKUYA_ACTION_STATE_2026_10_28.md."
+notes = "Canonical exact Sakuya 4CADB0: 74937 owned bytes in 75042 physical code and the full 76336-byte envelope; all fourteen switches, 683 indices and 2805 relocations verified. Main inventory boundary stays 41511 bytes; docs/SAKUYA_ACTION_STATE_2026_10_28.md."
 
 [[units.exact-first-sakuya-action-state.functions]]
 address = "0x004CADB0"
@@ -26214,7 +26214,7 @@ rel32_targets = [
     "?layout@SakuyaActionStateView@th105@@QAEXM@Z=0x004359D0",
     "?sakuya_atan@th105@@YAMMM@Z=0x00406540",
     "?phase_counter@SakuyaActionStateView@th105@@QAEHH@Z=0x00478DF0",
-    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?dispatch_character_wave_handle@SakuyaActionStateView@th105@@QAEXI@Z=0x0045C030",
     "?set_oriented_components@SakuyaActionScratch@th105@@QAEXMM@Z=0x00435160",
     "?directional@SakuyaActionStateView@th105@@QAEEH@Z=0x00478EE0",
     "?reset@SakuyaActionScratch@th105@@QAEXXZ=0x00435110",
@@ -26224,14 +26224,14 @@ rel32_targets = [
     "?flip@SakuyaActionStateView@th105@@QAEXXZ=0x00478E60",
     "?sakuya_on_surface@th105@@YIHPAVSakuyaActionStateView@1@@Z=0x00435DC0",
     "?event@SakuyaActionStateView@th105@@QAEXI@Z=0x004359F0",
-    "?effect@SakuyaActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?effect@SakuyaActionStateView@th105@@QAEXHMMEH@Z=0x00435240",
     "?sakuya_random_u32@th105@@YAIXZ=0x004066B0",
     "?sakuya_surface@th105@@YIMPAVSakuyaActionStateView@1@@Z=0x00435D60",
     "?crossed@SakuyaActionStateView@th105@@QAEHXZ=0x005F9310",
     "?advance@SakuyaActionStateView@th105@@QAEEXZ=0x004351C0",
     "?zero_motion@SakuyaActionStateView@th105@@QAEXXZ=0x0045AF40",
     "?landing@SakuyaActionStateView@th105@@QAEEXZ=0x00473DD0",
-    "?spawn@SakuyaActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?spawn@SakuyaActionStateView@th105@@QAEHHMMCHPBXH@Z=0x00465190",
     "__ftol2_sse=0x0068A1A0",
     "?sakuya_state_13c_in_32_95@th105@@YI_NPAVSakuyaActionStateView@1@@Z=0x0045E0E0",
 ]
@@ -26376,6 +26376,32 @@ dir32_targets = [
     "?g_sakuya_action_match@th105@@3HA=_sakuya_action_state_match_identifier",
 ]
 
+[units.exact-first-sakuya-action-state.functions.switch_payload]
+size = 76336
+sha256 = "6ca4fc284871b25c320bfd93749f548b34b0b55122661caf137ab3efe6db138f"
+alignment_hex = "8bff"
+table_offset = 75044
+table_entries = 31
+map_offset = 75168
+map_size = 227
+load_offset = 762
+jump_offset = 769
+additional_tables = [
+    { alignment_hex = "90", table_offset = 75396, table_entries = 38, map_offset = 75548, map_size = 226, load_offset = 11031, jump_offset = 11038 },
+    { alignment_hex = "8bff", table_offset = 75776, table_entries = 38, map_offset = 75928, map_size = 230, load_offset = 36430, jump_offset = 36437 },
+    { alignment_hex = "8bff", table_offset = 76160, table_entries = 4, jump_offset = 41298 },
+    { alignment_hex = "", table_offset = 76176, table_entries = 4, jump_offset = 43108 },
+    { alignment_hex = "", table_offset = 76192, table_entries = 4, jump_offset = 45151 },
+    { alignment_hex = "", table_offset = 76208, table_entries = 4, jump_offset = 47134 },
+    { alignment_hex = "", table_offset = 76224, table_entries = 4, jump_offset = 64282 },
+    { alignment_hex = "", table_offset = 76240, table_entries = 4, jump_offset = 65791 },
+    { alignment_hex = "", table_offset = 76256, table_entries = 4, jump_offset = 67416 },
+    { alignment_hex = "", table_offset = 76272, table_entries = 4, jump_offset = 68339 },
+    { alignment_hex = "", table_offset = 76288, table_entries = 4, jump_offset = 71470 },
+    { alignment_hex = "", table_offset = 76304, table_entries = 4, jump_offset = 73539 },
+    { alignment_hex = "", table_offset = 76320, table_entries = 4, jump_offset = 73780 },
+]
+
 [[units.gpt-web-battle-base-effect-lifetime.functions]]
 address = "0x00418070"
 symbol_base = "?control_a@BattleBaseEffectLifetimeView@th105@@UAEXXZ"
@@ -26397,6 +26423,7 @@ rel32_targets = ["?render_scene_fade_overlay@th105@@YAEXZ=0x0043AAD0"]
 [[units.cross-v106a-render-scene-consumers.functions]]
 address = "0x0041E240"
 symbol_base = "?initialize@CFade@th105@@UAE_NXZ"
+
 
 [units.exact-first-network-primary-byte-accessors]
 kind = "probe"

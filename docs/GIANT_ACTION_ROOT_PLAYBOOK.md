@@ -10,6 +10,7 @@ Proven exact on:
 - `Aya_dispatch_action_state_vslot28` (`0x00602250`, 65,601 callable / 66,704 envelope, 7 switch tables)
 - `Youmu_dispatch_action_state_vslot28` (`0x00530200`, 37,692 callable / 38,816 envelope, 4 switch tables)
 - `Marisa_dispatch_action_state_vslot28` (`0x004A3710`, 66,695 callable / 67,936 envelope, 6 switch tables)
+- `Sakuya_dispatch_action_state_vslot28` (`0x004CADB0`, 74,937 owned / 75,042 physical code / 76,336 envelope, 14 switch tables)
 
 Update this playbook and [scripts/giant-root-iterate.py](../scripts/giant-root-iterate.py)
 whenever a new root reveals a reusable pattern or compiler rule.
@@ -321,3 +322,49 @@ retained both repeated flight-release gates. It also fixes the association in
 rate to remain live for vertical velocity. Arithmetic association, callback
 rereads and unwritten packet fields need target evidence even when a retained
 candidate has the right action labels and direct-call counts.
+
+## Sakuya source-shape findings
+
+`exact-first-sakuya-action-state` reproduces the complete 76,336-byte envelope
+at `0x004CADB0`, including ten remote code chunks, fourteen tables and all
+2,805 relocations. The [root note](SAKUYA_ACTION_STATE_2026_10_28.md) preserves
+its main boundary, owned-byte accounting and commands.
+
+- **Keep independent guards independent.** Separate `ENTRY(1)` / `ENTRY(2)`
+  tests in 404–406, 414–415 and 565–566 preserve the native time-counter
+  lifetime. A shared outer time test caches the timer instead. In 520/521 and
+  525/526, keep only sequence zero as the outer guard and repeat the timer
+  test in each frame arm. The observed frame/timer order varies by action.
+- **Let VC8 extract repeated arithmetic.** In 400/402, repeating `word_732 % 3`
+  in the two sequence branches recovers the common leading division and native
+  volatile registers. An explicit cached remainder changes those registers and
+  breaks shared virtual-call tails. In 304, read the sequence member directly;
+  a cached short introduces two extra jumps around the landing alternatives.
+- **Use direct arguments and their observed precision.** In 605, cached facing,
+  X and Y carriers prevent the native flash tail from merging with 607. In
+  565/566, inline facing and trig expressions in the spawn arguments. For
+  411/415/416, `30.0 - absolute(2.0 - i) * 2.0` preserves the double subtraction;
+  a float temporary added to itself introduces narrowing and changes packet
+  weights. Action 416 uses `30.0 + y_f0 + i * 6.0`; the second level-two arcs in
+  546/548 use `i * 40.0 + y_f0 + 40.0`.
+- **Recover each scalar lifetime.** In 720, declare the random float angle
+  before the difficulty switch and keep each loop counter local to its arm;
+  this also restores scalar slots in unrelated movement cases. In 721's
+  hardest arm, a live double `offset = i * 15.0` before the payload assignment
+  preserves multiply-before-member-load order. Action 603 similarly needs a
+  float angle product before adding 15 degrees. In 730's easy arm, separate
+  double row lifetimes recover both volleys; the first Y expression is
+  `URAND(20) + (y_f0 + 10.0 + row) - 10.0`.
+- **Retain the difficulty structure.** Story arms appear in source order
+  3, 2, 1, 0. In 740, write the identical assignments in their separate cases
+  and let the compiler merge them. The second volley uses a nested switch
+  with cases 2 and 3 sharing a body. An equality disjunction emits two compares;
+  a hand-written unsigned range changes volatile-register choices across the
+  root. Preserve the uninitialized default reads.
+
+The 95 payload homes include twelve four-float arrays passed with count three.
+Initialize only the three target-written elements. Shrinking their storage loses
+48 frame bytes; using a three-item aggregate initializer for a four-element array
+adds unwanted fourth-element stores. The complete match supports this recovered
+allocation; the original declarations remain unknown. Finally, action 10's
+zero-input branch precedes its nonzero branch in the natural source.

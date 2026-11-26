@@ -238,7 +238,7 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
         receiver_store = dest.mem.base == x.X86_REG_ESI and store.mnemonic != 'fstp'
         stack_spill = dest.mem.base == x.X86_REG_ESP and (
             (dest.size == 1 and store.mnemonic == 'mov' and store.operands[1].type == x.X86_OP_REG)
-            or (dest.size == 4 and store.mnemonic == 'fstp'))
+            or (dest.size == 4 and store.mnemonic in ('fst', 'fstp')))
         if not receiver_store and not stack_spill:
             raise ValueError('unsupported instruction between compact-switch bound and guard')
         scheduled.append(store)
@@ -432,6 +432,23 @@ def inspect(canonical, target, address, code_size, contract, relocations, tail_t
                 target_payload_sha256=contract['sha256'])
 
 
+def function_code_size(function, rows, *, require_bytes=False):
+    address = int(function['address'], 0)
+    selected = [row for row in rows if int(row['address'], 0) == address]
+    if len(selected) != 1:
+        raise ValueError('compact switch has no unique candidate')
+    if function.get('contiguous_span'):
+        raise ValueError('compact switch cannot use an unreviewed contiguous span')
+    if function.get('owned_extent'):
+        from function_byte_ownership import load
+        ownership = load({int(row['address'], 0): row for row in rows},
+                         require_bytes=require_bytes).get(address)
+        if ownership is None:
+            raise ValueError('compact switch requires reviewed function-byte ownership')
+        return ownership['extent_end'] - address + 1
+    return int(selected[0]['size'])
+
+
 def verify(object_path, function, rows=None, read_target=None):
     import pefile
     from rank_retained_exact import read_coff_function
@@ -443,10 +460,7 @@ def verify(object_path, function, rows=None, read_target=None):
         with (ROOT / 'config/functions.csv').open(newline='') as f:
             rows = list(csv.DictReader(f))
     address = int(function['address'], 0)
-    selected = [r for r in rows if int(r['address'], 0) == address]
-    if len(selected) != 1:
-        raise ValueError('compact switch has no unique candidate')
-    code_size = int(selected[0]['size'])
+    code_size = function_code_size(function, rows, require_bytes=True)
     contract = function['switch_payload']
     validate_contract(contract, code_size)
     if any(address < int(r['address'], 0) < address + contract['size'] for r in rows):

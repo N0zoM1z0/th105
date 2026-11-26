@@ -176,9 +176,12 @@ error; linked-PE profiles continue to reject this surface. Owned-mode build
 provenance includes the inventory, ownership ledger and validator. The report
 separates owned bytes from additional physical bytes compared; those extra bytes
 do not become authored credit.
-Its complete 46138-byte comparison is currently nonexact. A new mode or source
-presence does not authorize `matches.csv` or `remote_exact`; acceptance still
-requires the full zero-difference contract and reviewed source semantics.
+Sakuya now compares all 75,042 physical code bytes and the complete 76,336-byte
+code/switch envelope with zero differences in `exact-first-sakuya-action-state`.
+The switch-payload contract uses the reviewed owned extent and independently
+rechecks its chunk hashes. All 74,937 owned bytes are exact; the 105 physical
+alignment bytes remain outside authored credit. See
+[the root evidence](SAKUYA_ACTION_STATE_2026_10_28.md).
 
 ## Cross-version hypothesis migration
 

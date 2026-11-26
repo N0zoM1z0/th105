@@ -1088,3 +1088,91 @@ name = "top-791-798"
 dispatch = "0x00611D9E"
 destination_table = "0x006126C0"
 destinations = ["0x00611DA5", "0x00612282", "0x00612282", "0x00612282", "0x00611F6E", "0x00612282", "0x00611FCD", "0x00612138"]
+
+[[roots]]
+name = "sakuya-vslot28"
+address = "0x004CADB0"
+callable_end = "0x004DD2D2"
+metadata_end = "0x004DD7E0"
+[[roots.regions]]
+name = "low"
+case_min = 0
+case_max = 226
+destination_table = "0x004DD2D4"
+destination_count = 31
+index_table = "0x004DD350"
+expected_physical_groups = 31
+candidate_destination_counts = [30, 31]
+[[roots.regions]]
+name = "mid"
+case_min = 301
+case_max = 526
+destination_table = "0x004DD434"
+destination_count = 38
+index_table = "0x004DD4CC"
+expected_physical_groups = 38
+candidate_destination_counts = [38, 39]
+[[roots.regions]]
+name = "high"
+case_min = 541
+case_max = 770
+destination_table = "0x004DD5B0"
+destination_count = 38
+index_table = "0x004DD648"
+expected_physical_groups = 38
+candidate_destination_counts = [38]
+[[roots.auxiliary_switches]]
+name = "nested_1"
+dispatch = "0x004D4F02"
+destination_table = "0x004DD730"
+destinations = ["0x004D4F09", "0x004D50A8", "0x004D5248", "0x004D53C8"]
+[[roots.auxiliary_switches]]
+name = "nested_2"
+dispatch = "0x004D5614"
+destination_table = "0x004DD740"
+destinations = ["0x004D561B", "0x004D57E0", "0x004D598D", "0x004D5B34"]
+[[roots.auxiliary_switches]]
+name = "nested_3"
+dispatch = "0x004D5E0F"
+destination_table = "0x004DD750"
+destinations = ["0x004D5E16", "0x004D5FB8", "0x004D6158", "0x004D62D8"]
+[[roots.auxiliary_switches]]
+name = "nested_4"
+dispatch = "0x004D65CE"
+destination_table = "0x004DD760"
+destinations = ["0x004D65D5", "0x004D679A", "0x004D6947", "0x004D6AEE"]
+[[roots.auxiliary_switches]]
+name = "nested_5"
+dispatch = "0x004DA8CA"
+destination_table = "0x004DD770"
+destinations = ["0x004DAC65", "0x004DAB7C", "0x004DAA97", "0x004DA8D1"]
+[[roots.auxiliary_switches]]
+name = "nested_6"
+dispatch = "0x004DAEAF"
+destination_table = "0x004DD780"
+destinations = ["0x004DB23B", "0x004DB157", "0x004DB077", "0x004DAEB6"]
+[[roots.auxiliary_switches]]
+name = "nested_7"
+dispatch = "0x004DB508"
+destination_table = "0x004DD790"
+destinations = ["0x004DB725", "0x004DB673", "0x004DB5C1", "0x004DB50F"]
+[[roots.auxiliary_switches]]
+name = "nested_8"
+dispatch = "0x004DB8A3"
+destination_table = "0x004DD7A0"
+destinations = ["0x004DBCF7", "0x004DBB87", "0x004DBA15", "0x004DB8AA"]
+[[roots.auxiliary_switches]]
+name = "nested_9"
+dispatch = "0x004DC4DE"
+destination_table = "0x004DD7B0"
+destinations = ["0x004DCAC9", "0x004DC8CD", "0x004DC6D9", "0x004DC4E5"]
+[[roots.auxiliary_switches]]
+name = "nested_10"
+dispatch = "0x004DCCF3"
+destination_table = "0x004DD7C0"
+destinations = ["0x004DCD01", "0x004DCD01", "0x004DCD01", "0x004DCCFA"]
+[[roots.auxiliary_switches]]
+name = "nested_11"
+dispatch = "0x004DCDE4"
+destination_table = "0x004DD7D0"
+destinations = ["0x004DCDF3", "0x004DCDEF", "0x004DCDEF", "0x004DCDEB"]
