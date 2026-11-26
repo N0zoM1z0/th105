@@ -274,6 +274,22 @@ def build_candidate_map(obj: CoffObject, root: dict[str, Any]) -> dict[str, Any]
             f"candidate has {len(all_destinations)} unique destinations; expected one of {allowed}"
         )
     metadata_start = min(region["destination_table_offset"] for region in regions)
+    # Patchouli places its difficulty table immediately before the sparse tables.
+    first_target_table = min(int(region["destination_table"], 0) for region in root["regions"])
+    prefix_tables = sorted((table for table in root.get("auxiliary_switches", [])
+                            if int(table["destination_table"], 0) < first_target_table),
+                           key=lambda table: int(table["destination_table"], 0), reverse=True)
+    target_cursor = first_target_table
+    for table in prefix_tables:
+        size = 4 * len(table["destinations"])
+        if not size or int(table["destination_table"], 0) + size != target_cursor:
+            raise ValueError("auxiliary prefix tables must abut the first sparse table")
+        start = metadata_start - size
+        if start <= 0 or any(not 0 <= obj.relocated_text_value(offset) < start
+                             for offset in range(start, metadata_start, 4)):
+            raise ValueError("candidate auxiliary prefix table escapes callable code")
+        metadata_start = start
+        target_cursor -= size
     if any(destination >= metadata_start for destination in all_destinations):
         raise ValueError("candidate switch destination escapes candidate callable into metadata")
     next_destination = {

@@ -189,3 +189,26 @@ Target ring-820 ground and orbit-825/852/900 paths read the unsigned direction b
 Strict root comparison remains nonmatching: target 54,452 bytes, candidate section tail 55,602 bytes, first difference at offset 139. No exact-match credit is claimed.
 
 Actions 580 and 581's object-830 shots have the same direction-read ordering (`0x519A5E..0x519AEA`, `0x519C5D..0x519CE9`). They now capture direction before sine and reload signed facing after cosine, while re-reading the angle field for each call and preserving their distinct 200/450 horizontal offsets. Both rebuilt sites show the corresponding late read. The whole dispatcher remains nonmatching (candidate section tail 55,646, target 54,452, first difference +139); this is not exact credit or a demonstrated ordinary-play change.
+
+
+## Leading difficulty table, 2026-11-26
+
+The action-710 difficulty dispatch at `0x0050F4FC` owns the four DWORDs at
+`[0x0051C6B4,0x0051C6C4)`, immediately before the first sparse action table.
+Raw destinations are `0x0050F58E`, `0x0050F574`, `0x0050F55A` and `0x0050F503`.
+The candidate mapper previously counted those sixteen metadata bytes as code,
+which made the owner instruction decoder enter the first table.
+
+The mapper now includes reviewed auxiliary tables that directly precede the
+sparse tables in its metadata boundary. Each candidate word must have a local
+DIR32 relocation to code before the table; missing/external relocations,
+metadata destinations and gaps are rejected. Four focused tests and a real
+Patchouli COFF mapping pass. Existing Tenshi, Alice, Marisa and Sakuya owner
+comparisons remain 107/107, 104/104, 125/125 and 106/106 respectively.
+
+Private source trials are in `build/patchouli-root-work-codex/`. The public
+header still needs the independently established float sine/cosine return
+contract; the first public build is blocked at that ABI mismatch. A private
+65-member receiver compiles with checked offsets, but the whole root remains
+nonexact and native 210/222 still share one candidate entry. No source selection
+or exact credit has been added.
