@@ -878,3 +878,49 @@ target lacks, so LTCG does not explain the register.
   in ECX and `flags` on the stack (RET 4, one extra 4-byte local), while plain
   `/O2` puts `flags` in ECX and `window` in EDI. The root 0x407DA0 also carries
   an LTCG-style `and esp, -8` frame, so this cluster needs one linked context.
+
+## Pinned C2 x87 liveness investigation (2026-11-26)
+
+The fixed SP1 `c2.dll` has SHA-256
+`497d1ffe57f75db8b458167bdea475f3962829e139b355a2672a4ef51c716413`.
+Its [Microsoft public PDB](https://msdl.microsoft.com/download/symbols/c2.pdb/8E3C6AD714BE4E55B528B0DBEB3BABD81/c2.pdb)
+has SHA-256 `5895796d070abb17862735845eff3a4d30d19248c461bc199a32d05629fb48d8`.
+The GUID matches `8e3c6ad7-14be-4e55-b528-b0dbeb3babd8`. The PE and PDB DBI
+ages are one; the PDB Info age is two. All section RVAs agree and there is no
+OMAP. Four section headers match byte-for-byte; `.rsrc` differs only in virtual
+size, 1,008 versus 1,408 bytes. The public names provide external corroboration
+for these addresses; the instruction observations below use the pinned DLL.
+
+| Address | Public name | Relevant operation |
+| --- | --- | --- |
+| `10C28970` | `LoFinalLower` | Final instruction lowering |
+| `10C2EB00` | `X87MapGFxToSTx` | Calls liveness construction, lifetime marking and stack mapping |
+| `10C2EFB0` | `BuildLiveOnEntryAndExitSets` | Computes block masks to a fixed point |
+| `10C32630` | `SetGFxLifeAndDeath` | Marks operand lifetime boundaries |
+| `10C2EC80` | `AppendFldZeroToBlock` | Builds a zero load for a required stack entry |
+| `10C33550` | `FPColor` | Floating register allocation |
+| `10C34C20` | `FPSpillWorthless` | Removes unprotected regions with non-positive cost |
+| `10C33F00` | `TryToReverseFCOMP` | Can reverse a comparison and its conditional branch |
+| `10C38E40` | `CanExtendLifetime` | Checks whether a lifetime can cross intervening instructions |
+
+Raw instructions at `10C2F330..10C2F357` OR linked blocks' `+B4` masks into
+`+124`, then compute `+B4 = (+124 & ~+38) | +34`. This is the standard backward
+liveness equation: the outgoing set is the union of successor incoming sets.
+`10C2EC80` constructs a zero operand using the object at `10D188A0`, corroborated
+by the public name `Flzero`. An unused-looking zero/pop sequence therefore
+needs its predecessor constraints and register lifetime reviewed before choosing
+a source explanation.
+
+The Patchouli investigation uses Ghidra 12.1.3 with five mapped-byte checks
+against this DLL. Original envelopes are private `c2-fp2-*.json` under
+`build/patchouli-root-work-codex`; readable text substitutes the candidate PDB
+names without changing the analysis database. `read-c2-pdb.py` reproduces the
+symbol/address inspection.
+
+For `50F200`, the next question is which earlier register definition and live
+range produces the zero at the main dispatch. WineDbg's CL-entry breakpoint
+was a positive calibration, but its C2 breakpoints and single-step commands
+issued at a DLL-load stop did not interrupt the compilation. Those misses do
+not establish that a compiler pass was skipped. The resulting object still
+replays identically to the clean 55,066-byte candidate. Patchouli remains
+nonexact; these compiler observations supply no authored exact credit.

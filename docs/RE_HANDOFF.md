@@ -140,8 +140,11 @@ Source selection and exact ledgers are unchanged.
 The current private `222_current_velocity` trial restores distinct entries with
 a rounded float temporary, but shares a non-native suffix and still lacks one
 advance call. It remains diagnostic. Read private `CURRENT.md` before choosing
-a trial; it also records the unsuccessful C2 helper investigation and closed
-literal, conversion and facing-helper probes.
+a trial. The pinned C2 investigation now identifies the x87 liveness and stack
+mapping routines; see the final section of `docs/VC8_SOURCE_SHAPE_PATTERNS.md`.
+Trace the zero's earlier register definition/live range with a calibrated
+backend stop. WineDbg's DLL-load-stop breakpoint results remain inconclusive.
+The private note also records closed literal, conversion and facing probes.
 
 Read `src/characters/PatchouliActionState.cpp`, its header,
 `docs/PATCHOULI_ACTION_STATE_2026_10_27.md` and
