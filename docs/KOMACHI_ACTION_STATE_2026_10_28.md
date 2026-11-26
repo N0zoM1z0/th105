@@ -1,15 +1,61 @@
-# Komachi action-state candidate, JP 1.06a
+# Komachi action-state root (`0x005E20E0`), JP 1.06a
 
 ## Status and scope
 
-0x005E20E0 has a complete 108-action C++ candidate and focused replay unit.
-It is **unselected and nonexact**. No implemented.csv, matches.csv, function
-status, or accepted byte total changes.
+`exact-first-komachi-action-state` is **canonical exact** from the
+character-scoped [source](../src/characters/KomachiActionState.cpp) and
+[checked receiver](../src/characters/KomachiActionState.hpp), under VC8 SP1
+`/O2 /GS- /GR /EHsc /MT`.
 
-The current candidate emits 65,288 bytes versus 65,176 target bytes. It
-matches the original `0x490` stack allocation and first differs at
-`+0x2A` in the card-switch prologue. The dated sections below retain
-the earlier code-generation controls and their results.
+- All 63,993 callable code bytes (`[0x005E20E0, 0x005F1AD9)`) and the complete
+  65,176-byte seven-table switch payload (`[0x005E20E0, 0x005F1F78)`) match
+  with zero byte differences.
+- All 1,864 COFF relocations agree: 915 `REL32` calls across 30 targets and
+  949 `DIR32` fields. The 1,183 metadata bytes contain 7 switch tables, 120
+  destination words, 692 index bytes and 11 alignment bytes.
+- The owner audit is `107/107` (`106` unique switch destinations plus `entry`).
+  Raw CFG reaches all 16,310 instructions / 63,993 authored bytes with zero
+  internal alignment holes.
+- Code SHA-256: `bb737abb720d627a985ae38f3b3f11f0cabf31b7ad0b7f89ab7a6f809ea9b8bd`.
+- Payload SHA-256: `20d83eff7214346536177a1391fa993ccf62081c1b9ebc5aa048edc005094204`.
+
+Reproduce with:
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-komachi-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-komachi-action-state komachi-vslot28 build/match-units/ExactFirst_KomachiActionState.obj --json
+```
+
+### Key source-shape fixes for canonical equality
+
+- **Byte direction parameter on `effect` (`0x00435240`)**: declaring the 4th
+  argument as `unsigned char` removes redundant `movsx` casts in `201`/`203`/
+  `224`/`225` and matches the `movzx` argument preparation used by `spawn`.
+- **Preventing `facing_104` hoisting across trig calls**: reading `facing_104`
+  directly (instead of through an `int` getter) in `emit801`, `swap820`, `730`
+  and `214`, plus keeping `float dx` in `aim()`/`aim_short()`, restores
+  `fild; fmulp` and exact per-call `movsx`/`movzx` reloads across `400..416`,
+  `541..543`, `560..567`, `602` and `214`.
+- **Inlining early-return helpers and post-switch `advance()`**: moving the
+  shared `advance()` tail after `switch (action_id_13c)` for `0, 2, 4, 5, 9`
+  and inlining `high_jump` (`208..212`), `air_normal_land` (`306..309`),
+  `air_shot_landing` (`414..416`), `air811` (`507..508`), `swap820`
+  (`540..543`) and `ring902` (`730`) restores all 106 unique switch
+  destinations and every native tail-merge.
+- **`case 730` (`ring902`) frame size and LIFO stack-slot packing**: writing
+  `coord = static_cast<float>(n * 45.0 + base_angle); packet[0] = static_cast<float>(n * 45.0 + base_angle + jitter + 180.0);`
+  without an intermediate `double angle` local prevents VC8 LICM from spilling
+  `jitter + 180.0` to a `qword` temporary (restoring the `0x490` frame) while
+  avoiding `fstp; fld` rounding. Hoisting `float coord;` before `switch
+  (g_match_identifier)` with per-loop `for (float n = 0.0f; ...)` restores
+  VC8's descending-weight LIFO slot packing (`esp+0x10` vs `esp+0x28`) across
+  all 15 affected owners.
+- **`case 405` nested air-landing guard**: writing `if (sequence_index_13e < 2)
+  { if (static_cast<unsigned char>(crossed())) { ... return; } }` reorders the
+  merge-block predecessors in VC8's `InsertAdditionalSplits`, restoring the
+  local `mov ebx, 1` hoist at `+0x47FB` and eliminating the final 2-byte diff.
+
+The dated notes below retain the earlier discovery and code-generation trials.
 
 ## Current-target evidence
 

@@ -989,4 +989,20 @@ reorders the merge block's predecessors so the call block's region comes first,
 keeping the post-guard constant uses in one region. Proven on Yuyuko `0x0055D850`
 cases `502`/`503`/`507`/`508` (`mov ebx, 1`) and `512`/`513` (`mov edi, 1`),
 closing the 58,619/59,672-byte root to 109/109 canonical exact
-([note](YUYUKO_ACTION_STATE_2026_10_28.md)).
+([note](YUYUKO_ACTION_STATE_2026_10_28.md)). Confirmed on Komachi `0x005E20E0`
+case `405`: nesting `if (sequence_index_13e < 2) { if (crossed()) { ... return;
+} }` restored the local `mov ebx, 1` hoist at `+0x47FB`, closing the
+63,993/65,176-byte root to 107/107 canonical exact
+([note](KOMACHI_ACTION_STATE_2026_10_28.md)).
+
+**Avoid intermediate `double` locals in x87 trig rings when VC8 LICM spills
+`jitter + 180.0`.** In Komachi `0x005E20E0` case `730`, writing `double angle =
+n * 45.0 + base_angle; packet[0] = static_cast<float>(angle + jitter + 180.0);`
+caused VC8 LICM to hoist `jitter + 180.0` into an 8-byte `qword` frame spill
+(expanding the frame from `0x490` to `0x498`), whereas writing `coord =
+static_cast<float>(n * 45.0 + base_angle); packet[0] = static_cast<float>(n *
+45.0 + base_angle + jitter + 180.0);` kept `n * 45.0 + base_angle` in x87
+`st(0)` (`fst; fadd; fadd`) with no `qword` spill. Hoisting `float coord;`
+before `switch (g_match_identifier)` with per-loop `for (float n = 0.0f; ...)`
+simultaneously restored LIFO stack-slot packing (`esp+0x10` vs `esp+0x28`)
+across 15 owners.

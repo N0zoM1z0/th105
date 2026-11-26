@@ -5,6 +5,40 @@ Target: original Japanese TH10.5 v1.06a, SHA-256
 Follow [AGENTS.md](../AGENTS.md), [shared tools](SHARED_TOOLS.md) and the
 [reconstruction workflow](RE_WORKFLOW.md). Keep compiler/analyzer work serial.
 
+## Completed: Komachi Fighter `+0x28` (`0x005E20E0`)
+
+`exact-first-komachi-action-state` is canonical exact from the character-scoped
+[source](../src/characters/KomachiActionState.cpp) and
+[checked receiver](../src/characters/KomachiActionState.hpp), under VC8 SP1
+`/O2 /GS- /GR /EHsc /MT`.
+
+- All 63,993 callable code bytes and the complete 65,176-byte seven-table switch
+  payload `[0x005E20E0,0x005F1F78)` match with zero differences.
+- All 1,864 relocations agree: 915 REL32 calls across 30 targets and 949 DIR32
+  fields. Seven tables contain 120 destination words, 692 index bytes and 11
+  alignment bytes.
+- The owner audit is 107/107. Raw CFG reaches all 16,310 instructions / 63,993
+  authored bytes with zero unreachable alignment bytes.
+- Code SHA-256: `bb737abb720d627a985ae38f3b3f11f0cabf31b7ad0b7f89ab7a6f809ea9b8bd`;
+  payload SHA-256: `20d83eff7214346536177a1391fa993ccf62081c1b9ebc5aa048edc005094204`.
+
+Reproduce with:
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-komachi-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-komachi-action-state komachi-vslot28 build/match-units/ExactFirst_KomachiActionState.obj --json
+```
+
+Private results: `build/komachi-root-work/{canonical,owners}.json`.
+The [Komachi note](KOMACHI_ACTION_STATE_2026_10_28.md) records the `unsigned
+char` direction parameter on `effect`, inlined early-return helpers and
+post-switch `advance()`, the `case 730` inline trig expression avoiding VC8
+LICM `qword` spill and restoring LIFO `esp+0x10`/`esp+0x28` slot packing across
+15 owners, and the nested `if (sequence_index_13e < 2) { if (crossed()) ... }`
+guard in `case 405` that restored `mov ebx, 1` in VC8's
+`InsertAdditionalSplits`. No shared gameplay source, layout or compiler flags
+changed.
+
 ## Completed: Yuyuko Fighter `+0x28` (`0x0055D850`)
 
 `exact-first-yuyuko-action-state` is canonical exact from the character-scoped
