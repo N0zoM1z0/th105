@@ -747,7 +747,6 @@ dispatch = "0x00647DA7"
 destination_table = "0x00649318"
 destinations = ["0x00647DEA", "0x00647DD6", "0x00647DC2", "0x00647DAE"]
 
-# Patchouli31 low candidate owners are diagnostic only; native has32.
 [[roots]]
 name = "patchouli-vslot28"
 address = "0x0050F200"
@@ -758,7 +757,6 @@ expected_direct_call_targets = 29
 expected_ret_opcodes = 133
 [[roots.regions]]
 name = "low"
-candidate_destination_counts = [31, 32]
 case_min = 0
 case_max = 226
 destination_table = "0x0051C6C4"

@@ -115,3 +115,16 @@ start = "0x00647C49"
 end = "0x00647C4F"
 size = 7
 sha256 = "4fe06c07aad18cb5faea1a925ff71a52931084bbb3f844ffd60bae6a9ce14cce"
+
+[[functions]]
+address = "0x0050F200"
+main_size = 54452
+main_end = "0x0051C6B3"
+main_excluded_bytes = 7
+evidence = "Complete exact-first-patchouli-action-state code and switch-payload replay includes the unreachable VC8 loop alignment instruction; raw CFG reaches 54445 authored bytes. docs/PATCHOULI_ACTION_STATE_2026_10_27.md."
+
+[[functions.main_exclusions]]
+start = "0x0050F8A9"
+end = "0x0050F8AF"
+size = 7
+sha256 = "4fe06c07aad18cb5faea1a925ff71a52931084bbb3f844ffd60bae6a9ce14cce"

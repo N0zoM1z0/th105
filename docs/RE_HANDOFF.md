@@ -5,6 +5,39 @@ Target: original Japanese TH10.5 v1.06a, SHA-256
 Follow [AGENTS.md](../AGENTS.md), [shared tools](SHARED_TOOLS.md) and the
 [reconstruction workflow](RE_WORKFLOW.md). Keep compiler/analyzer work serial.
 
+## Completed: Patchouli Fighter `+0x28` (`0x0050F200`)
+
+`exact-first-patchouli-action-state` is canonical exact from the character-scoped
+[source](../src/characters/PatchouliActionState.cpp) and
+[checked receiver](../src/characters/PatchouliActionState.hpp), under VC8 SP1
+`/O2 /GS- /GR /EHsc /MT`.
+
+- All 54,452 physical code bytes and the complete 55,610-byte payload
+  `[0x0050F200,0x0051CB3A)` match with zero differences.
+- All 1,651 relocations agree: 807 REL32 calls across 29 targets and 844 DIR32
+  fields. Four tables contain 111 destination words, 711 index bytes and 3
+  alignment bytes.
+- The owner audit is 106/106. Raw CFG reaches 14,067 instructions / 54,445
+  authored bytes. Seven internal alignment bytes at `0x0050F8A9..0x0050F8AF`
+  are compared and excluded from authored progress.
+- Code SHA-256: `41430c00c554e7dc169692c56b41fd43f5ef1204700cb092bab6420f327ed944`;
+  payload SHA-256: `d4d73f175e4f8b37667f04472df8c5db8cbec0ca20414d4107df08a007779043`.
+
+Reproduce with:
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-patchouli-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-patchouli-action-state patchouli-vslot28 build/match-units/ExactFirst_PatchouliActionState.obj --json
+```
+
+Private results: `build/patchouli-root-work-codex/{canonical,owners}.json`.
+The [Patchouli note](PATCHOULI_ACTION_STATE_2026_10_27.md) records the unnested
+`201`/`224` sequence guards that lifted the prefix x87 zero interval's spill
+cost above zero, the separate `209`/`212`/`221` cases that restored VC8's
+native `FgDoLateFlowOpts` merge order so `210` and `222` stay distinct, and
+the remaining branch/comparison fixes. No shared gameplay source, layout or
+compiler flags changed.
+
 ## Completed: Tenshi Fighter `+0x28` (`0x0063D3E0`)
 
 `exact-first-tenshi-action-state` is canonical exact from the character-scoped
@@ -122,37 +155,10 @@ validate these changes. No shared gameplay layout or callee changed.
 
 ## Next useful action
 
-Patchouli `0x0050F200` is the active bounded scope. The public source preserves
-the native 0x460 frame. Separate timer/frame guards restore 197/198's EDI=6;
-self-first ground-facing comparisons and peer-first prefix comparisons restore
-the target's floating operand order. The 197–199 instruction/edge diagnostic
-now differs locally only by each missing entry x87 pop. Full comparison still
-fails at +0x9B: candidate code 53,928 bytes, section 55,082 bytes. Its complete
-switch contract has not passed. Current strict report:
-`build/patchouli-root-work-codex/public-facing-timer-repairs.json`.
-
-Native 210/222 still merge, leaving advance, on-surface, landing and crossed
-calls short by one each. The prefix loses the zero that the target carries into
-the switch; 409 and 730 also have residual local sharing/lifetime differences.
-Source selection and exact ledgers are unchanged.
-
-The calibrated GDB/Wine trace follows general Color's class-one path; the
-module flag gate skips FPColor. On d72a7ba2, the prefix interval receives sixteen
-use credits and sixteen Enterload deductions, two each, for net spill cost
-zero. Later splitting replaces that long lifetime with smaller local ranges.
-The exact Tenshi control has positive cost under the same flags. Compare the
-candidate's entry-load placement and CFG with the native paths before changing
-another literal or stack-mapping instruction. Evidence and addresses are in
-the final section of `docs/VC8_SOURCE_SHAPE_PATTERNS.md`; all native jobs are
-closed. Read private `build/patchouli-root-work-codex/CURRENT.md` for current
-inputs and closed probes.
-The rounded-velocity 222 trials remain diagnostic: they restore entries but
-share a non-native suffix and still lack an advance call.
-
-Read `src/characters/PatchouliActionState.cpp`, its header,
-`docs/PATCHOULI_ACTION_STATE_2026_10_27.md` and
-`exact-first-patchouli-action-state`. The user wants every remaining giant
-completed individually to canonical exactness; use `gpt-6.1-sol:` commit subjects.
+Patchouli `0x0050F200` is now canonically exact (106/106 owners, 55,610/55,610
+bytes). Continue the remaining giant Fighter `+0x28` roots individually to
+canonical exactness (next candidates include Yuyuko `0x0055D850`, Yukari,
+Remilia, Komachi, Udonge).
 
 Keep receiver layouts character-scoped. Recompare directly affected accepted
 units after shared input changes.

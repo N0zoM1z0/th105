@@ -24022,7 +24022,7 @@ source = "src/characters/PatchouliActionState.cpp"
 object = "build/match-units/ExactFirst_PatchouliActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete unselected50F200 candidate:109 actions; target54452/full55610. Native CFG closed; semantic and physical-owner review remains. No implementation/exact credit; docs/PATCHOULI_ACTION_STATE_2026_10_27.md."
+notes = "Canonical JP1.06a Patchouli Fighter +0x28 root: 54452 physical / 54445 owned code bytes, 55610-byte complete switch payload, 4 tables, 111 destination words, 711 indices, 1651 relocations, 106/106 owners. docs/PATCHOULI_ACTION_STATE_2026_10_27.md."
 
 [[units.exact-first-patchouli-action-state.functions]]
 address = "0x0050F200"

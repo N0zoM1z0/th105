@@ -964,3 +964,13 @@ The resulting `costs-gdb-trace.obj` replays identically to the current clean
 For this GDB, a Python `Breakpoint.stop()` callback also ran on hits that did
 not satisfy its `.condition`. Filter the callback before logging; the retained
 trace removes the unrelated initial records. All trace jobs ended normally.
+
+**Resolution (Patchouli `0x0050F200`, 54,452/55,610 canonical exact):**
+Separating the two `if (sequence_index_13e == 2)` checks in cases `201` and
+`224` (instead of nesting the velocity update inside the `landing()` guard)
+allowed the prefix `0.0f` live range to flow across the false edge into both
+cases, adding two `+2` net intervals (`+4` total) so general `Color` kept
+`0.0f` in `st(0)` across the switch. Writing `case 209:`, `case 212:` and
+`case 221:` as separate switch cases also matched VC8's 17-iteration
+`FgDoLateFlowOpts` (`0x10B2C950`) merge order, merging `209`/`212`/`221` while
+leaving `210` and `222` distinct.

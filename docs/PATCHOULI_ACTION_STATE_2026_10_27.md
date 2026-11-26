@@ -334,3 +334,52 @@ source cause, the 210/222 merge and the complete switch comparison are open.
 The fresh public build has 53,928 code bytes and a 55,082-byte section; its
 first mismatch remains +0x9B. Current strict evidence is
 `build/patchouli-root-work-codex/public-facing-timer-repairs.json`.
+
+## Canonical exact match, 2026-11-26
+
+`exact-first-patchouli-action-state` is canonically exact under VC8 SP1
+`/O2 /GS- /GR /EHsc /MT`:
+
+- All 54,452 physical code bytes (`0x0050F200..0x0051C6B4`, SHA-256
+  `41430c00c554e7dc169692c56b41fd43f5ef1204700cb092bab6420f327ed944`) and the
+  complete 55,610-byte switch payload (`0x0050F200..0x0051CB3A`, SHA-256
+  `d4d73f175e4f8b37667f04472df8c5db8cbec0ca20414d4107df08a007779043`) match
+  with zero byte differences.
+- All 1,651 COFF relocations agree: 807 REL32 direct calls across 29 targets
+  and 844 DIR32 fields. Four switch tables contain 111 destination words, 711
+  index bytes and 3 alignment bytes.
+- The official owner audit passes 106/106 (entry included). Raw CFG reaches
+  14,067 instructions / 54,445 authored bytes; the seven unreachable loop
+  alignment bytes at `0x0050F8A9..0x0050F8AF` are compared and excluded from
+  authored progress.
+
+Three source-shape recoveries closed the remaining differences:
+
+1. **Carried x87 zero in `201`/`224`**: Separating the two
+   `if (sequence_index_13e == 2)` guards (instead of nesting the velocity
+   update inside the `landing()` guard) lets the prefix `0.0f` live range flow
+   into both cases. Each adds one `Enterload` (`-2`) and two uses (`+4`),
+   raising the general-allocator `Color` interval spill cost from `0` to `+4`
+   so VC8 keeps `0.0f` in `st(0)` across the switch.
+2. **Distinct `210`/`222` owners**: Writing `case 209:`, `case 212:` and
+   `case 221:` as separate cases (matching the other fighters) lets VC8's
+   `FgDoLateFlowOpts` (capped at 17 iterations) merge `209`/`212`/`221`
+   automatically while leaving `210` and `222` distinct at their native
+   255-byte spans (`0x510D4A` and `0x5119C2`).
+3. **Local branch/operand shapes**: Reversing branch polarity in `10`, `200`,
+   `500..503` (`byte_604 >= 3`), and `721` (`x_ec < 640.0f`, `x_ec > field_74c`),
+   using `< 1` in `414`/`567`/`568`, unsigned `> 0` on `field_6bc`/`6c0`/`6c4`
+   in `545`/`546`, float `field_744 <= limit` in `580`/`581`, direct
+   `(field_6c8 == 0 && word_736 > 10) || word_482 <= 0` in `214`, and separate
+   `entry(...)` guards in `214` and `415` recovered all remaining local diffs.
+
+Reproduce with:
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-patchouli-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-patchouli-action-state patchouli-vslot28 build/match-units/ExactFirst_PatchouliActionState.obj --json
+```
+
+Private reports: `build/patchouli-root-work-codex/{canonical,owners}.json`.
+Original full class layout, TU ownership and several field meanings remain
+unknown.

@@ -294,9 +294,9 @@ public:
     unsigned char unknown_6b0[0x4];
     int field_6b4;
     int field_6b8;
-    int field_6bc;
-    int field_6c0;
-    int field_6c4;
+    unsigned int field_6bc;
+    unsigned int field_6c0;
+    unsigned int field_6c4;
     int field_6c8;
     unsigned char unknown_6cc[0x60];
     unsigned char byte_72c;
