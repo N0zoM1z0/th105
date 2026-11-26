@@ -197,7 +197,7 @@ owner count describes progress on case recovery. It confers zero exact credit.
 See [GIANT_OWNER_AUDIT.md](GIANT_OWNER_AUDIT.md) for the common Fighter example,
 and [GIANT_ACTION_ROOT_PLAYBOOK.md](GIANT_ACTION_ROOT_PLAYBOOK.md) (with
 `scripts/giant-root-iterate.py`) for the reusable five-step opening pass and
-VC8 SP1 `c2.dll` patterns proven on the Reimu and Iku `+0x28` roots.
+VC8 SP1 `c2.dll` patterns proven on the Reimu, Iku, and Aya `+0x28` roots.
 
 ### Sakuya action initializer
 

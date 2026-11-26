@@ -60,9 +60,11 @@ exact** under VC8 SP1 `/O2 /GS- /GR /EHsc /MT` in match unit
 
 Apply [GIANT_ACTION_ROOT_PLAYBOOK.md](GIANT_ACTION_ROOT_PLAYBOOK.md) and
 [scripts/giant-root-iterate.py](../scripts/giant-root-iterate.py) to the next
-roster Fighter `+0x28` action-state root (e.g., Marisa `0x004A3DF0`, Sakuya
-`0x004CADB0`, Alice, Patchouli, Youmu, Remilia, Yuyuko, Yukari, Suika, Reisen,
-Komachi, or Tenshi).
+roster Fighter `+0x28` action-state root (e.g., Marisa `0x004A3710`, Sakuya
+`0x004CADB0`, Alice `0x004E9F50`, Patchouli `0x0050F200`, Youmu `0x00530200`,
+Remilia `0x00545090`, Yuyuko `0x0055D850`, Yukari `0x0057B030`, Suika
+`0x00598990`, Udonge `0x005BFD50`, Komachi `0x005E20E0`, or Tenshi
+`0x0063D3E0`).
 
 ## Open notes
 
@@ -70,7 +72,3 @@ Komachi, or Tenshi).
   use character-scoped typed receiver views rather than a unified
   cross-character `Fighter` header. Any future shared-header unification must
   re-verify all three exact units for zero differences.
-- `scripts/probe-iku-action-ltcg.py` is a diagnostic LTCG probe that references
-  `gpt-web-iku-action-state`; its old `AnimationSequenceObjectView` helper
-  selection is superseded for exact matching now that standalone COFF
-  `gpt-web-iku-action-state` is 100% exact.
