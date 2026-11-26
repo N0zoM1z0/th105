@@ -916,6 +916,22 @@ destination_count = 48
 index_table = "0x004B3F58"
 expected_physical_groups = 48
 
+[[roots.auxiliary_switches]]
+name = "action720_difficulty"
+dispatch = "0x004B2EA9"
+destination_table = "0x004B4040"
+destinations = ["0x004B304B", "0x004B2FC2", "0x004B2F39", "0x004B2EB0"]
+[[roots.auxiliary_switches]]
+name = "action731_difficulty"
+dispatch = "0x004B31FF"
+destination_table = "0x004B4050"
+destinations = ["0x004B32CC", "0x004B3279", "0x004B3228", "0x004B3206"]
+[[roots.auxiliary_switches]]
+name = "action733_difficulty"
+dispatch = "0x004B3590"
+destination_table = "0x004B4060"
+destinations = ["0x004B365D", "0x004B360A", "0x004B35B9", "0x004B3597"]
+
 # Suika target has33 low owners; current unselected source merges208/220.
 [[roots]]
 name = "suika-vslot28"

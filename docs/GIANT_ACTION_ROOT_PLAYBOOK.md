@@ -9,6 +9,7 @@ Proven exact on:
 - `Iku_dispatch_action_state_vslot28` (`0x00620920`, 59,038 callable / 60,194 envelope, 3 switch tables)
 - `Aya_dispatch_action_state_vslot28` (`0x00602250`, 65,601 callable / 66,704 envelope, 7 switch tables)
 - `Youmu_dispatch_action_state_vslot28` (`0x00530200`, 37,692 callable / 38,816 envelope, 4 switch tables)
+- `Marisa_dispatch_action_state_vslot28` (`0x004A3710`, 66,695 callable / 67,936 envelope, 6 switch tables)
 
 Update this playbook and [scripts/giant-root-iterate.py](../scripts/giant-root-iterate.py)
 whenever a new root reveals a reusable pattern or compiler rule.
@@ -275,3 +276,48 @@ The verifier accepts these specific register forms only when neither replaces
 the selector, and still rejects branches into the protected setup. Positive,
 selector-clobber, flag-clobber and bypass cases are in
 [the focused tests](../tests/test_coff_switch_payload.py).
+
+
+## Marisa source-shape findings
+
+`exact-first-marisa-action-state` reproduces the complete 66,695-byte callable
+and 67,936-byte envelope under VC8 SP1 `/O2 /GS- /GR /EHsc /MT`, with 125/125
+owners. [The root note](MARISA_ACTION_STATE_2026_10_28.md) gives the hashes,
+commands, relocation census and private result paths.
+
+For actions 570–573, expand the volley into its actual branch arms and give
+its positive and negative loops separate counter lifetimes. This shape removes
+the extra eight-byte frame area and recovers the native `0x4C0` frame and
+scalar slots. Keep the conditional packet level initialization as one store
+per path. Merely shrinking the two partially initialized 307/308 arrays from
+three floats to two also produced the right frame size, but moved their homes
+and other payloads incorrectly. That trial was rejected; exact source retains
+the three-float arrays and their unwritten third elements.
+
+In 565–568, Y is computed as a double before the packet branch and narrowed to
+float separately at each spawn call. A cached float Y emits one narrowing
+before the branch; the target emits one in each call arm. Moving the float
+cast changes precision and lifetime, so inspect the whole call site. Negative
+integer offsets also use explicit float conversion where the target emits
+`fisub`; widening the integer directly to double instead emits `fild/fsubp`.
+
+Independent frame guards matter in 307/308/547: put the sequence test outside,
+then test timer/frame separately for each arm. Combining the timer into the
+outer guard caches the frame index and removes two native instructions.
+Likewise, flatten the two frame guards in 615 while retaining the sequence
+reread after its spawn calls; an extra outer sequence guard delayed the
+shared constant-40 load. Separate the two action choices in 310 with an early
+return to recover the physical set-action-2 tail and its consumers.
+
+Use the target's physical action order: 658, 611, then 610. Reordering these
+blocks recovered the remainder register in 658, its shared landing tail and
+612's volatile vcall registers. In 525, the observed thresholds are explicitly
+`>=4`, `<=3`, and `<=1`; equivalent bounds change reuse of the live constant 3.
+These are local observations, not a rule to normalize bounds across a root.
+
+The full comparison corrected actions 730/732's destinations to 731/733 and
+retained both repeated flight-release gates. It also fixes the association in
+720's horizontal velocity to `(destination - x) * rate * facing`, allowing the
+rate to remain live for vertical velocity. Arithmetic association, callback
+rereads and unwritten packet fields need target evidence even when a retained
+candidate has the right action labels and direct-call counts.

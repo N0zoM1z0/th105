@@ -1705,3 +1705,4 @@ CMenuPractice_update
 update_scene_runtime
 ApplicationState_ctor
 Reimu_dispatch_action_state_vslot28
+Marisa_dispatch_action_state_vslot28

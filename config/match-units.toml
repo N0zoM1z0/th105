@@ -24214,21 +24214,21 @@ source = "src/characters/MarisaActionState.cpp"
 object = "build/match-units/ExactFirst_MarisaActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete unselected4A3710 candidate:130 actions; target66695/full67936. Semantics and compiler ownership remain under review. No implemented/exact ledger credit; docs/MARISA_ACTION_STATE_2026_10_28.md."
+notes = "Canonical exact JP1.06a Marisa action root 0x004A3710: 66695 callable / 67936 envelope bytes, six switch tables, 125/125 owners and 1929 relocations. Character-scoped typed view; docs/GIANT_ACTION_ROOT_PLAYBOOK.md."
 
 [[units.exact-first-marisa-action-state.functions]]
 address = "0x004A3710"
 symbol_base = "?dispatch_action_state_vslot28@MarisaActionStateView@th105@@QAEXXZ"
 rel32_targets = [
     "?marisa_random@th105@@YAIH@Z=0x004067D0",
-    "?spawn@MarisaActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?spawn@MarisaActionStateView@th105@@QAEHHMMCHPBXH@Z=0x00465190",
     "?landing@MarisaActionStateView@th105@@QAEEXZ=0x00473DD0",
     "?zero_motion@MarisaActionStateView@th105@@QAEXXZ=0x0045AF40",
     "?advance@MarisaActionStateView@th105@@QAEEXZ=0x004351C0",
     "?crossed@MarisaActionStateView@th105@@QAEHXZ=0x005F9310",
     "?marisa_surface@th105@@YIMPAVMarisaActionStateView@1@@Z=0x00435D60",
     "?marisa_random_u32@th105@@YAIXZ=0x004066B0",
-    "?effect@MarisaActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?effect@MarisaActionStateView@th105@@QAEXHMMEH@Z=0x00435240",
     "?event@MarisaActionStateView@th105@@QAEXI@Z=0x004359F0",
     "?marisa_on_surface@th105@@YIEPAVMarisaActionStateView@1@@Z=0x00435DC0",
     "?flip@MarisaActionStateView@th105@@QAEXXZ=0x00478E60",
@@ -24238,7 +24238,7 @@ rel32_targets = [
     "?counter@MarisaActionStateView@th105@@QAEXFH@Z=0x0046BF30",
     "?reset@MarisaActionScratch@th105@@QAEXXZ=0x00435110",
     "?directional@MarisaActionStateView@th105@@QAEEH@Z=0x00478EE0",
-    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?dispatch_character_wave_handle@MarisaActionStateView@th105@@QAEXI@Z=0x0045C030",
     "?phase_counter@MarisaActionStateView@th105@@QAEHH@Z=0x00478DF0",
     "?marisa_atan@th105@@YAMMM@Z=0x00406540",
     "?texture@MarisaActionStateView@th105@@QAEXCF@Z=0x0045F560",
@@ -24249,6 +24249,24 @@ rel32_targets = [
     "?finalize@MarisaActionStateView@th105@@QAEXH@Z=0x0045D110",
     "?copy_health@MarisaActionStateView@th105@@QAEXXZ=0x0045B250",
     "?common_update@MarisaActionStateView@th105@@QAEXXZ=0x004740C0",
+]
+
+[units.exact-first-marisa-action-state.functions.switch_payload]
+size = 67936
+sha256 = "58dd1936fc5db5341cbf3e08d9f19beaa7d106ffbf84d82b673644da542c6447"
+alignment_hex = "90"
+table_offset = 66696
+table_entries = 32
+map_offset = 66824
+map_size = 227
+load_offset = 1932
+jump_offset = 1939
+additional_tables = [
+    { alignment_hex = "90", table_offset = 67052, table_entries = 45, map_offset = 67232, map_size = 231, load_offset = 12353, jump_offset = 12360 },
+    { alignment_hex = "90", table_offset = 67464, table_entries = 48, map_offset = 67656, map_size = 230, load_offset = 32577, jump_offset = 32584 },
+    { alignment_hex = "8bff", table_offset = 67888, table_entries = 4, jump_offset = 63385 },
+    { alignment_hex = "", table_offset = 67904, table_entries = 4, jump_offset = 64239 },
+    { alignment_hex = "", table_offset = 67920, table_entries = 4, jump_offset = 65152 },
 ]
 
 [units.exact-first-suika-action-state]

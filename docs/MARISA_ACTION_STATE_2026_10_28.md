@@ -1,212 +1,46 @@
-# Marisa action-state 0x004A3710
+# Marisa action-state root at 0x004A3710
 
-Complete, unselected, nonexact C++ candidate covering 130 action labels and the
-shared prelude/default path. Neither implemented.csv nor matches.csv gains
-credit. A complete first candidate is not proof of recovered semantics.
+The original Japanese TH10.5 v1.06a root is canonically exact in
+`exact-first-marisa-action-state`, built from
+[MarisaActionState.cpp](../src/characters/MarisaActionState.cpp) with VC8 SP1
+`/O2 /GS- /GR /EHsc /MT`.
 
-## Native evidence
+The complete callable extent is `0x004A3710..0x004B3B97` (exclusive end),
+66,695 bytes. Its SHA-256 is
+`98fd68e00763955f64d7489b2a5cb04b20f209031d739a7e9117273080a45aa5`.
+All 67,936 envelope bytes through `0x004B4070` also match; envelope SHA-256 is
+`58dd1936fc5db5341cbf3e08d9f19beaa7d106ffbf84d82b673644da542c6447`.
 
-The original Japanese 1.06a executable was hash-attested. Factory's native IDA
-session independently matched its hash, image base, entry and sampled mapped
-bytes. The whole-root decompiler failed; read-only Ghidra action slices were
-used only as navigation, with incoming registers, packet writes and floating
-operands resolved against raw instructions. Slice functions are diagnostic
-metadata, not original callable boundaries or ABIs. Transactions were rolled
-back and the nine primary database file hashes remained unchanged.
+Three compact action switches contain 32/45/48 destination words and
+227/231/230 byte indices. Actions 720/731/733 each own an additional four-way
+difficulty table. The strict contract includes all 137 destination words,
+688 indices, three one-byte NOPs and the two-byte alignment before the first
+difficulty table. Metadata contributes no authored code credit.
 
-Callable 4A3710..4B3B97 is 66695 bytes, SHA-256
-98fd68e00763955f64d7489b2a5cb04b20f209031d739a7e9117273080a45aa5.
-All 16999 decoded instructions are reachable; no unresolved indirect exits or
-holes remain. Six indirect switches resolve. There are 138 RETs and 978 direct
-call sites to 29 targets. Metadata ends at 4B4070, the next independent root.
-The complete 67936-byte payload has SHA-256
-58dd1936fc5db5341cbf3e08d9f19beaa7d106ffbf84d82b673644da542c6447.
-Sparse regions 0..226, 301..531 and 541..770 have 32/45/48 destinations;
-three four-way difficulty tables belong to 720/731/733. Direct arms include
-300, 540, 795, 797 and 798.
+The owner audit is 125/125. Raw traversal reaches all 16,999 instructions,
+with six resolved switches and no unresolved indirect exits. All 1,929
+relocations are replayed: 978 REL32 calls to 29 targets and 951 DIR32 entries.
 
-## Source and remaining uncertainty
+Reproduce the complete comparison and boundary audit with:
 
-The pointer-only receiver inherits the established virtual-slot view. Helpers
-are declaration-only caller interfaces. Direction arithmetic is signed byte;
-effect/spawn carriers preserve unsigned byte values. Surface and crossed-floor
-calls retain ST0/AL consumption and distinct ordering around virtual calls.
-The prelude preserves its unusual threshold/clamp pairs: 4A38CD/38FF compare
-against 3 but publish 12; 720 sequence 6 compares against 12 and clamps to 11.
-These are native observations, not corrections to presumed intended behavior.
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-marisa-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-marisa-action-state marisa-vslot28 build/match-units/ExactFirst_MarisaActionState.obj
+```
 
-307/308's second count-three requests initialize only the first two float
-slots; no invented third value is supplied. 505/506 have four native float
-stores despite a count-three request. These extents and downstream readers
-remain under review. All 98 payload homes resolve in both CFGs, without unknown
-spawn payload sites; candidate homes are uniformly eight bytes higher.
+Current private results are `build/marisa-root-work-codex/canonical.json` and
+`build/marisa-root-work-codex/owners.json`. The manifest and source reproduce
+them; intermediate trials were removed.
 
-The initial candidate merged the equivalent 565..568 request branches. Native
-4AD134/4AD3D7/4AD6F7/4AD9CC captures direction and Y before branching, then
-computes X inside each branch. Restoring those scalar lifetimes preserves both
-static spawn sites and their FP operations. Per-action reachable call
-diagnostics now have no direct-call count differences. Virtual-site counts
-still differ for 410/414, 562/563 and 733. The initial remaining FP-site
-difference for 214 is resolved by the rate-branch refinement below. These checks are
-omission diagnostics, not semantic acceptance or excuses for byte differences.
-Callback-sensitive lifetimes, floating precision, unknown packet slots and
-TU/LTCG ownership still require review. No compiler-control assembly, fake ABI,
-forced registers, copied target bytes or padding is used.
+The source now uses a character-scoped typed receiver, checked member offsets
+and explicit sequence vslots. The previous header and nine include fragments
+were used only by this root and have been replaced by the standalone source.
+No shared header, callee implementation or accepted consumer changed.
 
-## Reproduction and current comparison
-
-taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-marisa-action-state --compare --json
-    scripts/repo-python scripts/compare-giant-action-switches.py marisa-vslot28 build/match-units/ExactFirst_MarisaActionState.obj --json
-
-The first complete public candidate is 67988 bytes versus native 67936, with
-frame 4C8 versus 4C0. First mismatch is +14 / 4A371E. Canonical full-payload
-comparison reports 63157 unmasked differing bytes including length difference;
-this positional count is not a semantic-completion percentage. Candidate SHA:
-87673809b70b5b9dce1b0e1e9b02a895f423f60267190b6fe4ea993ff12e43ee.
-Candidate sparse tables have the same 32/45/48 cardinalities and no native group
-splits. It has 141 epilogues and 216 receiver-qualified indirect call sites,
-versus native 138/211. All 63 crossed-floor and 10 on-surface sites test AL.
-
-Eleven absent native-backed literal bindings were added; existing bindings and
-accepted consumers were not changed. Only this new unit was compiled. Next work is
-source-level lifetime/branch ownership refinement against this complete baseline,
-not whole-corpus rebuilding.
-
-## Request-lifetime refinement
-
-The target-backed 565..568 capture refinement is retained despite increasing
-the complete candidate from 67988 to 68196 bytes: matching source ownership and
-restoring the four missing static call sites is stronger evidence than mere
-aggregate size proximity. Native remains 67936; first mismatch remains +14
-and frame remains 4C8 versus 4C0. Full unmasked differences are 64190, SHA-256
-5d74b71f4d842f9cb9d7a5472c11e415ea5471c47176d05fe44714e7ae985806.
-All 98 payload homes remain resolved, without unknown payload sites; the
-32/45/48 groups remain unsplit. Receipts: trial 826-build.json,
-trial 826-full.json, trial 826-calls.json, trial 826-fp.json and
-trial 826-payload-homes.json in the same build directory. Existing accepted
-units and exact ledgers remain unchanged.
-
-## Action 708 velocity precision
-
-Raw 4B256B/4B256F explicitly narrows and reloads vertical velocity as float
-before publishing it and adding Y. The sum is then captured as QWORD at
-4B257F across surface 435D60. The original candidate accidentally used the
-unrounded double velocity for that sum. The corrected source now emits both
-the float narrowing and QWORD capture; ordered surface>=prediction and the
-post-call live negative-velocity check are unchanged.
-
-Current complete candidate: 68204 bytes, frame 4C8, first+14, 64185 unmasked
-differing bytes; SHA-256
-05e8856885e6a33b397c933b39e731874e08d044d3257c32d49163cc975a0882.
-Receipts: trial 708-build.json and trial 708-full.json. No exact credit.
-
-Two source-expression ownership controls (inline dust X expression and inline
-squared-distance sum) produced the same complete payload hash. Expanding all
-ten dust helper bodies at their callers did not fix frame ownership (still
-4C8) and lacked independent evidence for retention; all three controls were
-reverted. Their private receipts remain trialdust-*, trialsquare-* and
-trialdustowner-*; no compiler padding or register forcing was introduced.
-
-## Flight 214 rate-branch refinement
-
-Native 4A55C0..4A560C retains a separate add/subtract for each 1.5/0.5 rate.
-Replacing the conditional rate operand with its native arithmetic branches
-reproduces this region's instruction sequence (at a shifted address). Only
-16 complete-payload bytes change; complete size remains 68204 and frame 4C8.
-Full comparison has 64184 unmasked differences, first+14, SHA-256
-502819ce6e9f3ebccbdfeb5879f56836064e00f835d6950f0171e21cf6b0b8cb.
-
-The private diagnostic now also covers direct 300/540/795/797/798, qualified
-from the actual dispatch comparisons, equality branches and fallthroughs.
-Across all 130 nondefault action labels, direct-call and arithmetic-site counts
-agree. Virtual-site differences remain at 410/414 (one fewer each), 562/563
-and 733 (one extra each). Counts do not establish semantic equality, operand
-precision, call order, stack ownership or exactness. Receipts: trial 214-*.json,
-including trial 214-all-action-calls.json and trial 214-all-action-fp-ops.json.
-
-## Five virtual-site count differences, 2026-11-01
-
-A fresh serial compile reproduces the current 68204-byte payload and canonical
-SHA 502819ce6e9f3ebccbdfeb5879f56836064e00f835d6950f0171e21cf6b0b8cb.
-Native remains 67936, source/native frames 1224/1216 and first difference+14.
-No source, ABI, flag, ledger or acceptance gate changed in this review.
-
-The five old indirect-call count differences were traced through their actual
-complete reachable action CFGs. Every differing site is the same this/ESI
-receiver's next-sequence vslot 14. The set-action vslot 8 and select-sequence
-vslotC counts agree in each action. Receiver/vptr/slot loads are qualified,
-rather than labeling every indirect call merely "virtual".
-
-Action 410 has native/source vslot 14 counts 2/1;414 likewise 2/1.
-Native early-window exits reach 4B369B while the later sequence 3/time>20 exit
-reaches 4A9B55. Both are ordinary next-sequence calls followed by return. The
-source routes both to its shared 4B2BF5 tail. There is no missing vslot 8/C call.
-
-Actions 562/563 have native/source vslot 14 counts 2/3. Native early charge-window
-and late sequence 1 exits share 4A9B55; source uses 4A9B52 and 4B2BF5. The
-sequence 3 transition remains a distinct call followed by the real sequence 4
-check in both versions (native 4ADBA2/4ADBAB, source 4AD014/4AD01D for 562).
-The post-callback field reread must not be removed to force a return tail.
-
-Action 733 has counts 3/4. Native sequence 2/time>=60 jumps to 4B369B, sharing
-the existing difficulty-zero return tail. Source uses its separate 4B2BF5 tail.
-The three difficulty clamp paths and their actual thresholds remain present.
-
-These are physical tail-sharing differences, not evidence of omitted virtual
-operations. This resolves the interpretation of the count diagnostic only:
-it does not establish full path/FP/callback equivalence or exactness. No
-equivalent-bound rewrite, manual vtable call, forced register, duplicated work
-or artificial branch is introduced to make static call counts agree.
-
-The private scripts retain raw-PE/source provenance. The target's16999 instructions
-and all six switch boundaries were rechecked by the existing whole-root auditor.
-Authored/source/exact totals remain unchanged.
-
-## Action 214 flight effect facing, 2026-11-05
-
-Native `0x4A579A..0x4A580A` captures the unsigned effect-facing byte before sine and separately reloads signed facing after cosine for X. The earlier candidate reused a signed value captured before both lookups. Ordinary locals now preserve the two native read points; fresh VC8 captures direction at `0x20B6` and reloads signed facing at `0x20ED`, after cosine. This establishes read order, not that the actual lookup changes facing or that ordinary gameplay differs. The 66695-byte root remains non-exact (candidate section tail 68220, first mismatch +14); no exact credit is claimed.
-
-## Unsigned random conversion constants, 2026-11-05
-
-The native action root uses float `2^32` corrections for unsigned random results; for example `0x4AA717..0x4AA729` feeds the observed float-rounded 0.1 product. Eight source expressions converted unsigned values directly to double, producing 11 expanded double-correction sites. Converting through float before the surrounding double arithmetic now yields 70 float corrections and no double corrections in the focused candidate, matching the native root's aggregate counts; the previous candidate had 59 and 11 respectively. The next x87 operation-category totals are unchanged and do not indicate additional early float stores. These counts are diagnostic, not proof of every path or of whole-root equality. Bounded random values are exactly representable as floats, so no ordinary-play numeric change is established. The 66,695-byte root remains nonexact at +14 with a 68,220-byte candidate section tail; no exact credit is claimed.
-
-## Action 720 destination facing (2026-11-06)
-
-Native `0x4B2C98..0x4B2CB6` selects facing +1 when the randomly chosen
-destination is at least the current X position or the comparison is unordered;
-otherwise it selects -1. The earlier ordered `current <= destination` expression
-selected -1 for an unordered comparison. The source now expresses the native
-condition as `!(destination < current)`. Finite values retain their previous
-result; whether an unordered position occurs in normal play is unknown.
-
-The focused VC8 candidate uses the reversed operand order and
-`test ah,0x41; jne` at `0xF69F..0xF6A7`, producing the native result for all
-four comparison outcomes. The complete candidate remains unselected and
-nonexact, section tail 68,220 bytes, compared SHA-256
-`bbcf6b1fef5ebeb9903c73000799a9ec1993f805085fcd2b252e3d45244ca481`.
-No full-function or exact-byte credit is claimed.
-
-## Action 720 destination side (2026-11-06)
-
-The preceding native comparison at `0x4B2C0D..0x4B2C47` chooses the
-`580 - random` destination when current X is at least 640 or the comparison is
-unordered. The prior ordered `current X >= 640` instead chose `700 + random`
-for unordered X. The condition now uses `!(current X < 640.0f)`. Finite values
-retain their prior selection; the availability of unordered X in normal play
-is not established. The focused candidate's `test ah,0x41; je` at
-`0xF617..0xF61A` has the native outcomes with inverted branch layout.
-
-The complete candidate remains unselected and nonexact, section tail 68,220
-bytes and compared SHA-256
-`0e469ce06822a4d9cd1a9ceaabcac592f9f3f346cc46515a341a72339df2ebdc`.
-No full-function or exact-byte credit is claimed.
-
-### Integer gate thresholds
-
-Nine integer threshold forms were adjusted using original gates at `0x4A91BF`, `0x4A9AB5`, `0x4AA4EB`, `0x4AAEB7`, `0x4AAEE2`, `0x4B1DB2`, `0x4B1DC5`, `0x4B2B64`, and `0x4B2BAC`. The candidate recovers their branch conditions and threshold values; some operand allocation and intervening layout still differ. Integer behavior is unchanged, and the complete 68,220-byte candidate remains non-exact.
-
-The action 658 phase gate at `0x4B0E90` skips its spawn path above phase 3. Its equivalent source bound restores the original local comparison and branch; the complete candidate remains non-exact.
-
-Repeated timer gates for 25, 30, and 90 frames now use the equivalent forms observed in the original. The focused candidate recovers the corresponding local comparisons and branches, including repeated inlined bodies. Integer behavior is unchanged; the 68,220-byte candidate remains non-exact.
-
-The 60-frame gates at `0x4B2DFA`, `0x4B3301`, and `0x4B3692` now use equivalent native threshold forms, recovering the local comparisons and branches. Repeated inlining still differs, and the complete 68,212-byte candidate remains non-exact.
+The [giant-root playbook](GIANT_ACTION_ROOT_PLAYBOOK.md#marisa-source-shape-findings)
+records the useful compiler findings and rejected array-extent trial. The exact
+comparison also corrected retained hypotheses: actions 730/732 advance to
+731/733, and flight release preserves both native input gates. The target's
+unusual prelude clamps, float rounding, callback-dependent field rereads and
+unwritten third payload slots in 307/308 are preserved. The original source
+spelling and the meaning of those unwritten slots remain unknown.
