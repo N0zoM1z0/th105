@@ -137,14 +137,14 @@ public:
               static_cast<unsigned char>(facing_104),1,p,3);
     }
 
-    __forceinline void spread810_loop(float *p,double base,int limit) {
-        for(int n=0;n<limit;n+=10){p[0]=static_cast<float>(base-n);spawn_offset(810,38,177.0,p,3);}
+    __forceinline void spread810_loop(float *p,double base,int count) {
+        for(int n=0;n<count;++n){p[0]=static_cast<float>(base-n*10);spawn_offset(810,38,177.0,p,3);}
     }
     __forceinline void spread810(double base) {
         float p[3];p[1]=6.0f;p[2]=12.0f;
-        if(byte_604>=4)spread810_loop(p,base,60);
-        else if(byte_604>=1)spread810_loop(p,base,50);
-        else spread810_loop(p,base,40);
+        if(byte_604>=4)spread810_loop(p,base,6);
+        else if(byte_604>=1)spread810_loop(p,base,5);
+        else spread810_loop(p,base,4);
         phase_counter(50);counter(200,120);dispatch_character_wave_handle(10);
     }
     __forceinline void shot811(float angle) {
@@ -173,8 +173,8 @@ public:
 
     __forceinline void ring820(float mode) {
         phase_counter(50);counter(200,120);dispatch_character_wave_handle(13);field_180=1;
-        float p[3];int angle=0;
-        for(int n=0;angle<360;++n,angle+=60) {
+        float p[3];int n=0;
+        for(int angle=0;angle<360;++n,angle+=60) {
             p[0]=static_cast<float>(angle);p[1]=300.0f;p[2]=mode;
             spawn(820,static_cast<float>((yuyuko_cosine(static_cast<float>(static_cast<float>(n)*60.0))*300.0+50.0)*facing_104+x_ec),
                   static_cast<float>(yuyuko_sine(static_cast<float>(static_cast<float>(n)-6.0))*300.0+(y_f0+170.0)),
@@ -225,8 +225,8 @@ public:
     }
     __forceinline void difficulty900(float *p,bool every_wave) {
         float phase=static_cast<float>(yuyuko_random(360));if(!every_wave)dispatch_character_wave_handle(13);
-        int angle=0;
-        for(int n=0;angle<360;++n,angle+=40) {
+        int n=0;
+        for(int angle=0;angle<360;++n,angle+=40) {
             if(every_wave)dispatch_character_wave_handle(13);
             p[0]=static_cast<float>(static_cast<double>(angle)+phase);p[1]=700.0f;p[2]=0.0f;
             spawn(900,static_cast<float>((yuyuko_cosine(static_cast<float>(static_cast<float>(n)*60.0))*300.0+50.0)*facing_104+x_ec),

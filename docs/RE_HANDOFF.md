@@ -13,23 +13,26 @@ and nonexact. `exact-first-yuyuko-action-state` now covers the complete
 59,672-byte payload and all five switch tables. Raw PE traversal closes all
 14,783 instructions / 58,619 callable bytes without unresolved exits.
 
-The fresh build first differs at `+0x1B9`, a switch-table address displaced by
-remaining code. The frame is `0x4E8`; the candidate section is 59,592 bytes and
-the official owner diagnostic is 95/109. All 885 direct calls across 27 targets
-agree in count, and the floating instruction sequences agree for every owner.
-No exact progress is recorded.
+The user explicitly requested a pause after organizing this checkpoint.
+Resume this bounded scope when instructed.
 
-The [Yuyuko note](YUYUKO_ACTION_STATE_2026_10_28.md) records the direct alpha
-clamps that restore EBP=90 / EBX=1, direct counter/angle member reads, reused fan
-index and independent timer/crossed scopes. The next investigation is the
-integer-to-x87 scratch stores in 500/501/502/503/540/541/710 and the missing
-local one intervals in 502/503/507/508/512/513. 657 and 720's floating code now
-agree. Keep accepted shared inputs unchanged.
+The fresh build first differs at `+0x1B9`, in the relative JA displacement to the
+final default owner. The frame is `0x4E8`; the candidate section is 59,660 bytes
+against the target's 59,672 bytes, and the official owner diagnostic is 100/109.
+All 885 direct calls across 27 targets agree in count, and the floating
+instruction sequences agree for every owner. No exact progress is recorded.
 
-Private results: `build/yuyuko-root-work-codex/{canonical,owners}.json`.
-Reproduce with the two focused commands in the note. No shared gameplay header,
-compiler flag or accepted callee changed. The user resumed continuous work;
-continue this bounded scope after checkpoints until instructed to stop.
+The [Yuyuko note](YUYUKO_ACTION_STATE_2026_10_28.md) records the alpha clamps,
+counter/angle member reads, independent branch scopes, counted 810 loops and
+820/900 declaration order. Remaining source-level differences are EBX=1 in
+502/503/507/508 and EDI=1 in 512/513. The 710/720 table operands and final
+alignment depend on those layouts. First native definition: `0x005649E6`.
+
+Private current results: `build/yuyuko-root-work-codex/{canonical,owners}.json`
+and `current-audit.txt`; `CURRENT.md` identifies the retained context. Obsolete
+trial outputs and source backups were removed. Reproduce with the two focused
+commands in the note. No shared gameplay header, compiler flag, accepted callee
+or acceptance ledger changed.
 
 Patchouli was freshly recompiled and verified: 55,610 bytes with zero differences,
 and 106/106 owners.
@@ -184,7 +187,7 @@ validate these changes. No shared gameplay layout or callee changed.
 
 ## Next useful action
 
-Continue Yuyuko `0x0055D850`: explain the fan/difficulty scratch-store
-placement and remaining local one intervals, then replay the complete function
-and switch payload. Continue after checkpoints until instructed to stop; retain
-exact credit only for a complete zero-difference result.
+When resumed, continue Yuyuko `0x0055D850` with the six local one intervals.
+Review their C2 split costs and target-observed source uses, then replay the
+complete function and switch payload. The user has requested a pause; wait for
+their next instruction. Exact credit requires a complete zero-difference result.

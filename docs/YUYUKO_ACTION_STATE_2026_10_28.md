@@ -73,29 +73,60 @@ before use. 408 needs independent timer/frame conditions, and 502/503/507/508
 need separate crossed/return blocks for sequences zero and one. These source
 scopes recover further native constant intervals and shared exits.
 
+### Counted loops and declaration order
+
+The 810 fan uses a count of six, five or four shots and computes each angle as
+`base - n * 10`. VC8 strength-reduces that source to the native `add edi,10`
+and scaled loop bound. Writing the already-reduced `n += 10` source instead
+hoisted the integer-to-x87 scratch store above the level decision. The counted
+source restores every physical 500/501/502/503 loop and its scratch stores.
+
+820 and 900 initialize the sample index before declaring the angle induction
+variable in the `for` statement. This restores 540/541's immediate-zero stack
+initialization and 710's post-callback scratch stores. Declaring the angle first
+had shared its zero with the sample index and moved those stores earlier.
+These are reproducible source shapes, not uniquely recovered original spelling.
+
 ### Full comparison and remaining work
 
-The fresh canonical build now first differs at `+0x1B9` (`0x0055DA09`), an
-absolute switch-table address displaced by the remaining code-size difference.
-The frame is `0x4E8`. The candidate section contains 59,592 bytes, with switch
-data beginning at +58,540; the target payload contains 59,672 bytes. The official
-instruction/edge diagnostic is 95/109 owners. All 885 direct-call sites agree
-in count across all 27 targets, and every owner's floating instruction sequence
-agrees. This remains a nonexact, unselected candidate with no exact credit.
+The fresh canonical build first differs at `+0x1B9` (`0x0055DA09`), in the relative
+displacement of `ja 0x0056BBB6` at `0x0055DA07`. That default destination moves
+with the remaining code-size discrepancy. The frame is `0x4E8`. The candidate
+section contains 59,660 bytes, with switch data beginning at +58,608; the target
+payload contains 59,672 bytes. The complete relocated candidate section SHA-256
+is `4595106ff600ae8a0fe9e981d1dbb4bb3d207503490f1e561eba2359bbf997a2`.
 
-The first source-level divergence is the 500 fan loop inside physical owner
-`mid:418`: the candidate hoists its integer-to-x87 scratch store above the
-level branch. Similar stores differ in 501/502/503, 540/541 and 710. Local one
-intervals are still missing in 502/503/507/508/512/513. The remaining 226/720
-edges and final alignment depend on those owners' layouts.
+The official instruction/edge diagnostic is 100/109 owners. All 885 direct calls
+agree in count across all 27 targets, and every owner's floating instruction
+sequence agrees. The remaining source-level differences are local one intervals:
 
-Rejected controls include the ABI-compatible short selector declaration,
-expanding the 810/812/900 helpers, do/while and negated-offset 810 forms, and
-copying common fan callbacks into each level branch; these did not fix the
-remaining stores. A short loop index changes the actual induction code and
-was rejected. A named double offset changes 657's already-correct FADD order.
-Expanding all integer-loop helpers and sharing their index loses other exact
-owners. The retained index scope covers only the existing root-local fan loops.
+- 502/503/507/508 load EBX=1 before their sequence-one crossed guard. The
+  candidate compares against immediate one and omits the register definition.
+- 512/513 load EDI=1 before their arc guard. The candidate retains three in EDI,
+  uses immediate one in the arc/entry tests and differs in the later frame-three
+  comparison and `word_730` store.
+- 710/720's auxiliary table operands and the final owner's three alignment
+  bytes depend on those six case layouts.
+
+The first such definition is native `0x005649E6` (`+0x7196`). Review the split
+constant intervals and their real source uses before changing local jumps or
+alignment. No LTCG blocker has been established. The candidate remains unselected
+and nonexact, with no exact credit.
+
+Rejected controls include the ABI-compatible short selector and byte variant
+views, helper expansion, do/while and negated-offset 810 forms, moving its common
+callbacks into each branch, and sharing all loop indices. A short loop index
+changes the induction code. A named double offset or caller-owned arc packet
+can reverse 657's already-correct FADD operands. Alternate 402/815/820 counted
+forms, scalar arc increment, facing equality casts, entry helpers and several
+air timer scopes do not fix the six one intervals. Grouping the physically
+shared 209/212/221 or 210/222 labels disturbs 607/720 without fixing them. The
+last single-index 900 trial changed emitted bytes without establishing an
+improvement and was reverted. Current source and focused results are retained; obsolete trial
+objects, source copies and duplicate reports were removed.
+
+Work is paused at the user's explicit request after this checkpoint. Resume
+with the six one intervals above when instructed.
 
 Reproduce serially:
 
