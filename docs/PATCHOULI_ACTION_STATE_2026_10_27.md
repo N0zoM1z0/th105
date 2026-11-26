@@ -278,3 +278,34 @@ The fresh public unit report is
 prefix still discards its x87 zero instead of carrying it into the switch;
 other owner differences also remain. No source-selection or exact ledger
 changed, and the payload contract has not passed.
+
+## Timer scopes, counters and skill limits, 2026-11-26
+
+Native 308, 401 and 406 load the frame timer into AX and test it separately
+before their charge and firing frame checks. An outer timer guard instead
+caused VC8 to cache the frame index. Keeping the sequence guard outside and
+the timer test on each frame condition restores those reads and 401/406's
+EDI value of five. Air fans and paired 801 emissions similarly need the
+incremented counter member in each test. Paired emissions process sequence
+zero before sequence one.
+
+The burst loops in 407/409 initialize their float induction variable before
+publishing `field_180 = 1` within each sequence branch. Moving the publication
+out of the branches had moved it ahead of the loop temporary's store/reload.
+Native 560/561 assign their limit through four independent level checks, in
+the order `<= 3`, `<= 2`, `<= 0`, `>= 4`. Those tests cover every signed byte
+value. The subsequent float comparison is `field_744 <= limit`; the former
+double promotion reversed its x87 operands. These changes leave only the
+missing entry pop in 561's local instruction/edge diagnostic.
+
+Float conversion of the small integer offset also recovers the native `fisub`
+in manual effects 301/302 and spell flashes 600/604/605. The `>= 1` sequence
+bound in 225 restores EBX reuse. In 720/730, the sequence-one exit condition
+belongs inside the sequence-one-or-two branch.
+
+The full public build remains nonexact at +0x9B, with native frame 0x460,
+53,912 code bytes and a 55,066-byte section. Its report is
+`build/patchouli-root-work-codex/public-local-owner-repairs.json`; the public
+object replays identically to private `local_owner_repairs`. The unresolved
+210/222 merge, x87 zero lifetime and other local differences remain. This
+checkpoint changes no source-selection or exact ledger entries.

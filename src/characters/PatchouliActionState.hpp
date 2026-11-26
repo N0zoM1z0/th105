@@ -135,8 +135,8 @@ public:
     }
     __forceinline void air_fan_tick(int xoff,double height) {
         if(word_730>0) {
-            short tick=++word_730;
-            if(!sequence_index_13e && tick%3==1 && word_732<3)fan800_emit(xoff,height,15.0);
+            ++word_730;
+            if(!sequence_index_13e && word_730%3==1 && word_732<3)fan800_emit(xoff,height,15.0);
             if(sequence_index_13e==1 && word_730%3==1 && word_732<5)fan800_emit(xoff,height,30.0);
         }
     }
@@ -153,16 +153,16 @@ public:
 
     __forceinline void burst800(int xoff,double height) {
         if(word_730>0) {
-        word_730=0;field_180=1;
+        word_730=0;
         if(!sequence_index_13e) {
-            float p[3];
-            for(float n=0.0f;n<4.0f;n=static_cast<float>(n+1.0)) {
+            float p[3];float n=0.0f;field_180=1;
+            for(;n<4.0f;n=static_cast<float>(n+1.0)) {
                 p[0]=static_cast<float>(n*40.0-60.0);p[1]=15.0f;p[2]=2.0f;
                 spawn_offset(800,xoff,height,p,3);
             }
         } else {
-            float p[3];
-            for(float n=0.0f;n<7.0f;n=static_cast<float>(n+1.0)) {
+            float p[3];float n=0.0f;field_180=1;
+            for(;n<7.0f;n=static_cast<float>(n+1.0)) {
                 p[0]=static_cast<float>(n*25.0-75.0);p[1]=15.0f;p[2]=2.0f;
                 spawn_offset(800,xoff,height,p,3);
             }
@@ -177,10 +177,10 @@ public:
     }
     __forceinline void pair801_tick(int xoff,double height) {
         if(word_730>0) {
-            short tick=++word_730;
-            if(sequence_index_13e) {
-                if(sequence_index_13e==1 && tick%2==1 && word_732<10)pair801_emit(30,15.0,xoff,height);
-            } else if(tick%2==1 && word_732<5)pair801_emit(16,8.0,xoff,height);
+            ++word_730;
+            if(!sequence_index_13e) {
+                if(word_730%2==1 && word_732<5)pair801_emit(16,8.0,xoff,height);
+            } else if(sequence_index_13e==1 && word_730%2==1 && word_732<10)pair801_emit(30,15.0,xoff,height);
         }
     }
     __forceinline void circle801() {
@@ -214,7 +214,7 @@ public:
     __forceinline void spell_flash(int xoff,double height,int outcome) {
         word_48a=40;event(23);
         int direction=static_cast<unsigned char>(facing_104);float y=static_cast<float>(y_f0+height);
-        float x=xoff<0?static_cast<float>(x_ec-static_cast<double>(-xoff*static_cast<signed char>(direction))):
+        float x=xoff<0?static_cast<float>(x_ec-static_cast<float>(-xoff*static_cast<signed char>(direction))):
             static_cast<float>(xoff*static_cast<signed char>(direction)+static_cast<double>(x_ec));
         effect(115,x,y,direction,1);sequence_window(0,outcome,60);secondary_cycle();
     }

@@ -457,7 +457,7 @@ case 224:
         velocity_x_f4=-10.0f;velocity_y_f8=3.0f;acceleration_y_100=0.3f;dash_effects(true,80.0,false);
     }return;
 case 225:
-    if(sequence_index_13e>0) {
+    if(sequence_index_13e>=1) {
         velocity_y_f8-=acceleration_y_100;
         if(static_cast<unsigned char>(crossed())){zero_motion();y_f0=patchouli_surface(this);set_action_and_finalize(10);return;}
     }
@@ -499,7 +499,7 @@ case 301:
         if(frame_index_140==3) {
             if(byte_750==1) {
                 next_sequence_block();int direction=static_cast<unsigned char>(facing_104);
-                effect(62,static_cast<float>(x_ec-static_cast<double>(15*static_cast<signed char>(direction))),
+                effect(62,static_cast<float>(x_ec-static_cast<float>(15*static_cast<signed char>(direction))),
                        static_cast<float>(y_f0+130.0),direction,1);return;
             }
             float p[3]={0.0f,0.0f,0.0f};spawn_offset(848,0,0.0,p,3);
@@ -521,7 +521,7 @@ case 302:
         if(frame_index_140==4) {
             if(byte_750==1) {
                 next_sequence_block();int direction=static_cast<unsigned char>(facing_104);
-                effect(62,static_cast<float>(x_ec-static_cast<double>(65*static_cast<signed char>(direction))),
+                effect(62,static_cast<float>(x_ec-static_cast<float>(65*static_cast<signed char>(direction))),
                        static_cast<float>(y_f0+165.0),direction,1);return;
             }
             velocity_x_f4=10.0f;
@@ -608,13 +608,13 @@ case 308:
     if(static_cast<unsigned char>(crossed())){set_action_and_finalize(10);y_f0=patchouli_surface(this);zero_motion();return;}
     if(advance())set_action_and_finalize(9);
     if(entry(1)){set_action_and_finalize(9);return;}
-    if(!sequence_index_13e && !frame_timer_142) {
-        if(frame_index_140==3 && byte_750==1) {
+    if(!sequence_index_13e) {
+        if(!frame_timer_142 && frame_index_140==3 && byte_750==1) {
             next_sequence_block();int direction=static_cast<unsigned char>(facing_104);
             effect(62,static_cast<float>(20*static_cast<signed char>(direction)+static_cast<double>(x_ec)),
                    static_cast<float>(y_f0+105.0),direction,1);return;
         }
-        if(frame_index_140==3) {
+        if(!frame_timer_142 && frame_index_140==3) {
             event(28);velocity_x_f4=-4.0f;velocity_y_f8=8.0f;acceleration_y_100=0.5f;
             float p[3]={0.0f,0.0f,7.0f};spawn_offset(848,40,47.0,p,3);
         }
@@ -697,9 +697,9 @@ case 401:
     ground_fan_tick(100,136.0);
     if(advance())set_action_and_finalize(0);
     if(entry(1)){set_action_and_finalize(0);return;}
-    if(!sequence_index_13e && !frame_timer_142) {
-        if(frame_index_140==4 && byte_750==1){charge_effect(-24,102.0);return;}
-        if(frame_index_140==5){aim(-50.0f,-30.0f);word_730=1;counter(200,40);}
+    if(!sequence_index_13e) {
+        if(!frame_timer_142 && frame_index_140==4 && byte_750==1){charge_effect(-24,102.0);return;}
+        if(!frame_timer_142 && frame_index_140==5){aim(-50.0f,-30.0f);word_730=1;counter(200,40);}
     }
     if(sequence_index_13e==1 && !frame_timer_142 && frame_index_140==2){aim(-50.0f,-30.0f);word_730=1;counter(200,40);}
     return;
@@ -735,10 +735,8 @@ case 406:
     if(advance())set_action_and_finalize(0);
     if(entry(1) || entry(2)){set_action_and_finalize(9);return;}
     if(!sequence_index_13e) {
-        if(!frame_timer_142) {
-            if(frame_index_140==4 && byte_750==1){charge_effect(40,190.0);return;}
-            if(frame_index_140==5){aim(40.0f,60.0f);word_730=1;counter(200,40);}
-        }
+        if(!frame_timer_142 && frame_index_140==4 && byte_750==1){charge_effect(40,190.0);return;}
+        if(!frame_timer_142 && frame_index_140==5){aim(40.0f,60.0f);word_730=1;counter(200,40);}
         if(!frame_timer_142 && frame_index_140==11)acceleration_y_100=0.6f;
     }
     if(sequence_index_13e==1 && !frame_timer_142) {
@@ -749,15 +747,15 @@ case 406:
 case 407:
     landing();if(!field_6c0)byte_750=0;
     if(word_730>0) {
-        word_730=0;field_180=1;
+        word_730=0;
         if(!sequence_index_13e) {
-            float p[3];
-            for(float n=0.0f;n<4.0f;n=static_cast<float>(n+1.0)) {
+            float p[3];float n=0.0f;field_180=1;
+            for(;n<4.0f;n=static_cast<float>(n+1.0)) {
                 p[0]=static_cast<float>(n*40.0-60.0);p[1]=15.0f;p[2]=2.0f;spawn_offset(800,63,117.0,p,3);
             }
         } else {
-            float p[3];
-            for(float n=0.0f;n<7.0f;n=static_cast<float>(n+1.0)) {
+            float p[3];float n=0.0f;field_180=1;
+            for(;n<7.0f;n=static_cast<float>(n+1.0)) {
                 p[0]=static_cast<float>(n*25.0-75.0);p[1]=15.0f;p[2]=2.0f;spawn_offset(800,63,117.0,p,3);
             }
         }
@@ -1131,11 +1129,12 @@ case 560:
     landing();byte_17c=3;if(!field_6c0)byte_750=0;
     if(sequence_index_13e<=1) {
         if(word_730==1) {
-            float limit=5.0f;
+            float limit;
             if(byte_607<=3)limit=4.0f;
             if(byte_607<=2)limit=3.0f;
             if(byte_607<=0)limit=2.0f;
-            if(word_732%7==0 && limit>=static_cast<double>(field_744)) {
+            if(byte_607>=4)limit=5.0f;
+            if(word_732%7==0 && field_744<=limit) {
                 dispatch_character_wave_handle(word_732%7);
                 if(field_744==0.0f) {
                     float p[3]={0.0f,40.0f,0.0f};orbit825(p);
@@ -1160,11 +1159,12 @@ case 561:
     landing();byte_17c=3;if(!field_6c4)byte_750=0;
     if(sequence_index_13e<=1) {
         if(word_730==1) {
-            float limit=5.0f;
+            float limit;
             if(byte_607<=3)limit=4.0f;
             if(byte_607<=2)limit=3.0f;
             if(byte_607<=0)limit=2.0f;
-            if(word_732%7==0 && limit>=static_cast<double>(field_744)) {
+            if(byte_607>=4)limit=5.0f;
+            if(word_732%7==0 && field_744<=limit) {
                 dispatch_character_wave_handle(word_732%7);
                 if(field_744==0.0f) {
                     float p[3]={0.0f,40.0f,0.0f};orbit825(p);
@@ -1556,8 +1556,10 @@ case 710:
     }
     return;
 case 720:
-    if(sequence_index_13e==1 && velocity_y_f8<4.0f){next_sequence_block();return;}
-    if(sequence_index_13e==1 || sequence_index_13e==2)velocity_y_f8-=acceleration_y_100;
+    if(sequence_index_13e==1 || sequence_index_13e==2) {
+        if(sequence_index_13e==1 && velocity_y_f8<4.0f){next_sequence_block();return;}
+        velocity_y_f8-=acceleration_y_100;
+    }
     if(sequence_index_13e==3) {
         velocity_x_f4=static_cast<float>(velocity_x_f4*static_cast<double>(0.98f));
         velocity_y_f8=static_cast<float>(static_cast<double>(0.98f)*velocity_y_f8);
@@ -1592,8 +1594,8 @@ case 721:
     if(advance()){set_action_and_finalize(720);select_sequence(3);}
     return;
 case 730:
-    if(sequence_index_13e==1 && time_counter_144>=32){next_sequence_block();return;}
     if(sequence_index_13e==1 || sequence_index_13e==2) {
+        if(sequence_index_13e==1 && time_counter_144>=32){next_sequence_block();return;}
         velocity_y_f8-=acceleration_y_100;if(velocity_y_f8<0.0f)velocity_y_f8=0.0f;
         velocity_x_f4=static_cast<float>((640.0-x_ec)*static_cast<double>(-0.1f));
         if(velocity_x_f4>10.0f)velocity_x_f4=10.0f;

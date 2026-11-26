@@ -122,24 +122,26 @@ validate these changes. No shared gameplay layout or callee changed.
 
 ## Next useful action
 
-Patchouli `0x0050F200` is the active bounded scope. The typed public source now
-recovers the native 0x460 frame through direct 580/581 request arguments.
-Flight 214's instruction/edge diagnostic differs only by its missing entry x87
-pop; 520/521 and 585 have the same remaining pop difference. The full unit still
-fails at +0x9B, with a 55,030-byte candidate section. Its strict contract covers
-all four switch tables, indices and alignment, and has not passed.
+Patchouli `0x0050F200` is the active bounded scope. The public source preserves
+the native 0x460 frame and now recovers timer scopes in 308/401/406, fan counter
+reads and branch order, burst initialization order, and independent skill-limit
+assignments in 560/561. The reviewed local instruction differences in those
+scopes largely reduce to missing x87 pops. Complete comparison still fails at
++0x9B: candidate code 53,912 bytes, section 55,066 bytes. Its strict contract
+covers all four switch tables, indices and alignment, and has not passed.
 
 Native 210/222 still merge, leaving advance, on-surface, landing and crossed
 calls short by one each. The prefix loses the zero that the target carries into
-the switch. Other local differences remain, including frame-read structure in
-401 and the manual effect arguments in 301/302. Current strict report:
-`build/patchouli-root-work-codex/public-argument-flight.json`. Source selection
-and exact ledgers are unchanged.
+the switch. Other local differences remain, including 197/198's timer-register
+placement and the operand order in their facing comparisons. Current strict
+report: `build/patchouli-root-work-codex/public-local-owner-repairs.json`.
+Source selection and exact ledgers are unchanged.
 
 The current private `222_current_velocity` trial restores distinct entries with
 a rounded float temporary, but shares a non-native suffix and still lacks one
 advance call. It remains diagnostic. Read private `CURRENT.md` before choosing
-a trial; the resolved frame and flight source properties need no further sweep.
+a trial; it also records the unsuccessful C2 helper investigation and closed
+literal, conversion and facing-helper probes.
 
 Read `src/characters/PatchouliActionState.cpp`, its header,
 `docs/PATCHOULI_ACTION_STATE_2026_10_27.md` and
