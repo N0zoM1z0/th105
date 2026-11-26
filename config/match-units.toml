@@ -23947,7 +23947,7 @@ source = "src/characters/TenshiActionState.cpp"
 object = "build/match-units/ExactFirst_TenshiActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete unselected63D3E0 candidate:110 actions; target47784/full48968. Semantics and compiler ownership remain under review. No implemented/exact ledger credit; docs/TENSHI_ACTION_STATE_2026_10_27.md."
+notes = "Canonical JP1.06a Tenshi Fighter +0x28 root:47784 physical/47777 owned code bytes,48968-byte complete payload,6 tables,120 destination words,702 indices. The original18-byte float sine overload is independently compared and excluded from authored credit. docs/TENSHI_ACTION_STATE_2026_10_27.md."
 
 [[units.exact-first-tenshi-action-state.functions]]
 address = "0x0063D3E0"
@@ -23955,7 +23955,7 @@ symbol_base = "?dispatch_action_state_vslot28@TenshiActionStateView@th105@@QAEXX
 rel32_targets = [
     "??A?$deque@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@@std@@QAEAAUFighterSequenceSlot@th105@@I@Z=0x004399C0",
     "?trigger@TenshiEvent130@th105@@QAEXH@Z=0x00434E90",
-    "?spawn@TenshiActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?spawn@TenshiActionStateView@th105@@QAEHHMMCHPBXH@Z=0x00465190",
     "?tenshi_bgm_volume@th105@@YAXHH@Z=0x0043B170",
     "?landing@TenshiActionStateView@th105@@QAEEXZ=0x00473DD0",
     "?zero_motion@TenshiActionStateView@th105@@QAEXXZ=0x0045AF40",
@@ -23963,14 +23963,14 @@ rel32_targets = [
     "?crossed@TenshiActionStateView@th105@@QAEHXZ=0x005F9310",
     "?tenshi_fade_in@th105@@YAXIH@Z=0x0043B280",
     "?layout@TenshiActionStateView@th105@@QAEXM@Z=0x004359D0",
-    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?dispatch_character_wave_handle@TenshiActionStateView@th105@@QAEXI@Z=0x0045C030",
     "?music@TenshiEvent130@th105@@QAEXHH@Z=0x00434DE0",
     "?tenshi_surface@th105@@YIMPAVTenshiActionStateView@1@@Z=0x00435D60",
     "?copy_health@TenshiActionStateView@th105@@QAEXXZ=0x0045B250",
     "?tenshi_random_u32@th105@@YAIXZ=0x004066B0",
-    "?effect@TenshiActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?effect@TenshiActionStateView@th105@@QAEXHMMEH@Z=0x00435240",
     "?event@TenshiActionStateView@th105@@QAEXI@Z=0x004359F0",
-    "?tenshi_on_surface@th105@@YIEPAVTenshiActionStateView@1@@Z=0x00435DC0",
+    "?tenshi_on_surface@th105@@YIHPAVTenshiActionStateView@1@@Z=0x00435DC0",
     "?flip@TenshiActionStateView@th105@@QAEXXZ=0x00478E60",
     "__ftol2_sse=0x0068A1A0",
     "?tenshi_cosine@th105@@YAMM@Z=0x004063D0",
@@ -23984,18 +23984,36 @@ rel32_targets = [
     "?texture@TenshiActionStateView@th105@@QAEXCF@Z=0x0045F560",
     "?sequence_window@TenshiActionStateView@th105@@QAEXCHH@Z=0x0045DEB0",
     "?secondary_cycle@TenshiActionStateView@th105@@QAEXXZ=0x00473F90",
-    "?forward_hit_quantity@AnimationSequenceObjectView@th105@@QAEXHHFC@Z=0x0045C060",
+    "?forward_hit_quantity@TenshiActionStateView@th105@@QAEXHHFC@Z=0x0045C060",
     "?sin@@YAMM@Z=0x0063D3C0",
     "?tenshi_square@th105@@YAMM@Z=0x00406580",
     "?pair@TenshiEvent130@th105@@QAEPAXMM@Z=0x00434E10",
     "?tenshi_fade_out@th105@@YAXIH@Z=0x0043B240",
     "?tenshi_play_bgm@th105@@YAXPBD@Z=0x0043CF80",
-    "?transition@TenshiActionStateView@th105@@QAEXM@Z=0x0046EB00",
+    "?publish_transition_effect_at_46e130@PostSequenceTransitionView@th105@@QAEXM@Z=0x0046EB00",
     "?finalize@TenshiActionStateView@th105@@QAEXH@Z=0x0045D110",
     "?pair_mode@TenshiEvent130@th105@@QAEXHE@Z=0x00435CE0",
     "?shared_first@TenshiActionStateView@th105@@QAECCM@Z=0x00476AB0",
     "?shared_second@TenshiActionStateView@th105@@QAECCM@Z=0x00476AD0",
     "?common_update@TenshiActionStateView@th105@@QAEXXZ=0x004740C0",
+]
+
+[units.exact-first-tenshi-action-state.functions.switch_payload]
+size = 48968
+sha256 = "a7e25e318b6ffcc43edbca3e9e3e34f311e5343c82c1a0b91d6a6d45a52d6d47"
+alignment_hex = ""
+table_offset = 47784
+table_entries = 35
+map_offset = 47924
+map_size = 227
+load_offset = 1006
+jump_offset = 1013
+additional_tables = [
+    { alignment_hex = "90", table_offset = 48152, table_entries = 36, map_offset = 48296, map_size = 227, load_offset = 12376, jump_offset = 12383 },
+    { alignment_hex = "90", table_offset = 48524, table_entries = 37, map_offset = 48672, map_size = 248, load_offset = 24900, jump_offset = 24907 },
+    { alignment_hex = "", table_offset = 48920, table_entries = 4, jump_offset = 41240 },
+    { alignment_hex = "", table_offset = 48936, table_entries = 4, jump_offset = 43060 },
+    { alignment_hex = "", table_offset = 48952, table_entries = 4, jump_offset = 43463 },
 ]
 
 [units.exact-first-patchouli-action-state]

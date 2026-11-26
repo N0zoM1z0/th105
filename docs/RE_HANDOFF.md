@@ -5,6 +5,37 @@ Target: original Japanese TH10.5 v1.06a, SHA-256
 Follow [AGENTS.md](../AGENTS.md), [shared tools](SHARED_TOOLS.md) and the
 [reconstruction workflow](RE_WORKFLOW.md). Keep compiler/analyzer work serial.
 
+## Completed: Tenshi Fighter `+0x28` (`0x0063D3E0`)
+
+`exact-first-tenshi-action-state` is canonical exact from the character-scoped
+[source](../src/characters/TenshiActionState.cpp) and
+[checked receiver](../src/characters/TenshiActionState.hpp), under VC8 SP1
+`/O2 /GS- /GR /EHsc /MT`.
+
+- All 47,784 physical code bytes and the complete 48,968-byte payload
+  `[0x0063D3E0,0x00649328)` match with zero differences.
+- All 1,562 relocations agree: 789 REL32 calls across 43 targets and 773 DIR32
+  fields. Six tables contain 120 destination words and 702 index bytes.
+- The owner audit is 107/107. Raw CFG reaches 12,489 instructions / 47,777
+  authored bytes. Seven internal alignment bytes are compared and excluded.
+- The original 18-byte `std::sin(float)` helper remains separately exact and
+  excluded from authored credit. The full class/TU and some field meanings
+  remain unknown; observed unwritten fields stay unwritten.
+
+Reproduce with:
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-tenshi-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-tenshi-action-state tenshi-vslot28 build/match-units/ExactFirst_TenshiActionState.obj --json
+```
+
+Private results: `build/tenshi-root-work-codex/{canonical,owners}.json`.
+The [root note](TENSHI_ACTION_STATE_2026_10_27.md) records packet initialization,
+callback argument order, independent guards and declaration lifetimes that
+closed the function. The narrow switch-verifier addition passes focused
+positive/negative cases and full existing-object Alice/Marisa/Sakuya smokes.
+No shared gameplay source, layout or compiler flags changed.
+
 ## Completed: Alice Fighter `+0x28` (`0x004E9F50`)
 
 `exact-first-alice-fighter-update` is canonically exact from the standalone
@@ -91,12 +122,11 @@ validate these changes. No shared gameplay layout or callee changed.
 
 ## Next useful action
 
-Continue with Tenshi `0x0063D3E0`, one bounded root at a time. Its 47,784-byte
-callable is the smaller remaining Fighter root with a complete registered
-hypothesis. Read `src/characters/TenshiActionState.cpp`,
-`docs/TENSHI_ACTION_STATE_2026_10_28.md` and `exact-first-tenshi-action-state`
-before changing source. The user wants every remaining giant completed
-individually to canonical exactness; use `gpt-6.1-sol:` commit subjects.
+Continue with Patchouli `0x0050F200`, one bounded root at a time. Read
+`src/characters/PatchouliActionState.cpp`, its header,
+`docs/PATCHOULI_ACTION_STATE_2026_10_27.md` and
+`exact-first-patchouli-action-state`. The user wants every remaining giant
+completed individually to canonical exactness; use `gpt-6.1-sol:` commit subjects.
 
 Keep receiver layouts character-scoped. Recompare directly affected accepted
 units after shared input changes.

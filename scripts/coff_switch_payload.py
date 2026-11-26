@@ -225,6 +225,13 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
             scheduled.append(store)
             bound_index -= 1
             continue
+        # Tenshi story720 initializes its spread limit without changing CMP flags.
+        if (store.mnemonic == 'mov' and dest.type == x.X86_OP_REG
+                and dest.reg == x.X86_REG_EBX and selector != x.X86_REG_EBX
+                and store.operands[1].type == x.X86_OP_IMM and store.operands[1].imm == 7):
+            scheduled.append(store)
+            bound_index -= 1
+            continue
         if (store.mnemonic == 'lea' and dest.type == x.X86_OP_REG
                 and dest.reg == x.X86_REG_ECX and selector != x.X86_REG_ECX
                 and store.operands[1].type == x.X86_OP_MEM

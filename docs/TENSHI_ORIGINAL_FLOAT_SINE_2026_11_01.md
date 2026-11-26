@@ -22,7 +22,7 @@ There are no data-reference masks, private-register declarations or dummy uses.
 
 Native 646930 passes the actual float at stack top. Its 646935 instruction
 compares the returned value with DWORD zero at readonly 6D6EA8, then performs
-the ordinary four-byte caller cleanup. The source's corresponding 6469A3 call
+the ordinary four-byte caller cleanup. The source's corresponding 646930 call
 has the same argument/result/cleanup contract. The full native 47784-byte
 callable hash protects the owning function/site; the source whole candidate
 and its sole original-overload relocation protect the actual source edge.
@@ -38,42 +38,18 @@ Input angles are passed unchanged. In particular, action 606's30-step values
 are not converted from degrees to radians as a supposed gameplay correction.
 The original CIsin call and shipped behavior are retained.
 
-## Provenance and limits
+## Current qualification
 
-Raw original header pins:
-- math.h:3cdf840fdb5db5a4c98fb849b6247f0f74dbd3071620ab218634d2c9ab58b791.
-- cmath:66f7a7e9da038ec07760f9aef087ef107311ed8474b36e7a64ae924f3d6e874e.
+The original math.h/cmath header hashes and compiler profile remain pinned by
+`scripts/vc8_float_sine_origins.py`. It rebuilds the actual caller unit, checks
+both original aliases, the sole named CRT relocation, inventory uniqueness and
+the real float argument/result/cleanup window. Build receipts capture the
+executable source inputs.
 
-The narrow origin validator checks both unmodified vendor headers, original
-tool/library pins, Git-normalized actual caller-source hashes and the existing
-ordinary/O2/GS-off unit profile before recompiling. It rejects the old custom
-facade, a different overload/intrinsic, changed call/cmp/cleanup fields, partial
-bodies or another compiler profile. The ordinary minimum-byte origin gate is
-unchanged; acceptance here uses full source/header/caller proof, not a lowered
-masked threshold. The original C adapter and C++ overload count once.
+The complete parent root is now canonical exact over all 47,784 code bytes and
+its 48,968-byte payload. Its source call is therefore at native `0x00646930`.
+See [the root result](TENSHI_ACTION_STATE_2026_10_27.md) for whole-root acceptance.
+This helper remains compiler-generated and excluded from authored progress.
 
-The giant remains NONEXACT:49032/native48968, frame 328/native320, first+8,
-new complete candidate SHA
-9f6b6d5f77a995480b94d5557661de6a14ccbee9b1eb67a7e5408dfb4747ed7e.
-No full-root semantic or authored exact credit is implied. Existing low-owner
-merges and all other residuals remain open. This corrects a source/type boundary,
-not a claim that a gameplay defect was fixed.
-
-Only helper 63D3C0 moves review to compiler-generated exclusion.
-Excluded 2006/review366; authored exact 1431/443916 bytes, source 1635/
-authored 1655/mapped1820 and 777 units stay. The existing Tenshi unit now contains
-the full exact 18-byte library helper alongside its nonexact giant. Mixed-unit
-comparison_failed remains expected and is not described as a full unit pass.
-
-## Checks
-
-- scripts/repo-python scripts/build.py --unit exact-first-tenshi-action-state --compare --json
-- scripts/repo-python scripts/vc8_float_sine_origins.py
-- Narrow vc8-original-float-sine-106a origin replay.
-- Eight tests protect source/header pins, LF/CRLF handling, typed scope and
-  actual float stack argument/result/cleanup; three real-byte mutations fail.
-- scripts/repo-python scripts/ci.py and git diff --check pass.
-
-TenshiActionState.hpp has only this source consumer. No unrelated accepted unit,
-shared layout or compiler flag was changed; no cold corpus build or generated
-executable run occurred. Evidence is raw-PE based, not new IDA semantics.
+Reproduce with `scripts/repo-python scripts/vc8_float_sine_origins.py` and
+`scripts/repo-python scripts/build.py --unit exact-first-tenshi-action-state --compare --json`.

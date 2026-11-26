@@ -202,6 +202,19 @@ class CompactSwitchTests(unittest.TestCase):
             with self.subTest(offset=offset), self.assertRaisesRegex(ValueError, 'unsupported instruction'):
                 payload.inspect(raw, raw, address, size, updated, relocs)
 
+    def test_scheduled_ebx_seven_preserves_selector_flags_and_guard_entry(self):
+        # Tenshi story720: cmp eax, limit; mov ebx, 7; ja default.
+        compare = b'\x90' * 11 + bytes.fromhex('83f801 bb07000000')
+        body, address, size, contract, relocs = fixture(compare=compare)
+        payload.inspect(body, body, address, size, contract, relocs)
+        for replacement in ('b807000000', '66bb070090', '83c3079090', 'bb06000000'):
+            bad, updated = changed(body, contract, 14, bytes.fromhex(replacement))
+            with self.subTest(replacement=replacement), self.assertRaises(ValueError):
+                payload.inspect(bad, bad, address, size, updated, relocs)
+        bad, updated = changed(body, contract, 0, bytes.fromhex('750c'))
+        with self.assertRaisesRegex(ValueError, 'branch escapes code or bypasses'):
+            payload.inspect(bad, bad, address, size, updated, relocs)
+
     def test_scheduled_edi_five_and_lea_ebp_preserve_flags(self):
         # cmp eax, 1; mov edi, 5; lea ebp, [edi + 0x73]
         compare = bytes.fromhex('83f801 bf05000000 8d6f73')

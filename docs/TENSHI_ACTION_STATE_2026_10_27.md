@@ -1,287 +1,115 @@
-# Tenshi action-state 0x0063D3E0
+# Tenshi action-state root `0x0063D3E0`
 
-Complete unselected, nonexact C++ candidate:110 action labels, including direct
-300/540/795/797/798. Neither implemented.csv nor matches.csv gains credit.
+`exact-first-tenshi-action-state` reproduces the complete Japanese v1.06a root
+under VC8 SP1 `/O2 /GS- /GR /EHsc /MT`. The final comparison on 2026-11-26 has
+zero differences in all 47,784 physical code bytes and the complete 48,968-byte
+payload `[0x0063D3E0,0x00649328)`.
 
-## Native evidence
+## Complete target and compiler evidence
 
-JP1.06a hash and Factory IDA metadata/entry/inventory were attested before
-decompilation. Raw callable 63D3E0..648E88 is 47784 bytes, SHA-256
-83af98e2673c40b5ca2f3caac87ab7a8e4114a758ac65dfeebdae1ad0a14e5b3.
-Six switches resolve completely. Of 12490 decoded instructions,12489 are
-reachable; only seven-byte alignment LEA 647C49..647C50 is unreached.
-There are 125 RETs and 789 direct calls to 43 targets.
+The target executable SHA-256 is
+`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
+This matching pass used hash-attested raw PE bytes and Capstone. Earlier
+Factory observations supplied hypotheses; the final boundary comes from raw
+control flow and the full canonical comparison.
 
-Sparse action regions 0..226,301..527,541..788 have 35/36/37 destinations.
-Three nested difficulty tables end at 649328. Complete payload 48968 bytes:
-a7e25e318b6ffcc43edbca3e9e3e34f311e5343c82c1a0b91d6a6d45a52d6d47.
-The following eight alignment bytes are outside this payload.
+- Code SHA-256:
+  `83af98e2673c40b5ca2f3caac87ab7a8e4114a758ac65dfeebdae1ad0a14e5b3`.
+- Payload SHA-256:
+  `a7e25e318b6ffcc43edbca3e9e3e34f311e5343c82c1a0b91d6a6d45a52d6d47`.
+- All 1,562 relocations agree: 789 REL32 calls across 43 targets and 773 DIR32
+  fields. The six switches contain 120 destination words and 702 index bytes.
+  Two inter-table alignment bytes complete the 1,184-byte metadata extent.
+- The owner audit is 107/107. Raw CFG reaches 12,489 instructions / 47,777
+  authored bytes. The seven-byte LEA at `[0x00647C49,0x00647C50)` is unreachable
+  loop alignment: it is compared, then excluded from authored progress.
+- The three sparse regions have 35/36/37 destinations. Three four-word
+  difficulty tables finish the payload. The following eight alignment bytes
+  belong outside the root. All 125 RETs and the `0x320` frame agree.
 
-## Candidate evidence and limits
+The original VC8 `std::sin(float)` overload at `0x0063D3C0` is independently
+18/18 exact in the same unit. Its compiler-generated origin stays excluded;
+see [the sine evidence](TENSHI_ORIGINAL_FLOAT_SINE_2026_11_01.md). Degree lookup
+providers `0x00406360` / `0x004063D0` also return float, but are separate calls.
+The former double declarations gave the wrong call contract.
 
-The pointer-only receiver inherits actual AnimationSequenceObjectView slots.
-Event receiver is embedded at 130, including 435CE0. RNG 4066B0 has no arguments;
-all 46 crossed-ground5F9310 calls inspect AL, while the accepted callee returns int.
-Trig calls consume ST0 results, not decompiler input aliases.
+Reproduce with:
 
-Direction arithmetic uses signed bytes, while effect/spawn carriers retain
-unsigned byte values. Offsets 48/65 multiply integers before floating conversion.
-Weather 6FA88C is signed 16-bit;6FA88F is byte-wide. Landing tails retain their
-distinct action/surface/zero-motion orderings. Native FABS rounds to float and
-its 560/561 comparisons reject unordered operands. Action 567's next-Y is double.
-Action 599 sign-extends its random short before subtracting from-20.
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-tenshi-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-tenshi-action-state tenshi-vslot28 build/match-units/ExactFirst_TenshiActionState.obj --json
+scripts/repo-python scripts/vc8_float_sine_origins.py
+```
 
-Action 604 mode 1 initializes only payload[2] before 646152; the candidate does
-not invent values for slots 0/1. Later mode 5 initializes slot 1 then slot 0.
-Action 214's duplicate retain condition is present at 63F529..63F55F; no volatile
-workaround is justified. Actions 795/797/798 and direction-conditioned214/731
-calls retain independent ownership.
+Private current results are `build/tenshi-root-work-codex/canonical.json` and
+`owners.json`. The public receiver is character-scoped, with eight virtual
+prefix slots and 82 checked member offsets. No shared layout changed.
 
-Private reachable direct/virtual call counts agree for every nondefault main
-table action. This is an omission check, not semantic equivalence. FP widths,
-callback-sensitive field lifetimes and predicates require further review.
-Difficulty switches 720/740/741 do not define every local outside 0..3; this
-domain is not proved, and no fallback is invented. TU/LTCG ownership is unknown.
+## Source properties that closed the root
 
-## Reproduction and current result
+Use a signed facing member and explicit byte views for outgoing directions.
+The four ring-801 sites, action 525 and action 730 capture outgoing direction
+before lookup/RNG calls and reread signed facing afterwards. Direct argument
+expressions and implicit float parameter conversion preserve this order;
+extra coordinate carriers or explicit argument casts can move the reread.
+The two post-ring wave requests in 412/416 use receiver `field_168`, while
+750 publishes its transition through global `g_info_manager`.
 
-taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-tenshi-action-state --compare --json
-    scripts/repo-python scripts/map-giant-action-switches.py tenshi-vslot28 --json
-    scripts/repo-python scripts/compare-giant-action-switches.py tenshi-vslot28 build/match-units/ExactFirst_TenshiActionState.obj --json
+Action 525's direct spawn coordinates remove an artificial eight-byte scratch
+area and recover the native frame. Keep `-n*90.0` so VC8 emits FCHS and a
+positive-90 multiplication. Negative integer offsets in 302/520/521 and 567
+instead convert through float where native uses FISUB. Landing comparisons in
+542/567 retain a double next-Y value; narrowing it early changes the branch
+for sufficiently large heights. Action 730 uses the float unsigned correction
+before widening to double, and 741/750 use signed timer division and bounds.
 
-Source full 49404 versus native 48968; first mismatch+241/63D4D1, native memory
-CMP versus source MOVZX/CMP. Candidate callable 48243 plus one alignment byte.
-Full source SHA-256:
-2b22e9403399a55f67bbc327f9346727b419063f2b032952c84b7ed629d84dab.
-Full positional difference count 46655 includes missing/extra bytes, not a
-semantic-completion percentage.
+560/561 initialize only packet slots 1 and 2 before their burst loops. 565/566
+really initialize slot 0 as well. Sharing one aggregate-initializing helper
+added two native-absent stores and permuted twelve other packet homes. Split
+those sites according to their actual writes. Ring storage remains four
+floats with count three; shrinking it while still reading slot 3 is invalid
+and did not improve the bytes.
 
-Compiler merges 209/221 and 210/222, producing 33 low owners rather than 35.
-The manifest permits 33 only for diagnostics, never acceptance. Mid/high36/37;
-no native group splits. Earlier 35/36/37 source still failed bytes.
+567 keeps its observed `word_738 == 1` branch, even though both arms compute
+numerically equal X coordinates. Put Y's expression in each call arm so VC8
+shares its addition between CMP and JNE. 606 selects layer -1 for `sin(p[0]) > 0`
+and layer +1 otherwise. The old `<= 0` ternary mishandled unordered results.
+The other burst predicates retain ordered `>= 0 && <= 180` tests.
 
-Ten literals, two width-specific global aliases and one BGM string are added;
-existing bindings/accepted consumers are unchanged. Only this unit is built. No
-assembly, copied target arrays, fake returns, padding locals or register coercion.
+605's surface burst needs direct direction and coordinate arguments. A scalar
+direction carrier changed register allocation and prevented 602 from sharing
+605's select/zero-motion/surface tail. Expanding this callback-sensitive loop
+removed exactly 32 bytes and the two surplus calls. Removing direction carriers
+from every burst instead merged unrelated owners and was rejected.
 
-## Coordinate and live packet refinement
+224 returns immediately after advance-triggered action-zero cleanup, like 201.
+Using an else/end-of-case return retained the same local behavior but reversed
+the physical cleanup owner. In 604, place the sequence guard outside independent
+frame tests; combining timer with that outer guard loses the native zero
+register and its uses. 404/405/406 also retain independent entry tests.
 
-The subsequent native arithmetic pass removes artificial Y+0 in burst requests
-whose raw callers forward Y directly. It preserves integer 150*direction before
-conversion in 520/521, and native subtraction for negative spell-flash offsets
-rather than adding a negated offset. These are operand/operation corrections,
-not padding or instruction spelling controls.
+Flatten the story prefix into two independent ordinary conditions. Its early
+return helper produced the same entry instructions except reversed constant
+initialization, while a synthetic single-iteration block disturbed unrelated
+owners. The independent conditions reproduce the complete prefix. Keep the
+compound action-dispatch skip `word_186 || related_170->word_48c`.
 
-Actions 412/416 place the live angle immediately after three request floats.
-Native 642072 writes slot 3;6420C7/64211D/642154 reload it and independently negate
-it across exposed payload calls. A four-float local packet expresses this live
-storage, still passing count 3. Four-slot aggregate ownership is an inference
-from contiguous live storage and call-clobber reloads, not a recovered source
-type. It restores four FCHS sites per action versus one cached negative angle.
-All nondefault action arithmetic-operation counts now agree except 214/567,
-where native alternative paths duplicate additions. Counts are not proof of
-operand values, widths or runtime equivalence.
+99 declares its integer loop index before its sample pointer. Indexing the
+array directly also matched 99, but changed value numbering enough to reverse
+740's FADD operands. In 740, convert the start index before the difficulty
+switch, then initialize the mutable index before the sample pointer. These
+lifetimes reproduce both the duplicated post-switch saves and pointer setup.
+The difficulty case order is 3/2/1/0; integer `abs` emits CDQ/XOR/SUB.
 
-Refined full source 49168 versus 48968; first+8 is frame allocation 330 versus 320.
-Source SHA-256:
-918b3d898d902474ce32c5b71bc9c41abbcdd33ef4a0b6728037161b7d03bb8f.
-Full positional difference 46592; first table offset 48008. The 33/36/37 physical
-group counts and two low-owner merges remain. The preceding 49404 result is
-historical. No source-selection or exact credit is added.
+## Validation and remaining limits
 
-A separate explicit shared-idle-label trial for 0/2 produced 49372 but placed the
-common body with action 2 rather than native 0. It was not adopted; more source label
-spelling is not supported as a route to physical ownership.
+The switch verifier now recognizes native `MOV EBX,7` between CMP and JA in
+720, preserving the selector and flags. Focused positive and selector/width/
+flags/bypass negatives pass. Existing Alice, Marisa and Sakuya objects were
+fully re-compared through the changed verifier and remain canonical exact.
+These are comparator smokes, not fresh source builds for those three units.
 
-## Shared request tail and caller width
-
-Raw 500/501 converge after their first 810 request, carrying the address of
-their distinct live three-float payload. Function-scope request 500/request501
-and one typed pointer preserve both lifetimes through the shared second request,
-two effects and counters. This restores native physical call sharing without
-using a pointer after a block-local array lifetime ends. Physical 500/501 spans
-are 190/351 against 187/343; the earlier duplicated 500 span was 297.
-
-An exhaustive scan of all 46 native 5F9310 call sites shows immediate TEST AL,AL.
-The early interpretation of decompiler int temporaries as EAX-width caller tests
-was wrong. The accepted int-returning callee declaration is retained; jump-cycle
-and 306/309 now explicitly narrow to unsigned char like the other callers.
-
-Current full source 49088 versus 48968, first+8 (frame 330 versus 320), SHA-256
-3dca3af1096e28913dd1d3a1615ace1ca5b524f6850856f9b6ee3497bdad1eb2.
-Full positional difference 46201. No exact or implementation credit.
-Receipts: caller-width-build.json, caller-width-full.json and
-caller-width-map.json. The earlier 49168 packet result remains historical.
-
-## RNG conversion and caller-stack evidence
-
-All 68 native unsigned-to-floating bias operands use float 2^32 at 6D6EF8;
-none uses double 2^32 at 6D6ED0. Explicit double casts in the first draft produced
-the wrong memory width. Float conversions now reproduce 68 float-bias sites
-and zero double-bias sites. Other arithmetic stays at its independently observed
-width; this is not a global float-only mode change.
-
-Ring coordinates and dash-dust coordinates use ordinary VC8 right-to-left
-argument evaluation, retaining the pre-RNG double X base for dust. Native
-argument publication is Y before the X helper/RNG, with direction captured
-before both. No volatile or backend-order barrier is added.
-
-The existing payload dataflow diagnostic was reused privately with the 43
-explicit helper cleanup contracts. Four peer vslot 8 sites were qualified by
-raw ECX=[ESI+170]/vtable+8 chains, not treated as entry-receiver calls.
-Native 125 normal epilogues close;64 distinct request homes have no unknown
-payload site. Native rings have two 16-byte live blocks and 307 has another.
-Candidate also has 64 request homes with the same three 16-byte block shapes.
-However its first home is 52 versus native 36, and frame 816 versus 800:16 extra
-scratch bytes remain. This does not justify removing locals or adding padding.
-
-Prior RNG-width source 49096/full48968, first+8, SHA-256
-6c644dfcd3ed742e7f77d4a8e1419a9d4c59afd4cf991434d5f3c055be683628.
-Full positional difference 46416. No implementation or exact credit.
-Receipts: rng-float-build.json/rng-float-full.json. The prior 49088 comparison
-is historical. Stack diagnostics apply to that earlier snapshot; native facts
-remain unchanged, but candidate addresses must be requalified after a build.
-
-## Scalar captures and request/aim lifetimes, October 28
-
-Current complete unselected public replay:49032/full48968, first+8 at 63D3E8,
-frame 328 versus native 320, SHA256
-95ab5a66b10f31e15a0939fac68faf7eb6797bdb31c263339137d531ed1d2985. The canonical full
-audit counts 46094 unequal/extra/missing positions. It remains nonexact; no selection
-or exact ledger credit is added.
-
-Native 64785C/647863 captures the pre-RNG X field directly in QWORD; the former
-float base_x generated an unsupported DWORD store/reload before that capture.
-A double local now preserves the observed width. An isolated capturex-only
-control reduces frame 330 to 328, identifying eight of the extra sixteen stack
-bytes without changing payload extents. Action 605 similarly stores current Y
-as QWORD at 646409 before surface(), then compares that QWORD at 646418; its
-capture is now double, without adding or deleting a target arithmetic operation.
-
-Action 525 prepares packet/count/layer/direction before sine at 6431E8 and
-publishes outgoing Y before cosine at 64321A. Coordinate expressions now live
-in the actual spawn arguments instead of separate X/Y locals. The paired 920
-requests in 730 likewise publish the fixed outgoing Y before RNG and retain the
-observed pre-RNG base only for the mirrored request. The seven atan callers
-retain binary 32 DX and prepare it before loading peer Y; all seven 32-byte
-pre-call windows now match native verbatim. Local windows are diagnostics,
-not whole-root exact-byte credit. Remaining facing-load scheduling across RNG
-and trig calls is not claimed recovered.
-
-The current sparse tables have 35/36/37 groups, matching native cardinalities;
-the prior 33-low-owner merge is historical. Per-action call counts agree, and
-FP-operation differences remain only 214/567's physically shared additions.
-Payload analysis resolves 64 homes with no unknown pointers and retains all
-three 16-byte blocks. First home is 44 versus native 36; the third 16-byte block's
-ordering still differs, so this is not a uniform-offset acceptance claim.
-Native/candidate epilogues 125/129 and virtual sites 172/171 differ. All 46
-crossed and 10 on-surface consumers inspect AL on both sides. Four candidate
-peer virtual-slot8 calls at 63E087,64538A,64568B,6480FC were separately qualified
-by actual ECX=[ESI+170], vptr+8 chains and one pushed argument.
-
-The remaining eight frame bytes, physical tails, scratch allocation and field
-lifetimes remain open. No ABI contract, compiler flag, target bytes, padding or
-accepted consumer changed. The focused public build reproduces the private
-payload exactly; no full native corpus rebuild was run.
-
-## November 1: complete scratch census finds two missing wide captures
-
-A new caller-stack diagnostic records the actual SP at every reached instruction
-using the established 43 direct cleanup contracts and four independently qualified
-peer virtual sites. It then inventories all eight-byte stack memory operands,
-without modifying the public comparator or accepting normalized code. The prior
-95ab5a66 full candidate had 22 such operands/11 stores, versus native 26/13.
-The two missing captures are concrete source discrepancies:
-
-- Action 505:642A56 loads peer 170,642A5C reads its F0 field,642A62 stores QWORD,
-  then 642A66 calls the real surface helper.642A6B compares its result to that
-  QWORD. The old float peer_y generated a DWORD spill/reload; double peer_y now
-  preserves the observed capture width and epoch.
-- Action 542:64369A first rounds updated F8 to DWORD,6436A2 writes F8, and 6436A8
-  adds the current F0.6436AE stores the resulting sum as QWORD across surface
-  call 6436B2;6436B7 compares the QWORD. The old float next_y incorrectly rounded
-  the sum again to binary 32. It is now an actual double sum/capture. The prior
-  velocity rounding, call ordering, negative-velocity guard and field reloads
-  are unchanged. Ordered >= is retained, with no new unordered/NaN policy.
-
-Independent peer-only and next-y-only controls retain 49032 bytes/frame328,
-SHA 38bfdf24 and 76088338. The corrected complete candidate is 49032 bytes, SHA256
-f45557a8ef640a4ff915465940152e78bfabc3f28c9fd393bf6309c0eb9cf8c6.
-The formal public build reproduces it. It remains nonexact at+8, frame 328 versus
-native 320,46112 unmasked positional differences across the entire 48968 target
-payload. Difference counts are not improvement scores. No source-presence or
-exact ledger credit is added for this still-unselected complete candidate.
-
-The corrected stack audit now finds all 26 QWORD operands/13 stores. Native
-wide homes 16/24 versus source 24/32 still differ. All 64 payload homes remain
-resolved with zero unknown pointers, and the previously qualified four peer
-call sites remain unchanged. Both single controls and the joint control show
-that these corrected capture widths do not themselves explain the extra 8 frame
-bytes. That allocation/lifetime issue stays open; no padding or scratch coercion
-is justified.
-
-### Specific precision witness, not a broad gameplay claim
-
-A bounded native fragment starts at action 542's real velocity update, executes
-original 89-byte surface 435D60, and stops at either the genuine zero_motion entry
-or the real continuation before unrelated work. Four inputs run under 53-bit
-nearest (027F) and 53-bit upward (0A7F) control words for native, old source and
-corrected source:24 fragments. Source code is ordinarily relocated to a separate
-30000000 image; original target text is never overlaid. No helper result, return,
-vtable or branch is substituted.
-
-With Y16777216, velocity-0.75, gravity 0, X0 and actual surface-table entry
-16777215, native captures 16777215.25. Old source captures 16777215 under nearest
-rounding and incorrectly enters the landing path; corrected source captures
-16777215.25 and follows the same continuation as native. Under upward rounding,
-old source captures 16777216 and the branch agrees, but its stored precision still
-differs. Ordinary equal/above/ascending controls also agree after correction.
-This establishes the precise storage/rounding discrepancy for the bounded
-fragment, not reachability of that synthetic large-height fixture in gameplay,
-whole-root behavior, arbitrary callback aliasing or other floating environments.
-
-Private audit.py/audit-low-scratch.py expose only diagnostic stack states from the
-unchanged analysis engine; complete source controls and precision_fragment.py are
-retained alongside them.
-
-A separate manager-backed byte-direction control was also closed before this capture
-work:48920 bytes/ad977b24, stillframe328 and nonexact+8. It changes only the
-ordinary spawn direction view supported by the complete existing 66-byte forwarder
-and actual byte-consuming manager, not a private ABI. Do not retry that width
-hypothesis as a frame-size workaround.
-
-## Original float sine boundary, 2026-11-01
-
-Action 606 now calls the actual original VC8 std::sin(float) overload rather
-than a descriptive double-return facade. Its naturally emitted 63D3C0/18 wrapper
-is whole canonical, and the caller now uses the actual native DWORD-zero
-comparison. Only four bytes of the full 49032 candidate change; native 48968,
-frame 328/320 and first+8 remain nonexact. No new authored credit or angle-unit
-conversion. See TENSHI_ORIGINAL_FLOAT_SINE_2026_11_01.md for complete header,
-caller, intrinsic and byte proof.
-
-## Action 214 flight effect facing, 2026-11-05
-
-Native `0x63F4B4..0x63F524` captures the unsigned effect-facing byte before sine and reloads signed facing after cosine for X. The earlier candidate read signed facing between the two lookups. Ordinary locals now preserve the two native read points; fresh VC8 captures direction at `0x20F5` and reloads signed facing at `0x212D`, after cosine. This establishes read order, not that the actual lookup changes facing or that ordinary gameplay differs. The 47784-byte root remains non-exact (candidate section tail 49032, first mismatch +8); no exact credit is claimed.
-
-The source pin for the original VC8 float-sine origin was updated only after a fresh `scripts/vc8_float_sine_origins.py` re-attestation passed: the full 18-byte helper, its C alias, actual caller edge and inventory uniqueness remain qualified. The giant caller itself remains non-exact. This updates the pinned source identity without changing the helper's acceptance or exact-byte count.
-
-### Ring 801 and action 525 direction reads (2026-11-05)
-
-The target's four ring-801 spawn sites and the action-525 object-816 site capture unsigned direction before sine and reload signed direction after cosine (e.g. `0x642096..0x642102` and `0x6431D3..0x64324F`). The previous candidate cached signed direction early. The revised source preserves each packet's angle/radius reloads, coordinate associations, and the intervening first spawn; rebuilt root sites have the signed read after cosine. Since the lookup helpers do not ordinarily mutate the receiver, this is a source-fidelity correction without an asserted normal-play difference.
-
-The dispatcher remains nonexact: target callable 47,784 bytes, candidate section tail 49,152 bytes, first difference +8. The separately accepted float-sine helper remains 18/18 exact in the rebuilt unit, and its origin validator independently passes after reattesting both source hashes and the actual caller edge. No additional exact credit is claimed.
-
-### Action 741 signed timer (2026-11-05)
-
-The native sequence-1 cadence uses signed `CDQ; IDIV ECX` at `0x647E06..0x647E11`, and the duration gate uses signed `JGE` at `0x647F6B..0x647F71`. The previous candidate converted the signed `time_counter_144` to unsigned for both operations and emitted `DIV` / `JAE`. Both locals and operations now retain signed `int`; the fresh root emits `CDQ; IDIV` and `JGE` for the corresponding sites.
-
-This changes a concrete bounded state: at difficulty 0 with timer -1, native signed remainder by 15 is nonzero and -1 is below duration 60, while the old unsigned interpretation is 4294967295, divisible by 15 and at least 60. The old candidate would emit the pair and take the duration transition; the corrected logic does neither. Negative-timer reachability during ordinary play is not established. Out-of-range difficulty still has no invented fallback.
-
-The dispatcher remains nonexact (target callable 47,784 bytes, candidate section tail 49,152, first difference +8). The existing float-sine helper remains 18/18 in the fresh build, with source pin and its independent origin validator rechecked; no additional exact bytes are credited.
-
-Action 750 has the same signed-counter distinction in its periodic `layout(5)` gate. Native `0x648019..0x648029` uses `CDQ; IDIV 5`; the previous candidate used `DIV 5` after an unsigned cast. The source and fresh output now use the signed operation. With timer -1 and `word_738 == 5`, the old unsigned interpretation is divisible by 5 and calls layout, while native and corrected signed logic do not. Negative-timer reachability in normal play is unproved. The main root remains nonexact at target 47,784 bytes versus candidate section tail 49,152, first difference +8; the separately accepted sine helper still compares 18/18, and its origin validation passes after the source pin update.
-
-Action 730's two object-920 shots capture unsigned direction before the RNG(100) call but reload signed facing afterwards (`0x6477BD..0x647821`, `0x647855..0x6478C1`). The second shot additionally captures its base X as a qword before RNG and subtracts the offset; the first reads X after RNG and adds it. The revised source sequences these reads and retains the distinct coordinate associations. Both rebuilt sites now reload signed facing after RNG; the second retains its pre-call X snapshot. The actual RNG does not ordinarily mutate the receiver, so no ordinary-play effect is claimed for this read-order correction.
-
-The root remains nonexact (target callable 47,784 bytes, candidate section tail 49,184, first difference +8). The existing float-sine helper remains 18/18 exact, with its origin validator rerun after updating the changed source pin; no new exact bytes are credited.
+Original nominal class/TU declarations and several field meanings remain
+unknown. Difficulty locals outside 0..3 and 604's mode-1 packet slots 0/1 remain
+unwritten as observed; no fallback values were introduced. Exact credit comes
+from the complete code, switch data and relocation replay above.

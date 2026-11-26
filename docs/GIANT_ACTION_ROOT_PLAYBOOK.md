@@ -392,3 +392,24 @@ Packet declarations need a whole-home census. Alice570/571 reserve three floats,
 pass count four and leave the fourth transmitted word unwritten. Four-float
 storage gives the wrong frame and moves other packet homes. The final complete
 match supports the twelve-byte allocation; preserve the target overread.
+
+
+## Tenshi source-shape findings
+
+`exact-first-tenshi-action-state` matches 47,784 physical code bytes and the
+48,968-byte six-table payload, with 107/107 owners. The [root note](TENSHI_ACTION_STATE_2026_10_27.md)
+records full hashes, relocation counts and the seven alignment bytes excluded
+from authored credit.
+
+An initialization helper must reflect each site's actual writes: 560/561
+initialize only burst slots 1/2, whereas 565/566 initialize all three. Removing
+the two extra stores also fixed twelve other packet homes. Direct arguments
+in 605's surface burst recovered the 602/605 shared landing tail and removed
+32 bytes; changing every burst together instead damaged unrelated sharing.
+
+Keep independent story/frame guards and immediate cleanup returns. In Tenshi,
+224's explicit advance return restores the 201/224 tail owner; 604's independent
+frame tests recover its zero register. Flattening the story helper into two
+conditions fixes entry constant initialization. Even declaration order can
+matter across the root: 99's index-before-pointer form preserves 740's FADD
+operand order, while direct indexing matches 99 but changes that later block.

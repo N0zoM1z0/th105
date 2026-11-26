@@ -102,3 +102,16 @@ start = "0x0058A97A"
 end = "0x0058A97F"
 size = 6
 sha256 = "9c0c14b32f072e4754db06cf03a739a0bc15ee7771300256e607504f53b3c43a"
+
+[[functions]]
+address = "0x0063D3E0"
+main_size = 47784
+main_end = "0x00648E87"
+main_excluded_bytes = 7
+evidence = "Complete exact-first-tenshi-action-state code and switch-payload replay includes the unreachable VC8 loop alignment instruction; raw CFG reaches47777 authored bytes. docs/TENSHI_ACTION_STATE_2026_10_27.md."
+
+[[functions.main_exclusions]]
+start = "0x00647C49"
+end = "0x00647C4F"
+size = 7
+sha256 = "4fe06c07aad18cb5faea1a925ff71a52931084bbb3f844ffd60bae6a9ce14cce"

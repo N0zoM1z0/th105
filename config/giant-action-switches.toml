@@ -712,7 +712,6 @@ destination_table = "0x00648E88"
 destination_count = 35
 index_table = "0x00648F14"
 expected_physical_groups = 35
-candidate_destination_counts = [33, 35]
 [[roots.regions]]
 name = "mid"
 case_min = 301
@@ -729,6 +728,24 @@ destination_table = "0x0064916C"
 destination_count = 37
 index_table = "0x00649200"
 expected_physical_groups = 37
+
+[[roots.auxiliary_switches]]
+name = "story720"
+dispatch = "0x006474F8"
+destination_table = "0x006492F8"
+destinations = ["0x0064751D", "0x00647511", "0x00647508", "0x006474FF"]
+
+[[roots.auxiliary_switches]]
+name = "story740"
+dispatch = "0x00647C14"
+destination_table = "0x00649308"
+destinations = ["0x00647C32", "0x00647C1B", "0x00647C1B", "0x00647C1B"]
+
+[[roots.auxiliary_switches]]
+name = "story741"
+dispatch = "0x00647DA7"
+destination_table = "0x00649318"
+destinations = ["0x00647DEA", "0x00647DD6", "0x00647DC2", "0x00647DAE"]
 
 # Patchouli31 low candidate owners are diagnostic only; native has32.
 [[roots]]

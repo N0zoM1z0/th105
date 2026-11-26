@@ -5080,7 +5080,7 @@ origin = "compiler_generated"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Original raw-hash-pinned VC8 math.h/cmath float sine adapter and C++ overload emitted naturally from actual Tenshi source. Whole18 canonical/unique with sole named CRT CIsin call, actual caller float stack argument/dword-zero comparison/cleanup and full native parent identity. Old custom double facade removed. Root49032/native48968 remains nonexact; no authored or partial credit. docs/TENSHI_ORIGINAL_FLOAT_SINE_2026_11_01.md."
+evidence = "Original raw-hash-pinned VC8 math.h/cmath float sine adapter and C++ overload emitted naturally from actual Tenshi source. Whole18 canonical/unique with sole named CRT CIsin call, actual caller float stack argument/dword-zero comparison/cleanup and full native parent identity. Old custom double facade removed. The parent root is now independently canonical exact over its complete48968-byte payload; this rule excludes only the18-byte compiler helper. docs/TENSHI_ORIGINAL_FLOAT_SINE_2026_11_01.md."
 
 [[rules]]
 id = "vc8-generated-input-record-allocation-106a"
