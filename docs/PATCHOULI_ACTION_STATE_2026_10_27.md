@@ -206,9 +206,14 @@ metadata destinations and gaps are rejected. Four focused tests and a real
 Patchouli COFF mapping pass. Existing Tenshi, Alice, Marisa and Sakuya owner
 comparisons remain 107/107, 104/104, 125/125 and 106/106 respectively.
 
-Private source trials are in `build/patchouli-root-work-codex/`. The public
-header still needs the independently established float sine/cosine return
-contract; the first public build is blocked at that ABI mismatch. A private
-65-member receiver compiles with checked offsets, but the whole root remains
-nonexact and native 210/222 still share one candidate entry. No source selection
-or exact credit has been added.
+The public sine/cosine declarations now return float, agreeing with the
+existing relocation contract and the independently recovered lookup providers.
+A fresh complete unit build now reaches byte comparison instead of failing
+external-call replay. It remains nonexact: the first difference is at `+0x2F`
+and the candidate section contains 55,622 bytes. Its frame is the native `0x460`;
+native 210/222 still share one candidate entry. The report is
+`build/patchouli-root-work-codex/public-float-contract.json`.
+
+Private source trials also include a 65-member receiver with checked offsets.
+Control flow, outgoing direction views and argument lifetimes remain under
+review; no source selection or exact credit has been added.

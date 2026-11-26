@@ -125,12 +125,12 @@ validate these changes. No shared gameplay layout or callee changed.
 Patchouli `0x0050F200` is the active bounded scope. Its leading four-word
 difficulty table is now mapped as metadata, with focused negative cases and
 existing-object owner smokes passing. Private typed-source trials and current
-findings are in `build/patchouli-root-work-codex/`; no public source or exact
-ledger credit has changed. The public sine/cosine declarations still say double
-although their providers return float; fix that contract when promoting source.
+findings are in `build/patchouli-root-work-codex/`; source-selection and exact
+ledgers remain unchanged. The public sine/cosine declarations now agree with
+the float-return lookup contract, so the full unit reaches byte comparison.
+It remains nonexact; native 210/222 are still merged in the candidate.
 
-Read
-`src/characters/PatchouliActionState.cpp`, its header,
+Read `src/characters/PatchouliActionState.cpp`, its header,
 `docs/PATCHOULI_ACTION_STATE_2026_10_27.md` and
 `exact-first-patchouli-action-state`. The user wants every remaining giant
 completed individually to canonical exactness; use `gpt-6.1-sol:` commit subjects.
