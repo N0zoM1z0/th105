@@ -13,21 +13,23 @@ and nonexact. `exact-first-yuyuko-action-state` now covers the complete
 59,672-byte payload and all five switch tables. Raw PE traversal closes all
 14,783 instructions / 58,619 callable bytes without unresolved exits.
 
-The fresh build fails at `+0x1B`: target assigns 90 to EBP, candidate to EBX.
-The frame is correctly `0x4E8`; the candidate section is 59,208 bytes and the
-official owner audit is 11/109. Remaining call deltas are advance -1, spawn -2,
-sequence-window +4 and secondary-cycle +4. No exact progress is recorded.
+The fresh build first differs at `+0x1B9`, a switch-table address displaced by
+remaining code. The frame is `0x4E8`; the candidate section is 59,592 bytes and
+the official owner diagnostic is 95/109. All 885 direct calls across 27 targets
+agree in count, and the floating instruction sequences agree for every owner.
+No exact progress is recorded.
 
-The [Yuyuko note](YUYUKO_ACTION_STATE_2026_10_28.md) records the recovered field
-widths, binary32 trig ABI, direct argument evaluation, negative-offset FISUB
-forms and 601/651, 607/657 packet order. The next investigation is the integer
-constant allocation and its effect on physical tail sharing. Candidate 720's
-FADD operand order also remains unresolved.
+The [Yuyuko note](YUYUKO_ACTION_STATE_2026_10_28.md) records the direct alpha
+clamps that restore EBP=90 / EBX=1, direct counter/angle member reads, reused fan
+index and independent timer/crossed scopes. The next investigation is the
+integer-to-x87 scratch stores in 500/501/502/503/540/541/710 and the missing
+local one intervals in 502/503/507/508/512/513. 657 and 720's floating code now
+agree. Keep accepted shared inputs unchanged.
 
 Private results: `build/yuyuko-root-work-codex/{canonical,owners}.json`.
 Reproduce with the two focused commands in the note. No shared gameplay header,
-compiler flag or accepted callee changed. The user requested stopping after
-this checkpoint's commit; wait for their next instruction.
+compiler flag or accepted callee changed. The user resumed continuous work;
+continue this bounded scope after checkpoints until instructed to stop.
 
 Patchouli was freshly recompiled and verified: 55,610 bytes with zero differences,
 and 106/106 owners.
@@ -182,7 +184,7 @@ validate these changes. No shared gameplay layout or callee changed.
 
 ## Next useful action
 
-Resume Yuyuko `0x0055D850` after the user's next instruction. Explain the integer
-constant allocation and 510/545/601/602/604/605 tail sharing, then replay the
-complete function and switch payload. Keep this scope separate from later
-giant roots and retain exact credit only for a complete zero-difference result.
+Continue Yuyuko `0x0055D850`: explain the fan/difficulty scratch-store
+placement and remaining local one intervals, then replay the complete function
+and switch payload. Continue after checkpoints until instructed to stop; retain
+exact credit only for a complete zero-difference result.

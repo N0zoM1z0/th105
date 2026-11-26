@@ -44,27 +44,58 @@ Payload SHA-256:
   the observed physical order 3/2/1/0. The original 725 fallthrough into 726,
   sine(n-6) ring geometry and two-cosine 731 coordinates remain present.
 
+### Integer allocation and branch scopes, 2026-11-26
+
+Native 725/726 clamp alpha through separate writes: subtract six when alpha is
+at least six, otherwise write zero; add six when alpha is at most 249, otherwise
+write 255. Replacing the local-alpha ternaries with these direct member
+`if/else` branches restores both physical branch order and the high-switch
+`BL=0xFF` definition. It also restores the root's EBP=90 / EBX=1 allocation and
+removes all four previous direct-call count discrepancies. A late alpha source
+shape can therefore change register allocation and physical tail merging across
+this entire VC8 function.
+
+The raw compiler trace explains the earlier allocation without requiring IDA:
+C2 assigned the 90 interval to physical register 4 (EBX), then assigned a
+372-reference one interval, with cost 188 and only register 6 available, to EBP.
+The pinned C2 DLL hash is
+`497d1ffe57f75db8b458167bdea475f3962829e139b355a2672a4ef51c716413`;
+read-only hardware-breakpoint results are private in
+`build/yuyuko-root-work-codex/color-log.json`. The source correction and complete
+comparison, rather than the compiler trace alone, establish the improvement.
+
+200/223 compare the incremented `word_730` member directly; the former short
+snapshot introduced an extra MOVZX. 599 consumes the stored signed `word_734`
+in its negative angle, recovering native MOVSX and store order. An uninitialized
+function-local integer reused by the existing fan loops restores 404/406's
+multiply operands and 657's FADD operands. It is initialized by every loop
+before use. 408 needs independent timer/frame conditions, and 502/503/507/508
+need separate crossed/return blocks for sequences zero and one. These source
+scopes recover further native constant intervals and shared exits.
+
 ### Full comparison and remaining work
 
-The fresh canonical build fails at `+0x1B` (`0x0055D86B`): target
-`mov ebp,90`, candidate `mov ebx,90`. Both frames are `0x4E8`. The candidate's
-complete section is 59,208 bytes, including 58,156 bytes before switch data;
-the target payload is 59,672 bytes. The official owner audit is 11/109.
-These diagnostics add no implementation selection or exact credit.
+The fresh canonical build now first differs at `+0x1B9` (`0x0055DA09`), an
+absolute switch-table address displaced by the remaining code-size difference.
+The frame is `0x4E8`. The candidate section contains 59,592 bytes, with switch
+data beginning at +58,540; the target payload contains 59,672 bytes. The official
+instruction/edge diagnostic is 95/109 owners. All 885 direct-call sites agree
+in count across all 27 targets, and every owner's floating instruction sequence
+agrees. This remains a nonexact, unselected candidate with no exact credit.
 
-Observed direct-call deltas are advance `-1`, spawn `-2`, sequence-window `+4`
-and secondary-cycle `+4`. The missing sites are shared physical tails in
-510/545; the extra pairs occur in 601/602/604/605. The candidate keeps one in
-EBP across those cases, while the target uses EBX initially and later creates
-case-local constants. Explaining this allocation difference is the next useful
-step before tuning local jump widths. The precise source lifetime or control
-flow responsible remains unknown; no LTCG limitation has been established.
+The first source-level divergence is the 500 fan loop inside physical owner
+`mid:418`: the candidate hoists its integer-to-x87 scratch store above the
+level branch. Similar stores differ in 501/502/503, 540/541 and 710. Local one
+intervals are still missing in 502/503/507/508/512/513. The remaining 226/720
+edges and final alignment depend on those owners' layouts.
 
-The 720 angle still loads `field_740` separately and uses FADDP where the target
-uses FADD from memory. Reversing the written operands or introducing a double
-step local did not fix it. A function-wide fan index added a live value and
-worsened the prefix; it was removed. Changing the 751 flag to bool or incrementing
-it under its zero guard was byte-neutral and was also reverted.
+Rejected controls include the ABI-compatible short selector declaration,
+expanding the 810/812/900 helpers, do/while and negated-offset 810 forms, and
+copying common fan callbacks into each level branch; these did not fix the
+remaining stores. A short loop index changes the actual induction code and
+was rejected. A named double offset changes 657's already-correct FADD order.
+Expanding all integer-loop helpers and sharing their index loses other exact
+owners. The retained index scope covers only the existing root-local fan loops.
 
 Reproduce serially:
 

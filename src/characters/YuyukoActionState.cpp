@@ -4,6 +4,7 @@
 namespace th105 {
 void YuyukoActionStateView::dispatch_action_state_vslot28()
 {
+    int n;
     word_7a0=0;word_7a2=90;
     if(action_id_13c>149 && action_id_13c<159 && !byte_751) {
         byte_751=1;
@@ -114,8 +115,8 @@ case 200:
     if(sequence_index_13e==1) {
         if(time_counter_144%5==0)dash_dust(false);
         if(field_6b8<0){if(field_6b4*facing()>0){set_action_and_finalize(212);return;}set_action_and_finalize(211);return;}
-        short ticks=++word_730;
-        if((field_6b4*facing()<=0 && ticks>5) || ticks>60){set_action_and_finalize(204);return;}
+        ++word_730;
+        if((field_6b4*facing()<=0 && word_730>5) || word_730>60){set_action_and_finalize(204);return;}
     }
     if((!time_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_index_13e==1)){velocity_x_f4=15.0f;dash_effects(false,80.0,true);}return;
 case 201:
@@ -406,7 +407,7 @@ case 223:
     landing();byte_47e=1;
     if(velocity_x_f4>6.0f){velocity_x_f4=static_cast<float>(velocity_x_f4-0.5);if(velocity_x_f4<6.0f)velocity_x_f4=6.0f;}
     advance();
-    if(sequence_index_13e==1){if(time_counter_144%5==0)dash_dust(false);short ticks=++word_730;if((field_6b4*facing()<=0 && ticks>15)||ticks>60){set_action_and_finalize(204);return;}}
+    if(sequence_index_13e==1){if(time_counter_144%5==0)dash_dust(false);++word_730;if((field_6b4*facing()<=0 && word_730>15)||word_730>60){set_action_and_finalize(204);return;}}
     if((!time_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_index_13e==1)){velocity_x_f4=7.5f;dash_effects(false,80.0,true);}return;
 case 224:
     if(!sequence_index_13e || sequence_index_13e==4)landing();
@@ -573,7 +574,7 @@ case 400:{
             ++word_730;
             if(!sequence_index_13e) {if(word_730%10==1 && word_732<3){
         field_180=1;phase_counter(10);float p[3];
-        for(int n=0;n<5;++n) {
+        for(n=0;n<5;++n) {
             p[0]=static_cast<float>(word_734+(word_732+3)*n*5-static_cast<float>(10*(word_732+3)));
             p[1]=1.0f;p[2]=static_cast<float>(word_732);spawn_offset(800,60,160.0,p,3);
         }
@@ -582,7 +583,7 @@ case 400:{
     }}
             else if(word_730%10==1 && word_732<4){
         field_180=1;phase_counter(10);float p[3];
-        for(int n=0;n<5;++n) {
+        for(n=0;n<5;++n) {
             p[0]=static_cast<float>(word_734+(word_732+2)*n*5-static_cast<float>(10*(word_732+2)));
             p[1]=1.0f;p[2]=static_cast<float>(word_732);spawn_offset(800,60,160.0,p,3);
         }
@@ -607,7 +608,7 @@ case 401:{
             ++word_730;
             if(!sequence_index_13e) {if(word_730%10==1 && word_732<3){
         field_180=1;phase_counter(10);float p[3];
-        for(int n=0;n<5;++n) {
+        for(n=0;n<5;++n) {
             p[0]=static_cast<float>(word_734+(word_732+3)*n*5-static_cast<float>(10*(word_732+3)));
             p[1]=1.0f;p[2]=static_cast<float>(word_732);spawn_offset(800,60,160.0,p,3);
         }
@@ -616,7 +617,7 @@ case 401:{
     }}
             else if(word_730%10==1 && word_732<3){
         field_180=1;phase_counter(10);float p[3];
-        for(int n=0;n<5;++n) {
+        for(n=0;n<5;++n) {
             p[0]=static_cast<float>(word_734+(word_732+2)*n*5-static_cast<float>(10*(word_732+2)));
             p[1]=1.0f;p[2]=static_cast<float>(word_732);spawn_offset(800,60,160.0,p,3);
         }
@@ -641,8 +642,8 @@ case 402:
     if(word_730==1) {
         if(word_732%3==0 && word_734<4) {
             float p[3];
-            for(int n=0;n<30;n+=10){p[0]=static_cast<float>(-20*word_734);p[1]=static_cast<float>(n+10.0);p[2]=static_cast<float>(word_734+12.0);spawn(800,x_ec,static_cast<float>(yuyuko_sine(static_cast<float>(20*word_734))*150.0+y_f0+50.0),static_cast<unsigned char>(facing_104),1,p,3);}
-            for(int n=4;n;--n){p[0]=static_cast<float>(yuyuko_random(360));p[1]=static_cast<float>(static_cast<float>(yuyuko_random(50))*static_cast<double>(0.1f)+5.0);p[2]=static_cast<float>(word_734+4.0);spawn(800,x_ec,static_cast<float>(yuyuko_sine(static_cast<float>(20*word_734))*150.0+y_f0+50.0),static_cast<unsigned char>(facing_104),1,p,3);}
+            for(n=0;n<30;n+=10){p[0]=static_cast<float>(-20*word_734);p[1]=static_cast<float>(n+10.0);p[2]=static_cast<float>(word_734+12.0);spawn(800,x_ec,static_cast<float>(yuyuko_sine(static_cast<float>(20*word_734))*150.0+y_f0+50.0),static_cast<unsigned char>(facing_104),1,p,3);}
+            for(n=4;n;--n){p[0]=static_cast<float>(yuyuko_random(360));p[1]=static_cast<float>(static_cast<float>(yuyuko_random(50))*static_cast<double>(0.1f)+5.0);p[2]=static_cast<float>(word_734+4.0);spawn(800,x_ec,static_cast<float>(yuyuko_sine(static_cast<float>(20*word_734))*150.0+y_f0+50.0),static_cast<unsigned char>(facing_104),1,p,3);}
             ++word_734;
         }
         ++word_732;
@@ -661,7 +662,7 @@ case 404:{
             ++word_730;
             if(!sequence_index_13e) {if(word_730%10==1 && word_732<3){
         field_180=1;phase_counter(10);float p[3];
-        for(int n=0;n<5;++n) {
+        for(n=0;n<5;++n) {
             p[0]=static_cast<float>(word_734+(word_732+3)*n*5-static_cast<float>(10*(word_732+3)));
             p[1]=1.0f;p[2]=static_cast<float>(word_732);spawn_offset(800,60,160.0,p,3);
         }
@@ -670,7 +671,7 @@ case 404:{
     }}
             else if(word_730%10==1 && word_732<4){
         field_180=1;phase_counter(10);float p[3];
-        for(int n=0;n<5;++n) {
+        for(n=0;n<5;++n) {
             p[0]=static_cast<float>(word_734+(word_732+2)*n*5-static_cast<float>(10*(word_732+2)));
             p[1]=1.0f;p[2]=static_cast<float>(word_732);spawn_offset(800,60,160.0,p,3);
         }
@@ -705,7 +706,7 @@ case 406:{
             ++word_730;
             if(!sequence_index_13e) {if(word_730%10==1 && word_732<3){
         field_180=1;phase_counter(10);float p[3];
-        for(int n=0;n<5;++n) {
+        for(n=0;n<5;++n) {
             p[0]=static_cast<float>(word_734+(word_732+3)*n*5-static_cast<float>(10*(word_732+3)));
             p[1]=1.0f;p[2]=static_cast<float>(word_732);spawn_offset(800,60,160.0,p,3);
         }
@@ -714,7 +715,7 @@ case 406:{
     }}
             else if(word_730%10==1 && word_732<4){
         field_180=1;phase_counter(10);float p[3];
-        for(int n=0;n<5;++n) {
+        for(n=0;n<5;++n) {
             p[0]=static_cast<float>(word_734+(word_732+2)*n*5-static_cast<float>(10*(word_732+2)));
             p[1]=1.0f;p[2]=static_cast<float>(word_732);spawn_offset(800,60,160.0,p,3);
         }
@@ -740,7 +741,7 @@ case 406:{
 case 408:
     landing();decelerate(0.5,false);if(!field_6bc)byte_750=0;
     if(advance()){set_action_and_finalize(0);byte_47e=0;}
-    if(!sequence_index_13e){if(!frame_timer_142){if(frame_index_140==4){mode848(4.0f);byte_47e=0;}if(!frame_timer_142 && frame_index_140==4)dispatch_character_wave_handle(0);}if(frame_index_140>=6)decelerate(1.0,false);}return;
+    if(!sequence_index_13e){if(!frame_timer_142 && frame_index_140==4){mode848(4.0f);byte_47e=0;}if(!frame_timer_142 && frame_index_140==4)dispatch_character_wave_handle(0);if(frame_index_140>=6)decelerate(1.0,false);}return;
 case 409: {
     velocity_y_f8-=acceleration_y_100;double next_y=velocity_y_f8+static_cast<double>(y_f0);
     if(yuyuko_surface(this)>=next_y && velocity_y_f8<0.0f){set_action_and_finalize(10);zero_motion();y_f0=yuyuko_surface(this);return;}
@@ -901,8 +902,10 @@ case 502:
 
         if(sequence_index_13e==2)landing();byte_17c=0;
         if(sequence_index_13e<2)velocity_y_f8-=acceleration_y_100;
-        if((!sequence_index_13e && frame_index_140>=11 && static_cast<unsigned char>(crossed())) ||
-           (sequence_index_13e==1 && frame_index_140>=11 && static_cast<unsigned char>(crossed()))) {
+        if(!sequence_index_13e && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
+            select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+        }
+        if(sequence_index_13e==1 && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
             select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
         }
         if(advance())set_action_and_finalize(0);
@@ -914,8 +917,10 @@ case 503:
 
         if(sequence_index_13e==2)landing();byte_17c=0;
         if(sequence_index_13e<2)velocity_y_f8-=acceleration_y_100;
-        if((!sequence_index_13e && frame_index_140>=11 && static_cast<unsigned char>(crossed())) ||
-           (sequence_index_13e==1 && frame_index_140>=11 && static_cast<unsigned char>(crossed()))) {
+        if(!sequence_index_13e && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
+            select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+        }
+        if(sequence_index_13e==1 && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
             select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
         }
         if(advance())set_action_and_finalize(0);
@@ -933,8 +938,10 @@ case 507:
 
         if(sequence_index_13e==2)landing();byte_17c=4;
         if(sequence_index_13e<2)velocity_y_f8-=acceleration_y_100;
-        if((!sequence_index_13e && frame_index_140>=11 && static_cast<unsigned char>(crossed())) ||
-           (sequence_index_13e==1 && frame_index_140>=11 && static_cast<unsigned char>(crossed()))) {
+        if(!sequence_index_13e && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
+            select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+        }
+        if(sequence_index_13e==1 && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
             select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
         }
         if(advance())set_action_and_finalize(0);
@@ -946,8 +953,10 @@ case 508:
 
         if(sequence_index_13e==2)landing();byte_17c=4;
         if(sequence_index_13e<2)velocity_y_f8-=acceleration_y_100;
-        if((!sequence_index_13e && frame_index_140>=11 && static_cast<unsigned char>(crossed())) ||
-           (sequence_index_13e==1 && frame_index_140>=11 && static_cast<unsigned char>(crossed()))) {
+        if(!sequence_index_13e && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
+            select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
+        }
+        if(sequence_index_13e==1 && frame_index_140>=11 && static_cast<unsigned char>(crossed())) {
             select_sequence(2);zero_motion();y_f0=yuyuko_surface(this);return;
         }
         if(advance())set_action_and_finalize(0);
@@ -1167,8 +1176,8 @@ case 567:
     if(sequence_index_13e==1 && time_counter_144>=50)set_action_and_finalize(9);return;
 case 599:
     if(word_730>0 && frame_index_140<7 && word_730<12) {
-        unsigned angle=yuyuko_random_u32()%35u;word_734=static_cast<short>(angle);
-        float p[3]={static_cast<float>(-20-static_cast<int>(angle)),static_cast<float>(static_cast<short>(yuyuko_random_u32()%5u+10)),0.0f};
+        word_734=static_cast<short>(yuyuko_random_u32()%35u);
+        float p[3]={static_cast<float>(-20-word_734),static_cast<float>(static_cast<short>(yuyuko_random_u32()%5u+10)),0.0f};
         spawn(807,static_cast<float>(20*facing()*(word_730+1)+static_cast<double>(x_ec)),y_f0,static_cast<unsigned char>(facing_104),1,p,3);
         p[0]=static_cast<float>(yuyuko_random_u32()%360u);p[1]=0.0f;p[2]=1.0f;
         spawn(801,static_cast<float>(20*facing()*(word_730+1)+static_cast<double>(x_ec)),y_f0,static_cast<unsigned char>(facing_104),1,p,3);

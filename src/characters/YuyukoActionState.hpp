@@ -242,8 +242,8 @@ public:
         }
     }
     __forceinline void fade_alpha() {
-        if(sequence_index_13e==1){unsigned char alpha=byte_113;byte_113=alpha<6?0:static_cast<unsigned char>(alpha-6);}
-        if(sequence_index_13e==3){unsigned char alpha=byte_113;byte_113=alpha>249?255:static_cast<unsigned char>(alpha+6);}
+        if(sequence_index_13e==1){if(byte_113>=6)byte_113-=6;else byte_113=0;}
+        if(sequence_index_13e==3){if(byte_113<=249)byte_113+=6;else byte_113=255;}
     }
     __forceinline void finish_story_state() {
         byte_655=1;finalize(-1);texture(2,-1);copy_health();word_76c=0;word_76a=1;
