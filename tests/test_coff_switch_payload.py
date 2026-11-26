@@ -80,6 +80,18 @@ class CompactSwitchTests(unittest.TestCase):
             self.assertEqual(out['payload_size'], len(b))
             self.assertEqual(out['canonical_payload_sha256'], out['target_payload_sha256'])
 
+    def test_final_internal_jump_closes_the_callable_without_metadata_fallthrough(self):
+        # The last Alice block jumps back into an earlier shared exit.
+        body, address, size, contract, relocs = fixture(default_code=bytes.fromhex('90ebf4'))
+        report = payload.inspect(body, body, address, size, contract, relocs)
+        self.assertEqual(report['reachable_code_bytes'], size)
+
+    def test_final_jump_cannot_fall_through_escape_or_bypass_a_switch_guard(self):
+        for ending in ('9075f4', '90eb01', '90ebf5', '90ebe6'):
+            body, address, size, contract, relocs = fixture(default_code=bytes.fromhex(ending))
+            with self.subTest(ending=ending), self.assertRaises(ValueError):
+                payload.inspect(body, body, address, size, contract, relocs)
+
     def test_contract_fields_types_and_partition_are_exact(self):
         b, a, n, c, r = fixture()
         for patch in ({'extra': 1}, {'size': True}, {'table_offset': c['table_offset'] + 1},
@@ -151,6 +163,25 @@ class CompactSwitchTests(unittest.TestCase):
             raw, updated_contract = changed(body, contract, offset, value)
             with self.subTest(value=value), self.assertRaisesRegex(ValueError, message):
                 payload.inspect(raw, raw, address, size, updated_contract, relocs)
+
+    def test_register_bound_can_be_derived_from_another_nonvolatile_constant(self):
+        # A branch forces CFG proof of MOV EBP,5; LEA EBX,[EBP-4]; CMP EAX,EBX.
+        compare = bytes.fromhex('909090 bd05000000 8d5dfc eb00 3bc3')
+        body, address, size, contract, relocs = fixture(compare=compare)
+        payload.inspect(body, body, address, size, contract, relocs)
+        mutations = ((4, b'\x04'), (0, b'\x75\x06'),
+                     (3, bytes.fromhex('66bd050090')), (8, bytes.fromhex('8d1c28')))
+        for offset, replacement in mutations:
+            wrong, updated = changed(body, contract, offset, replacement)
+            with self.subTest(offset=offset), self.assertRaisesRegex(ValueError, 'reaching constant'):
+                payload.inspect(wrong, wrong, address, size, updated, relocs)
+
+        compare = bytes.fromhex('909090 bd01000000 8bdd eb00 90 3bc3')
+        body, address, size, contract, relocs = fixture(compare=compare)
+        payload.inspect(body, body, address, size, contract, relocs)
+        wrong, updated = changed(body, contract, 8, bytes.fromhex('8bd8'))
+        with self.assertRaisesRegex(ValueError, 'reaching constant'):
+            payload.inspect(wrong, wrong, address, size, updated, relocs)
 
     def test_scheduled_fstp_requires_a_dword_stack_slot(self):
         body, address, size, contract, relocs = fixture(spill=True)

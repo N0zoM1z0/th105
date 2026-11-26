@@ -3,6 +3,19 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 
 # Main-span alignment exclusions for functions with no discontiguous remote code.
 [[functions]]
+address = "0x004E9F50"
+main_size = 42721
+main_end = "0x004F4630"
+main_excluded_bytes = 3
+evidence = "Complete exact-first-alice-fighter-update code and switch-payload replay includes the unreachable VC8 alignment instruction; raw CFG reaches 42718 authored bytes. docs/ALICE_FIGHTER_UPDATE_2026_10_25.md."
+
+[[functions.main_exclusions]]
+start = "0x004F28ED"
+end = "0x004F28EF"
+size = 3
+sha256 = "53e090edb4fca0626d458dbefa0ae1bcbffc511ed159f1a70641610ad0d9a200"
+
+[[functions]]
 address = "0x0050C1C0"
 main_size = 10715
 main_end = "0x0050EB9A"

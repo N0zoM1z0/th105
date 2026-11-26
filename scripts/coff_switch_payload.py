@@ -108,8 +108,11 @@ def verify_cfg_register_bound(address, code_size, by, dispatches, tail_jumps, bo
     if not aliases:
         raise ValueError('compact switch register bound lacks a reaching constant')
     code_end = address + code_size
-    # Forward dataflow lattice over reachable CFG: None = unvisited, int = exact constant, 'TOP' = unknown.
-    in_state = {address: 'TOP'}
+    # Track nonvolatile constants together: Alice derives EBX=4 from EBP=8
+    # with LEA before the switch guard. Calls preserve these registers.
+    registers = tuple(NONVOLATILE_ALIASES)
+    unknown = {r: 'TOP' for r in registers}
+    in_state = {address: unknown}
     worklist = [address]
 
     def merge(dst, val):
@@ -117,9 +120,11 @@ def verify_cfg_register_bound(address, code_size, by, dispatches, tail_jumps, bo
         if prev is None:
             in_state[dst] = val
             worklist.append(dst)
-        elif prev != val and prev != 'TOP':
-            in_state[dst] = 'TOP'
-            worklist.append(dst)
+        else:
+            joined = {r: prev[r] if prev[r] == val[r] else 'TOP' for r in registers}
+            if joined != prev:
+                in_state[dst] = joined
+                worklist.append(dst)
 
     while worklist:
         at = worklist.pop()
@@ -131,24 +136,36 @@ def verify_cfg_register_bound(address, code_size, by, dispatches, tail_jumps, bo
             for dst in dispatches[at]:
                 merge(dst, val)
             continue
-        out_val = val
+        out_val = val.copy()
         if inst.group(capstone.CS_GRP_CALL):
             if inst.operands[0].type == x.X86_OP_IMM and address <= inst.operands[0].imm < code_end:
-                out_val = 'TOP'
-        elif not aliases.isdisjoint(inst.regs_access()[1]):
-            if (inst.mnemonic == 'mov' and len(inst.operands) == 2
-                    and inst.operands[0].type == x.X86_OP_REG and inst.operands[0].reg == reg
-                    and inst.operands[1].type == x.X86_OP_IMM):
-                out_val = inst.operands[1].imm
-            else:
-                out_val = 'TOP'
+                out_val = unknown
+        else:
+            written = inst.regs_access()[1]
+            for register, register_aliases in NONVOLATILE_ALIASES.items():
+                if register_aliases.isdisjoint(written):
+                    continue
+                value = 'TOP'
+                if (len(inst.operands) == 2 and inst.operands[0].type == x.X86_OP_REG
+                        and inst.operands[0].reg == register):
+                    source = inst.operands[1]
+                    if inst.mnemonic == 'mov':
+                        if source.type == x.X86_OP_IMM:
+                            value = source.imm & 0xffffffff
+                        elif source.type == x.X86_OP_REG:
+                            value = val.get(source.reg, 'TOP')
+                    elif (inst.mnemonic == 'lea' and source.type == x.X86_OP_MEM
+                          and not source.mem.index and not source.mem.segment
+                          and isinstance(val.get(source.mem.base), int)):
+                        value = (val[source.mem.base] + source.mem.disp) & 0xffffffff
+                out_val[register] = value
         if inst.group(capstone.CS_GRP_JUMP):
             merge(inst.operands[0].imm, out_val)
             if inst.mnemonic == 'jmp':
                 continue
         merge(at + inst.size, out_val)
 
-    if in_state.get(bound_addr) != expected:
+    if in_state.get(bound_addr, unknown)[reg] != expected:
         raise ValueError('compact switch register bound lacks a reaching constant')
 
 
@@ -366,8 +383,11 @@ def inspect(canonical, target, address, code_size, contract, relocations, tail_t
             raise ValueError('compact switch tail jump lacks an external REL32 binding')
         tail_jumps.add(instruction.address)
     tail_jumps.update(virtual_tails)
-    if ins[-1].mnemonic != 'ret' and ins[-1].address not in tail_jumps:
-        raise ValueError('switch code does not end at a RET or bound tail jump')
+    last = ins[-1]
+    internal_jump = (last.mnemonic == 'jmp' and last.operands[0].type == x.X86_OP_IMM
+                     and last.operands[0].imm in by)
+    if last.mnemonic != 'ret' and last.address not in tail_jumps and not internal_jump:
+        raise ValueError('switch code does not end at a RET, internal jump or bound tail jump')
 
     indirect = set()
     for instruction in ins:

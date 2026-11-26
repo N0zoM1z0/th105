@@ -368,3 +368,27 @@ Initialize only the three target-written elements. Shrinking their storage loses
 adds unwanted fourth-element stores. The complete match supports this recovered
 allocation; the original declarations remain unknown. Finally, action 10's
 zero-input branch precedes its nonzero branch in the natural source.
+
+
+## Alice source-shape findings
+
+Alice's complete 44,072-byte code/switch payload is exact under
+`exact-first-alice-fighter-update`; the [root note](ALICE_FIGHTER_UPDATE_2026_10_25.md)
+records its scope and commands.
+
+A single `if (word_186 != 0 || related_170->word_48c != 0) return;` recovers native
+tail sharing. Two separate early returns produce the same entry instructions
+but different common tails across the root: combining them raised the owner
+diagnostic from 35/104 to 96/104 and closed every direct-call-count difference.
+The final independent entry guards in 404/406 recover their time-counter
+lifetime; the sequence-eight action-nine call continues into threshold checks.
+
+Callback snapshots can distort global allocation as well as behavior. In
+308/309, reload facing inside every request-loop iteration. Negate the float
+index before multiplying by double 60. Direct velocity-member updates in 310
+also recover the native temporary, while a separate float carrier changes it.
+
+Packet declarations need a whole-home census. Alice570/571 reserve three floats,
+pass count four and leave the fourth transmitted word unwritten. Four-float
+storage gives the wrong frame and moves other packet homes. The final complete
+match supports the twelve-byte allocation; preserve the target overread.

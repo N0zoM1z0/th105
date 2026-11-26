@@ -23053,7 +23053,7 @@ source = "src/characters/AliceFighterActionState.cpp"
 object = "build/match-units/ExactFirst_AliceFighterActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a Alice Fighter4E9F50 manual hypothesis;42721 main/full44080 payload. Identified/unselected pending instruction, callback and width review; no implemented/exact credit. Full first comparison and callback-epoch correction: docs/ALICE_FIGHTER_UPDATE_2026_10_25.md."
+notes = "Canonical JP1.06a Alice Fighter +0x28 root:42721 physical code/42718 owned bytes,44072-byte complete switch payload,16 tables,165 destination words,685 indices,1380 relocations. The8 following INT3 bytes align the next independent function. docs/ALICE_FIGHTER_UPDATE_2026_10_25.md."
 
 [[units.exact-first-alice-fighter-update.functions]]
 address = "0x004E9F50"
@@ -23103,6 +23103,34 @@ dir32_targets = [
     "__real@41980000=_alice_fighter_update_006c4650",
     "__real@c2940000=_alice_fighter_update_006c4a7c",
     "__real@c2a00000=_alice_fighter_update_006c438c",
+]
+
+[units.exact-first-alice-fighter-update.functions.switch_payload]
+size = 44072
+sha256 = "202e532a593f9c712518519e0c782ce177696ddb3ab401aaec86ec5a113c0f89"
+alignment_hex = "8d4900"
+table_offset = 42724
+table_entries = 31
+map_offset = 42848
+map_size = 227
+load_offset = 512
+jump_offset = 519
+additional_tables = [
+    { alignment_hex = "90", table_offset = 43076, table_entries = 34, map_offset = 43212, map_size = 208, load_offset = 9703, jump_offset = 9710 },
+    { alignment_hex = "", table_offset = 43420, table_entries = 5, jump_offset = 20891 },
+    { alignment_hex = "", table_offset = 43440, table_entries = 5, jump_offset = 21228 },
+    { alignment_hex = "", table_offset = 43460, table_entries = 40, map_offset = 43620, map_size = 250, load_offset = 21834, jump_offset = 21841 },
+    { alignment_hex = "8bff", table_offset = 43872, table_entries = 5, jump_offset = 21953 },
+    { alignment_hex = "", table_offset = 43892, table_entries = 5, jump_offset = 22290 },
+    { alignment_hex = "", table_offset = 43912, table_entries = 5, jump_offset = 22919 },
+    { alignment_hex = "", table_offset = 43932, table_entries = 5, jump_offset = 23256 },
+    { alignment_hex = "", table_offset = 43952, table_entries = 5, jump_offset = 23885 },
+    { alignment_hex = "", table_offset = 43972, table_entries = 5, jump_offset = 24222 },
+    { alignment_hex = "", table_offset = 43992, table_entries = 4, jump_offset = 38328 },
+    { alignment_hex = "", table_offset = 44008, table_entries = 4, jump_offset = 38937 },
+    { alignment_hex = "", table_offset = 44024, table_entries = 4, jump_offset = 39131 },
+    { alignment_hex = "", table_offset = 44040, table_entries = 4, jump_offset = 40074 },
+    { alignment_hex = "", table_offset = 44056, table_entries = 4, jump_offset = 41364 },
 ]
 
 [units.exact-first-scenario-command-update]

@@ -5,25 +5,38 @@ Target: original Japanese TH10.5 v1.06a, SHA-256
 Follow [AGENTS.md](../AGENTS.md), [shared tools](SHARED_TOOLS.md) and the
 [reconstruction workflow](RE_WORKFLOW.md). Keep compiler/analyzer work serial.
 
-## Active: Alice Fighter `+0x28` (`0x004E9F50`)
+## Completed: Alice Fighter `+0x28` (`0x004E9F50`)
 
-Alice remains identified, unselected and nonexact. The current scope uses the
-hash-attested raw PE. Its 42,721-byte callable and 44,080-byte envelope contain
-three primary switches and thirteen nested switches, now recorded in
-`config/giant-action-switches.toml`.
+`exact-first-alice-fighter-update` is canonically exact from the standalone
+[typed source](../src/characters/AliceFighterActionState.cpp), under VC8 SP1
+`/O2 /GS- /GR /EHsc /MT`.
 
-The retained source now corrects 308/309's facing reads inside their six-request
-loops, 321's gate/velocity constants and 402's `{0,0,7}` request. The complete
-`exact-first-alice-fighter-update` comparison still fails at `+8`, frame
-`0x418` versus native `0x410`; no exact credit changes. See the
-[current Alice findings](ALICE_FIGHTER_UPDATE_2026_10_25.md#current-raw-pe-matching-findings-2026-11-26).
+- All 42,721 physical code bytes and the complete 44,072-byte owned switch
+  payload `[0x004E9F50,0x004F4B78)` match with zero differences.
+- All 1,380 relocations agree: 674 REL32 calls across 27 targets and 706 DIR32
+  fields. Sixteen tables include 165 destination words and 685 indices.
+- The owner audit is 104/104. Raw CFG reaches 11,169 instructions / 42,718 owned
+  bytes. The three internal alignment bytes are compared and excluded from
+  authored progress. Eight following `INT3` bytes align the next function.
+- Payload SHA-256:
+  `202e532a593f9c712518519e0c782ce177696ddb3ab401aaec86ec5a113c0f89`.
 
-Private typed work is in `build/alice-root-work-codex/`; read `CURRENT.md` for
-the selected source, commands and closed controls. It recovers the native frame
-and packet homes but still differs in physical tail sharing. Continue with
-404/406's timer lifetime and the shared request tails. The three-float storage
-hypothesis for 570/571, the internal alignment instruction and the final eight
-alignment bytes still need a complete acceptance decision.
+Reproduce with:
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-alice-fighter-update --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-alice-fighter-update alice-vslot28 build/match-units/ExactFirst_AliceFighterActionState.obj --json
+```
+
+Private current reports: `build/alice-root-work-codex/{canonical,owners}.json`.
+The [Alice note](ALICE_FIGHTER_UPDATE_2026_10_25.md) records the combined entry
+skip guard, callback-facing rereads, independent entry tests and packet homes.
+570/571 preserve twelve-byte storage, count four and the unwritten fourth word;
+original declarations and several field meanings remain unknown.
+
+The comparator now handles a final internal jump and a nonvolatile bound derived
+by unindexed LEA. Twenty-eight focused cases and fresh complete Alice, Marisa
+and Sakuya comparisons pass. No shared gameplay layout or callee changed.
 
 ## Completed: Sakuya Fighter `+0x28` (`0x004CADB0`)
 
@@ -78,10 +91,12 @@ validate these changes. No shared gameplay layout or callee changed.
 
 ## Next useful action
 
-Continue the active Alice `0x004E9F50` scope, one bounded root at a time.
-Use the current findings and private `CURRENT.md` above; the retained source
-is still a hypothesis.
-The user wants the remaining roots completed individually to canonical exactness.
+Continue with Tenshi `0x0063D3E0`, one bounded root at a time. Its 47,784-byte
+callable is the smaller remaining Fighter root with a complete registered
+hypothesis. Read `src/characters/TenshiActionState.cpp`,
+`docs/TENSHI_ACTION_STATE_2026_10_28.md` and `exact-first-tenshi-action-state`
+before changing source. The user wants every remaining giant completed
+individually to canonical exactness; use `gpt-6.1-sol:` commit subjects.
 
 Keep receiver layouts character-scoped. Recompare directly affected accepted
-units if a future change touches shared inputs.
+units after shared input changes.
