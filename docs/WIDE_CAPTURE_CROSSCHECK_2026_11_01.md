@@ -1,5 +1,9 @@
 # Bounded cross-check after the Tenshi capture correction
 
+> Historical 2026-11-01 diagnostic snapshot: all 15 Fighter `+0x28` roots
+> surveyed below have since reached 100% canonical exactness (see
+> [RE_HANDOFF.md](RE_HANDOFF.md)).
+
 The two real Tenshi corrections are recorded in
 TENSHI_ACTION_STATE_2026_10_27.md. This follow-up checks the same concrete issue
 in twelve other complete current Fighter candidates: missing eight-byte stack

@@ -5,11 +5,10 @@
 
 namespace th105 {
 
-// Verified entry phase of Reimu's 81550-byte +0x28 root @ 0x478FA0.
-// This staging helper is not the target root or an original function boundary.
-// Its bool reports whether the entry phase completes the update; false means
-// the still-unreconstructed action switch must run. No root implementation or
-// exact credit is claimed. Numeric field labels preserve unresolved meanings.
+// Typed receiver/peer views and prelude helper shared by the exact Reimu
+// Fighter +0x28 action-state root (0x00478FA0) in ReimuActionStateRoot.cpp.
+// Numeric field labels preserve unresolved meanings; never instantiate as a
+// recovered complete Fighter layout.
 struct ReimuPreludePeerView {
     unsigned char reserved_000[0xec];
     float x_ec;

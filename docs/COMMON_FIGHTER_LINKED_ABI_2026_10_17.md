@@ -1,7 +1,12 @@
 # Common Fighter root: native deque and genuine link context
 
-The shared `Fighter_update_common_action_state @ 0x004740C0` remains
-**nonexact** over its complete 10219-byte target callable. All 15 roster action
+> Historical 2026-10-17 link probe: `Fighter_update_common_action_state @
+> 0x004740C0` later reached 100% canonical exactness over its 10,219-byte
+> callable and 10,725-byte envelope in
+> [COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md).
+
+At this checkpoint, the shared `Fighter_update_common_action_state @ 0x004740C0`
+remained **nonexact** over its complete 10,219-byte target callable. All 15 roster action
 roots call it. This batch replaces its checked-container facade with the real
 VC8 SDK member and closes a reproducible diagnostic link; it awards no authored
 function, partial-byte or exact-byte credit.

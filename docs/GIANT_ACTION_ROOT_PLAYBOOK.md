@@ -4,13 +4,14 @@ Practical workflow for reconstructing TH105 v1.06a Fighter vtable `+0x28`
 (`*_dispatch_action_state_vslot28`, 37–82 KiB) and similar multi-table switch
 roots to 100% canonical byte equality under VC8 SP1 (`/O2 /GS- /GR /EHsc /MT`).
 
-Proven exact on:
-- `Reimu_dispatch_action_state_vslot28` (`0x00478FA0`, 81,550 callable / 82,924 envelope, 11 switch tables)
-- `Iku_dispatch_action_state_vslot28` (`0x00620920`, 59,038 callable / 60,194 envelope, 3 switch tables)
-- `Aya_dispatch_action_state_vslot28` (`0x00602250`, 65,601 callable / 66,704 envelope, 7 switch tables)
-- `Youmu_dispatch_action_state_vslot28` (`0x00530200`, 37,692 callable / 38,816 envelope, 4 switch tables)
-- `Marisa_dispatch_action_state_vslot28` (`0x004A3710`, 66,695 callable / 67,936 envelope, 6 switch tables)
-- `Sakuya_dispatch_action_state_vslot28` (`0x004CADB0`, 74,937 owned / 75,042 physical code / 76,336 envelope, 14 switch tables)
+Proven exact on **all 15/15** JP TH10.5 v1.06a Fighter `+0x28` roots (see
+[RE_HANDOFF.md](RE_HANDOFF.md#completed-fighter-0x28-roots-1515) for the full
+table of addresses, byte counts, units and commits): Reimu (`0x00478FA0`),
+Marisa (`0x004A3710`), Sakuya (`0x004CADB0`), Alice (`0x004E9F50`), Patchouli
+(`0x0050F200`), Youmu (`0x00530200`), Remilia (`0x00545090`), Yuyuko
+(`0x0055D850`), Yukari (`0x0057B030`), Suika (`0x00598990`), Udonge
+(`0x005BFD50`), Komachi (`0x005E20E0`), Aya (`0x00602250`), Iku (`0x00620920`),
+and Tenshi (`0x0063D3E0`).
 
 Update this playbook and [scripts/giant-root-iterate.py](../scripts/giant-root-iterate.py)
 whenever a new root reveals a reusable pattern or compiler rule.
@@ -95,9 +96,8 @@ five items **first**, before looking at individual small diffs:
 
 ## 3. Shared Fighter Receiver Offsets (v1.06a)
 
-Verified identical across Reimu (`0x00478FA0`) and Iku (`0x00620920`). Check
-each character's accesses and pin every used field with compile-time `offsetof`
-assertions:
+Verified across all 15 exact Fighter `+0x28` roots. Check each character's
+accesses and pin every used field with compile-time `offsetof` assertions:
 
 | Offset | Type | Meaning |
 | --- | --- | --- |
@@ -244,33 +244,33 @@ to the opening pass:
   explicit float rounding when removing a carrier that was subsequently widened
   to double; merely deleting that rounding changes the expression.
 - **Read the opponent through the member at each operation.** Removing cached
-  opponent pointers in actions525/526 recovered the target's pointer reloads,
+  opponent pointers in actions 525/526 recovered the target's pointer reloads,
   virtual-call registers and complete physical owners. A same-layout receiver
   or inheritance-only rewrite did not resolve those cached lifetimes.
-- **Retain independent early exits.** In actions302 and603, write
+- **Retain independent early exits.** In actions 302 and 603, write
   `if (advance()) { set_action(0); return; }` followed by
   `if (sequence_entry(1)) { set_action(0); return; }`. Combining these into one
   `if (advance() || sequence_entry(1))` retained the instruction count but selected
-  the wrong physical action-zero tail in302 and a different volatile-register
-  cycle in603. Splitting them resolved the final differences. Copying the
+  the wrong physical action-zero tail in 302 and a different volatile-register
+  cycle in 603. Splitting them resolved the final differences. Copying the
   opponent X into a local, moving/initializing the payload array, adding an
   inlined emitter wrapper and changing the action parameter from short to int
   did not fix that register cycle.
 - **Structure the whole action before adjusting local registers.** Removing
-  action603's shared `goto` labels and writing its sequence0/2/3/4 blocks
+  action 603's shared `goto` labels and writing its sequence 0/2/3/4 blocks
   naturally recovered late constant lifetimes and downstream alignment together.
   An early local rewrite could reduce the owner count while correcting real
   arithmetic or argument scheduling; revisit global stack placement afterward.
 - **Preserve signed byte reads separately from unsigned snapshots.** Youmu's
   `byte_184` comparisons are signed, two `byte_47e` tests read it as signed char,
-  and the direction snapshots used by actions600/730 are zero-extended before
+  and the direction snapshots used by actions 600/730 are zero-extended before
   their signed arithmetic. Collapsing these distinctions lost otherwise equal
   owners. The exact local spawn view uses signed char for both direction and
   the control byte forwarded to factory `+0x33c`; the effect direction is
   unsigned char. Original declarations are not uniquely determined by the
   compatible caller view.
 
-Action720 also exposes a verifier scheduling case at `0x00538C5D`: after
+Action 720 also exposes a verifier scheduling case at `0x00538C5D`: after
 `cmp eax, 3`, VC8 emits `mov edx, 10; lea ecx, [edx+10]` before `ja` and the
 four-entry direct jump table. These instructions preserve EFLAGS and EAX.
 The verifier accepts these specific register forms only when neither replaces
@@ -388,7 +388,7 @@ Callback snapshots can distort global allocation as well as behavior. In
 index before multiplying by double 60. Direct velocity-member updates in 310
 also recover the native temporary, while a separate float carrier changes it.
 
-Packet declarations need a whole-home census. Alice570/571 reserve three floats,
+Packet declarations need a whole-home census. Alice 570/571 reserve three floats,
 pass count four and leave the fourth transmitted word unwritten. Four-float
 storage gives the wrong frame and moves other packet homes. The final complete
 match supports the twelve-byte allocation; preserve the target overread.
@@ -413,3 +413,40 @@ frame tests recover its zero register. Flattening the story helper into two
 conditions fixes entry constant initialization. Even declaration order can
 matter across the root: 99's index-before-pointer form preserves 740's FADD
 operand order, while direct indexing matches 99 but changes that later block.
+
+## Late-roster source-shape & `c2.dll` findings (Patchouli through Yukari)
+
+The final seven exact Fighter `+0x28` roots established additional reusable VC8
+SP1 `c2.dll` rules (full proofs in
+[VC8_SOURCE_SHAPE_PATTERNS.md](VC8_SOURCE_SHAPE_PATTERNS.md)):
+
+- **Lifting a zero-cost carried x87 `0.0f` interval (Patchouli `0x0050F200`):**
+  General `Color` (`0x10B0CF40`) keeps `0.0f` in `st(0)` across the switch only
+  when its interval spill cost is strictly positive. Separating the two
+  `if (sequence_index_13e == 2)` guards in `201`/`224` let `0.0f` flow along the
+  false edge (`+4` net cost). Writing `case 209:`, `case 212:`, `case 221:`
+  separately also matched VC8's 17-iteration `FgDoLateFlowOpts` (`0x10B2C950`)
+  merge order so `210` and `222` stay distinct.
+- **Nested `if` vs flat `&&` in `InsertAdditionalSplits` (Yuyuko `0x0055D850`,
+  Komachi `0x005E20E0`):** When a long-lived `1` constant splits across a
+  saturated switch header, nesting `if (a) { if (b) { if (call()) ... } }` puts
+  the call block's fresh region ahead of the non-call guard edges in the merge
+  block's predecessor list, preserving local `mov ebx, 1` / `mov edi, 1` hoists.
+- **Avoiding VC8 LICM `qword` spills and matching float loop limits (Komachi
+  `0x005E20E0`, Suika `0x00598990`, Udonge `0x005BFD50`, Remilia `0x00545090`):**
+  Omit intermediate `double angle` locals when `jitter + 180.0` would LICM-spill
+  (Komachi `730`); use `float limit = static_cast<float>(byte_609 + 5.0); float
+  m = 0.0f; double count = limit; if (0.0 < limit)` to pin `[esp+0x18..0x1f]` and
+  `fstp [esp+0x20]` scheduling (Suika `525`/`526`); keep `float scale =
+  field_7a8; float alpha = scale * word_7a6;` to preserve x87 operand order
+  (Udonge prelude); and dispatch `0x00435160` through `+0x04` subobject members
+  and `0x0045C030` through `owner_168` where target loads `[esi+0x168]` (Remilia).
+- **Global constant priority (`CONST(0) -> EBP` vs `CONST(1) -> EBX`) in
+  `c2.dll:0x10B14E2A` (Yukari `0x0057B030`):** When `CONST(6)`/`CONST(4)` split
+  `CONST(0)` and `CONST(1)`, separate `case 2:` / `case 1:` in difficulty
+  switches let `CONST(70)` take `EBP` before `TailMerge`, and unnesting repeated
+  `!frame_timer_142` checks into sequential `if (!frame_timer_142 && ...)` guards
+  shifts `CONST(0)`'s priority by `+8` with zero extra bytes. Write counted loops
+  with `for (int i = 0; i < count; ++i)` (not `do/while (--count)`) when a
+  pre-loop store schedules before loop-counter setup (`burst910`), and split
+  `if (entry(1))` / `if (entry(2))` to select the native shared tail (`404`).

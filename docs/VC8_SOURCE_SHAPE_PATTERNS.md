@@ -120,7 +120,7 @@ the loop's pointer induction variable. A local such as `row = items[i]` can
 move that choice. Both were proven on `CTitle::render` 0x425740.
 
 **Post-switch `advance_frame_and_dispatch()` places the shared `fstp st(0); call advance; ret` tail in `case 9` (or a later `break` case).**
-In 12 of the 13 roster Fighter `+0x28` roots (and in Iku's `case 781`, the one exception), `case 0` never owns `fstp st(0); mov ecx, esi; call 0x4351c0; ret` and `case 9` does not hoist `mov ecx, esi` above `je`. Putting `advance_frame_and_dispatch();` immediately after the `switch` and exiting `case 0, 2, 4, 5, 9` with `break;` causes `c2.dll:0x10B281E0` to place the shared `advance` block right after `case 9` *before* x87 lowering (`0x10C28970`), which inserts `fstp st(0)` at `0x47973A`, blocks `mov ecx, esi` hoisting in `case 9`, and automatically keeps `6/7/8/9/306` distinct from `208..223`. Proven on `Reimu_dispatch_action_state_vslot28` `0x00478FA0` (81,550 / 82,924 bytes).
+Across the 15 roster Fighter `+0x28` roots (14 on `case 9`, and Iku on `case 781`), `case 0` never owns `fstp st(0); mov ecx, esi; call 0x4351c0; ret` and `case 9` does not hoist `mov ecx, esi` above `je`. Putting `advance_frame_and_dispatch();` immediately after the `switch` and exiting `case 0, 2, 4, 5, 9` with `break;` causes `c2.dll:0x10B281E0` to place the shared `advance` block right after `case 9` *before* x87 lowering (`0x10C28970`), which inserts `fstp st(0)` at `0x47973A`, blocks `mov ecx, esi` hoisting in `case 9`, and automatically keeps `6/7/8/9/306` distinct from `208..223`. Proven on `Reimu_dispatch_action_state_vslot28` `0x00478FA0` (81,550 / 82,924 bytes) and confirmed across all 15 Fighter `+0x28` roots.
 
 **`c2.dll:0x10B30B97` tail-merge `saved_bytes` accumulator separates `case 214` from `case 404`.**
 Under `/O2`, `0x10B307E0` rejects merging a 2-byte `call eax; jmp L_ret` tail (`2 <= 20`) unless the retained branch's `[branch + 0x1c]` (`saved_bytes`, capped at 20) was already raised by an earlier >20-byte merge. An artificial shared label placed right after `case 201` raises `case 201`'s `saved_bytes` to 20 before `case 214` is scanned, pulling both `214` and `404` onto `case 201`'s label where `0x10B30D90(214)` then swaps `214` into `404`. Inlining the landing statements in `case 226` and `case 414` raises `case 201`'s `saved_bytes` *after* `case 214` and *before* `case 404`, leaving `214` on `L_ret` while pulling `404`/`414` onto `case 201`'s label. Proven on `Reimu_dispatch_action_state_vslot28` `0x00478FA0`.
@@ -911,61 +911,24 @@ by the public name `Flzero`. An unused-looking zero/pop sequence therefore
 needs its predecessor constraints and register lifetime reviewed before choosing
 a source explanation.
 
-The Patchouli investigation uses Ghidra 12.1.3 with five mapped-byte checks
-against this DLL. Original envelopes are private `c2-fp2-*.json` under
-`build/patchouli-root-work-codex`; readable text substitutes the candidate PDB
-names without changing the analysis database. `read-c2-pdb.py` reproduces the
-symbol/address inspection.
-
 GDB hardware breakpoints through WineDbg's `--gdb --no-start` proxy provide
-working execution control. Root-name conditions distinguish the dispatcher
-from earlier inline-helper compilations. Runtime samples at the five attested
-addresses still match the DLL. WineDbg commands issued at its DLL-load stop
-remain an unsuccessful method; a missed breakpoint there proves no skipped
-pass. The debugger reads compiler state without modifying code or data.
+working execution control without modifying code or data. Root-name conditions
+distinguish the dispatcher from earlier inline-helper compilations. (Note:
+WineDbg commands issued at its DLL-load stop are unreliable; also, GDB's Python
+`Breakpoint.stop()` callback can fire even when `.condition` is false, so filter
+inside the callback before logging.)
 
-For the Patchouli source at `f04698c5`, the zero `__real@00000000` is already
-dead before physical x87 mapping. At `X87MapGFxToSTx + 0x74`, after liveness
-construction, the prefix clamp store marks GF1's last use. Its successor's
-live-in/live-out masks are both zero. Private `c2-runtime-before-map.json`
-and `c2-runtime-after-liveness.json` retain the function IR and block evidence.
-
-The relevant allocator in this profile is the general `Color` routine at
-`10B0CF40`, including register class one. At its `10B0D0BF` gate, module flags
-`+44C = 0805C100` select the path that skips `FPColor`; the class-one loop is
-positively observed. The prefix zero interval has initial spill cost `+40 = 0` at
-`10B0D33B`, with different start/end blocks. The corresponding Tenshi interval
-has cost ten under the same flags. Thus `FPSpillWorthless` is not the active
-cost decision to investigate here. Follow general `Spillcosts` (`10B10420`),
-`SpillObvious` (`10B11560`) and `SpillOrDefer` (`10B0D690`), and reconcile the
-zero's real source uses before changing its lifetime.
-
-Private `c2-{patchouli,tenshi}-{after-globregs,color-fp}-globregs.json` and
-`c2-patchouli-zero-before-color.json` retain those records and the first 200
-blocks' zero references. Both Patchouli
-trace objects replay identically to the clean 55,066-byte candidate. The
-Tenshi debugger control matches its complete 48,968-byte target payload,
-including relocation replay. All debugger/compiler jobs are closed. Patchouli
-remains nonexact; the source property behind its zero-cost interval is open.
-
-On the updated Patchouli source at `d72a7ba2`, four hardware probes cover both
-source and destination cost updates: subtracts at `10B10957`/`10B10F85`, adds
-at `10B109C5`/`10B11007`. The split interval spanning the prefix has sixteen
-`Enterload` deductions of two and sixteen use credits of two, all at block
-weight one. Its final cost is exactly zero. Later splits leave smaller local
-ranges with observed costs four, two and zero. This identifies the allocator
-stage to compare with native control flow, before physical x87 mapping. The
-source or compiler context behind the different placement remains unknown.
-
-Private `c2-current-zero-cost-events.json` retains the operand/tuple records;
-`c2-current-prefix-before-costs.json` pins the root and mapped-byte checks.
-The resulting `costs-gdb-trace.obj` replays identically to the current clean
-55,082-byte candidate, including relocations. Its comparison remains nonexact.
-For this GDB, a Python `Breakpoint.stop()` callback also ran on hits that did
-not satisfy its `.condition`. Filter the callback before logging; the retained
-trace removes the unrelated initial records. All trace jobs ended normally.
+Under this profile (`/O2 /GS- /GR /EHsc /MT`), module flags `+44C = 0805C100`
+at `10B0D0BF` route floating-point intervals through general `Color`
+(`10B0CF40`, register class 1) rather than `FPColor` / `FPSpillWorthless`.
+Follow general `Spillcosts` (`10B10420`, subtract sites `10B10957`/`10B10F85`,
+add sites `10B109C5`/`10B11007`), `SpillObvious` (`10B11560`) and
+`SpillOrDefer` (`10B0D690`).
 
 **Resolution (Patchouli `0x0050F200`, 54,452/55,610 canonical exact):**
+On the pre-exact Patchouli candidate, the prefix `0.0f` interval had 16
+`Enterload` deductions (`-2` each) and 16 use credits (`+2` each), leaving
+spill cost `0` so general `Color` discarded it before `X87MapGFxToSTx`.
 Separating the two `if (sequence_index_13e == 2)` checks in cases `201` and
 `224` (instead of nesting the velocity update inside the `landing()` guard)
 allowed the prefix `0.0f` live range to flow across the false edge into both
@@ -1006,3 +969,39 @@ static_cast<float>(n * 45.0 + base_angle); packet[0] = static_cast<float>(n *
 before `switch (g_match_identifier)` with per-loop `for (float n = 0.0f; ...)`
 simultaneously restored LIFO stack-slot packing (`esp+0x10` vs `esp+0x28`)
 across 15 owners.
+
+**Global constant priority (`CONST(0) -> EBP` vs `CONST(1) -> EBX`) in
+`c2.dll:0x10B14E2A` (Yukari `0x0057B030`, 57,042/58,248 canonical exact):**
+When high-priority local constants (`CONST(6) -> EBP`, `CONST(4) -> EBX`) split
+both `CONST(0)` and `CONST(1)` in general `Color` (`0x10B0CF40`), the post-split
+priority scores computed by `0x10B14E2A` decide which constant claims `EBP`
+versus `EBX` across the entire dispatcher.
+- Writing `case 2:` and `case 1:` separately in a difficulty switch (`action 720`,
+  before `TailMerge` merges them) gave `CONST(70)` `score = 1` (`lea ebp,
+  [eax+0xa]`), shifting `CONST(0)`'s post-split priority deficit against
+  `CONST(1)` from 93 points down to 6 (`-1458` vs `-1452`).
+- Unnesting repeated `!frame_timer_142` frame guards into sequential
+  `if (!frame_timer_142 && frame_index_140 == ...)` checks added `+8` priority
+  to `CONST(0)` with zero extra code bytes, flipping `CONST(0)` ahead of
+  `CONST(1)` so `0 -> EBP` and `1 -> EBX` across all 122 owners.
+- Writing `for (int i = 0; i < count; ++i)` instead of `do { ... } while (--count)`
+  in `burst910` scheduled `word_738 = 1` before loop-counter setup; splitting
+  `if (entry(1))` and `if (entry(2))` in `action 404` restored its shared
+  `0x57F6B5` `set_action_and_finalize(9)` tail.
+
+**Float loop limits, prelude rounding and subobject dispatch (Udonge
+`0x005BFD50`, Suika `0x00598990`, Remilia `0x00545090`):**
+- In Udonge's `word_174 > 0` prelude, writing `float scale = field_7a8; float
+  alpha = scale * word_7a6; byte_113 = static_cast<unsigned char>(alpha);`
+  simultaneously reproduces `fld [esi+0x7a8]; fild; fmulp` at entry, `fld
+  [esi+0x7b0]; fadd [esi+0x73c]` in `expand_cone`, and `fld [esi+0x73c]; fadd
+  [esi+0x740]` in `565..568`.
+- In Suika `525`/`526`, writing `float limit = static_cast<float>(byte_609 +
+  5.0); float m = 0.0f; double count = limit; if (0.0 < limit) do { ... } while
+  (m < count);` keeps `double count` at `[esp+0x18..0x1f]` (stabilizing global
+  stack slots) and schedules `fstp dword ptr [esp+0x20]` at the exact target
+  slot.
+- In Remilia, calling `0x00435160` (`oriented_components`) through a `+0x04`
+  subobject emits `lea ecx, [esi+4]`, calling `0x0045C030` through `owner_168`
+  in `607`/`710` emits `mov ecx, [esi+0x168]`, and `double step = field_73c *
+  90.0;` in `710` mode 1 preserves the target x87 schedule and `0x4f0` frame.

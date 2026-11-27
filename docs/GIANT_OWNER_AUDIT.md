@@ -123,11 +123,11 @@ publisher owner is progress, not a claim that aggregate text size matched.
 The candidate pre-table span may include generated alignment and must not be
 reported as newly exact authored code.
 
-Formal comparison still fails normally, with complete relocation/literal
-closure, at **root +0x14 / 0x004740D4**, target byte **48**, final candidate
-**9D** (initial baseline **86**). The 10,219-byte root stays source-present/
-nonexact. The local audit improvement adds **zero** accepted functions and
-**zero** accepted authored bytes.
+At that 2026-09-07 checkpoint, formal comparison still failed at **root +0x14
+/ 0x004740D4**, target byte **48**, final candidate **9D** (initial baseline
+**86**); the subsequent
+[November layout recovery](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md) closed the
+complete 10,725-byte envelope to 100% canonical exactness (66/66 owners).
 
 ## Bounded candidate-boundary recheck
 
@@ -231,6 +231,7 @@ The targets are qualified only for those sixteen reviewed receiver types.
 
 The original audit above still reports the eight raw indirect exits; no
 unknown edge is silently erased. The supplemental facts and Ghidra call-flow
-inferences do not change canonical comparison or owner counting. Source
-interface alignment is byte-neutral; the retained root still has 53/66
-diagnostic owners and remains entirely nonexact.
+inferences do not change canonical comparison or owner counting. At that
+October checkpoint, source interface alignment was byte-neutral at 53/66
+owners; the later [November layout recovery](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md)
+brought the root to 66/66 canonical exactness.
