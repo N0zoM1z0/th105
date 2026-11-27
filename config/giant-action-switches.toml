@@ -1064,7 +1064,7 @@ expected_physical_groups = 31
 name = "udonge-vslot28"
 address = "0x005BFD50"
 callable_end = "0x005D0233"
-metadata_end = "0x005D06D0"
+metadata_end = "0x005D06CC"
 # Decoded direct calls:902/29 targets. Raw E8 scan sees903 and is not a census.
 
 [[roots.regions]]
@@ -1093,6 +1093,30 @@ destination_table = "0x005D04F4"
 destination_count = 39
 index_table = "0x005D0590"
 expected_physical_groups = 39
+
+[[roots.auxiliary_switches]]
+name = "action710-match-identifier"
+dispatch = "0x005CF3C6"
+destination_table = "0x005D068C"
+destinations = ["0x005CF3EE", "0x005CF3E3", "0x005CF3D8", "0x005CF3CD"]
+
+[[roots.auxiliary_switches]]
+name = "action725-match-identifier"
+dispatch = "0x005CF64C"
+destination_table = "0x005D069C"
+destinations = ["0x005CF7B2", "0x005CF73F", "0x005CF6C9", "0x005CF653"]
+
+[[roots.auxiliary_switches]]
+name = "action726-match-identifier"
+dispatch = "0x005CFD86"
+destination_table = "0x005D06AC"
+destinations = ["0x005CFDB5", "0x005CFDA1", "0x005CB773", "0x005CFD8D"]
+
+[[roots.auxiliary_switches]]
+name = "action730-match-identifier"
+dispatch = "0x005CFDE3"
+destination_table = "0x005D06BC"
+destinations = ["0x005CFE0B", "0x005CFE00", "0x005CFDF5", "0x005CFDEA"]
 
 [[roots]]
 name = "info-effect-update"

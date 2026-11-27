@@ -1,10 +1,60 @@
-# Udonge action-state 0x005BFD50
+# Udonge action-state root (`0x005BFD50`), JP 1.06a
 
-Complete-label, unselected, nonexact C++ candidate: 110 top-level action labels,
-shared prelude and default path. Coverage and compilation do not establish
-semantic correctness. No implemented.csv, matches.csv or exact-byte credit.
+## Status and scope
 
-## Native evidence
+`exact-first-udonge-action-state` is **canonical exact** from the
+character-scoped [source](../src/characters/UdongeActionState.cpp) and
+[checked receiver](../src/characters/UdongeActionState.hpp), under VC8 SP1
+`/O2 /GS- /GR /EHsc /MT`.
+
+- All 66,787 callable code bytes (`[0x005BFD50, 0x005D0233)`) and the complete
+  67,964-byte seven-table switch payload (`[0x005BFD50, 0x005D06CC)`) match
+  with zero byte differences.
+- All 1,878 COFF relocations agree: 902 `REL32` calls across 29 targets and
+  976 `DIR32` fields. The 1,177 metadata bytes contain 7 switch tables, 121
+  destination words, 688 index bytes and 5 alignment bytes (`90`, `90`, `90`,
+  `8bff`).
+- The owner audit is `104/104` (`103` unique switch destinations plus `entry`).
+  Raw CFG reaches all 16,886 instructions / 66,787 authored bytes with zero
+  internal alignment holes.
+- Code SHA-256: `ab78b849a55e354b0495d31cc47568b41040607644445b82c68e980337b45c0f`.
+- Payload SHA-256: `8f59f23a42efe00b3778ad1212e16f668c76b30296a98bdb60766ce46fb714c9`.
+
+Reproduce with:
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-udonge-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-udonge-action-state udonge-vslot28 build/match-units/ExactFirst_UdongeActionState.obj --json
+```
+
+### Key source-shape fixes for canonical equality
+
+- **Checked typed receiver and ABI widths**: replaced `at<T>` offset casts and
+  the 9 split `.inc` fragments with a self-contained typed
+  `UdongeActionStateView` (with compile-time `offsetof` checks), `signed char`
+  direction on `spawn` (`0x00465190`), `unsigned char` direction on `effect`
+  (`0x00435240`), and `float` return types on `udonge_sine` / `udonge_cosine`.
+- **Inlining early-return helpers and post-switch `advance()`**: moving the
+  shared `advance()` tail after `switch (action_id_13c)` for `0, 2, 4, 5` and
+  inlining early-return helpers (`normal_jump`, `recovery_jump`, `high_jump`,
+  `update_beam_radius`, `shot800`, `shot801`, `shot816`, etc.) restores the
+  native `0x480` stack frame, `L_ret` predecessor order, all 103 unique switch
+  destinations, and every tail-merge.
+- **`cases 525..528` cone check (`peer_in_cone`)**: fixed a semantic bug in the
+  retained 1.06 scaffold where the hit packet wrote `p[1] = 1.0f` instead of
+  the target's `p[2] = 1.0f` (`fstp [esp + 0x204]`), and replaced the `peer()`
+  / `facing()` inline wrappers with direct `fighter_170->` / `facing_104`
+  accesses so VC8 preserves `edi` across the first `udonge_tangent` call and
+  reloads `fighter_170` after the second call.
+- **Entry alpha scaling and `565..568` x87 operand order**: reading
+  `float scale = field_7a8; float alpha = scale * word_7a6; byte_113 = static_cast<unsigned char>(alpha);`
+  in the `word_174 > 0` prelude emits target `fld [esi+0x7a8]; fild [esp+0x18]; fnstcw; movzx; fmulp st(1)`
+  while keeping `fld [esi+0x7b0]; fadd [esi+0x73c]` in `expand_cone` (`525..528`,
+  `726`) and `fld [esi+0x73c]; fadd [esi+0x740]` in `565..568`.
+
+The dated notes below retain the earlier discovery and code-generation trials.
+
+## Native evidence (2026-10-28 historical note)
 
 The Japanese 1.06a target is hash-attested. Factory IDA metadata, entry,
 inventory and mapped-byte samples matched the canonical image. The local MCP

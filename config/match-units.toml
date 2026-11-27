@@ -24402,13 +24402,13 @@ source = "src/characters/UdongeActionState.cpp"
 object = "build/match-units/ExactFirst_UdongeActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete-label unselected5BFD50 candidate:110 actions; target66787/full67968. Callback lifetime and compiler ownership remain under review. No implemented/exact credit; docs/UDONGE_ACTION_STATE_2026_10_28.md."
+notes = "Canonical exact JP1.06a 0x005BFD50 Udonge Fighter +0x28 action-state root: 66787 callable code bytes (16886 reachable instructions) and complete 67964-byte seven-table switch payload (121 destination words, 688 index bytes, 5 alignment bytes, 1878 relocations; 104/104 exact owners). See docs/UDONGE_ACTION_STATE_2026_10_28.md."
 
 [[units.exact-first-udonge-action-state.functions]]
 address = "0x005BFD50"
 symbol_base = "?dispatch_action_state_vslot28@UdongeActionStateView@th105@@QAEXXZ"
 rel32_targets = [
-    "?spawn@UdongeActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?spawn@UdongeActionStateView@th105@@QAEHHMMCHPBXH@Z=0x00465190",
     "?udonge_random@th105@@YAIH@Z=0x004067D0",
     "?landing@UdongeActionStateView@th105@@QAEEXZ=0x00473DD0",
     "?zero_motion@UdongeActionStateView@th105@@QAEXXZ=0x0045AF40",
@@ -24416,7 +24416,7 @@ rel32_targets = [
     "?crossed@UdongeActionStateView@th105@@QAEHXZ=0x005F9310",
     "?udonge_surface@th105@@YIMPAVUdongeActionStateView@1@@Z=0x00435D60",
     "?udonge_random_u32@th105@@YAIXZ=0x004066B0",
-    "?effect@UdongeActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?effect@UdongeActionStateView@th105@@QAEXHMMEH@Z=0x00435240",
     "?event@UdongeActionStateView@th105@@QAEXI@Z=0x004359F0",
     "?udonge_on_surface@th105@@YIEPAVUdongeActionStateView@1@@Z=0x00435DC0",
     "?flip@UdongeActionStateView@th105@@QAEXXZ=0x00478E60",
@@ -24426,7 +24426,7 @@ rel32_targets = [
     "?counter@UdongeActionStateView@th105@@QAEXFH@Z=0x0046BF30",
     "?reset@UdongeActionScratch@th105@@QAEXXZ=0x00435110",
     "?directional@UdongeActionStateView@th105@@QAEEH@Z=0x00478EE0",
-    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?dispatch_character_wave_handle@UdongeActionStateView@th105@@QAEXI@Z=0x0045C030",
     "?udonge_atan@th105@@YAMMM@Z=0x00406540",
     "?phase_counter@UdongeActionStateView@th105@@QAEHH@Z=0x00478DF0",
     "?udonge_tangent@th105@@YAMM@Z=0x00406430",
@@ -24437,6 +24437,25 @@ rel32_targets = [
     "?finalize@UdongeActionStateView@th105@@QAEXH@Z=0x0045D110",
     "?copy_health@UdongeActionStateView@th105@@QAEXXZ=0x0045B250",
     "?common_update@UdongeActionStateView@th105@@QAEXXZ=0x004740C0",
+]
+
+[units.exact-first-udonge-action-state.functions.switch_payload]
+size = 67964
+sha256 = "8f59f23a42efe00b3778ad1212e16f668c76b30296a98bdb60766ce46fb714c9"
+alignment_hex = "90"
+table_offset = 66788
+table_entries = 32
+map_offset = 66916
+map_size = 227
+load_offset = 1805
+jump_offset = 1812
+additional_tables = [
+    { alignment_hex = "90", table_offset = 67144, table_entries = 34, map_offset = 67280, map_size = 211, load_offset = 12047, jump_offset = 12054 },
+    { alignment_hex = "90", table_offset = 67492, table_entries = 39, map_offset = 67648, map_size = 250, load_offset = 41406, jump_offset = 41413 },
+    { alignment_hex = "8bff", table_offset = 67900, table_entries = 4, jump_offset = 63094 },
+    { alignment_hex = "", table_offset = 67916, table_entries = 4, jump_offset = 63740 },
+    { alignment_hex = "", table_offset = 67932, table_entries = 4, jump_offset = 65590 },
+    { alignment_hex = "", table_offset = 67948, table_entries = 4, jump_offset = 65683 },
 ]
 
 [units.exact-first-angle-tangent]

@@ -5,6 +5,41 @@ Target: original Japanese TH10.5 v1.06a, SHA-256
 Follow [AGENTS.md](../AGENTS.md), [shared tools](SHARED_TOOLS.md) and the
 [reconstruction workflow](RE_WORKFLOW.md). Keep compiler/analyzer work serial.
 
+## Completed: Udonge Fighter `+0x28` (`0x005BFD50`)
+
+`exact-first-udonge-action-state` is canonical exact from the character-scoped
+[source](../src/characters/UdongeActionState.cpp) and
+[checked receiver](../src/characters/UdongeActionState.hpp), under VC8 SP1
+`/O2 /GS- /GR /EHsc /MT`.
+
+- All 66,787 callable code bytes and the complete 67,964-byte seven-table switch
+  payload `[0x005BFD50,0x005D06CC)` match with zero differences.
+- All 1,878 relocations agree: 902 REL32 calls across 29 targets and 976 DIR32
+  fields. Seven tables contain 121 destination words, 688 index bytes and 5
+  alignment bytes.
+- The owner audit is 104/104. Raw CFG reaches all 16,886 instructions / 66,787
+  authored bytes with zero unreachable alignment bytes.
+- Code SHA-256: `ab78b849a55e354b0495d31cc47568b41040607644445b82c68e980337b45c0f`;
+  payload SHA-256: `8f59f23a42efe00b3778ad1212e16f668c76b30296a98bdb60766ce46fb714c9`.
+
+Reproduce with:
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-udonge-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-udonge-action-state udonge-vslot28 build/match-units/ExactFirst_UdongeActionState.obj --json
+```
+
+Private results: `build/udonge-root-work/{canonical,owners}.json`.
+The [Udonge note](UDONGE_ACTION_STATE_2026_10_28.md) records the checked typed
+receiver (removing the 9 `.inc` fragments and `at<T>` casts), `signed char` /
+`unsigned char` direction parameters on `spawn`/`effect`, inlined early-return
+helpers, the `cases 525..528` cone-hit packet fix (`p[2] = 1.0f` instead of
+`p[1] = 1.0f`) plus direct `fighter_170->` / `facing_104` reads, and the
+`word_174 > 0` prelude `float scale = field_7a8; float alpha = scale * word_7a6;`
+form that simultaneously matches `entry` `fld; fild; fmulp`, `expand_cone`
+`fld [0x7b0]; fadd [0x73c]` and `565..568` `fld [0x73c]; fadd [0x740]`. No
+shared gameplay source, layout or compiler flags changed.
+
 ## Completed: Komachi Fighter `+0x28` (`0x005E20E0`)
 
 `exact-first-komachi-action-state` is canonical exact from the character-scoped
