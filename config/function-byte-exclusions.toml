@@ -128,3 +128,28 @@ start = "0x0050F8A9"
 end = "0x0050F8AF"
 size = 7
 sha256 = "4fe06c07aad18cb5faea1a925ff71a52931084bbb3f844ffd60bae6a9ce14cce"
+
+[[functions]]
+address = "0x00598990"
+main_size = 79435
+main_end = "0x005ABFDA"
+main_excluded_bytes = 9
+evidence = "Complete exact-first-suika-action-state code and switch-payload replay includes three unreachable VC8 loop-alignment LEA ECX,[ECX] instructions; raw CFG reaches 79426 authored bytes. docs/SUIKA_ACTION_STATE_2026_10_28.md."
+
+[[functions.main_exclusions]]
+start = "0x005A09FD"
+end = "0x005A09FF"
+size = 3
+sha256 = "53e090edb4fca0626d458dbefa0ae1bcbffc511ed159f1a70641610ad0d9a200"
+
+[[functions.main_exclusions]]
+start = "0x005A5A5D"
+end = "0x005A5A5F"
+size = 3
+sha256 = "53e090edb4fca0626d458dbefa0ae1bcbffc511ed159f1a70641610ad0d9a200"
+
+[[functions.main_exclusions]]
+start = "0x005A97CD"
+end = "0x005A97CF"
+size = 3
+sha256 = "53e090edb4fca0626d458dbefa0ae1bcbffc511ed159f1a70641610ad0d9a200"

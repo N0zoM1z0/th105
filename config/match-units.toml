@@ -24351,7 +24351,7 @@ source = "src/characters/SuikaActionState.cpp"
 object = "build/match-units/ExactFirst_SuikaActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete-label unselected598990 candidate:115 actions; target79435/full81136. Semantic, callback lifetime and compiler ownership review remains open. No implemented/exact credit; docs/SUIKA_ACTION_STATE_2026_10_28.md."
+notes = "Canonical exact JP1.06a 0x00598990 Suika Fighter +0x28 action-state root: 79435 physical / 79426 owned code bytes (20321 reachable instructions, 9 internal loop-alignment bytes) and complete 81124-byte twenty-table switch payload (239 destination words, 726 index bytes, 7 alignment bytes, 2553 relocations; 114/114 exact owners). See docs/SUIKA_ACTION_STATE_2026_10_28.md."
 
 [[units.exact-first-suika-action-state.functions]]
 address = "0x00598990"
@@ -24364,7 +24364,7 @@ rel32_targets = [
     "?crossed@SuikaActionStateView@th105@@QAEHXZ=0x005F9310",
     "?suika_surface@th105@@YIMPAVSuikaActionStateView@1@@Z=0x00435D60",
     "?suika_random_u32@th105@@YAIXZ=0x004066B0",
-    "?effect@SuikaActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?effect@SuikaActionStateView@th105@@QAEXHMMEH@Z=0x00435240",
     "?event@SuikaActionStateView@th105@@QAEXI@Z=0x004359F0",
     "?flip@SuikaActionStateView@th105@@QAEXXZ=0x00478E60",
     "?suika_on_surface@th105@@YIEPAVSuikaActionStateView@1@@Z=0x00435DC0",
@@ -24373,8 +24373,8 @@ rel32_targets = [
     "?suika_sine@th105@@YAMM@Z=0x00406360",
     "?reset@SuikaActionScratch@th105@@QAEXXZ=0x00435110",
     "?directional@SuikaActionStateView@th105@@QAEEH@Z=0x00478EE0",
-    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
-    "?spawn@SuikaActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?dispatch_character_wave_handle@SuikaActionStateView@th105@@QAEXI@Z=0x0045C030",
+    "?spawn@SuikaActionStateView@th105@@QAEHHMMCHPBXH@Z=0x00465190",
     "?layout@SuikaActionStateView@th105@@QAEXM@Z=0x004359D0",
     "?phase_counter@SuikaActionStateView@th105@@QAEHH@Z=0x00478DF0",
     "?suika_atan@th105@@YAMMM@Z=0x00406540",
@@ -24387,13 +24387,45 @@ rel32_targets = [
     "?shared_first@SuikaActionStateView@th105@@QAECCM@Z=0x00476AB0",
     "?shared_second@SuikaActionStateView@th105@@QAECCM@Z=0x00476AD0",
     "?classify_fighter_x_boundary@SuikaActionStateView@th105@@QAECXZ=0x00435910",
-    "?forward_hit_quantity@AnimationSequenceObjectView@th105@@QAEXHHFC@Z=0x0045C060",
+    "?forward_hit_quantity@SuikaActionStateView@th105@@QAEXHHFC@Z=0x0045C060",
     "?finalize@SuikaActionStateView@th105@@QAEXH@Z=0x0045D110",
     "?copy_health@SuikaActionStateView@th105@@QAEXXZ=0x0045B250",
     "?suika_sine_int@th105@@YAMH@Z=0x00406480",
     "?suika_absolute@th105@@YAMM@Z=0x00406330",
     "?oriented_components@SuikaActionScratch@th105@@QAEXMM@Z=0x00435160",
     "?common_update@SuikaActionStateView@th105@@QAEXXZ=0x004740C0",
+]
+
+[units.exact-first-suika-action-state.functions.switch_payload]
+size = 81124
+sha256 = "adb2bc7f9936c61683a9028edb19fb3625c2b79c51890891995e6271d95c426c"
+alignment_hex = "90"
+table_offset = 79436
+table_entries = 33
+map_offset = 79568
+map_size = 227
+load_offset = 248
+jump_offset = 255
+additional_tables = [
+    { alignment_hex = "90", table_offset = 79796, table_entries = 50, map_offset = 79996, map_size = 247, load_offset = 9518, jump_offset = 9525 },
+    { alignment_hex = "90", table_offset = 80244, table_entries = 31, map_offset = 80368, map_size = 238, load_offset = 38608, jump_offset = 38615 },
+    { alignment_hex = "8bff", table_offset = 80608, table_entries = 7, jump_offset = 45266 },
+    { alignment_hex = "", table_offset = 80636, table_entries = 18, jump_offset = 47855 },
+    { alignment_hex = "", table_offset = 80708, table_entries = 17, jump_offset = 51489 },
+    { alignment_hex = "", table_offset = 80776, table_entries = 6, map_offset = 80800, map_size = 14, load_offset = 55736, jump_offset = 55743 },
+    { alignment_hex = "8bff", table_offset = 80816, table_entries = 6, jump_offset = 57729 },
+    { alignment_hex = "", table_offset = 80840, table_entries = 6, jump_offset = 58995 },
+    { alignment_hex = "", table_offset = 80864, table_entries = 7, jump_offset = 60224 },
+    { alignment_hex = "", table_offset = 80892, table_entries = 4, jump_offset = 64629 },
+    { alignment_hex = "", table_offset = 80908, table_entries = 4, jump_offset = 64946 },
+    { alignment_hex = "", table_offset = 80924, table_entries = 4, jump_offset = 65328 },
+    { alignment_hex = "", table_offset = 80940, table_entries = 15, jump_offset = 65954 },
+    { alignment_hex = "", table_offset = 81000, table_entries = 4, jump_offset = 66468 },
+    { alignment_hex = "", table_offset = 81016, table_entries = 4, jump_offset = 68103 },
+    { alignment_hex = "", table_offset = 81032, table_entries = 11, jump_offset = 68662 },
+    { alignment_hex = "", table_offset = 81076, table_entries = 4, jump_offset = 73336 },
+    { alignment_hex = "", table_offset = 81092, table_entries = 4, jump_offset = 75282 },
+    { alignment_hex = "", table_offset = 81108, table_entries = 4, jump_offset = 76582 },
 ]
 
 [units.exact-first-udonge-action-state]

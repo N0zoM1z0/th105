@@ -5,6 +5,43 @@ Target: original Japanese TH10.5 v1.06a, SHA-256
 Follow [AGENTS.md](../AGENTS.md), [shared tools](SHARED_TOOLS.md) and the
 [reconstruction workflow](RE_WORKFLOW.md). Keep compiler/analyzer work serial.
 
+## Completed: Suika Fighter `+0x28` (`0x00598990`)
+
+`exact-first-suika-action-state` is canonical exact from the character-scoped
+[source](../src/characters/SuikaActionState.cpp) and
+[checked receiver](../src/characters/SuikaActionState.hpp), under VC8 SP1
+`/O2 /GS- /GR /EHsc /MT`.
+
+- All 79,435 physical callable bytes and the complete 81,124-byte twenty-table
+  switch payload `[0x00598990,0x005AC674)` match with zero differences.
+- All 2,553 relocations agree: 1,081 REL32 calls across 37 targets and 1,472
+  DIR32 fields. Twenty tables contain 239 destination words, 726 index bytes and
+  7 alignment bytes.
+- The owner audit is 114/114. Raw CFG reaches 20,321 of 20,324 decoded
+  instructions / 79,426 authored bytes; three unreachable 3-byte VC8
+  loop-alignment `lea ecx, [ecx]` instructions (`0x005A09FD`, `0x005A5A5D`,
+  `0x005A97CD`, 9 bytes total) are compared and excluded from authored progress.
+- Code SHA-256: `a1006a208fb62813cec2081c250f5825e88011ce834cff9e49e5d15d0164feb9`;
+  payload SHA-256: `adb2bc7f9936c61683a9028edb19fb3625c2b79c51890891995e6271d95c426c`.
+
+Reproduce with:
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-suika-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-suika-action-state suika-vslot28 build/match-units/ExactFirst_SuikaActionState.obj --json
+```
+
+Private results: `build/suika-root-work/{canonical,owners}.json`.
+The [Suika note](SUIKA_ACTION_STATE_2026_10_28.md) records the checked typed
+receiver (removing the 11 `.inc` fragments and `at<T>` casts), `signed char`/
+`unsigned char` direction parameters on `spawn`/`effect`, the `case 412`
+(`set_action_and_finalize(2)`) and `500`/`501` (`if (word_732 == 1) ... else`)
+fixes, the inlined giant `605`/`730` surface/button ladders, and the `525`/`526`
+`float limit = static_cast<float>(byte_609 + 5.0); float m = 0.0f; double count = limit; if (0.0 < limit)`
+loop form that reproduces global `[esp+0x18]`/`[esp+0x1c]` slot assignment and
+exact `fstp dword ptr [esp+0x20]` scheduling. No shared gameplay source, layout
+or compiler flags changed.
+
 ## Completed: Udonge Fighter `+0x28` (`0x005BFD50`)
 
 `exact-first-udonge-action-state` is canonical exact from the character-scoped

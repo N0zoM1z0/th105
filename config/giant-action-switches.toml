@@ -1027,19 +1027,19 @@ dispatch = "0x004B3590"
 destination_table = "0x004B4060"
 destinations = ["0x004B365D", "0x004B360A", "0x004B35B9", "0x004B3597"]
 
-# Suika target has33 low owners; current unselected source merges208/220.
+# Suika complete callable and all twenty switch tables (three sparse action regions plus seventeen auxiliary switches).
 [[roots]]
 name = "suika-vslot28"
 address = "0x00598990"
 callable_end = "0x005ABFDB"
-metadata_end = "0x005AC680"
+metadata_end = "0x005AC674"
+# Decoded direct calls: 1081/37 targets. Raw E8 scan sees 1083 and is not a census.
 [[roots.regions]]
 name = "low"
 case_min = 0
 case_max = 226
 destination_table = "0x005ABFDC"
 destination_count = 33
-candidate_destination_counts = [32, 33]
 index_table = "0x005AC060"
 expected_physical_groups = 33
 [[roots.regions]]
@@ -1058,6 +1058,91 @@ destination_table = "0x005AC304"
 destination_count = 31
 index_table = "0x005AC380"
 expected_physical_groups = 31
+[[roots.auxiliary_switches]]
+name = "action603_seq4"
+dispatch = "0x005A3A62"
+destination_table = "0x005AC470"
+destinations = ["0x005A3A69", "0x005A3ACC", "0x005A3B23", "0x005A3B8A", "0x005A3BEB", "0x005A3C4E", "0x005A3CAE"]
+[[roots.auxiliary_switches]]
+name = "action605_pre"
+dispatch = "0x005A447F"
+destination_table = "0x005AC48C"
+destinations = ["0x005A4486", "0x005A45B9", "0x005A4811", "0x005A4FA7", "0x005A4A12", "0x005A4A12", "0x005A4C1A", "0x005A4C5C", "0x005A4C9E", "0x005A4CE0", "0x005A4D22", "0x005A4D6C", "0x005A4DAE", "0x005A4F07", "0x005A4F49", "0x005A4FA7", "0x005A4D22", "0x005A4D22"]
+[[roots.auxiliary_switches]]
+name = "action605_post"
+dispatch = "0x005A52B1"
+destination_table = "0x005AC4D4"
+destinations = ["0x005A52B8", "0x005A547B", "0x005A54AD", "0x005A5727", "0x005A1752", "0x005A1752", "0x005A1752", "0x005A5759", "0x005A58B2", "0x005A5A08", "0x005A5BF6", "0x005A1752", "0x005A1752", "0x005A1752", "0x005A1752", "0x005A5C35", "0x005A5CE5"]
+[[roots.auxiliary_switches]]
+name = "action608_pre"
+dispatch = "0x005A634F"
+destination_table = "0x005AC518"
+destinations = ["0x005A6356", "0x005A63FB", "0x005A64E2", "0x005A65C9", "0x005A668F", "0x005A66D3"]
+[[roots.auxiliary_switches]]
+name = "action608_seq5"
+dispatch = "0x005A6B11"
+destination_table = "0x005AC540"
+destinations = ["0x005A6B18", "0x005A6B99", "0x005A6C16", "0x005A6E47", "0x005A6D50", "0x005A6DC9"]
+[[roots.auxiliary_switches]]
+name = "action608_seq8"
+dispatch = "0x005A7003"
+destination_table = "0x005AC558"
+destinations = ["0x005A700A", "0x005A7070", "0x005A70DA", "0x005A7400", "0x005A7322", "0x005A7386"]
+[[roots.auxiliary_switches]]
+name = "action608_seq10"
+dispatch = "0x005A74D0"
+destination_table = "0x005AC570"
+destinations = ["0x005A74D7", "0x005A753F", "0x005A75B3", "0x005A7627", "0x005A768F", "0x005A7703", "0x005A7777"]
+[[roots.auxiliary_switches]]
+name = "action710_difficulty"
+dispatch = "0x005A8605"
+destination_table = "0x005AC58C"
+destinations = ["0x005A8646", "0x005A8629", "0x005A860C", "0x005A860C"]
+[[roots.auxiliary_switches]]
+name = "action711_difficulty"
+dispatch = "0x005A8742"
+destination_table = "0x005AC59C"
+destinations = ["0x005A8783", "0x005A8766", "0x005A8749", "0x005A8749"]
+[[roots.auxiliary_switches]]
+name = "action720_difficulty"
+dispatch = "0x005A88C0"
+destination_table = "0x005AC5AC"
+destinations = ["0x005A8A75", "0x005A8A1B", "0x005A8971", "0x005A88C7"]
+[[roots.auxiliary_switches]]
+name = "action730_pre"
+dispatch = "0x005A8B32"
+destination_table = "0x005AC5BC"
+destinations = ["0x005A8B39", "0x005A8B97", "0x005A8D28", "0x005A928D", "0x005A8DA0", "0x005A8DA0", "0x005A8F00", "0x005A8F42", "0x005A8F84", "0x005A8FC6", "0x005A9008", "0x005A9052", "0x005A9094", "0x005A91ED", "0x005A922F"]
+[[roots.auxiliary_switches]]
+name = "action730_seq2_difficulty"
+dispatch = "0x005A8D34"
+destination_table = "0x005AC5F8"
+destinations = ["0x005A8D53", "0x005A8D4B", "0x005A8D43", "0x005A8D3B"]
+[[roots.auxiliary_switches]]
+name = "action730_entry4_difficulty"
+dispatch = "0x005A9397"
+destination_table = "0x005AC608"
+destinations = ["0x005A93CF", "0x005A93C5", "0x005A93BB", "0x005A939E"]
+[[roots.auxiliary_switches]]
+name = "action730_post"
+dispatch = "0x005A95C6"
+destination_table = "0x005AC618"
+destinations = ["0x005A95CD", "0x005A1752", "0x005A9764", "0x005A1752", "0x005A1752", "0x005A1752", "0x005A1752", "0x005A9A34", "0x005A9E8D", "0x005A9FE2", "0x005AA452"]
+[[roots.auxiliary_switches]]
+name = "action740_difficulty"
+dispatch = "0x005AA808"
+destination_table = "0x005AC644"
+destinations = ["0x005AA883", "0x005AA857", "0x005AA840", "0x005AA80F"]
+[[roots.auxiliary_switches]]
+name = "action751_entry_difficulty"
+dispatch = "0x005AAFA2"
+destination_table = "0x005AC654"
+destinations = ["0x005AB342", "0x005AB20F", "0x005AB0DC", "0x005AAFA9"]
+[[roots.auxiliary_switches]]
+name = "action751_seq1_difficulty"
+dispatch = "0x005AB4B6"
+destination_table = "0x005AC664"
+destinations = ["0x005AB4E6", "0x005AB4DE", "0x005AB4D6", "0x005AB4BD"]
 
 # Udonge complete callable and all three sparse action regions.
 [[roots]]
