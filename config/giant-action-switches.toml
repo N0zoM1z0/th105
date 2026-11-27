@@ -881,7 +881,7 @@ destination_count = 6
 index_table = "0x0058939C"
 expected_physical_groups = 6
 
-# Remilia action-owner mapping is diagnostic only; no exact credit.
+# Remilia complete callable and all sixteen switch tables.
 [[roots]]
 name = "remilia-vslot28"
 address = "0x00545090"
@@ -894,7 +894,6 @@ case_min = 0
 case_max = 226
 destination_table = "0x0055429C"
 destination_count = 32
-candidate_destination_counts = [31, 32]
 index_table = "0x0055431C"
 expected_physical_groups = 32
 
@@ -915,6 +914,84 @@ destination_table = "0x005545F0"
 destination_count = 30
 index_table = "0x00554668"
 expected_physical_groups = 30
+
+[[roots.auxiliary_switches]]
+name = "action520-ring815-base-skill"
+dispatch = "0x0054B64D"
+destination_table = "0x005545A0"
+destinations = ["0x0054B654", "0x0054B65C", "0x0054B65C", "0x0054B65C", "0x0054B664"]
+
+[[roots.auxiliary_switches]]
+name = "action520-ring815-charged-skill"
+dispatch = "0x0054B891"
+destination_table = "0x005545B4"
+destinations = ["0x0054B898", "0x0054B8A0", "0x0054B8A0", "0x0054B8A0", "0x0054B8A8"]
+
+[[roots.auxiliary_switches]]
+name = "action521-ring815-base-skill"
+dispatch = "0x0054BB7B"
+destination_table = "0x005545C8"
+destinations = ["0x0054BB82", "0x0054BB8A", "0x0054BB8A", "0x0054BB8A", "0x0054BB92"]
+
+[[roots.auxiliary_switches]]
+name = "action521-ring815-charged-skill"
+dispatch = "0x0054BDBF"
+destination_table = "0x005545DC"
+destinations = ["0x0054BDC6", "0x0054BDCE", "0x0054BDCE", "0x0054BDCE", "0x0054BDD6"]
+
+[[roots.auxiliary_switches]]
+name = "action710-difficulty"
+dispatch = "0x00550358"
+destination_table = "0x00554754"
+destinations = ["0x00550725", "0x005505B4", "0x00550497", "0x0055035F"]
+
+[[roots.auxiliary_switches]]
+name = "action720-seq2-difficulty"
+dispatch = "0x00550ACC"
+destination_table = "0x00554764"
+destinations = ["0x00550C56", "0x00550BD7", "0x00550B55", "0x00550AD3"]
+
+[[roots.auxiliary_switches]]
+name = "action730-seq12-difficulty"
+dispatch = "0x005519CB"
+destination_table = "0x00554774"
+destinations = ["0x00551C39", "0x00551B66", "0x00551A9B", "0x005519D2"]
+
+[[roots.auxiliary_switches]]
+name = "action730-seq3-difficulty"
+dispatch = "0x00551D7D"
+destination_table = "0x00554784"
+destinations = ["0x00552109", "0x00551FE9", "0x00551EC9", "0x00551DA5"]
+
+[[roots.auxiliary_switches]]
+name = "action731-seq12-difficulty"
+dispatch = "0x0055273D"
+destination_table = "0x00554794"
+destinations = ["0x005529AB", "0x005528D8", "0x0055280D", "0x00552744"]
+
+[[roots.auxiliary_switches]]
+name = "action731-seq3-difficulty"
+dispatch = "0x00552AF3"
+destination_table = "0x005547A4"
+destinations = ["0x00552E59", "0x00552D39", "0x00552C19", "0x00552AFA"]
+
+[[roots.auxiliary_switches]]
+name = "action741-phase0-difficulty"
+dispatch = "0x0055366E"
+destination_table = "0x005547B4"
+destinations = ["0x00553675", "0x00553675", "0x00553675", "0x00553675"]
+
+[[roots.auxiliary_switches]]
+name = "action741-phase1-difficulty"
+dispatch = "0x00553807"
+destination_table = "0x005547C4"
+destinations = ["0x00553A4B", "0x0055398C", "0x005538CD", "0x0055380E"]
+
+[[roots.auxiliary_switches]]
+name = "action741-phase2-difficulty"
+dispatch = "0x00553C5D"
+destination_table = "0x005547D4"
+destinations = ["0x00553EDA", "0x00553E0A", "0x00553D3A", "0x00553C64"]
 
 # Komachi complete callable and all seven switch tables.
 [[roots]]

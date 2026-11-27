@@ -24182,19 +24182,19 @@ source = "src/characters/RemiliaActionState.cpp"
 object = "build/match-units/ExactFirst_RemiliaActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete unselected 545090 candidate: 107 actions; target 61962/full63316. Native CFG closed; semantic and physical-owner review remains. No implementation/exact credit; docs/REMILIA_ACTION_STATE_2026_10_28.md."
+notes = "Canonical exact JP1.06a 0x00545090 Remilia Fighter +0x28 action-state root: 61962 physical / 61959 owned code bytes (15972 reachable instructions, 3 internal loop-alignment bytes) and complete 63316-byte sixteen-table switch payload (160 destination words, 709 index bytes, 5 alignment bytes, 2127 relocations; 103/103 exact owners). See docs/REMILIA_ACTION_STATE_2026_10_28.md."
 
 [[units.exact-first-remilia-action-state.functions]]
 address = "0x00545090"
 symbol_base = "?dispatch_action_state_vslot28@RemiliaActionStateView@th105@@QAEXXZ"
 rel32_targets = [
-    "?spawn@RemiliaActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?spawn@RemiliaActionStateView@th105@@QAEHHMMCCPBXH@Z=0x00465190",
     "?landing@RemiliaActionStateView@th105@@QAEEXZ=0x00473DD0",
     "?zero_motion@RemiliaActionStateView@th105@@QAEXXZ=0x0045AF40",
     "?advance@RemiliaActionStateView@th105@@QAEEXZ=0x004351C0",
     "?crossed@RemiliaActionStateView@th105@@QAEHXZ=0x005F9310",
     "?remilia_surface@th105@@YIMPAVRemiliaActionStateView@1@@Z=0x00435D60",
-    "?effect@RemiliaActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?effect@RemiliaActionStateView@th105@@QAEXHMMEH@Z=0x00435240",
     "?event@RemiliaActionStateView@th105@@QAEXI@Z=0x004359F0",
     "?flip@RemiliaActionStateView@th105@@QAEXXZ=0x00478E60",
     "?remilia_on_surface@th105@@YIEPAVRemiliaActionStateView@1@@Z=0x00435DC0",
@@ -24207,10 +24207,10 @@ rel32_targets = [
     "?directional@RemiliaActionStateView@th105@@QAEEH@Z=0x00478EE0",
     "?remilia_atan@th105@@YAMMM@Z=0x00406540",
     "?phase_counter@RemiliaActionStateView@th105@@QAEHH@Z=0x00478DF0",
-    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?dispatch_character_wave_handle@RemiliaActionStateView@th105@@QAEXI@Z=0x0045C030",
     "?remilia_random@th105@@YAIH@Z=0x004067D0",
     "?initialize_fighter_phase_631e0@th105@@YIHPAVRemiliaActionStateView@1@@Z=0x00464200",
-    "?set_oriented_components_f0_f4@RemiliaActionStateView@th105@@QAEXMM@Z=0x00435160",
+    "?oriented_components@RemiliaActionScratch@th105@@QAEXMM@Z=0x00435160",
     "?classify_fighter_x_boundary@RemiliaActionStateView@th105@@QAECXZ=0x00435910",
     "?layout@RemiliaActionStateView@th105@@QAEXM@Z=0x004359D0",
     "?sequence_window@RemiliaActionStateView@th105@@QAEXCHH@Z=0x0045DEB0",
@@ -24219,6 +24219,34 @@ rel32_targets = [
     "?finalize@RemiliaActionStateView@th105@@QAEXH@Z=0x0045D110",
     "?copy_health@RemiliaActionStateView@th105@@QAEXXZ=0x0045B250",
     "?common_update@RemiliaActionStateView@th105@@QAEXXZ=0x004740C0",
+]
+
+[units.exact-first-remilia-action-state.functions.switch_payload]
+size = 63316
+sha256 = "1c631b6ff3b591e2f96c1ad5de0957213a71855231e79d3768726acd1752c5a3"
+alignment_hex = "8bff"
+table_offset = 61964
+table_entries = 32
+map_offset = 62092
+map_size = 227
+load_offset = 458
+jump_offset = 465
+additional_tables = [
+    { alignment_hex = "90", table_offset = 62320, table_entries = 42, map_offset = 62488, map_size = 247, load_offset = 9449, jump_offset = 9456 },
+    { alignment_hex = "90", table_offset = 62736, table_entries = 5, jump_offset = 26045 },
+    { alignment_hex = "", table_offset = 62756, table_entries = 5, jump_offset = 26625 },
+    { alignment_hex = "", table_offset = 62776, table_entries = 5, jump_offset = 27371 },
+    { alignment_hex = "", table_offset = 62796, table_entries = 5, jump_offset = 27951 },
+    { alignment_hex = "", table_offset = 62816, table_entries = 30, map_offset = 62936, map_size = 235, load_offset = 34610, jump_offset = 34617 },
+    { alignment_hex = "90", table_offset = 63172, table_entries = 4, jump_offset = 45768 },
+    { alignment_hex = "", table_offset = 63188, table_entries = 4, jump_offset = 47676 },
+    { alignment_hex = "", table_offset = 63204, table_entries = 4, jump_offset = 51515 },
+    { alignment_hex = "", table_offset = 63220, table_entries = 4, jump_offset = 52461 },
+    { alignment_hex = "", table_offset = 63236, table_entries = 4, jump_offset = 54957 },
+    { alignment_hex = "", table_offset = 63252, table_entries = 4, jump_offset = 55907 },
+    { alignment_hex = "", table_offset = 63268, table_entries = 4, jump_offset = 58846 },
+    { alignment_hex = "", table_offset = 63284, table_entries = 4, jump_offset = 59255 },
+    { alignment_hex = "", table_offset = 63300, table_entries = 4, jump_offset = 60365 },
 ]
 
 [units.exact-first-komachi-action-state]

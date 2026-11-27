@@ -457,6 +457,36 @@ class CompactSwitchTests(unittest.TestCase):
                     ValueError, 'unsupported instruction between switch selector load and dispatch'):
                 payload.inspect(bad, bad, address, code_size, bad_contract, relocs)
 
+    def test_scheduled_mov_edi_60_between_bound_and_guard(self):
+        # Remilia action720 schedules mov edi, 60 between cmp eax, 3 and ja.
+        address = 0x401000
+        # cmp eax, 1 (3B @0); mov edi, 60 (5B @3); ja +7 -> @17 (2B @8);
+        # jmp dword ptr [eax*4 + table@20] (7B @10); ret (@17); ret (@18); nop (@19)
+        code = (
+            bytes.fromhex('83f801 bf3c000000 7707 ff2485')
+            + struct.pack('<I', address + 20)
+            + bytes.fromhex('c3c3')
+        )
+        body = code + b'\x90' + struct.pack('<II', address + 17, address + 18)
+        contract = dict(
+            size=len(body),
+            sha256=hashlib.sha256(body).hexdigest(),
+            alignment_hex='90',
+            table_offset=20,
+            table_entries=2,
+            jump_offset=10,
+        )
+        relocs = [(13, 6, '$TABLE'), (20, 6, '$CASE0'), (24, 6, '$CASE1')]
+        report = payload.inspect(body, body, address, len(code), contract, relocs)
+        self.assertEqual(report['reachable_code_bytes'], len(code))
+
+        # Negative: unallowlisted immediate (mov edi, 61) or flag-altering/selector overwrite must fail closed.
+        for bad_mid in ('bf3d000000', 'b83c000000'):
+            bad, bad_contract = changed(body, contract, 3, bytes.fromhex(bad_mid))
+            with self.subTest(bad_mid=bad_mid), self.assertRaisesRegex(
+                    ValueError, 'unsupported instruction between compact-switch bound and guard'):
+                payload.inspect(bad, bad, address, len(code), bad_contract, relocs)
+
 
 if __name__ == '__main__':
     unittest.main()

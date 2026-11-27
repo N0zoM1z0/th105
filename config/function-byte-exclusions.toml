@@ -153,3 +153,16 @@ start = "0x005A97CD"
 end = "0x005A97CF"
 size = 3
 sha256 = "53e090edb4fca0626d458dbefa0ae1bcbffc511ed159f1a70641610ad0d9a200"
+
+[[functions]]
+address = "0x00545090"
+main_size = 61962
+main_end = "0x00554299"
+main_excluded_bytes = 3
+evidence = "Complete exact-first-remilia-action-state code and switch-payload replay includes one unreachable VC8 loop-alignment LEA ECX,[ECX] instruction; raw CFG reaches 61959 authored bytes. docs/REMILIA_ACTION_STATE_2026_10_28.md."
+
+[[functions.main_exclusions]]
+start = "0x00551DAD"
+end = "0x00551DAF"
+size = 3
+sha256 = "53e090edb4fca0626d458dbefa0ae1bcbffc511ed159f1a70641610ad0d9a200"

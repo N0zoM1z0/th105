@@ -5,6 +5,44 @@ Target: original Japanese TH10.5 v1.06a, SHA-256
 Follow [AGENTS.md](../AGENTS.md), [shared tools](SHARED_TOOLS.md) and the
 [reconstruction workflow](RE_WORKFLOW.md). Keep compiler/analyzer work serial.
 
+## Completed: Remilia Fighter `+0x28` (`0x00545090`)
+
+`exact-first-remilia-action-state` is canonical exact from the character-scoped
+[source](../src/characters/RemiliaActionState.cpp) and
+[checked receiver](../src/characters/RemiliaActionState.hpp), under VC8 SP1
+`/O2 /GS- /GR /EHsc /MT`.
+
+- All 61,962 physical callable bytes and the complete 63,316-byte sixteen-table
+  switch payload `[0x00545090,0x005547E4)` match with zero differences.
+- All 2,127 relocations agree: 967 REL32 calls across 31 targets and 1,160
+  DIR32 fields. Sixteen tables contain 160 destination words, 709 index bytes
+  and 5 alignment bytes.
+- The owner audit is 103/103. Raw CFG reaches 15,972 of 15,973 decoded
+  instructions / 61,959 authored bytes; one unreachable 3-byte VC8
+  loop-alignment `lea ecx, [ecx]` instruction (`0x00551DAD..0x00551DAF`) is
+  compared and excluded from authored progress.
+- Code SHA-256: `cffbd3c34e8a10be85f5236a16afad7e035227df15bf420b9eb30599fce0092b`;
+  payload SHA-256: `1c631b6ff3b591e2f96c1ad5de0957213a71855231e79d3768726acd1752c5a3`.
+
+Reproduce with:
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-remilia-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-remilia-action-state remilia-vslot28 build/match-units/ExactFirst_RemiliaActionState.obj --json
+```
+
+Private results: `build/remilia-root-work/{canonical,owners}.json`.
+The [Remilia note](REMILIA_ACTION_STATE_2026_10_28.md) records the checked typed
+receiver, `signed char` direction/layer on `spawn` and `unsigned char` direction
+on `effect`, `+0x04` `RemiliaActionScratch::oriented_components` and `owner_168`
+wave-handle dispatch (`607`/`710`), post-switch `advance()` with separate
+`208..212, 220..222` cases, loop/branch polarity fixes (`505`, `520`/`521`,
+`530`/`531`, `565`/`566`/`720`, `730`/`731`, `741`), inlined `400`/`414`/`415`
+paths, `double step = field_73c * 90.0;` scheduling in `710`, and the narrow
+`coff_switch_payload.py` rule for `mov edi, 60` between `cmp` and `ja` (with
+positive/negative unit tests and existing-object smoke). No shared gameplay
+source, layout or compiler flags changed.
+
 ## Completed: Suika Fighter `+0x28` (`0x00598990`)
 
 `exact-first-suika-action-state` is canonical exact from the character-scoped
