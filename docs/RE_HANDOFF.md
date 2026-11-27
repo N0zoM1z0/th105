@@ -5,6 +5,41 @@ Target: original Japanese TH10.5 v1.06a, SHA-256
 Follow [AGENTS.md](../AGENTS.md), [shared tools](SHARED_TOOLS.md) and the
 [reconstruction workflow](RE_WORKFLOW.md). Keep compiler/analyzer work serial.
 
+## Completed: Yukari Fighter `+0x28` (`0x0057B030`) — All 15/15 Fighter `+0x28` roots exact
+
+`exact-first-yukari-action-state` is canonical exact from the character-scoped
+[source](../src/characters/YukariActionState.cpp) and
+[checked receiver](../src/characters/YukariActionState.hpp), under VC8 SP1
+`/O2 /GS- /GR /EHsc /MT`. With Yukari complete, all 15 Fighter primary vtable
+`+0x28` action-state roots in JP TH10.5 v1.06a are now canonically exact.
+
+- All 57,042 callable code bytes and the complete 58,248-byte nine-table switch
+  payload `[0x0057B030, 0x005893B8)` match with zero differences.
+- All 1,769 relocations agree: 889 REL32 calls across 32 targets and 880 DIR32
+  fields. Nine tables contain 144 destination words, 623 index bytes and 7
+  alignment bytes.
+- The owner audit is 122/122. Raw CFG reaches all 14,501 decoded instructions /
+  57,042 authored bytes with zero unreachable alignment bytes.
+- Code SHA-256: `7caa43b9c69087875de1d8db150434733ad7b8a0fbd0d7bd245ee288f3db5db3`;
+  payload SHA-256: `8c76f4df41ea9627a161193cf132671508311cd6e04717a4314a7cb2390682af`.
+
+Reproduce with:
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-yukari-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-yukari-action-state yukari-vslot28 build/match-units/ExactFirst_YukariActionState.obj --json
+```
+
+Private results: `build/yukari-root-work/{canonical,owners}.json`.
+The [Yukari note](YUKARI_ACTION_STATE_2026_10_28.md) records the checked typed
+receiver, exact comparison/arithmetic recoveries (`73`/`88`, `89`, `200`, `201`,
+`203`, `305`, `402`, `565`/`566`, `710`/`730`/`741`, `750`, `burst910` `for`
+loop), and the `c2.dll:0x10B14E2A` global coloring resolution (separating
+`case 2:` / `case 1:` in `720`'s difficulty switch plus unnesting sequential
+`!frame_timer_142` guards to restore `CONST(0) -> EBP, CONST(1) -> EBX`, and
+splitting `entry(1)`/`entry(2)` in `404` to restore its `0x57F6B5` shared tail).
+No shared gameplay source, layout, compiler flags or comparator code changed.
+
 ## Completed: Remilia Fighter `+0x28` (`0x00545090`)
 
 `exact-first-remilia-action-state` is canonical exact from the character-scoped
@@ -333,7 +368,8 @@ validate these changes. No shared gameplay layout or callee changed.
 
 ## Next useful action
 
-When resumed, continue Yuyuko `0x0055D850` with the six local one intervals.
-Review their C2 split costs and target-observed source uses, then replay the
-complete function and switch payload. The user has requested a pause; wait for
-their next instruction. Exact credit requires a complete zero-difference result.
+All 15 Fighter `+0x28` action-state roots are now canonically exact. Choose the
+next large target cluster (for example, Fighter `+0x2C` action-entry/update
+roots, Object update roots, or remaining scene/battle functions) from the
+canonical ledgers and verify with zero-difference comparison before granting
+exact credit.

@@ -850,7 +850,6 @@ case_min = 0
 case_max = 226
 destination_table = "0x00588F04"
 destination_count = 44
-candidate_destination_counts = [43, 44]
 index_table = "0x00588FB4"
 expected_physical_groups = 44
 
@@ -880,6 +879,36 @@ destination_table = "0x00589384"
 destination_count = 6
 index_table = "0x0058939C"
 expected_physical_groups = 6
+
+[[roots.auxiliary_switches]]
+name = "action710-difficulty"
+dispatch = "0x005871EE"
+destination_table = "0x00589334"
+destinations = ["0x00587750", "0x00587589", "0x005873BF", "0x005871F5"]
+
+[[roots.auxiliary_switches]]
+name = "action720-difficulty"
+dispatch = "0x00587B84"
+destination_table = "0x00589344"
+destinations = ["0x00587B9B", "0x00587B93", "0x00587B93", "0x00587B8B"]
+
+[[roots.auxiliary_switches]]
+name = "action730-difficulty"
+dispatch = "0x005885D4"
+destination_table = "0x00589354"
+destinations = ["0x005885FC", "0x005885F1", "0x005885E6", "0x005885DB"]
+
+[[roots.auxiliary_switches]]
+name = "action740-difficulty"
+dispatch = "0x005886FF"
+destination_table = "0x00589364"
+destinations = ["0x00588711", "0x00588711", "0x0058870A", "0x00588706"]
+
+[[roots.auxiliary_switches]]
+name = "action741-difficulty"
+dispatch = "0x00588946"
+destination_table = "0x00589374"
+destinations = ["0x00588995", "0x0058897D", "0x00588965", "0x0058894D"]
 
 # Remilia complete callable and all sixteen switch tables.
 [[roots]]

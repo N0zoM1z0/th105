@@ -1,11 +1,66 @@
-# Yukari action-state root 57B030
+# Yukari action-state root `0x0057B030`
 
-## Status and scope
+## Canonical exact match (2026-11-27)
 
-Complete 124-action source candidate, unselected and nonexact. Compilation,
-semantic hypotheses and local diagnostics confer no implementation/exact credit.
-The canonical target remains Japanese TH1051.06a SHA256
-56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e.
+`Yukari_dispatch_action_state_vslot28` (`0x0057B030`) is canonically exact under
+VC8 SP1 `/O2 /GS- /GR /EHsc /MT` (`exact-first-yukari-action-state`) against JP
+TH10.5 v1.06a SHA-256
+`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`. This
+completes all 15 Fighter primary vtable `+0x28` action-state roots.
+
+- Callable code `[0x0057B030, 0x00588F02)`: 57,042 / 57,042 bytes exact
+  (14,501 reachable instructions, zero unreachable alignment bytes, 140 RETs,
+  SHA-256 `7caa43b9c69087875de1d8db150434733ad7b8a0fbd0d7bd245ee288f3db5db3`).
+- Complete nine-table switch payload `[0x0057B030, 0x005893B8)`: 58,248 / 58,248
+  bytes exact (four sparse action tables `low`/`mid`/`high`/`special` with
+  44/27/47/6 destinations plus five four-entry difficulty tables in `710`,
+  `720`, `730`, `740`, `741`; 144 destination words, 623 index bytes, 7
+  alignment bytes, SHA-256
+  `8c76f4df41ea9627a161193cf132671508311cd6e04717a4314a7cb2390682af`).
+- Relocations: all 1,769 agree (889 REL32 calls across 32 targets and 880 DIR32
+  fields). Owner audit: 122/122 `instruction_edge_identical_owners`.
+
+Reproduce:
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-yukari-action-state --compare --json
+scripts/repo-python scripts/audit-giant-action-owners.py --unit exact-first-yukari-action-state yukari-vslot28 build/match-units/ExactFirst_YukariActionState.obj --json
+```
+
+### Key source-shape recoveries that closed the root
+
+- **Typed checked receiver**: replaced `at<T>()` offset casts in
+  `src/characters/YukariActionState.{hpp,cpp}` with checked typed members
+  (`offsetof` static assertions), `signed char` facing on `spawn`, `unsigned char`
+  facing on `effect`, and member `dispatch_character_wave_handle` + `+0x04`
+  `YukariActionScratch::reset`.
+- **Exact comparisons and arithmetic**: `--word_730 < 0` in `73`/`88`,
+  `word_730 * 0.0025f` / `-word_732 * 0.0025f` in `89`, `field_6b8 < 0` in `200`,
+  `sequence_index_13e < 3` in `203`, `frame_index_140 > 4` in `305`,
+  `double a = field_740 * 5.0; ... a + (field_744 - 20.0) + n * 10.0 - 10.0` in
+  `402`, duplicated `y_f0 = yukari_surface(this)` in both `facing_104 == 1`
+  arms of `201`, restored `p[2] = 4.0f; p[1] = 0.25f;` in `launch826`/`launch910`,
+  descending `case 3..0` order in `710`/`730`/`741`, `alpha <= 250` saturation
+  in `750`, and `for (int i = 0; i < count; ++i)` in `burst910` (scheduling
+  `word_738 = 1` before loop-counter setup).
+- **VC8 `c2.dll` `CONST(0) -> EBP` / `CONST(1) -> EBX` coloring**: tracing
+  `c2.dll:0x10B14E2A` showed `CONST(6) -> EBP` and `CONST(4) -> EBX` split both
+  `CONST(0)` and `CONST(1)`. Writing `case 2:` and `case 1:` separately in
+  `action 720`'s difficulty switch gave `CONST(70)` `score = 1` (`lea ebp,
+  [eax + 0xa]`), cutting the post-split `CONST(0)` vs `CONST(1)` priority gap
+  from 93 points to 6 (`-1458` vs `-1452`); unnesting the repeated
+  `!frame_timer_142` frame guards into sequential `if (!frame_timer_142 && ...)`
+  checks added +8 points with zero extra code bytes, flipping `CONST(0)` ahead
+  of `CONST(1)` so `0` takes `EBP` and `1` takes `EBX`. Splitting `entry(1)` and
+  `entry(2)` into two `if` guards in `action 404` restored its shared `0x57F6B5`
+  `set_action_and_finalize(9)` tail.
+
+---
+
+## Historical investigation notes (2026-10-28..2026-11-07)
+
+The notes below retain the earlier target-behavior observations and intermediate
+refinements established before the 2026-11-27 exact match.
 
 Factory native IDA was checked on October 28: target hashes/file size,
 entry 68B9D2, initial function inventory 401000/52, and 16 mapped bytes at 401000,

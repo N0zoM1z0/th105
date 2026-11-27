@@ -24136,13 +24136,13 @@ source = "src/characters/YukariActionState.cpp"
 object = "build/match-units/ExactFirst_YukariActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete unselected57B030 candidate:124 actions; target57042/full58248. Native CFG closed; semantic and physical-owner review remains. No implementation/exact credit; docs/YUKARI_ACTION_STATE_2026_10_28.md."
+notes = "Canonical exact JP1.06a 0x0057B030 Yukari Fighter +0x28 action-state root: 57042 callable code bytes (14501 reachable instructions) and complete 58248-byte nine-table switch payload (144 destination words, 623 index bytes, 7 alignment bytes, 1769 relocations; 122/122 exact owners). See docs/YUKARI_ACTION_STATE_2026_10_28.md."
 
 [[units.exact-first-yukari-action-state.functions]]
 address = "0x0057B030"
 symbol_base = "?dispatch_action_state_vslot28@YukariActionStateView@th105@@QAEXXZ"
 rel32_targets = [
-    "?spawn@YukariActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?spawn@YukariActionStateView@th105@@QAEHHMMCHPBXH@Z=0x00465190",
     "?landing@YukariActionStateView@th105@@QAEEXZ=0x00473DD0",
     "?zero_motion@YukariActionStateView@th105@@QAEXXZ=0x0045AF40",
     "?advance@YukariActionStateView@th105@@QAEEXZ=0x004351C0",
@@ -24154,10 +24154,10 @@ rel32_targets = [
     "?classify_fighter_x_boundary@YukariActionStateView@th105@@QAECXZ=0x00435910",
     "?reset@YukariActionScratch@th105@@QAEXXZ=0x00435110",
     "??A?$deque@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@@std@@QAEAAUFighterSequenceSlot@th105@@I@Z=0x004399C0",
-    "?effect@YukariActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?effect@YukariActionStateView@th105@@QAEXHMMEH@Z=0x00435240",
     "?yukari_random_u32@th105@@YAIXZ=0x004066B0",
     "?yukari_on_surface@th105@@YIEPAVYukariActionStateView@1@@Z=0x00435DC0",
-    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?dispatch_character_wave_handle@YukariActionStateView@th105@@QAEXI@Z=0x0045C030",
     "?flip@YukariActionStateView@th105@@QAEXXZ=0x00478E60",
     "?yukari_cosine@th105@@YAMM@Z=0x004063D0",
     "?yukari_sine@th105@@YAMM@Z=0x00406360",
@@ -24174,6 +24174,27 @@ rel32_targets = [
     "?finalize@YukariActionStateView@th105@@QAEXH@Z=0x0045D110",
     "?copy_health@YukariActionStateView@th105@@QAEXXZ=0x0045B250",
     "?common_update@YukariActionStateView@th105@@QAEXXZ=0x004740C0",
+]
+
+[units.exact-first-yukari-action-state.functions.switch_payload]
+size = 58248
+sha256 = "8c76f4df41ea9627a161193cf132671508311cd6e04717a4314a7cb2390682af"
+alignment_hex = "8bff"
+table_offset = 57044
+table_entries = 44
+map_offset = 57220
+map_size = 227
+load_offset = 813
+jump_offset = 820
+additional_tables = [
+    { alignment_hex = "90", table_offset = 57448, table_entries = 27, map_offset = 57556, map_size = 118, load_offset = 16073, jump_offset = 16080 },
+    { alignment_hex = "8bff", table_offset = 57676, table_entries = 47, map_offset = 57864, map_size = 250, load_offset = 29573, jump_offset = 29580 },
+    { alignment_hex = "8bff", table_offset = 58116, table_entries = 4, jump_offset = 49598 },
+    { alignment_hex = "", table_offset = 58132, table_entries = 4, jump_offset = 52052 },
+    { alignment_hex = "", table_offset = 58148, table_entries = 4, jump_offset = 54692 },
+    { alignment_hex = "", table_offset = 58164, table_entries = 4, jump_offset = 54991 },
+    { alignment_hex = "", table_offset = 58180, table_entries = 4, jump_offset = 55574 },
+    { alignment_hex = "", table_offset = 58196, table_entries = 6, map_offset = 58220, map_size = 28, load_offset = 56167, jump_offset = 56174 },
 ]
 
 [units.exact-first-remilia-action-state]
