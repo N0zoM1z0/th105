@@ -450,3 +450,87 @@ SP1 `c2.dll` rules (full proofs in
   with `for (int i = 0; i < count; ++i)` (not `do/while (--count)`) when a
   pre-loop store schedules before loop-counter setup (`burst910`), and split
   `if (entry(1))` / `if (entry(2))` to select the native shared tail (`404`).
+
+## 7. Roster Object `+0x28` Update Roots: Reusable Workflow & Lessons
+
+Lessons from advancing two large Roster Object `+0x28` update roots —
+[AliceObjectUpdate.cpp](../src/characters/AliceObjectUpdate.cpp) (`0x004FCAB0`,
+63,248 B, 38/40 exact owners / 99.95% bytes, commit `f795970a`) and
+[AyaObjectActionState.cpp](../src/characters/AyaObjectActionState.cpp)
+(`0x0061A290`, 20,000 B, 18/34 exact owners, 28/34 `+0` owners) — show where
+Object `+0x28` roots match the Fighter playbook and where they differ sharply.
+
+### How Object `+0x28` roots differ from Fighter `+0x28` roots
+
+1. **Per-case `advance_frame_and_dispatch()` instead of a post-switch footer.**
+   Fighter roots normally end with a shared post-switch `advance_frame_and_dispatch()`.
+   Object roots instead write `if (advance_frame_and_dispatch()) --lifetime_330;
+   return;` at the end of each case, and VC8 `TailMerge` hosts the shared copy
+   inside the earliest matching case (`0x61a41d` in Aya `case 800`). Moving it
+   after the outer `switch` breaks `800`/`810`/`852` codegen.
+2. **Typed BGRA color channels on `AnimationSpriteState` are mandatory.**
+   Writing `reinterpret_cast<unsigned char *>(this)[0x113] -= N` creates a
+   `char *` aliasing barrier on `this` in VC8. That single cast blocked
+   `sequence_index_13e` CSE into `cx` across six cases (`801`, `807`, `820`,
+   `821`, `853`, `854`) and blocked `mov al, [esi+0x113]` / `fstp [esi+0x120]`
+   scheduling in `903`. Using the typed `color_b_10c..color_a_10f` fields in
+   [AnimationSpriteState.hpp](../src/battle/AnimationSpriteState.hpp) fixed all
+   seven cases immediately (verified byte-neutral on all exact consumers).
+3. **Never introduce `short const sequence = sequence_index_13e;` unless target
+   actually jump-threads it.**
+   A local `short` copy lets VC8 prove `sequence == 1 => sequence != 2` and
+   jump-thread past later `if (sequence == 2)` checks. Reading
+   `sequence_index_13e` directly (once `char *` aliasing is eliminated!) lets
+   VC8 CSE `movzx ecx, word ptr [esi+0x13e]` *after* jump-threading, keeping
+   every `cmp cx, 2` intact.
+4. **Byte-width ABI on `emit_fighter_effect_433cc0` (`0x00435240`) and
+   `spawn_unparented_related_object` (`0x0064CCB0`).**
+   Declare the direction parameter as `unsigned char` (or `signed char`), not
+   `int`, so negated facing emits `movzx edx, [esi+0x104]; neg dl; push edx`
+   with no extra zero-extension (`Aya 850`/`851`), matching `AliceFighter` and
+   `Youmu`. Keep `object_x_0e8 - 100 * facing` in `float` (no
+   `static_cast<double>`) when target emits `fisub dword ptr [esp+disp]`.
+5. **Typed owner/peer views and `double object_y` frame alignment.**
+   - Start with a clean typed view header (`*ObjectActionView.hpp` /
+     `*ObjectUpdate.hpp`) with compile-time `offsetof` asserts; keep raw
+     `byte_at`/`float_at` casts out of the action body.
+   - Check the entry prologue first: `push ebp; mov ebp, esp; and esp, -8; sub
+     esp, 0x20` is triggered by a spilled `double` local (such as `double
+     object_y` in `aya_stage_surface_height_at_x(this) >= object_y`). Evaluate
+     `object_y = sprite_004.object_y_0ec` lazily inside `||` via the comma
+     operator when target emits `fld [esi+0xf0]; fstp qword ptr [esp+0x18]`
+     only after the integer guards.
+   - Beware `__forceinline` wrappers in 60 KiB+ Object roots (e.g. `AliceObject`):
+     plain `inline` is *not* inlined at that size and leaves unresolved external
+     symbols; only keep `__forceinline` on tiny non-returning helpers verified
+     against target call counts, and never hide early `return;` inside them.
+
+### Object-root `c2.dll` pitfalls & fast diagnosis
+
+- **Control `TryTailMerge` host selection via branch polarity (`0x10B307E0`).**
+  When `case 2`, `case 3`, and `case 8` share a `> 20 B` suffix (e.g. Aya `903`
+  fade `sub al, 0x14; g -= 20; b -= 20; jmp 0x61a41d`), `if (alpha < 20) {
+  --lifetime; return; } alpha -= 20;` makes `case 8` host the suffix and forces
+  `case 2`/`case 3` to emit inline `--lifetime; return;`. Flipping to
+  `if (alpha >= 20) { alpha -= 20; ... } else { --lifetime; return; }` makes
+  `case 2` host the suffix and restores exact tail-merging for `case 3` and
+  `case 8`. Likewise, in 4-case difficulty switches (`Aya 902`), pairing
+  `if (time > N || hp <= 0)` on `case 3/1` with `if (time <= N && hp > 0)
+  break;` on `case 2/0` selects the exact `(3, 1)` / `(2, 0)` tail-merge host.
+- **Keep `float + float` operand order explicit.**
+  VC8 loads the RHS memory operand first for `float + float` (`sprite_004.reset_one_118 + state_370` emits `fld [esi+0x370]; fadd [esi+0x11c]`).
+- **Pre-regalloc `TryTailMerge` cap (`c2.dll:0x10B321E8`) & `I1`/`U1` type check
+  (`0x10BF7B50`).**
+  - `0x10B321E8` (`cmp dword ptr [eax+0x3b], 0x64; jg`) skips pre-regalloc
+    tail-merging on any label with `> 100` references (common on `L_ret` in
+    giant Object switches), and `0x10B30B74` enforces a `> 20 B` suffix
+    threshold under `/O2`.
+  - `SingleOperandEqual` (`0x10BF7B50`) rejects merging `I1` vs `U1` operands
+    even when lowered bytes match (`Alice 827 c2` vs `900 c3`).
+  - Use a 2–3 case mini-reproducer + binary search over cases (`build/<char>-work/`)
+    to separate local AST issues from whole-function `c2.dll` interactions in
+    seconds before investing time in blind micro-edits.
+- **Operational hygiene for fast, safe iteration:**
+  Always wrap Wine/VC8 builds in `timeout 30`, run serial builds only (never
+  concurrent Wine/cl.exe jobs), and replay only the affected unit (plus direct
+  consumers if a shared header changed).

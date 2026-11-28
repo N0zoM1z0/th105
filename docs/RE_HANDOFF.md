@@ -62,16 +62,32 @@ All reusable compiler rules and iteration tooling for giant switch roots live in
 [GIANT_ACTION_ROOT_PLAYBOOK.md](GIANT_ACTION_ROOT_PLAYBOOK.md) and
 [VC8_SOURCE_SHAPE_PATTERNS.md](VC8_SOURCE_SHAPE_PATTERNS.md).
 
+## Recent Object `+0x28` update root checkpoints (nonexact, no exact credit)
+
+- **AliceObject `0x004FCAB0`** (`gpt-web-alice-object-vslot28-full-root`, commit
+  `f795970a`): clean typed view [AliceObjectUpdate.hpp](../src/characters/AliceObjectUpdate.hpp)
+  and [AliceObjectUpdate.cpp](../src/characters/AliceObjectUpdate.cpp), exact
+  63,248-byte section tail, 63,218/63,248 bytes matching (99.95%), 38/40 exact
+  owners, first mismatch `+21,593` (`0x00501F09`). See
+  [AliceObject note](ALICE_OBJECT_UPDATE_2026_10_28.md).
+- **AyaObject `0x0061A290`** (`gpt-web-aya-object-vslot28-full-root`): typed
+  `AnimationSpriteState` BGRA fields and `unsigned char` direction on
+  `0x00435240` lifted [AyaObjectActionState.cpp](../src/characters/AyaObjectActionState.cpp)
+  from 3/34 to **18/34** exact owners (28/34 at `+0` byte delta; remaining
+  `+196 B` is `actions:861` not cascading `TryTailMerge` into `actions:826` in
+  the full 34-case switch). See [Aya evidence](AYA_EVIDENCE.md) and the new
+  [Object `+0x28` playbook section](GIANT_ACTION_ROOT_PLAYBOOK.md#7-roster-object-0x28-update-roots-reusable-workflow--lessons).
+
 ## Next useful action
 
 Choose the next high-value target cluster from the canonical ledgers and verify
 each function with strict zero-difference comparison before granting exact
 credit:
 
-- **Roster Object `+0x28` update roots** (e.g. Reimu `0x00496540`, Alice
-  `0x004FCAB0`, Youmu `0x0053CEA0`, Aya `0x0061A290`, and peers) — already
-  mapped in `config/giant-action-switches.toml` and ready for the same
-  [giant-root playbook](GIANT_ACTION_ROOT_PLAYBOOK.md).
+- **Roster Object `+0x28` update roots** (e.g. Reimu `0x00496540`, Youmu
+  `0x0053CEA0`, Sakuya, Marisa, Remilia, plus closing the parked `AliceObject`
+  `0x004FCAB0` / `AyaObject` `0x0061A290` `c2.dll` residuals) — follow
+  [Playbook Section 7](GIANT_ACTION_ROOT_PLAYBOOK.md#7-roster-object-0x28-update-roots-reusable-workflow--lessons).
 - **Roster Object action-entry (`+0x3C`) and CPU policy (`+0x58`) roots**
   (e.g. default CPU `0x005F1F80`, Reimu CPU `0x0048D390`, Aya CPU `0x006126E0`,
   and peers).

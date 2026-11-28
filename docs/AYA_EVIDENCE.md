@@ -39,32 +39,63 @@ unused `AyaActionState.hpp` were removed; Git history retains them.
 
 ## Object action state `0x0061A290` (nonexact)
 
-The emitted payload is 20,000 bytes, with metadata from offset 19,532. The
-first difference is the initial `ja` displacement at +0x22 (target `0F`,
-source `16`), not a metadata pointer.
+The probe unit `gpt-web-aya-object-vslot28-full-root`
+([AyaObjectActionState.cpp](../src/characters/AyaObjectActionState.cpp),
+[AyaObjectActionView.hpp](../src/characters/AyaObjectActionView.hpp)) now reaches
+**18/34** instruction/edge-identical owners (`entry`, `800`, `807`, `810`,
+`811`, `817`, `820`, `822`, `825`, `826`, `850`, `851`, `853`, `854`, `862`,
+`980`, `997`, `998`) and **28/34** owners at `+0` byte delta (including `801`,
+`804`, `855`, `856`, `901`, `902`, and `903` whose remaining diffs are shifted
+jump/switch-table targets or the `0x61a42c` vs `0x61a359` shared lifetime-return
+exit). Section tail is 20,168 bytes against the 20,000-byte target envelope
+(19,522-byte callable + `8bff` + 476-byte switch metadata across 7 tables).
 
-Source shapes the target supports, already in the source:
-- action 807's frame/sequence-2 exit joins the 817 tail, and 817/822 capture
-  the float rotation before reading alpha;
-- the two root-local quantized lookup returns use double views, and two float
-  return views put four scale-read pairs in target order;
-- 826 keeps a used double Y alive across the alpha update;
-- 861 advances its phase and count only in initial sequence 0;
-- the 804/810 sequence, 821 counter and 801/903 fade corrections.
+Key source shapes proven on this root:
+- **Typed BGRA fields in `AnimationSpriteState`** (`color_b_10c..color_a_10f` in
+  [AnimationSpriteState.hpp](../src/battle/AnimationSpriteState.hpp)): replacing
+  `reinterpret_cast<unsigned char *>(this)[0x113]` removed a `char *` aliasing
+  barrier on `this`, immediately letting VC8 CSE `sequence_index_13e` into `cx`
+  without jump-threading across `801`/`807`/`820`/`821`/`853`/`854` and fixing
+  `903` `case 2/3/8` fade scheduling.
+- **Byte-width direction ABI on `0x00435240`**: calling
+  `emit_fighter_effect_433cc0` through a local view with `unsigned char
+  direction` recovers `movzx; neg dl; push edx` in `850`/`851`; dropping
+  `static_cast<double>` on `object_x_0e8` in `851` recovers `fisub dword ptr
+  [esp+0x24]`.
+- **Natural control-flow structure (no artificial `goto` joins)**: removing
+  artificial `aya_sequence_two_frame_tail` / `aya903_store_fade` labels, using a
+  single `if (sequence_index_13e == 1)` in `851` (preventing `mov ecx, esi`
+  hoisting above `jle 0x61a41d` and fixing both `851` and `903 case 7`), writing
+  `if (sprite_004.color_a_10f >= 20)` in `903 case 2/3` (so `case 2` hosts the
+  shared `sub al, 0x14` tail), and matching `902`'s `(3, 1)` vs `(2, 0)` branch
+  polarity closed `807`, `811`, `817`, `822`, `851`, `902`, and `903 case 0..8`.
+- **Per-case `advance_frame_and_dispatch()`**: unlike Fighter `+0x28` roots,
+  AyaObject places `if (advance_frame_and_dispatch()) --lifetime_330; return;`
+  per case (hosted at `0x61a41d` inside `case 800`), not as a single post-switch
+  footer; moving it after the `switch` regressed `800`/`810`/`852`.
 
-Tried without effect or rejected:
-- `/O1` and `/O2 /Os` give the same smaller payload but lose stack alignment
-  and differ at +0x4. Keep `/O2`.
-- Sharing the 826 and 861 tails in source loses 807's second zero-sequence
-  read; keep that repeated read.
-- RTM keeps the unresolved conversion shapes and changes other actions; a
-  local `fenv_access` keeps the `fimul`.
-- Layered, direct, typed and virtual runtime-owner views were byte-neutral.
-- A joint update/initializer CIL context with twelve native providers is
-  byte-neutral against the native caller.
+Tried without closing the residual:
+- `/O1` and `/O2 /Os` lose 8-byte stack alignment (`and esp, -8`) and diverge at
+  entry. Keep `/O2`.
+- Pre-regalloc `TryTailMerge` (`c2.dll:0x10B321E8`) skips target labels with
+  `refcount > 0x64` (`100`). Routing `--lifetime_330; return;` through a single
+  label dropped `L_ret` below 100 but still did not trigger the 196-byte
+  `861 -> 826` merge in the full 34-case switch.
+- Bisecting the 34-case switch showed `861` cleanly tail-merges all 196 bytes
+  into `826` (`0x61c27e` + `0x61c2a7`) in the 12-case subset `800..817 + 826 +
+  861`, and stops once `820`'s `sequence 4/6` block (`aya_stage_surface_height_at_x`
+  + `double object_y`) or `821` is included; hoisting a single function-scope
+  `double object_y` did not restore the merge in the full switch.
 
-Open: action 852's early promotion and branch-local `fild` duplication, and
-scratch placement.
+Open residuals:
+- `actions:861` (`+196 B`, 3 diffs): unmerged 196-byte tail into `826`
+  (`0x61c27e` / `0x61c2a7`).
+- Local micro-diffs: `812` (`-2 B`, `fild; fmul [edi]` vs `fld [edi]; fild;
+  fmulp`), `815`/`816` (`+0`/`-3 B`, `816` `owner_action == 529`
+  `select_sequence(2)` merging into `815`), `821` (`-8 B`, `eax = [esi+0x144]`
+  CSE across two frame-0 checks), `852` (`-6 B`, `fimul` vs duplicated `fild`),
+  `903 case 9` (`0x61a359` vs `0x61a42c`), and `900`/`990` (`[esp+0x18]` vs
+  `[esp+0x14]` rounding temp).
 
 ## CPU policy `0x006126E0` (nonexact)
 

@@ -17903,7 +17903,7 @@ source = "src/characters/AyaObjectActionState.cpp"
 object = "build/match-units/GptWeb_AyaObjectActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "JP1.06a AyaObject update61A290 callable19522; selected partial807/817 exit join retains complete20000/5f2966cb and first mismatch+22. Shared AyaObjectActionView now declares the real virtual slot28 method and short slot0C; complete payload equals preceding59bcfc31 source. Same header serves initializer61F0B0 without allocation/layout completeness claims. Helper-visibility control20032/23925cd4 has11 frame calls and exact62/73-byte helpers but remains nonexact and unselected. No new exact or runtime replay claim. docs/RE_HANDOFF.md."
+notes = "JP1.06a AyaObject update 0x0061A290 callable 19522 / payload 20000; current nonexact checkpoint reaches 18/34 exact owners (28/34 at +0 byte delta, 20168B tail) using typed AnimationSpriteState BGRA fields and unsigned char direction on 0x00435240. Remaining +196B delta is actions:861 not cascading TryTailMerge into actions:826 in the full 34-case switch, plus local residuals in 802/812/815/816/821/852/900/903/990. No exact credit. docs/AYA_EVIDENCE.md."
 
 [[units.gpt-web-aya-object-vslot28-full-root.functions]]
 address = "0x0061A290"
@@ -17914,6 +17914,7 @@ rel32_targets = [
   "?advance_phase_counter_conditional@AyaObjectActionView@th105@@QAEEH@Z=0x0064CD00",
   "?aya_is_y_at_or_below_stage_surface@th105@@YIHPAVAyaObjectActionView@1@@Z=0x00435DC0",
   "?aya_stage_surface_height_at_x@th105@@YIMPAVAyaObjectActionView@1@@Z=0x00435D60",
+  "?emit_fighter_effect_433cc0@AyaFighterEffectCallView@th105@@QAEXHMMEH@Z=0x00435240",
   "?emit_fighter_effect_433cc0@CharacterObjectEffectEmitter@th105@@QAEXHMMHH@Z=0x00435240",
   "?emit_repeated_effects_for_owner_state@CharacterObjectEffectEmitter@th105@@QAEEHHH@Z=0x005575C0",
   "?has_crossed_stage_surface_while_descending@AyaObjectActionView@th105@@QAEHXZ=0x005F9310",

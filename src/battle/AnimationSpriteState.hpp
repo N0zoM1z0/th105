@@ -15,7 +15,15 @@ struct AnimationSpriteState {
     unsigned char unknown_101[0x03];
     float reset_zero_104;
     float reset_zero_108;
-    unsigned int color_10c;
+    union {
+        unsigned int color_10c;
+        struct {
+            unsigned char color_b_10c;
+            unsigned char color_g_10d;
+            unsigned char color_r_10e;
+            unsigned char color_a_10f;
+        };
+    };
     int reset_zero_110;
     unsigned char unknown_114[0x04];
     float reset_one_118;
@@ -27,3 +35,4 @@ struct AnimationSpriteState {
 typedef char AnimationSpriteState_size[sizeof(AnimationSpriteState) == 0x12c ? 1 : -1];
 typedef char AnimationSpriteState_position_offset[offsetof(AnimationSpriteState, object_x_0e8) == 0xe8 ? 1 : -1];
 typedef char AnimationSpriteState_facing_offset[offsetof(AnimationSpriteState, object_facing_100) == 0x100 ? 1 : -1];
+typedef char AnimationSpriteState_color_a_offset[offsetof(AnimationSpriteState, color_a_10f) == 0x10f ? 1 : -1];

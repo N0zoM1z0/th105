@@ -1023,3 +1023,32 @@ priority (`c2.dll:0x10B104B0..0x10B114EA`) in `AliceObject` `0x004FCAB0`
   arms with zero emitted instructions, though the full 800..999 dispatcher still
   leaves those 26 bytes swapped under VC8 SP1, RTM, and `/GL` + `/LTCG`.
   See [AliceObject update note](ALICE_OBJECT_UPDATE_2026_10_28.md).
+
+**`char *` aliasing, `TryTailMerge` host polarity, and `0x10B321E8` `0x64` cap
+in `AyaObject` `0x0061A290` (18/34 exact owners, 28/34 `+0` owners, 2026-11-28):**
+- Accessing BGRA color channels through `reinterpret_cast<unsigned char *>(this)[0x113]`
+  acts as a `char *` aliasing barrier on `this` in VC8, blocking CSE of
+  `sequence_index_13e` into `cx` across `801`/`807`/`820`/`821`/`853`/`854` and
+  preventing `mov al, [esi+0x113]` from scheduling ahead of `fstp [esi+0x120]`
+  in `903`. Switching to typed `AnimationSpriteState::color_b_10c..color_a_10f`
+  and reading `sequence_index_13e` directly (without `short const sequence`,
+  which triggers unwanted jump-threading) closed those owners immediately.
+- Declaring `emit_fighter_effect_433cc0` (`0x00435240`) with `unsigned char
+  direction` emits `movzx edx, [esi+0x104]; neg dl; push edx` without extra
+  zero-extension (`850`/`851`), and avoiding `static_cast<double>` on
+  `object_x_0e8` in `851` recovers `fisub dword ptr [esp+0x24]`.
+- In `903` `case 2/3/8`, flipping `if (color_a_10f < 20) { --lifetime; return; }`
+  to `if (color_a_10f >= 20) { ... } else { --lifetime; return; }` makes `case 2`
+  host the shared `sub al, 0x14` tail so `case 3` and `case 8` tail-merge into
+  `case 2`. In `851`, a single `if (sequence_index_13e == 1)` stops `mov ecx,
+  esi` from hoisting above `jle 0x61a41d`, which simultaneously prevents `903
+  case 7`'s `next_sequence_block(); return;` from merging into `851`.
+- Pre-regalloc `TryTailMerge` (`c2.dll:0x10B321E0`) checks
+  `cmp dword ptr [eax+0x3b], 0x64; jg` (`0x10B321E8`), skipping any label with
+  `> 100` references. In `AyaObject`, `actions:861` cleanly cascades all 196
+  bytes into `actions:826` (`0x61c27e` + `0x61c2a7`) in the 12-case subset
+  `800..817 + 826 + 861`, but remains unmerged (`+196 B`) in the full 34-case
+  switch once `820`'s `sequence 4/6` block (`aya_stage_surface_height_at_x` +
+  `double object_y`) or `821` is present.
+  See [Aya evidence](AYA_EVIDENCE.md) and
+  [Playbook Section 7](GIANT_ACTION_ROOT_PLAYBOOK.md#7-roster-object-0x28-update-roots-reusable-workflow--lessons).
