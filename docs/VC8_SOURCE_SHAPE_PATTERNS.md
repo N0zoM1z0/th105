@@ -1072,3 +1072,40 @@ in `AyaObject` `0x0061A290` (18/34 exact owners, 28/34 `+0` owners, 2026-11-28):
     the `switch (S(0x13C))` break label above `c2.dll`'s 100-reference
     `TryTailMerge` cap so cases `300..416` do not over-merge.
   - See [Alice CPU note](ALICE_CPU_TARGET_2026_10_24.md).
+
+**Remaining four Fighter CPU `+0x58` roots (Marisa `0x004B4070`, Reimu
+`0x0048D390`, Default `0x005F1F80`, Aya `0x006126E0` — all 5/5 exact,
+2026-11-28):**
+- **Missing-`break;` fallthrough in nested `switch (FRONT)`:** Original source
+  frequently omitted the trailing `break;` after `if (cond) { I(0x6D0)=2; break; }`
+  before the next `case`. When the next case also writes `I(0x6D0)=2; break;`,
+  VC8 folds both arms into one basic block and leaves a dead float compare
+  (`fld; mov [esi+6d0], 2; fcomp; fnstsw ax; jmp`) without `test ah, 0x41`
+  (Reimu `case 302` `204->205` and `206->209->210`; Default/Aya `case 302`/`322`/`410`
+  `200->201->202` and `205->212`, `case 307` `211->212`, `case 400` `205->211`).
+- **Switch dispatch threshold (`movzx` remap vs direct jump table):** Grouping
+  identical `I(0x6D0)=2` cases under shared labels (`case 200: case 201: ...`)
+  can drop distinct pre-merge targets below 6 and cause VC8 to emit a byte-remap
+  `movzx` table instead of a direct `jmp dword ptr [eax*4 + table]` (Reimu
+  `case 302` needed separate `case 200..212` bodies).
+- **Phase 2 tail-merge host polarity (`GG` vs `GA`):** In Reimu (`0x0048D390`),
+  `switch (S(0x766)) { case 0: ... break; }` and `if (S(0x766)==0) ... goto`
+  both let `GA` host `approach` and two `0x6BC` control tails, whereas wrapping
+  the facing-check body in `if (...) do { ... break; } while (0);` reversed
+  predecessor order into Phase 3 so `GG` hosted all three tails cleanly.
+- **Outer-switch tail-merge interaction in Default/Aya `case 414`:** In
+  `0x005F1F80` and `0x006126E0`, writing `case 414`'s `switch (FRONT)` as
+  `if (RANGE(95,100) && C(0x55A)>0) { switch (FRONT) { case 211: I(0x6D0)=2; break; case 212: if (v<150.0f) { I(0x6D0)=2; break; } } break; }`
+  kept `case 402`/`307`/`321` late-hosted while letting `case 414` host the
+  shared `jne; mov [esi+6d0], 2; jmp` tail (`0x5f37af`/`0x5f37b5`) for `case 302`,
+  `304`, `307`, `308`, `322`, `400`, `404`, and `410` simultaneously (clearing
+  the spurious `test ah, 0x41` in `case 400` as well).
+- **Nested `if` for live-register jump threading:** In Default/Aya Phase 2 `GG`,
+  `if (h<=600.0f) { if (RNG(1000)<=5) { ... } }` instead of `&&` threads the
+  false branch directly to `movsx eax, [esi+0x766]` (`0x5f3de1`), skipping the
+  redundant `mov edi, 2` (`0x5f3ddc`).
+- **Default vs Aya delta:** `Aya_update_cpu_action_policy` (`0x006126E0`,
+  16,032/16,661 bytes) is identical to `Fighter_update_default_cpu_action_policy`
+  (`0x005F1F80`, 15,910/16,541 bytes) across all of Phase 1 and Phase 3, differing
+  only by two 61-byte Phase 2 branches (`U(0x728)=0x400` in `GG`, `U(0x728)=0x200`
+  in `GA`).

@@ -7,22 +7,30 @@ Follow [AGENTS.md](../AGENTS.md), [shared tools](SHARED_TOOLS.md) and the
 Run `scripts/repo-python scripts/report-reconstruction-status.py --summary` or
 read [PROGRESS.md](PROGRESS.md) for current ledger totals.
 
-## Latest exact root: Alice CPU `+0x58` policy (`0x004F4B80`, 1/5 CPU roots exact)
+## Latest milestone: all 5/5 Fighter CPU `+0x58` action-policy roots exact
 
-`exact-first-alice-cpu-policy` now matches `Alice_update_cpu_action_policy`
-(`0x004F4B80`) with zero byte differences across all **16,354** callable bytes
-and all **17,009** nine-table switch-payload bytes (83 destination words, 318
-remap bytes, 5 alignment bytes, 382 relocations) under standalone VC8 SP1
-`/O2 /GS- /GR /EHsc /MT` — no `/LTCG` required. Replacing the draft's synthetic
-`goto` labels (`approach_policy`, `air_*`, `expire_policy`, `wait60`, `check214`)
-with natural C++ control flow, `if (S(0x764) < 50) break;` in `case 200`, and
-per-case `break;` in `switch (S(0x766))` resolved both `c2.dll` `TryTailMerge`
-thresholds and closed the entire function. See
-[ALICE_CPU_TARGET_2026_10_24.md](ALICE_CPU_TARGET_2026_10_24.md) and
+All five Fighter primary-vtable `+0x58` CPU action-policy roots in JP TH10.5
+v1.06a are now canonically exact under standalone VC8 SP1
+`/O2 /GS- /GR /EHsc /MT` (zero byte differences across all **80,524** callable
+bytes and all **83,691** complete switch-payload bytes, covering all 33 switch
+tables and 1,862 relocations):
+
+| Character | Address | Callable B | Payload B | Tables | Match unit | Commit |
+| --- | --- | ---: | ---: | ---: | --- | --- |
+| Alice | `0x004F4B80` | 16,354 | 17,009 | 9 | `exact-first-alice-cpu-policy` | `a3637b5d` |
+| Marisa | `0x004B4070` | 16,229 | 16,907 | 8 | `exact-first-marisa-cpu-policy` | `9130deb0` |
+| Reimu | `0x0048D390` | 15,999 | 16,573 | 4 | `gpt-web-reimu-cpu-action-policy` | `0b71cd91` |
+| Default (11 roster) | `0x005F1F80` | 15,910 | 16,541 | 6 | `gpt-web-default-cpu-action-policy` | `4bb6a057` |
+| Aya | `0x006126E0` | 16,032 | 16,661 | 6 | `gpt-web-aya-cpu-action-policy` | `b75c42c0` |
+
+Key patterns closing all five roots without `/LTCG` (natural C++ control flow
+replacing synthetic `goto` labels, missing-`break;` fallthrough in nested
+`switch (FRONT)` blocks, `do { ... } while (0)` in Reimu Phase 2, and
+`case 414`'s `switch (FRONT)` exit structure in Default/Aya) are recorded in
 [VC8_SOURCE_SHAPE_PATTERNS.md](VC8_SOURCE_SHAPE_PATTERNS.md).
 
 ```bash
-WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-alice-cpu-policy --compare --json
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit gpt-web-aya-cpu-action-policy --compare --json
 ```
 
 ## Previous milestone: all 15/15 Fighter `+0x28` action-state roots exact
@@ -106,9 +114,8 @@ credit:
   `0x0053CEA0`, Sakuya, Marisa, Remilia, plus closing the parked `AliceObject`
   `0x004FCAB0` / `AyaObject` `0x0061A290` `c2.dll` residuals) — follow
   [Playbook Section 7](GIANT_ACTION_ROOT_PLAYBOOK.md#7-roster-object-0x28-update-roots-reusable-workflow--lessons).
-- **Roster Object action-entry (`+0x3C`) and CPU policy (`+0x58`) roots**
-  (e.g. default CPU `0x005F1F80`, Reimu CPU `0x0048D390`, Aya CPU `0x006126E0`,
-  and peers).
+- **Roster Object action-entry (`+0x3C`) roots** (e.g. Reimu `0x004A1CE0` and
+  peers).
 - **Remaining scene, UI, audio, and LTCG clusters** (see parked residuals in
   [VC8_SOURCE_SHAPE_PATTERNS.md](VC8_SOURCE_SHAPE_PATTERNS.md#parked-residuals-tried-still-nonexact)
   and open private contexts in [ARTIFACTS.md](ARTIFACTS.md#private-inputs-still-in-use)).
