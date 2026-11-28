@@ -21105,7 +21105,7 @@ source = "src/characters/YukariObjectActionEntry.cpp"
 object = "build/match-units/ExactFirst_YukariObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a YukariObject slot3C root5964C0;7588 callable/full7920 target. Nonexact complete source;851/854 suffix folding and epilogue schedule parked after two neutral controls. docs/YUKARI_OBJECT_ENTRY_2026_10_24.md."
+notes = "Complete JP1.06a YukariObject slot3C 0x005964C0; 7588 callable / full 7920 payload canonical exact with checked typed view (restoring case 825 pop ebp epilogue scheduling). docs/YUKARI_OBJECT_ENTRY_2026_10_24.md."
 
 [[units.exact-first-yukari-object-entry.functions]]
 address = "0x005964C0"
@@ -21123,6 +21123,18 @@ rel32_targets = [
     "?continue_action_980@YukariObjectEntryView@th105@@QAEXXZ=0x00596370",
     "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.exact-first-yukari-object-entry.functions.switch_payload]
+table_offset = 7588
+jump_offset = 141
+table_entries = 33
+map_offset = 7720
+map_size = 200
+load_offset = 132
+alignment_hex = ""
+size = 7920
+sha256 = "fb73594060287afb176b96a75a0a95832f6986ed9deb7afd8e5112f8896c7352"
+tail_jumps = [7341]
 
 [units.exact-first-komachi-object-entry]
 kind = "probe"

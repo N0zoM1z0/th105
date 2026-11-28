@@ -1,4 +1,27 @@
-# YukariObject action initializer: complete source, nonexact
+# YukariObject action initializer (`0x005964C0`): canonical exact
+
+`0x005964C0`, YukariObject primary slot `+0x3C`, is **100% canonical exact** in
+`src/characters/YukariObjectActionEntry.cpp/.hpp` (`exact-first-yukari-object-entry`)
+across all **7,588 callable bytes** and all **7,920 switch-payload bytes** (1 table,
+33 destination words, 200 action remap bytes, tail jump to `0x00596370`).
+
+## Resolution of the case 825 epilogue residual
+
+After commit `51daa20e` separated the `case 851`/`case 854` tails, only a single
+`pop ebp` scheduling difference in `case 825` (`+0x82d` vs `+0x845`) remained.
+Replacing raw `reinterpret_cast<unsigned char *>` offset macros with checked
+`offsetof`-verified typed views (`YukariObjectEntryView`,
+`YukariEntryMotionView`, `YukariAuxiliaryView`) naturally places `pop ebp` at
+`+0x845` and matches all 7,920 payload bytes
+(`fb73594060287afb176b96a75a0a95832f6986ed9deb7afd8e5112f8896c7352`).
+
+Verification:
+```sh
+scripts/repo-python scripts/build.py --unit exact-first-yukari-object-entry --compare --json
+```
+
+---
+## Historical note (prior nonexact checkpoint)
 
 `0x005964C0`, YukariObject primary slot+3C, now has complete selected source in
 `src/characters/YukariObjectActionEntry.cpp/.hpp`. The pointer-only receiver
