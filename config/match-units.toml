@@ -21323,7 +21323,7 @@ source = "src/characters/PatchouliObjectActionEntry.cpp"
 object = "build/match-units/ExactFirst_PatchouliObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a PatchouliObject slot3C52D200;10831 callable/full11180 target. Nonexact trig-pointer/register and conversion scheduling residual after two neutral controls. docs/PATCHOULI_OBJECT_ENTRY_2026_10_24.md."
+notes = "Complete JP1.06a PatchouliObject slot3C 0x0052D200; 10831 callable / full 11180 payload canonical exact with checked typed view and direct params_340 trig operands. docs/PATCHOULI_OBJECT_ENTRY_2026_10_24.md."
 
 [[units.exact-first-patchouli-object-entry.functions]]
 address = "0x0052D200"
@@ -21342,6 +21342,21 @@ rel32_targets = [
     "__ftol2_sse=0x0068A1A0",
 ]
 
+[units.exact-first-patchouli-object-entry.functions.switch_payload]
+table_offset = 10832
+jump_offset = 139
+table_entries = 33
+map_offset = 10964
+map_size = 199
+load_offset = 131
+alignment_hex = "90"
+size = 11180
+sha256 = "67ced657b52e6f61667e3621fab7a715b8c8263db759167e8848602ffeb5bccc"
+tail_jumps = [10793]
+additional_tables = [
+    { table_offset = 11164, jump_offset = 9699, table_entries = 4, alignment_hex = "90" },
+]
+
 
 [units.exact-first-yuyuko-object-entry]
 kind = "probe"
@@ -21349,7 +21364,7 @@ source = "src/characters/YuyukoObjectActionEntry.cpp"
 object = "build/match-units/ExactFirst_YuyukoObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a YuyukoObject slot3C578000;10828 callable/full11143 target. Nonexact trig-pointer/register residual after two neutral controls. docs/YUYUKO_OBJECT_ENTRY_2026_10_24.md."
+notes = "Complete JP1.06a YuyukoObject slot3C 0x00578000; 10828 callable / full 11143 payload canonical exact with checked typed view and direct params_340 trig operands. docs/YUYUKO_OBJECT_ENTRY_2026_10_24.md."
 
 [[units.exact-first-yuyuko-object-entry.functions]]
 address = "0x00578000"
@@ -21365,6 +21380,18 @@ rel32_targets = [
     "?continue_action_980@YuyukoObjectEntryView@th105@@QAEXXZ=0x00596370",
     "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.exact-first-yuyuko-object-entry.functions.switch_payload]
+table_offset = 10828
+jump_offset = 139
+table_entries = 29
+map_offset = 10944
+map_size = 199
+load_offset = 131
+alignment_hex = ""
+size = 11143
+sha256 = "5cf0ed1dfe099e8bffaa78ffd2620fd6cae98d370750c04766adcbd90631702d"
+tail_jumps = [10790]
 
 
 [units.exact-first-udonge-object-entry]

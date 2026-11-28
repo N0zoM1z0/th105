@@ -1,4 +1,27 @@
-# PatchouliObject initializer: complete source, nonexact checkpoint
+# PatchouliObject action initializer (`0x0052D200`): canonical exact
+
+`0x0052D200`, PatchouliObject primary slot `+0x3C`, is **100% canonical exact** in
+`src/characters/PatchouliObjectActionEntry.cpp/.hpp` (`exact-first-patchouli-object-entry`)
+across all **10,831 callable bytes** and all **11,180 switch-payload bytes** (2 tables,
+37 destination words, 199 action remap bytes, tail jump to `0x00596370`).
+
+## Resolution of the trig-pointer and scheduling residual
+
+Replacing raw `reinterpret_cast<unsigned char *>` offset macros with checked
+`offsetof`-verified typed views (`PatchouliObjectEntryView`,
+`PatchouliEntryMotionView`, `PatchouliAuxiliaryView`, `PatchouliOwnerView`) and
+removing the artificial `float *const input = H;` local in `case 854` lets VC8's
+typed alias analysis and CSE naturally emit `mov edi, [esi+0x340]; mov ecx, edi; fld [ecx]`
+and match the color-conversion schedule across all 11,180 bytes
+(`67ced657b52e6f61667e3621fab7a715b8c8263db759167e8848602ffeb5bccc`).
+
+Verification:
+```sh
+scripts/repo-python scripts/build.py --unit exact-first-patchouli-object-entry --compare --json
+```
+
+---
+## Historical note (prior nonexact checkpoint)
 
 `0x0052D200`, PatchouliObject primary slot+3C, now has complete selected source
 in `src/characters/PatchouliObjectActionEntry.cpp/.hpp`. Formal and independent

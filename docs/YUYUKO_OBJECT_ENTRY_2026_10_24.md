@@ -1,4 +1,26 @@
-# YuyukoObject initializer: complete source, nonexact checkpoint
+# YuyukoObject action initializer (`0x00578000`): canonical exact
+
+`0x00578000`, YuyukoObject primary slot `+0x3C`, is **100% canonical exact** in
+`src/characters/YuyukoObjectActionEntry.cpp/.hpp` (`exact-first-yuyuko-object-entry`)
+across all **10,828 callable bytes** and all **11,143 switch-payload bytes** (1 table,
+29 destination words, 199 action remap bytes, tail jump to `0x00596370`).
+
+## Resolution of the trig-pointer residual
+
+Replacing raw `reinterpret_cast<unsigned char *>` offset macros with checked
+`offsetof`-verified typed views (`YuyukoObjectEntryView`,
+`YuyukoEntryMotionView`, `YuyukoOwnerView`) and removing the artificial
+`float *const input = H;` locals in `case 821`, `case 858`, and `case 920` lets VC8's
+typed alias analysis and CSE naturally emit all three native `mov reg, edi` copies
+and match all 11,143 bytes (`5cf0ed1dfe099e8bffaa78ffd2620fd6cae98d370750c04766adcbd90631702d`).
+
+Verification:
+```sh
+scripts/repo-python scripts/build.py --unit exact-first-yuyuko-object-entry --compare --json
+```
+
+---
+## Historical note (prior nonexact checkpoint)
 
 `0x00578000`, YuyukoObject primary slot+3C, now has complete selected source in
 `src/characters/YuyukoObjectActionEntry.cpp/.hpp`. Formal and independent cold
