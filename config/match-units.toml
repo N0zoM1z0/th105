@@ -17655,7 +17655,7 @@ source = "src/characters/CpuActionPolicies.cpp"
 object = "build/match-units/GptWeb_DefaultCpuActionPolicy.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current Japanese 1.06a shared Fighter +0x58 CPU root, 15910-byte canonical extent. The 2026-09-12 predicate checkpoint preserves 54 unsigned full-RNG-result comparisons and three separately signed stored-word comparisons; no exact credit. Fresh focused comparison remains nonexact at +0x12E, with 16481-byte section tail and metadata at +0x3DF0. Source/flag/call-visibility experiments and their limitations are recorded in docs/CPU_PREDICATE_EVIDENCE_2026_09_12.md. Historical near-sized owners and source-present mappings are not semantic closure or whole-function matching evidence."
+notes = "Canonical exact JP1.06a shared Fighter primary slot+0x58 default CPU root 0x005F1F80: 15,910 callable bytes and all 16,541 switch-payload bytes (6 tables, 61 destination words, 370 remap bytes, 17 alignment bytes, 360 relocations)."
 
 [[units.gpt-web-default-cpu-action-policy.functions]]
 address = "0x005F1F80"
@@ -17667,36 +17667,23 @@ rel32_targets = [
   "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
   "__ftol2_sse=0x0068A1A0",
 ]
-dir32_targets = [
-  "__real@0000000000000000=__real@0000000000000000",
-  "__real@4049000000000000=__real@4049000000000000",
-  "__real@404e000000000000=__real@404e000000000000",
-  "__real@4059000000000000=__real@4059000000000000",
-  "__real@405e000000000000=__real@405e000000000000",
-  "__real@4069000000000000=__real@4069000000000000",
-  "__real@406b800000000000=__real@406b800000000000",
-  "__real@406e000000000000=__real@406e000000000000",
-  "__real@406f400000000000=__real@406f400000000000",
-  "__real@4079000000000000=__real@4079000000000000",
-  "__real@407c200000000000=__real@407c200000000000",
-  "__real@407f400000000000=__real@407f400000000000",
-  "__real@4080400000000000=__real@4080400000000000",
-  "__real@408ae00000000000=__real@408ae00000000000",
-  "__real@408e000000000000=__real@408e000000000000",
-  "__real@42960000=__real@42960000",
-  "__real@42a00000=__real@42a00000",
-  "__real@42b40000=__real@42b40000",
-  "__real@43160000=__real@43160000",
-  "__real@43340000=__real@43340000",
-  "__real@438c0000=__real@438c0000",
-  "__real@43960000=__real@43960000",
-  "__real@43a00000=__real@43a00000",
-  "__real@43af0000=__real@43af0000",
-  "__real@44020000=__real@44020000",
-  "__real@44160000=__real@44160000",
-  "__real@44200000=__real@44200000",
-  "__real@442f0000=__real@442f0000",
-  "__real@44820000=__real@44820000",
+
+[units.gpt-web-default-cpu-action-policy.functions.switch_payload]
+size = 16541
+sha256 = "9229ca655270236ad59068821ddd6561d79760b37775ede0e80b24997cf72c5c"
+alignment_hex = "8bff"
+table_offset = 15912
+table_entries = 19
+map_offset = 15988
+map_size = 217
+load_offset = 348
+jump_offset = 355
+additional_tables = [
+  { alignment_hex = "8d4900", table_offset = 16208, table_entries = 6, map_offset = 16232, map_size = 13, load_offset = 1539, jump_offset = 1552 },
+  { alignment_hex = "8d4900", table_offset = 16248, table_entries = 3, map_offset = 16260, map_size = 13, load_offset = 2349, jump_offset = 2356 },
+  { alignment_hex = "8d4900", table_offset = 16276, table_entries = 6, map_offset = 16300, map_size = 13, load_offset = 4298, jump_offset = 4311 },
+  { alignment_hex = "8d4900", table_offset = 16316, table_entries = 6, map_offset = 16340, map_size = 13, load_offset = 5812, jump_offset = 5825 },
+  { alignment_hex = "8d4900", table_offset = 16356, table_entries = 21, map_offset = 16440, map_size = 101, load_offset = 7793, jump_offset = 7800 },
 ]
 
 [units.gpt-web-reimu-cpu-action-policy]

@@ -31,7 +31,16 @@ NONVOLATILE_ALIASES = {
 }
 
 
+def is_absolute_double_load(inst):
+    return (inst.mnemonic == 'fld' and len(inst.operands) == 1
+            and inst.operands[0].type == x.X86_OP_MEM and inst.operands[0].size == 8
+            and not inst.operands[0].mem.base and not inst.operands[0].mem.index
+            and not inst.operands[0].mem.segment)
+
+
 def allowed_dispatch_prefix(inst, index_reg):
+    if is_absolute_double_load(inst):
+        return True
     if (inst.mnemonic == 'push' and len(inst.operands) == 1
             and inst.operands[0].type == x.X86_OP_REG
             and inst.operands[0].reg in (x.X86_REG_EBX, x.X86_REG_EBP, x.X86_REG_EDI)):
@@ -221,6 +230,9 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
                 for inst in dispatch_prefix):
             raise ValueError('unsupported instruction between switch selector load and dispatch')
     number = ins.index(relocated[-1])
+    if number >= 3 and is_absolute_double_load(ins[number - 1]):
+        dispatch_prefix = [ins[number - 1], *dispatch_prefix]
+        number -= 1
     if number < 2:
         raise ValueError('compact switch has no adjacent unsigned range guard')
     guard = ins[number - 1]
@@ -256,14 +268,14 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
         if dest.type == x.X86_OP_REG and dest.reg == x.X86_REG_EDI:
             saves_edi = store.mnemonic == 'push' and selector != x.X86_REG_ESP
             sets_const = (store.mnemonic == 'mov' and selector != x.X86_REG_EDI
-                          and store.operands[1].type == x.X86_OP_IMM and store.operands[1].imm in (1, 2, 5, 60, 0x190))
+                          and store.operands[1].type == x.X86_OP_IMM and store.operands[1].imm in (1, 2, 5, 60, 0xc8, 0x190))
             if saves_edi or sets_const:
                 scheduled.append(store)
                 bound_index -= 1
                 continue
         if (store.mnemonic == 'mov' and dest.type == x.X86_OP_REG
                 and dest.reg == x.X86_REG_ECX and selector != x.X86_REG_ECX
-                and store.operands[1].type == x.X86_OP_IMM and store.operands[1].imm == 0x190):
+                and store.operands[1].type == x.X86_OP_IMM and store.operands[1].imm in (2, 0x190)):
             scheduled.append(store)
             bound_index -= 1
             continue
@@ -278,7 +290,7 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
         if (store.mnemonic == 'lea' and dest.type == x.X86_OP_REG
                 and dest.reg == x.X86_REG_EBP and selector != x.X86_REG_EBP
                 and store.operands[1].type == x.X86_OP_MEM
-                and store.operands[1].mem.base == x.X86_REG_EDI
+                and store.operands[1].mem.base in (x.X86_REG_ECX, x.X86_REG_EDI)
                 and not store.operands[1].mem.index and not store.operands[1].mem.segment):
             scheduled.append(store)
             bound_index -= 1

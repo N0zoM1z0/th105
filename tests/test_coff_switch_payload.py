@@ -496,6 +496,10 @@ class CompactSwitchTests(unittest.TestCase):
         marisa_cmp = bytes.fromhex('90 83f801 bf02000000 55 b990010000 8d6f1e ba58020000')
         b2, a2, s2, c2, r2 = fixture(compare=marisa_cmp)
         payload.inspect(b2, b2, a2, s2, c2, r2)
+        # Default/Aya CPU policy schedules mov ecx, 2; push ebp; mov edi, 0xc8; lea ebp, [ecx+0x1e]; mov edx, 0x190.
+        default_cmp = bytes.fromhex('90 83f801 b902000000 55 bfc8000000 8d691e ba90010000')
+        b3, a3, s3, c3, r3 = fixture(compare=default_cmp)
+        payload.inspect(b3, b3, a3, s3, c3, r3)
         # Negative: unallowlisted push/mov immediate or selector overwrite must fail closed.
         for offset, replacement in ((3, b'\x50'), (4, bytes.fromhex('bd03000000')), (9, bytes.fromhex('bf91010000'))):
             bad, updated = changed(body, contract, offset, replacement)
@@ -505,6 +509,37 @@ class CompactSwitchTests(unittest.TestCase):
         bad_ecx, updated_ecx = changed(b2, c2, 10, bytes.fromhex('b991010000'))
         with self.assertRaisesRegex(ValueError, 'unsupported instruction between compact-switch bound and guard'):
             payload.inspect(bad_ecx, bad_ecx, a2, s2, updated_ecx, r2)
+
+    def test_scheduled_absolute_double_loads_around_compact_switch_lookup(self):
+        # Default/Aya CPU policy hoists fld qword ptr [disp32] before and after movzx.
+        address = 0x401000
+        # cmp eax, 1 (3B @0); ja +20 -> @25 (2B @3);
+        # fld qword ptr [0x6c3418] (6B @5); movzx edx, byte ptr [eax+index] (7B @11);
+        # fld qword ptr [0x6c0e98] (6B @18); jmp dword ptr [edx*4+table] (7B @24);
+        # Wait: ja from @5 -> @31 is +26 (0x1a).
+        load = 11
+        jump = 24
+        case0, case1, default = 31, 34, 40
+        code_size = 43
+        table, index = 44, 52
+        body = (bytes.fromhex('83f801 7723 dd0518346c00')
+                + b'\x0f\xb6\x90' + struct.pack('<I', address + index)
+                + bytes.fromhex('dd05980e6c00')
+                + b'\xff\x24\x95' + struct.pack('<I', address + table)
+                + b'\x31\xc0\xc3' + b'\xb8\x01\x00\x00\x00\xc3'
+                + b'\x31\xc0\xc3' + b'\x90'
+                + struct.pack('<II', address + case0, address + case1) + b'\x00\x01')
+        contract = dict(size=len(body), sha256=hashlib.sha256(body).hexdigest(),
+                        alignment_hex='90', table_offset=table, table_entries=2,
+                        map_offset=index, map_size=2, load_offset=load, jump_offset=jump)
+        relocs = [(load + 3, 6, '$MAP'), (jump + 3, 6, '$TABLE'),
+                  (table, 6, '$CASE0'), (table + 4, 6, '$CASE1')]
+        report = payload.inspect(body, body, address, code_size, contract, relocs)
+        self.assertEqual(report['reachable_code_bytes'], code_size)
+        # Negative: single-precision fld dword ptr [disp32] (d9 05) or memory-indexed fld must fail closed.
+        bad, bad_contract = changed(body, contract, 18, bytes.fromhex('d905980e6c00'))
+        with self.assertRaisesRegex(ValueError, 'unsupported instruction between switch selector load and dispatch'):
+            payload.inspect(bad, bad, address, code_size, bad_contract, relocs)
 
 
 if __name__ == '__main__':
