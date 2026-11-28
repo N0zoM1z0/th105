@@ -1,4 +1,38 @@
-# Marisa CPU policy: complete source checkpoint, nonexact
+## Canonical exact resolution (2026-11-28)
+
+`exact-first-marisa-cpu-policy` now matches `Marisa_update_cpu_action_policy`
+(`0x004B4070`) with **zero byte differences** under standalone VC8 SP1
+`/O2 /GS- /GR /EHsc /MT` (no `__forceinline` or `/LTCG` required):
+
+- Callable code `[0x004B4070, 0x004B7FD5)`: 16,229 bytes, 46 `RET 0` exits,
+  161 direct calls (121 `selector_random_roll`, 27 checked `deque::operator[]`,
+  7 `__ftol2_sse`, 5 `atan2_degrees`, 1 `mt19937_next_u32`), SHA-256
+  `20a78101afe95044c22b4f8cefde19f80b5138576d2b998efd7ecf9f9f331edf`.
+- Complete eight-table switch payload `[0x004B4070, 0x004B827B)`: 16,907 bytes
+  (82 destination words, 344 remap bytes, 6 alignment bytes `8d4900` + `8d4900`),
+  SHA-256 `390ace272a1567150c1332831c28fb1c252073f80879975b86c6d1e9a30d0e90`.
+- Relocations: 405 verified (161 REL32 + 244 DIR32).
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-marisa-cpu-policy --compare --json
+```
+
+Four natural C++ fixes closed the function:
+1. Replace `if (S(0x766) == 0) { ... goto policy_dispatch; }` and `goto approach_policy;`
+   with `switch (S(0x766)) { case 0: ... break; }` and inline approach bodies —
+   restoring first-site hosting for both the four `approach` arms and the shared
+   `I(0x6B4)=C(0x104); I(0x6B8)=0;` tail without `__forceinline`.
+2. Remove `goto expire_policy` / `wait60` / `check214` / `horizontal214` /
+   `rising214` and use per-case `break;` in `switch (S(0x766))` cases `1..102` —
+   keeping `DURATION(17/16/18, 20, 5)` separate and hosting the shared expire
+   tail in `case 11..18`.
+3. Use `(C(0x104) == -1) ? 1 : 2` in `case 10`.
+4. Remove the spurious `&& I(0x180) == 1` check on `FRONT == 207` in `case 414`
+   and `case 416` (`0x004B56E6` jumps to `0x004B474F`, bypassing `0x004B4748`).
+
+---
+
+# Marisa CPU policy: earlier analysis record (superseded by exact match above)
 
 ## Current source checkpoint: nonexact
 

@@ -20860,7 +20860,7 @@ source = "src/characters/MarisaCpuPolicy.cpp"
 object = "build/match-units/ExactFirst_MarisaCpuPolicy.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a Marisa primary slot58 CPU root4B4070;16229 callable/full16907 target bytes. Complete numeric/offset source, nonexact; all action/attack/policy tables reviewed. Original layout and compiler/TU context unknown. docs/MARISA_CPU_TARGET_2026_10_24.md."
+notes = "Canonical exact JP1.06a Marisa primary slot+0x58 CPU root 0x004B4070: 16,229 callable bytes and all 16,907 switch-payload bytes (8 tables, 82 destination words, 344 remap bytes, 6 alignment bytes, 405 relocations). docs/MARISA_CPU_TARGET_2026_10_24.md."
 
 [[units.exact-first-marisa-cpu-policy.functions]]
 address = "0x004B4070"
@@ -20871,6 +20871,26 @@ rel32_targets = [
     "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
     "??A?$deque@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@@std@@QAEAAUFighterSequenceSlot@th105@@I@Z=0x004399C0",
     "__ftol2_sse=0x0068A1A0",
+]
+
+[units.exact-first-marisa-cpu-policy.functions.switch_payload]
+size = 16907
+sha256 = "390ace272a1567150c1332831c28fb1c252073f80879975b86c6d1e9a30d0e90"
+alignment_hex = "8d4900"
+table_offset = 16232
+table_entries = 20
+map_offset = 16312
+map_size = 217
+load_offset = 348
+jump_offset = 355
+additional_tables = [
+    { alignment_hex = "8d4900", table_offset = 16532, table_entries = 7, jump_offset = 1483 },
+    { alignment_hex = "", table_offset = 16560, table_entries = 7, jump_offset = 2112 },
+    { alignment_hex = "", table_offset = 16588, table_entries = 7, jump_offset = 2375 },
+    { alignment_hex = "", table_offset = 16616, table_entries = 12, jump_offset = 4015 },
+    { alignment_hex = "", table_offset = 16664, table_entries = 3, map_offset = 16676, map_size = 12, load_offset = 4324, jump_offset = 4331 },
+    { alignment_hex = "", table_offset = 16688, table_entries = 3, map_offset = 16700, map_size = 12, load_offset = 5525, jump_offset = 5532 },
+    { alignment_hex = "", table_offset = 16712, table_entries = 23, map_offset = 16804, map_size = 103, load_offset = 10465, jump_offset = 10472 },
 ]
 
 [units.exact-first-iku-control-mode]

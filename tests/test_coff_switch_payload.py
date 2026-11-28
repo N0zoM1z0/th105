@@ -197,7 +197,7 @@ class CompactSwitchTests(unittest.TestCase):
         body, address, size, contract, relocs = fixture(compare=compare)
         payload.inspect(body, body, address, size, contract, relocs)
 
-        for offset, replacement in ((5, b'\x50'), (6, b'\xb8'), (7, b'\x02')):
+        for offset, replacement in ((5, b'\x50'), (6, b'\xb8'), (7, b'\x03')):
             raw, updated = changed(body, contract, offset, replacement)
             with self.subTest(offset=offset), self.assertRaisesRegex(ValueError, 'unsupported instruction'):
                 payload.inspect(raw, raw, address, size, updated, relocs)
@@ -492,12 +492,19 @@ class CompactSwitchTests(unittest.TestCase):
         compare = bytes.fromhex('83f801 55 bd02000000 bf90010000 ba20030000')
         body, address, size, contract, relocs = fixture(compare=compare)
         payload.inspect(body, body, address, size, contract, relocs)
+        # Marisa CPU policy schedules mov edi, 2; push ebp; mov ecx, 0x190; lea ebp, [edi+0x1e]; mov edx, 0x258.
+        marisa_cmp = bytes.fromhex('90 83f801 bf02000000 55 b990010000 8d6f1e ba58020000')
+        b2, a2, s2, c2, r2 = fixture(compare=marisa_cmp)
+        payload.inspect(b2, b2, a2, s2, c2, r2)
         # Negative: unallowlisted push/mov immediate or selector overwrite must fail closed.
         for offset, replacement in ((3, b'\x50'), (4, bytes.fromhex('bd03000000')), (9, bytes.fromhex('bf91010000'))):
             bad, updated = changed(body, contract, offset, replacement)
             with self.subTest(offset=offset), self.assertRaisesRegex(
                     ValueError, 'unsupported instruction between compact-switch bound and guard'):
                 payload.inspect(bad, bad, address, size, updated, relocs)
+        bad_ecx, updated_ecx = changed(b2, c2, 10, bytes.fromhex('b991010000'))
+        with self.assertRaisesRegex(ValueError, 'unsupported instruction between compact-switch bound and guard'):
+            payload.inspect(bad_ecx, bad_ecx, a2, s2, updated_ecx, r2)
 
 
 if __name__ == '__main__':

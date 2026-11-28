@@ -1,8 +1,8 @@
 #include "MarisaCpuPolicy.hpp"
 #include "battle/SpellRuntime.hpp"
 #include <deque>
-// JP1.06a 0x004B4070: complete source candidate, not an exact-match claim.
-// See docs/MARISA_CPU_TARGET_2026_10_24.md for boundary and comparison evidence.
+// JP1.06a 0x004B4070: canonical exact match (16,229 callable / 16,907 full switch payload).
+// See docs/MARISA_CPU_TARGET_2026_10_24.md for boundary and compiler-shape evidence.
 #include <stdlib.h>
 namespace th105 {
 #define FIELD(type, offset) (*reinterpret_cast<type *>(reinterpret_cast<unsigned char *>(this) + (offset)))
@@ -184,31 +184,32 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
         PREPARE();
         if (RANGE(15,25) && S(0x482)>=400 && v<150.0f) { U(0x728)=2; break; }
         if (RANGE(30,35) && S(0x482)>=600 && v<100.0) { U(0x728)=0x20; break; }
-        if (RANGE(95,100) && C(0x55A)>0 && FRONT==207 && I(0x180)==1) { I(0x6D0)=2; break; }
+        if (RANGE(95,100) && C(0x55A)>0 && FRONT==207) { I(0x6D0)=2; break; }
         break;
     case 416:
         PREPARE();
         if (RANGE(20,25) && S(0x482)>=600 && PEER(0xF0)<50.0) { U(0x728)=0x20000000; break; }
-        if (RANGE(95,100) && C(0x55A)>0 && FRONT==207 && I(0x180)==1) { I(0x6D0)=2; break; }
+        if (RANGE(95,100) && C(0x55A)>0 && FRONT==207) { I(0x6D0)=2; break; }
         break;
     }
     // Common attack proposals; each RNG/deque evaluation remains independent.
-    if (S(0x766)==0) {
+    switch (S(0x766)) {
+    case 0:
         if (S(0x76C)==0) S(0x76C)=static_cast<short>(selector_random_roll(100));
         if (((F(0xEC)>PEER(0xEC) && C(0x104)==-1) || (F(0xEC)<PEER(0xEC) && C(0x104)==1)) && (PEER_S(0x13C)<=95 || PEER_S(0x13C)>=140)) {
-#define INPUT_DONE { I(0x6D0)=2; goto policy_dispatch; }
+#define INPUT_DONE { I(0x6D0)=2; break; }
 #define TRY(condition,limit,sequence) if ((condition) && RNG(1000)<(limit) && FRONT==(sequence)) INPUT_DONE
-#define CONTROL_DONE(button,x,y) { I(button)=2; I(0x6B8)=(y); I(0x6B4)=(x); goto policy_dispatch; }
+#define CONTROL_DONE(button,x,y) { I(button)=2; I(0x6B8)=(y); I(0x6B4)=(x); break; }
             if (F(0xF0)==0.0f) {
                 if (PEER(0xF0)==0.0f) {
                     if (h<=90.0f) {
                         if (RNG(1000)<75) CONTROL_DONE(0x6BC,0,0)
-                        if (RNG(1000)<10 && C(0x60B)==0 && S(0x482)<=800) { U(0x728)=0x2000; goto policy_dispatch; }
+                        if (RNG(1000)<10 && C(0x60B)==0 && S(0x482)<=800) { U(0x728)=0x2000; break; }
                         if (C(0x55A)>0 && RNG(1000)<10 && FRONT==206) INPUT_DONE
                     }
-                    if ((RNG(1000)<50 && h<250.0 && h>120.0) ||
-                        (RNG(1000)<50 && h<400.0 && h>250.0) ||
-                        (RNG(1000)<50 && h<300.0f && h>200.0)) goto approach_policy;
+                    if (RNG(1000)<50 && h<250.0 && h>120.0) { S(0x766)=100; S(0x768)=static_cast<short>(selector_random_roll(20)+10); break; }
+                    if (RNG(1000)<50 && h<400.0 && h>250.0) { S(0x766)=100; S(0x768)=static_cast<short>(selector_random_roll(20)+10); break; }
+                    if (RNG(1000)<50 && h<300.0f && h>200.0) { S(0x766)=100; S(0x768)=static_cast<short>(selector_random_roll(20)+10); break; }
                     if (C(0x55A)>0) {
                         TRY(h>200.0,5,200)
                         TRY(h>100.0,5,201)
@@ -220,11 +221,11 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
                         }
                     }
                     if (h<=150.0f && RNG(1000)<50) CONTROL_DONE(0x6BC,0,0)
-                    if (h<=200.0 && h>=90.0f && RNG(1000)<70) { I(0x6BC)=2; I(0x6B4)=C(0x104); I(0x6B8)=1; goto policy_dispatch; }
+                    if (h<=200.0 && h>=90.0f && RNG(1000)<70) { I(0x6BC)=2; I(0x6B4)=C(0x104); I(0x6B8)=1; break; }
                     if (h<=180.0f && h>=60.0 && RNG(1000)<=50) CONTROL_DONE(0x6BC,0,1)
                     if (h<520.0f && h>180.0f) {
-                        if (RNG(1000)<=10 && S(0x482)>=400) { U(0x728)=0x20; goto policy_dispatch; }
-                        if (RNG(1000)<=10 && S(0x482)>=400) { U(0x728)=0x40; goto policy_dispatch; }
+                        if (RNG(1000)<=10 && S(0x482)>=400) { U(0x728)=0x20; break; }
+                        if (RNG(1000)<=10 && S(0x482)>=400) { U(0x728)=0x40; break; }
                     }
                     if (S(0x76E)<=S(0x482)) {
                         if (h>=120.0 && RNG(1000)<=5) CONTROL_DONE(0x6C0,0,1)
@@ -248,12 +249,12 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
                             TRY(v<200.0,5,211)
                         }
                     }
-                    if (h<=90.0f && v<80.0f && RNG(1000)<5 && C(0x609)==0) { U(0x728)=0x2000; goto policy_dispatch; }
-                    if (h<=300.0f && v>100.0 && v<500.0 && RNG(1000)<5 && C(0x609)==0) { U(0x728)=0x4000; goto policy_dispatch; }
-                    if (RNG(1000)<75 && h<350.0f && h>120.0 && v<100.0) goto approach_policy;
+                    if (h<=90.0f && v<80.0f && RNG(1000)<5 && C(0x609)==0) { U(0x728)=0x2000; break; }
+                    if (h<=300.0f && v>100.0 && v<500.0 && RNG(1000)<5 && C(0x609)==0) { U(0x728)=0x4000; break; }
+                    if (RNG(1000)<75 && h<350.0f && h>120.0 && v<100.0) { S(0x766)=100; S(0x768)=static_cast<short>(selector_random_roll(20)+10); break; }
                     if (S(0x76E)<=S(0x482)) {
                         if (h>280.0f) {
-                            if (v>200.0 && RNG(1000)<10 && S(0x482)>=600) { I(0x6C0)=2; I(0x6B4)=C(0x104); I(0x6B8)=0; goto policy_dispatch; }
+                            if (v>200.0 && RNG(1000)<10 && S(0x482)>=600) { I(0x6C0)=2; I(0x6B4)=C(0x104); I(0x6B8)=0; break; }
                             if (v<200.0 && RNG(1000)<10 && S(0x482)>=600) CONTROL_DONE(0x6C0,0,0)
                         }
                         if (h<=150.0f && v<200.0 && RNG(1000)<=5) CONTROL_DONE(0x6C4,0,1)
@@ -267,8 +268,8 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
                         TRY(true,5,211)
                     }
                 }
-                if (h<520.0f && h>180.0f && v<50.0 && RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20; goto policy_dispatch; }
-                if (h<200.0 && h>150.0f && v>150.0f && RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20000000; goto policy_dispatch; }
+                if (h<520.0f && h>180.0f && v<50.0 && RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20; break; }
+                if (h<200.0 && h>150.0f && v>150.0f && RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20000000; break; }
                 if (h<=static_cast<float>(((F(0xF4)>0.0f)+1)*120)) {
                     int const rising=(F(0xF0)<PEER(0xF0) && F(0xF8)>0.0f);
                     if (v<static_cast<float>(rising*150+100) && RNG(1000)<50) CONTROL_DONE(0x6BC,0,0)
@@ -294,8 +295,8 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
                         TRY(true,5,211)
                     }
                 }
-                if (h<520.0f && h>180.0f && v<50.0 && RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20; goto policy_dispatch; }
-                if (h<200.0 && h>50.0 && v>150.0f && RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20000000; goto policy_dispatch; }
+                if (h<520.0f && h>180.0f && v<50.0 && RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20; break; }
+                if (h<200.0 && h>50.0 && v>150.0f && RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20000000; break; }
                 if (h<=static_cast<float>(((F(0xF4)>0.0f)+1)*120)) {
                     int const rising=(F(0xF0)<PEER(0xF0) && F(0xF8)>0.0f);
                     if (v<static_cast<float>(rising*150+100) && RNG(1000)<50) CONTROL_DONE(0x6BC,0,0)
@@ -304,7 +305,7 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
                     int const falling=(F(0xF8)<0.0f && F(0xF0)>PEER(0xF0));
                     if (v<static_cast<float>((falling+2)*50) && RNG(1000)<75) CONTROL_DONE(0x6BC,0,1)
                 }
-                if (h<=210.0 && h>=90.0f && v<80.0f && RNG(1000)<75) { I(0x6BC)=2; I(0x6B4)=C(0x104); I(0x6B8)=0; goto policy_dispatch; }
+                if (h<=210.0 && h>=90.0f && v<80.0f && RNG(1000)<75) { I(0x6BC)=2; I(0x6B4)=C(0x104); I(0x6B8)=0; break; }
                 if (h>static_cast<float>((v<200.0)*180+120) && RNG(1000)<50) {
                     I(0x6C0)=2;
                     int const aim=static_cast<int>(atan2_degrees(PEER(0xF0)-F(0xF0),static_cast<float>(C(0x104))*(PEER(0xEC)-F(0xEC))));
@@ -317,12 +318,8 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
 #undef TRY
 #undef INPUT_DONE
         }
+        break;
     }
-    goto policy_dispatch;
-approach_policy:
-    S(0x766)=100;
-    S(0x768)=static_cast<short>(selector_random_roll(20)+10);
-policy_dispatch:
     // Final movement policy, including the target-specific 100/101/102 arms.
 #define CHOOSE(id) { S(0x766)=static_cast<short>(id); return; }
 #define DURATION(id,bound,add) { S(0x766)=static_cast<short>(id); S(0x768)=static_cast<short>(selector_random_roll(bound)+(add)); return; }
@@ -522,74 +519,64 @@ policy_dispatch:
     }
     case 1:
         I(0x6B4)=1;
-        if (S(0x768)>0) return;
+        if (S(0x768)>0) break;
         S(0x766)=0;
-        if (RNG(100)>10) return;
-        goto wait60;
+        if (RNG(100)<=10) S(0x768)=static_cast<short>(selector_random_roll(60));
+        break;
     case 2:
         I(0x6B4)=-1;
-        if (S(0x768)>0) return;
+        if (S(0x768)>0) break;
         S(0x766)=0;
-        if (RNG(100)>10) return;
-        goto wait60;
-    case 3: I(0x6B4)=C(0x104); I(0x6B8)=-1; break;
-    case 4: I(0x6B4)=0; I(0x6B8)=-1; break;
-    case 5: I(0x6B4)=1; I(0x6B8)=-1; break;
-    case 6: U(0x724)=16; break;
-    case 7: U(0x724)=4; break;
-    case 8: U(0x724)=8; break;
+        if (RNG(100)<=10) S(0x768)=static_cast<short>(selector_random_roll(60));
+        break;
+    case 3: I(0x6B4)=C(0x104); I(0x6B8)=-1; if (F(0xF0)>0.0f) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } break;
+    case 4: I(0x6B4)=0; I(0x6B8)=-1; if (F(0xF0)>0.0f) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } break;
+    case 5: I(0x6B4)=1; I(0x6B8)=-1; if (F(0xF0)>0.0f) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } break;
+    case 6: U(0x724)=16; if (F(0xF0)>0.0f) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } break;
+    case 7: U(0x724)=4; if (F(0xF0)>0.0f) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } break;
+    case 8: U(0x724)=8; if (F(0xF0)>0.0f) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } break;
     case 9:
         I(0x6B4)=C(0x104); I(0x6B8)=0; U(0x724)=(C(0x104)!=1)+1;
-        if (S(0x13C)==200 || S(0x13C)==202) { if (S(0x768)<=0) goto expire_policy; }
+        if (S(0x13C)==200 || S(0x13C)==202) {
+            if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); }
+        }
         else S(0x766)=0;
-        return;
+        break;
     case 10:
-        I(0x6B4)=-C(0x104); I(0x6B8)=0; U(0x724)=(C(0x104)!=-1)+1;
-        if (S(0x13C)==201 || S(0x13C)==203) { if (S(0x768)<=0) goto expire_policy; }
+        I(0x6B4)=-C(0x104); I(0x6B8)=0; U(0x724)=(C(0x104)==-1)?1:2;
+        if (S(0x13C)==201 || S(0x13C)==203) {
+            if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); }
+        }
         else S(0x766)=0;
-        return;
-    case 11: I(0x6B4)=C(0x104); I(0x6B8)=-1; I(0x6C8)=1; goto check214;
-    case 12: I(0x6B4)=0; I(0x6B8)=-1; I(0x6C8)=1; goto check214;
-    case 13: I(0x6B4)=-C(0x104); I(0x6B8)=-1; I(0x6C8)=1; goto check214;
-    case 14: I(0x6B4)=C(0x104); goto horizontal214;
-    case 15: I(0x6B4)=-C(0x104);
-    horizontal214:
-        I(0x6B8)=0; I(0x6C8)=1; goto check214;
-    case 16: I(0x6B4)=C(0x104); goto rising214;
-    case 17: I(0x6B4)=0; goto rising214;
-    case 18: I(0x6B4)=-C(0x104);
-    rising214:
-        I(0x6B8)=1; I(0x6C8)=1;
-    check214:
-        if (S(0x13C)==214) { if (S(0x768)<=0) goto expire_policy; }
-        else S(0x766)=0;
-        return;
+        break;
+    case 11: I(0x6B4)=C(0x104); I(0x6B8)=-1; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
+    case 12: I(0x6B4)=0; I(0x6B8)=-1; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
+    case 13: I(0x6B4)=-C(0x104); I(0x6B8)=-1; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
+    case 14: I(0x6B4)=C(0x104); I(0x6B8)=0; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
+    case 15: I(0x6B4)=-C(0x104); I(0x6B8)=0; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
+    case 16: I(0x6B4)=C(0x104); I(0x6B8)=1; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
+    case 17: I(0x6B4)=0; I(0x6B8)=1; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
+    case 18: I(0x6B4)=-C(0x104); I(0x6B8)=1; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
     case 100:
         I(0x6B4)=C(0x104); I(0x6B8)=0; I(0x6BC)=0; U(0x724)=(C(0x104)!=1)+1;
         I(0x6C0)=0; I(0x6C4)=0; I(0x6C8)=0;
-        if (S(0x768)<=0) goto expire_policy;
+        if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); break; }
         if (S(0x13C)==200 && h<220.0) I(0x6BC)=2;
-        return;
+        break;
     case 101:
         I(0x6B4)=C(0x104); I(0x6B8)=0; I(0x6BC)=0; U(0x724)=(C(0x104)!=1)+1;
         I(0x6C0)=0; I(0x6C4)=0; I(0x6C8)=0;
-        if (S(0x768)<=0) goto expire_policy;
+        if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); break; }
         if (S(0x13C)==200 && h<320.0f) I(0x6C0)=2;
-        return;
+        break;
     case 102:
         I(0x6B4)=C(0x104); I(0x6B8)=0; I(0x6BC)=0; U(0x724)=(C(0x104)!=1)+1;
         I(0x6C0)=0; I(0x6C4)=0; I(0x6C8)=0;
-        if (S(0x768)<=0) goto expire_policy;
+        if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); break; }
         if (S(0x13C)==200 && h<320.0f) I(0x6C4)=2;
-        return;
-    default: return;
+        break;
+    default: break;
     }
-    if (!(F(0xF0)>0.0f)) return;
-expire_policy:
-    S(0x766)=0;
-    if (RNG(100)>100) return;
-wait60:
-    S(0x768)=static_cast<short>(selector_random_roll(60));
 }
 #undef INTERIOR
 #undef WALL

@@ -256,11 +256,17 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
         if dest.type == x.X86_OP_REG and dest.reg == x.X86_REG_EDI:
             saves_edi = store.mnemonic == 'push' and selector != x.X86_REG_ESP
             sets_const = (store.mnemonic == 'mov' and selector != x.X86_REG_EDI
-                          and store.operands[1].type == x.X86_OP_IMM and store.operands[1].imm in (1, 5, 60, 0x190))
+                          and store.operands[1].type == x.X86_OP_IMM and store.operands[1].imm in (1, 2, 5, 60, 0x190))
             if saves_edi or sets_const:
                 scheduled.append(store)
                 bound_index -= 1
                 continue
+        if (store.mnemonic == 'mov' and dest.type == x.X86_OP_REG
+                and dest.reg == x.X86_REG_ECX and selector != x.X86_REG_ECX
+                and store.operands[1].type == x.X86_OP_IMM and store.operands[1].imm == 0x190):
+            scheduled.append(store)
+            bound_index -= 1
+            continue
         if dest.type == x.X86_OP_REG and dest.reg == x.X86_REG_EBP:
             saves_ebp = store.mnemonic == 'push' and selector != x.X86_REG_ESP
             sets_ebp_const = (store.mnemonic == 'mov' and selector != x.X86_REG_EBP
