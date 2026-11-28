@@ -1005,3 +1005,21 @@ versus `EBX` across the entire dispatcher.
   subobject emits `lea ecx, [esi+4]`, calling `0x0045C030` through `owner_168`
   in `607`/`710` emits `mov ecx, [esi+0x168]`, and `double step = field_73c *
   90.0;` in `710` mode 1 preserves the target x87 schedule and `0x4f0` frame.
+
+**`TailMerge` 20-byte threshold (`c2.dll:0x10B30B74`) and `Color` `G_owner`/`G_act`
+priority (`c2.dll:0x10B104B0..0x10B114EA`) in `AliceObject` `0x004FCAB0`
+(63,218/63,248 nonexact checkpoint, 2026-11-28):**
+- Under `/O2`, `TryTailMerge` (`0x10B307E0..0x10B30B76`) sums exact instruction
+  sizes via `0x10C21010` and merges whenever the matching suffix exceeds 20 bytes
+  (`cmp ebp, 20; jg`). `TuplesEqual` (`0x10B29EDD`) and `SingleOperandEqual`
+  (`0x10BF7012` -> `0x10BF7B50`) reject merging if operand types differ (`I1` vs
+  `U1`), even when the lowered x86 bytes (`mov al, 0xf6; add [esi+0x111], al;
+  add [esi+0x110], al`) are identical.
+- In `AliceObject` `case 849` `c1..3` and `c19..20`, `G_owner` (`[esi+0x348]`)
+  and `G_act` (`[owner+0x13c]`) differ by `prio(G_owner) - prio(G_act) = +2` and
+  `+3`, respectively (`6*N_15 - 3*N_1 - 3*N_3 - sum(N_4..N_14)` with `W_B = 1`).
+  Spilled rematerializable constants live-in to `Block 1` (such as `CONST(150)`
+  in a `848..998` sub-switch) raise `N_1` by 1 and drop the gap by `-3` in both
+  arms with zero emitted instructions, though the full 800..999 dispatcher still
+  leaves those 26 bytes swapped under VC8 SP1, RTM, and `/GL` + `/LTCG`.
+  See [AliceObject update note](ALICE_OBJECT_UPDATE_2026_10_28.md).

@@ -212,3 +212,45 @@ After payload SHA-256:
 `c10fff5cbcc3d85df89f3d23fb84c9f74e461faae46a74d985e5bdad5059e78f`. Only
 `exact-first-alice-object-update` consumes this source. The root remains nonexact,
 with no ledger credit or changes to the pending input work.
+
+## Typed view promotion and 30-byte residual analysis (2026-11-28)
+
+`src/characters/AliceObjectUpdate.hpp` and `src/characters/AliceObjectUpdate.cpp`
+now use a checked typed view (`AliceObjectUpdateView`, `AliceUpdateOwnerView`,
+`AliceUpdateMotionView` with compile-time `offsetof` checks) instead of raw
+offset macros. Focused VC8 SP1 replay (`exact-first-alice-object-update`) now
+reproduces the full 63,248-byte section tail, all 18 switch tables, all 3 remap
+tables (260 bytes), all 424 direct calls across 28 targets, `sub esp, 0x348`,
+120 RETs, and 134 virtual calls, advancing first mismatch from `+37` (`0x4FCAD5`)
+to `+21,593` (`0x501F09`) and leaving 30 unmasked byte differences across 2
+sites (63,218 / 63,248 bytes identical, 38/40 owners exact when accounting for
+the 2-byte `8bff` table alignment at `+0xF346` before switch metadata).
+
+Compared callable SHA-256:
+`cc860d37816d7b8ee1cc206454438636d9aa2c3088aa04c0ace5cb29ef849c75`. The root
+remains nonexact and earns no exact ledger credit.
+
+Two compiler-level residuals remain open:
+
+1. **Action 827 case 2 vs action 900 case 3 (4 bytes at `+0x5459..+0x545C`)**:
+   Both cases emit 22 identical tail bytes (`sub al, 10; mov [esi+0x113], al;
+   mov al, 0xf6; add [esi+0x111], al; add [esi+0x110], al`) followed by
+   `jmp 0x50223A`. Under `/O2`, VC8 SP1 `c2.dll` `TryTailMerge` (`0x10B30B74`)
+   merges any matching tail over 20 bytes (`ebp > 20`). When both cases `break;`
+   to `0x50223A`, VC8 merges `900 c3` into `827 c2` (`-12` bytes); giving `827 c2`
+   its own `FINISH()` keeps both unmerged at the exact 63,248-byte length with
+   `jmp 0x4FCCB4` instead of `jmp 0x50223A` (4 bytes). Giving `byte_111` and
+   `byte_110` a signed `I1` access in one of the two cases prevents `TailMerge`
+   via `SingleOperandEqual` (`0x10BF7012` -> `0x10BF7B50`) and makes both `827 c2`
+   and `900 c3` 100% byte-exact (39/40 owners, 26 diff bytes total), though that
+   cast is not retained without independent source evidence.
+2. **Action 849 cases `1..3` and `19..20` (26 bytes: `+0x6A6E..+0x6BEF` and
+   `+0x7B3A..+0x7CF1`)**: `G_owner` (`[esi+0x348]`) and `G_act` (`[owner+0x13c]`)
+   swap `ecx`/`edx`. Tracing `c2.dll` `Color` (`0x10B104B0..0x10B114EA`) shows
+   `prio(G_owner) - prio(G_act) = 6*N_15 - 3*N_1 - 3*N_3 - sum(N_4..N_14)` equals
+   `+2` in `c1..3` and `+3` in `c19..20`. Making `CONST(150)` live-in to `Block 1`
+   (`cmp cx, 0x96`) raises `N_1` by 1 and drops the gap by `-3` in both arms
+   simultaneously (flipping only those exact 26 bytes to target `edx`/`ecx`), but
+   neither `0x4FCAB0` nor `0x5034ED` contains `150` in `resources/th105.exe`.
+   VC8 RTM, `/GL` + `/LTCG`, `/fp:strict`, `/Oy-`, `/Oi-`, `/Ob0`, `/Ob1`, and
+   40+ natural C++ shapes in `case 849` all leave the same swap.
