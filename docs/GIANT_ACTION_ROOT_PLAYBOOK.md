@@ -453,12 +453,33 @@ SP1 `c2.dll` rules (full proofs in
 
 ## 7. Roster Object `+0x28` Update Roots: Reusable Workflow & Lessons
 
-Lessons from advancing two large Roster Object `+0x28` update roots —
+`RemiliaObject_update_action_state` (`0x00557690`, 17,793 B callable / 18,388 B
+12-table payload, `exact-first-remilia-object-update`) is now **100% canonically
+exact** (29/29 owners, zero byte differences), joining the near-complete checkpoints
 [AliceObjectUpdate.cpp](../src/characters/AliceObjectUpdate.cpp) (`0x004FCAB0`,
 63,248 B, 38/40 exact owners / 99.95% bytes, commit `f795970a`) and
 [AyaObjectActionState.cpp](../src/characters/AyaObjectActionState.cpp)
-(`0x0061A290`, 20,000 B, 18/34 exact owners, 28/34 `+0` owners) — show where
-Object `+0x28` roots match the Fighter playbook and where they differ sharply.
+(`0x0061A290`, 20,000 B, 18/34 exact owners, 28/34 `+0` owners).
+
+### Key breakthrough proven on `RemiliaObject` (`0x00557690`, 1/15 exact)
+
+0. **Use the real multiple-inheritance `CObjectBase` (`+0x330`) + `AttackBase` (`+0x000`) hierarchy and `CObjectBase::retire()`.**
+   In TH10.5 (`src/characters/CharacterObject.hpp`), every CharacterObject inherits
+   from `CObjectBase` (non-virtual, placed by MSVC at `+0x330`, holding `lifetime_330`)
+   and `AttackObject` (primary vtable at `+0x000..+0x330`). Putting `retire()`
+   (`--lifetime_330;`) on the `+0x330` base class and `x_ec..byte_184` on the
+   `+0x000` base class simultaneously fixed three compiler-level diffs that flat
+   structs could not reproduce:
+   - Prevented VC8 from CSE-ing `time_counter_144` across `retire()` in `811`
+     (restoring `or eax, -1` and immediately fixing `826`'s 4-byte tail-merge collision).
+   - Prevented VC8 from hoisting `mov eax, [esi+0x348]` above `add [esi+0x330], -1` in `998`.
+   - Flipped `velocity_x_f4 += field_380` (`AttackBase` + derived) to target
+     `fld [esi+0x380]; fadd [esi+0xf4]` in `815`.
+   - Also check BGRA fade store order (`color_a`, `color_g`, `color_b` vs `color_a`,
+     `color_b`, `color_g`) and use positive `if (alpha >= N) { ... } else { retire(); return; }`
+     on the last switch arm (`826 case 5/7`, `854 case 7`, `901 case 0/1/5/6/8`,
+     `903 case 7`) so `FgOrderBlocks` hosts the post-switch footer behind the exact
+     target case and lets `TryTailMerge` fold sibling tails automatically.
 
 ### How Object `+0x28` roots differ from Fighter `+0x28` roots
 

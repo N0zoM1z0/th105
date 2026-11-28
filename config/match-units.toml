@@ -21538,7 +21538,7 @@ source = "src/characters/RemiliaObjectActionState.cpp"
 object = "build/match-units/ExactFirst_RemiliaObjectActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a RemiliaObject slot28 update557690;17793 callable/full18388 target. Twelve destination tables; numeric states and pointer-only receiver. Nonexact; docs/REMILIA_OBJECT_UPDATE_2026_10_25.md."
+notes = "Complete JP1.06a RemiliaObject slot28 update 0x00557690; 17793 callable / full 18388 payload canonical exact across all 12 switch tables (98 words, 199 remap bytes, alignment) using checked MI CObjectBase::retire() + AttackBase typed views and natural branch polarities. docs/REMILIA_OBJECT_UPDATE_2026_10_25.md."
 
 [[units.exact-first-remilia-object-update.functions]]
 address = "0x00557690"
@@ -21553,13 +21553,37 @@ rel32_targets = [
     "RemiliaObjectUpdateView_turn_heading=0x004E0BF0",
     "RemiliaUpdateMotionView_set_components=0x00435160",
     "RemiliaObjectUpdateView_position_relative=0x005B0400",
-    "RemiliaObjectUpdateView_dispatch_character_wave_handle=0x0045C030",
+    "RemiliaUpdateOwnerView_dispatch_character_wave_handle=0x0045C030",
     "atan2_degrees=0x00406540",
     "__ftol2_sse=0x0068A1A0",
     "lookup_orientation_sine_quantized_abs=0x00406360",
     "lookup_orientation_cosine_quantized_abs=0x004063D0",
     "RemiliaObjectUpdateView_stage_surface_height_at_x=0x00435D60",
     "RemiliaObjectUpdateView_update_ping_pong_motion=0x0053CBC0",
+]
+
+[units.exact-first-remilia-object-update.functions.switch_payload]
+size = 18388
+sha256 = "793c1954983d385b07ead1e850f95b4c521448100500074eaa0b371e2f3b0cd6"
+alignment_hex = "8d4900"
+load_offset = 38
+jump_offset = 45
+table_offset = 17796
+table_entries = 28
+map_offset = 17908
+map_size = 199
+additional_tables = [
+    { table_offset = 18108, jump_offset = 1856, table_entries = 4, alignment_hex = "90" },
+    { table_offset = 18124, jump_offset = 3008, table_entries = 5, alignment_hex = "" },
+    { table_offset = 18144, jump_offset = 6268, table_entries = 8, alignment_hex = "" },
+    { table_offset = 18176, jump_offset = 7642, table_entries = 5, alignment_hex = "" },
+    { table_offset = 18196, jump_offset = 8118, table_entries = 5, alignment_hex = "" },
+    { table_offset = 18216, jump_offset = 9462, table_entries = 8, alignment_hex = "" },
+    { table_offset = 18248, jump_offset = 10918, table_entries = 5, alignment_hex = "" },
+    { table_offset = 18268, jump_offset = 12048, table_entries = 5, alignment_hex = "" },
+    { table_offset = 18288, jump_offset = 13348, table_entries = 11, alignment_hex = "" },
+    { table_offset = 18332, jump_offset = 14811, table_entries = 6, alignment_hex = "" },
+    { table_offset = 18356, jump_offset = 15809, table_entries = 8, alignment_hex = "" },
 ]
 
 [units.exact-first-youmu-object-update]

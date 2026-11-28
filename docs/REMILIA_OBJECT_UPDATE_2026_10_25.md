@@ -306,3 +306,25 @@ The native unsigned RNG(40) conversion at `0x55AD9F..0x55ADB8` uses the float `2
 ## Action 815 timer comparison precision (2026-11-06)
 
 At `0x557E54`, native loads the signed timer directly with `fild` and compares it with parameter 3. Source now converts the timer to double rather than float before the comparison, avoiding premature rounding of large integers. Whether such values are reachable in normal play is unknown; the focused body remains nonexact and no exact credit is claimed.
+
+## Canonical exact match (2026-11-28)
+
+`RemiliaObject_update_action_state` (`0x00557690`, unit `exact-first-remilia-object-update`)
+now reaches **100% canonical byte equality** under standalone VC8 SP1
+`/O2 /GS- /GR /EHsc /MT` across all **17,793** callable bytes (`[0x00557690, 0x0055BC11)`,
+SHA-256 `b53af50d6bfdf124d8c16098abfa56c043f8cd1bca9606cc8d73b892610d4fe2`, 29/29 exact owners)
+and all **18,388** complete switch-payload bytes (`[0x00557690, 0x0055BE64)`, SHA-256
+`793c1954983d385b07ead1e850f95b4c521448100500074eaa0b371e2f3b0cd6`, covering all 12
+destination tables / 98 words, 199 remap bytes, and `8d4900`/`90` alignment).
+
+Key changes closing all 29/29 owners:
+- Replaced raw `unsigned char *` offset macros and synthetic `goto` labels in
+  `RemiliaObjectActionState.hpp`/`.cpp` with checked multiple-inheritance
+  `RemiliaLifetimeBase` (`+0x330`, `retire()`) + `RemiliaAttackBase` (`+0x000..+0x330`)
+  + `RemiliaUpdateOwnerView` typed views. Calling `CObjectBase::retire()` resolved
+  `811`, `826`, `815`, and `998` simultaneously.
+- Restored the `0x20` stack frame (inline RNG conversion in `901 case 4` and
+  sibling `payload`/`ground_payload` scope in `854 case 2`), fixed missing
+  `++word_384` in `901 case 4`, aligned `<= 0` cutoffs, Y-bounds order (`y < -200 || y > 960`
+  in `902`/`903`), BGRA fade store order, and natural positive branch polarities so
+  VC8 places every nested switch footer and tail-merge identically to the target.

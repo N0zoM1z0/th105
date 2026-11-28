@@ -7,7 +7,39 @@ Follow [AGENTS.md](../AGENTS.md), [shared tools](SHARED_TOOLS.md) and the
 Run `scripts/repo-python scripts/report-reconstruction-status.py --summary` or
 read [PROGRESS.md](PROGRESS.md) for current ledger totals.
 
-## Latest milestone: all 12 remaining Object `+0x3C` action-entry roots exact
+## Latest milestone: first Roster Object `+0x28` update root exact (`RemiliaObject` `0x00557690`)
+
+`RemiliaObject_update_action_state` (`0x00557690`, unit `exact-first-remilia-object-update`)
+is the first Roster Object primary-vtable `+0x28` update root in JP TH10.5 v1.06a
+to reach canonical exactness under standalone VC8 SP1 `/O2 /GS- /GR /EHsc /MT`:
+
+- **Callable code** `[0x00557690, 0x0055BC11)`: **17,793** bytes, 29/29 exact owners,
+  SHA-256 `b53af50d6bfdf124d8c16098abfa56c043f8cd1bca9606cc8d73b892610d4fe2`.
+- **Complete 12-table switch payload** `[0x00557690, 0x0055BE64)`: **18,388** bytes
+  (98 destination words, 199 remap bytes, `8d4900` and `90` alignment), SHA-256
+  `793c1954983d385b07ead1e850f95b4c521448100500074eaa0b371e2f3b0cd6`.
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-remilia-object-update --compare --json
+```
+
+Key breakthrough unlocking Object `+0x28` roots (recorded in
+[Playbook Section 7](GIANT_ACTION_ROOT_PLAYBOOK.md#7-roster-object-0x28-update-roots-reusable-workflow--lessons)):
+
+- **Real multiple-inheritance `CObjectBase` (`+0x330`) + `AttackBase` (`+0x000`)
+  layout with `CObjectBase::retire()`**: mirroring `CharacterObject : public
+  CObjectBase, public AttackObject` immediately resolved all three remaining
+  compiler-level residuals at once — blocking `[esi+0x144]` CSE across `retire()`
+  in `811` (which also closed `826`'s 4-byte tail-merge collision), preserving
+  `add [esi+0x330], -1` before `mov eax, [esi+0x348]` in `998`, and emitting
+  `fld [esi+0x380]; fadd [esi+0xf4]` in `815`.
+- **Checked typed views + natural branch polarities**: removing raw `char *`
+  offset macros and synthetic `goto`s, fixing `<= 0` vs `< 1` cutoffs, missing
+  `++word_384` in `901 case 4`, `color_a/g/b` fade store order, and positive
+  `if (alpha >= N) { ... } else { retire(); return; }` polarities on tail-merged
+  cases closed all 29/29 owners.
+
+## Previous milestone: all 12 remaining Object `+0x3C` action-entry roots exact
 
 All twelve remaining Object primary-vtable `+0x3C` (`initialize_action_entry`)
 roots in JP TH10.5 v1.06a are now canonically exact under standalone VC8 SP1
@@ -146,11 +178,12 @@ Choose the next high-value target cluster from the canonical ledgers and verify
 each function with strict zero-difference comparison before granting exact
 credit:
 
-- **Roster Object `+0x28` update roots** (e.g. Reimu `0x00496540`, Youmu
-  `0x0053CEA0`, Sakuya, Marisa, Remilia, plus closing the parked `AliceObject`
-  `0x004FCAB0` / `AyaObject` `0x0061A290` `c2.dll` residuals) — follow
-  [Playbook Section 7](GIANT_ACTION_ROOT_PLAYBOOK.md#7-roster-object-0x28-update-roots-reusable-workflow--lessons)
-  and [Section 8](GIANT_ACTION_ROOT_PLAYBOOK.md#8-roster-object-0x3c-action-entry-roots-1212-exact--reusable-checklist).
+- **Remaining 14 Roster Object `+0x28` update roots** (now unblocked by
+  `RemiliaObject` `0x00557690`'s exact multiple-inheritance `CObjectBase::retire()`
+  + typed-view recipe: start with smaller/closer roots like `AyaObject`
+  `0x0061A290`, `YoumuObject` `0x0053CEA0`, `KomachiObject` `0x005F9420`,
+  `SakuyaObject` `0x004E0D30`, and revisit `AliceObject` `0x004FCAB0`) — follow
+  [Playbook Section 7](GIANT_ACTION_ROOT_PLAYBOOK.md#7-roster-object-0x28-update-roots-reusable-workflow--lessons).
 - **Remaining Fighter input-policy (`+0x50`) and control roots** (check for raw
   `char *` offset macros and out-of-order/goto cases per
   [VC8_SOURCE_SHAPE_PATTERNS.md](VC8_SOURCE_SHAPE_PATTERNS.md)).
