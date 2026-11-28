@@ -1,4 +1,27 @@
-# TenshiObject action initializer: complete source, nonexact checkpoint
+# TenshiObject action initializer (`0x00657150`): canonical exact
+
+`0x00657150`, TenshiObject primary slot `+0x3C`, is **100% canonical exact** in
+`src/characters/TenshiObjectActionEntry.cpp/.hpp` (`exact-first-tenshi-object-entry`)
+across all **8,590 callable bytes** and all **8,902 switch-payload bytes** (1 table,
+28 destination words, 198 action remap bytes, tail jump to `0x00596370`).
+
+## Resolution of the trig-pointer and scheduling residual
+
+Replacing raw `reinterpret_cast<unsigned char *>` offset macros with checked
+`offsetof`-verified typed views (`TenshiObjectEntryView`,
+`TenshiEntryMotionView`, `TenshiAuxiliaryView`) and removing the artificial
+`float *const input = H;` locals in `case 854` and `case 940` lets VC8's typed
+alias analysis and CSE naturally emit both native `mov reg, edi` copies
+(`0x658261` and `0x658C23`) and match all 8,902 payload bytes
+(`26030bc35e4311d36d2e5da5826042099bbe894820afc92716589f0e50af6cc2`).
+
+Verification:
+```sh
+scripts/repo-python scripts/build.py --unit exact-first-tenshi-object-entry --compare --json
+```
+
+---
+## Historical note (prior nonexact checkpoint)
 
 `0x00657150`, TenshiObject primary slot+3C, now has complete selected source in
 `src/characters/TenshiObjectActionEntry.cpp/.hpp`. Formal and independent cold

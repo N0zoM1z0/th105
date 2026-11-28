@@ -1,4 +1,27 @@
-# SuikaObject action initializer: complete source, nonexact checkpoint
+# SuikaObject action initializer (`0x005BD380`): canonical exact
+
+`0x005BD380`, SuikaObject primary slot `+0x3C`, is **100% canonical exact** in
+`src/characters/SuikaObjectActionEntry.cpp/.hpp` (`exact-first-suika-object-entry`)
+across all **8,956 callable bytes** and all **9,284 switch-payload bytes** (1 table,
+32 destination words, 200 action remap bytes, tail jump to `0x00596370`).
+
+## Resolution of the trig-pointer and layout residual
+
+Replacing raw `reinterpret_cast<unsigned char *>` offset macros with checked
+`offsetof`-verified typed views (`SuikaObjectEntryView`, `SuikaEntryMotionView`)
+and removing the artificial `float *const input = H;` locals in `case 815` and
+`case 940` lets VC8's typed alias analysis and CSE naturally emit both native
+`mov reg, edi` copies (`0x5BDC37` and `0x5BF419`), restoring the exact 921 loop
+alignment and all 9,284 payload bytes
+(`9c143cb673cd84d287096bb3cc4e653bfb0796ff1bdc7402219d19d5bc079de1`).
+
+Verification:
+```sh
+scripts/repo-python scripts/build.py --unit exact-first-suika-object-entry --compare --json
+```
+
+---
+## Historical note (prior nonexact checkpoint)
 
 `0x005BD380`, SuikaObject primary slot+3C, now has complete selected source in
 `src/characters/SuikaObjectActionEntry.cpp/.hpp`. Formal and independent cold
