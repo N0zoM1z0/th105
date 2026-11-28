@@ -506,6 +506,13 @@ class CompactSwitchTests(unittest.TestCase):
         default_cmp = bytes.fromhex('90 83f801 b902000000 55 bfc8000000 8d691e ba90010000')
         b3, a3, s3, c3, r3 = fixture(compare=default_cmp)
         payload.inspect(b3, b3, a3, s3, c3, r3)
+        # Reimu object869 schedules mov ebx, 1 between cmp and ja.
+        reimu_cmp = bytes.fromhex('909090 83f801 bb01000000')
+        b4, a4, s4, c4, r4 = fixture(compare=reimu_cmp)
+        payload.inspect(b4, b4, a4, s4, c4, r4)
+        bad_ebx, updated_ebx = changed(b4, c4, 6, bytes.fromhex('bb02000000'))
+        with self.assertRaisesRegex(ValueError, 'unsupported instruction between compact-switch bound and guard'):
+            payload.inspect(bad_ebx, bad_ebx, a4, s4, updated_ebx, r4)
         # Negative: unallowlisted push/mov immediate or selector overwrite must fail closed.
         for offset, replacement in ((3, b'\x50'), (4, bytes.fromhex('bd03000000')), (9, bytes.fromhex('bf91010000'))):
             bad, updated = changed(body, contract, offset, replacement)

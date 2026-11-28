@@ -17765,7 +17765,7 @@ source = "src/characters/YoumuObjectActionEntry.cpp"
 object = "build/match-units/GptWeb_YoumuObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a YoumuObject initializer543670,5159 callable bytes. Captured821 parameter handoff and explicit812/854 entries into848, together with the existing verified int facade in850, restore21 conversion calls/23 RETs,1294 callable instructions, target5160 metadata start and all332 table bytes plus natural NOP alignment. Full5492-byte canonical d00f4fc4; source66d01e60. Root remains nonexact:21 body bytes in850/851/848/855/856 register/call preparation, first+0x74F/543DBF. Correct851 post-state load and29 primary destinations remain. Public592-case actual selector/frame/texture/commit audit passes, including four ABI alias stress inputs. Genuine CIL with23 real native providers fully replays229 fields/149 HIGHLOW plus one ABS data reference and equals native, still21 differences. RTM, real Zi and void-word controls are neutral in this source epoch. docs/YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md. No exact or aggregate cold-replay claim."
+notes = "Complete JP1.06a YoumuObject slot3C 0x00543670; 5159 callable / full 5492 payload canonical exact after removing artificial gotos/casts and placing case 848 in natural numeric order. docs/YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md."
 
 [[units.gpt-web-youmu-object-action-entry.functions]]
 address = "0x00543670"
@@ -17815,6 +17815,21 @@ dir32_targets = [
   "__real@c2700000=__real@c2700000",
 ]
 
+[units.gpt-web-youmu-object-action-entry.functions.switch_payload]
+table_offset = 5160
+jump_offset = 140
+table_entries = 29
+map_offset = 5276
+map_size = 200
+load_offset = 132
+alignment_hex = "90"
+size = 5492
+sha256 = "f7b3279277bd7b74f4f18f1397437430058a81af3fd7fde72419d0999ffca7d1"
+tail_jumps = [5070]
+additional_tables = [
+  { table_offset = 5476, jump_offset = 4063, table_entries = 4, alignment_hex = "" },
+]
+
 [units.gpt-web-object-action-980]
 kind = "probe"
 source = "src/characters/ObjectAction980.cpp"
@@ -17838,7 +17853,7 @@ source = "src/characters/AyaObjectActionEntry.cpp"
 object = "build/match-units/GptWeb_AyaObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "JP1.06a AyaObject initializer61F0B0 callable4531, complete4859/6f70b6f3; nonexact at+BF7/+BFF. AyaObjectActionView shares the primary prefix and short slot0C with the update method. Both complete native payloads remain identical to their preceding separate views; receiver aliases retain the same target addresses. View instances are never created. Original register choice/TU/compiler patch remain unknown; no exact credit. docs/AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md."
+notes = "Complete JP1.06a AyaObject slot3C 0x0061F0B0; 4531 callable / full 4859 payload canonical exact after removing artificial gotos and placing case 801 and case 854 in natural numeric order. docs/AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md."
 
 [[units.gpt-web-aya-object-action-entry.functions]]
 address = "0x0061F0B0"
@@ -17853,6 +17868,18 @@ rel32_targets = [
   "?continue_action_980_596370@AyaObjectActionView@th105@@QAEXXZ=0x00596370",
   "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.gpt-web-aya-object-action-entry.functions.switch_payload]
+table_offset = 4532
+jump_offset = 139
+table_entries = 32
+map_offset = 4660
+map_size = 199
+load_offset = 131
+alignment_hex = "90"
+size = 4859
+sha256 = "e7667d2ccbd8681049553b243f9aac7405419fa4a732136f953ed86549b2ef76"
+tail_jumps = [4418]
 
 [units.gpt-web-aya-object-vslot28-full-root]
 kind = "probe"
@@ -19319,7 +19346,7 @@ source = "src/characters/ReimuObjectActionEntry.cpp"
 object = "build/match-units/GptWeb_ReimuObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete4892-byte ReimuObject slot3C source candidate, no exact credit. Five chained x-then-y scale assignments restore822/903/904 copying. Explicit906 sequence2/5 and3 edges into908's corresponding angle tails restore all548 metadata bytes and908 scheduling, reaching41/43 diagnostics without losing an earlier equal owner. Source SHA3803a002; canonical5440-byte payload65298d36. Both callable bodies end4A2FFC with1325 instructions,39 RETs,65 direct calls and42 primary destinations. Strict first mismatch+1140/4A2E20; only14 body bytes in906/999 register/call preparation remain. Shared helpers/headers/profiles/bindings are unchanged.."
+notes = "Complete JP1.06a ReimuObject slot3C 0x004A1CE0; 4892 callable / full 5440 payload canonical exact after removing artificial gotos and placing case 905/906/908 inner switch arms in natural numeric order."
 
 [[units.gpt-web-reimu-object-action-entry.functions]]
 address = "0x004A1CE0"
@@ -19365,6 +19392,27 @@ dir32_targets = [
   "__real@40200000=__real@40200000",
   "__real@42960000=__real@42960000",
   "__real@3fc00000=__real@3fc00000",
+]
+
+[units.gpt-web-reimu-object-action-entry.functions.switch_payload]
+table_offset = 4892
+jump_offset = 140
+table_entries = 42
+map_offset = 5060
+map_size = 200
+load_offset = 132
+alignment_hex = ""
+size = 5440
+sha256 = "6e7393b5ffb0bfc66fbfbe7273939277e724b6764713d0b8812552a67f84be27"
+tail_jumps = [4779]
+additional_tables = [
+  { table_offset = 5260, jump_offset = 2827, table_entries = 6, alignment_hex = "" },
+  { table_offset = 5284, jump_offset = 3810, table_entries = 6, alignment_hex = "" },
+  { table_offset = 5308, jump_offset = 4025, table_entries = 6, alignment_hex = "" },
+  { table_offset = 5332, jump_offset = 4257, table_entries = 6, alignment_hex = "" },
+  { table_offset = 5356, jump_offset = 4439, table_entries = 6, alignment_hex = "" },
+  { table_offset = 5380, jump_offset = 4524, table_entries = 5, alignment_hex = "" },
+  { table_offset = 5400, jump_offset = 4632, table_entries = 10, alignment_hex = "" },
 ]
 
 [units.gpt-web-package-archive-loader]
@@ -20330,7 +20378,7 @@ source = "src/characters/RemiliaObjectActionEntry.cpp"
 object = "build/match-units/ExactFirst_RemiliaObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "JP1.06a RemiliaObject primary slot3C @55BE70. Complete4997-byte callable/5384-byte payload source; numeric states and pointer-only receiver. Nonexact; no matching credit. docs/REMILIA_OBJECT_ENTRY_2026_10_24.md."
+notes = "Complete JP1.06a RemiliaObject slot3C 0x0055BE70; 4997 callable / full 5384 payload canonical exact with checked typed view and natural numeric order for cases 820, 848, 980, and 998. docs/REMILIA_OBJECT_ENTRY_2026_10_24.md."
 
 [[units.exact-first-remilia-object-entry.functions]]
 address = "0x0055BE70"
@@ -20341,8 +20389,24 @@ rel32_targets = [
     "RemiliaObjectEntryView_spawn_parented=0x004FCA60",
     "RemiliaObjectEntryView_replace_secondary=0x00496420",
     "RemiliaObjectEntryView_replace_auxiliary=0x0045CD70",
-    "RemiliaObjectEntryView_continue_action_980=0x00596370",
+    "?continue_action_980@RemiliaObjectEntryView@th105@@QAEXXZ=0x00596370",
     "__ftol2_sse=0x0068A1A0",
+]
+
+[units.exact-first-remilia-object-entry.functions.switch_payload]
+table_offset = 5000
+jump_offset = 141
+table_entries = 27
+map_offset = 5108
+map_size = 199
+load_offset = 132
+alignment_hex = "8d4900"
+size = 5384
+sha256 = "6d40a4fe209f5cb0306cb213898728fb5d1e9b0421868fbad511d777d363cfc9"
+tail_jumps = [4974]
+additional_tables = [
+    { table_offset = 5308, jump_offset = 1407, table_entries = 8, alignment_hex = "90" },
+    { table_offset = 5340, jump_offset = 3422, table_entries = 11, alignment_hex = "" },
 ]
 
 [units.exact-first-remilia-input-policy]
@@ -21034,7 +21098,7 @@ source = "src/characters/SakuyaObjectActionEntry.cpp"
 object = "build/match-units/ExactFirst_SakuyaObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a SakuyaObject slot3C root4E8060;6538 callable/full6868 bytes. Full source nonexact at13 bytes in803; native tables/tail and all helper counts agree. docs/SAKUYA_OBJECT_ENTRY_2026_10_24.md."
+notes = "Complete JP1.06a SakuyaObject slot3C 0x004E8060; 6538 callable / full 6868 payload canonical exact after placing case 802 and case 804 in natural numeric order. docs/SAKUYA_OBJECT_ENTRY_2026_10_24.md."
 
 [[units.exact-first-sakuya-object-entry.functions]]
 address = "0x004E8060"

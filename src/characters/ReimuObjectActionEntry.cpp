@@ -554,7 +554,7 @@ zero_scales_angle_and_positive_sequence:
         case 0:
             state_370 = 1.0f;
             break;
-        case 2: case 5:
+        case 2:
             sprite_004.reset_zero_128 = heading_340[0];
             break;
         case 3:
@@ -568,6 +568,9 @@ zero_scales_angle_and_positive_sequence:
                     (target_170->x_ec - sprite_004.object_x_0e8));
             phase_index_184 = 1;
             break;
+        case 5:
+            sprite_004.reset_zero_128 = heading_340[0];
+            break;
         }
         return;
     case 906:
@@ -577,12 +580,17 @@ zero_scales_angle_and_positive_sequence:
         case 0:
             state_370 = 1.0f;
             break;
-        case 2: case 5:
-            goto shared_sequence_angle_2;
+        case 2:
+            sprite_004.reset_zero_128 = heading_340[0];
+            break;
         case 3:
-            goto shared_sequence_angle_3;
+            sprite_004.reset_zero_128 = heading_340[0];
+            break;
         case 4:
             effect_emitter()->ping_pong_phase_113 = 0;
+            sprite_004.reset_zero_128 = heading_340[0];
+            break;
+        case 5:
             sprite_004.reset_zero_128 = heading_340[0];
             break;
         }
@@ -614,20 +622,32 @@ zero_scales_angle_and_positive_sequence:
         case 0:
             state_370 = 1.0f;
             break;
+        case 2:
+            sprite_004.reset_zero_128 = heading_340[0];
+            break;
+        case 3:
+            sprite_004.reset_zero_128 = heading_340[0];
+            break;
+        case 4:
+            phase_index_184 = 1;
+            sprite_004.reset_zero_128 = heading_340[0];
+            break;
         case 5:
             phase_index_184 = 1;
-        case 2: case 8:
-shared_sequence_angle_2:
             sprite_004.reset_zero_128 = heading_340[0];
             break;
         case 6:
             phase_index_184 = 1;
-        case 3: case 9:
-shared_sequence_angle_3:
             sprite_004.reset_zero_128 = heading_340[0];
             break;
-        case 4: case 7:
+        case 7:
             phase_index_184 = 1;
+            sprite_004.reset_zero_128 = heading_340[0];
+            break;
+        case 8:
+            sprite_004.reset_zero_128 = heading_340[0];
+            break;
+        case 9:
             sprite_004.reset_zero_128 = heading_340[0];
             break;
         }

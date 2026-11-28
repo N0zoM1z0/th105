@@ -1,4 +1,27 @@
-# RemiliaObject complete initializer: exact-first checkpoint
+# RemiliaObject action initializer (`0x0055BE70`): canonical exact
+
+`0x0055BE70`, RemiliaObject primary slot `+0x3C`, is **100% canonical exact** in
+`src/characters/RemiliaObjectActionEntry.cpp/.hpp` (`exact-first-remilia-object-entry`)
+across all **4,997 callable bytes** and all **5,384 switch-payload bytes** (3 tables,
+46 destination words, 199 action remap bytes, tail jump to `0x00596370`).
+
+## Resolution of the 10-byte case 850/851 register residual
+
+Promoting the receiver to checked `offsetof`-verified typed views
+(`RemiliaObjectEntryView`, `RemiliaEntryMotionView`, `RemiliaAuxiliaryView`) and
+placing `case 820:`, `case 848:`, `case 980:`, and `case 998:` in natural numeric
+order (rather than hand-merged fallthroughs) lets VC8 tail-merge identically while
+advancing its register search position before `case 850`, resolving all 10
+differing bytes across all 5,384 payload bytes
+(`6d40a4fe209f5cb0306cb213898728fb5d1e9b0421868fbad511d777d363cfc9`).
+
+Verification:
+```sh
+scripts/repo-python scripts/build.py --unit exact-first-remilia-object-entry --compare --json
+```
+
+---
+## Historical note (prior 10-byte residual)
 
 ## Result and reproducible scope
 

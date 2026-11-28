@@ -1,4 +1,26 @@
-# SakuyaObject initializer: complete source, nonexact
+# SakuyaObject action initializer (`0x004E8060`): canonical exact
+
+`0x004E8060`, SakuyaObject primary slot `+0x3C`, is **100% canonical exact** in
+`src/characters/SakuyaObjectActionEntry.cpp/.hpp` (`exact-first-sakuya-object-entry`)
+across all **6,538 callable bytes** and all **6,868 switch-payload bytes** (1 table,
+32 destination words, 200 action remap bytes, tail jump to `0x00596370`).
+
+## Resolution of the 13-byte action 803 register residual
+
+Placing `case 802:` and `case 804:` in their natural numeric order (between
+`801`/`803` and `803`/`805`, rather than hand-merged after `817` and `850`) lets
+VC8 `TryTailMerge` fold them identically while advancing `c2.dll`'s round-robin
+register search position (`0x10D0F854`) to `EAX` before `case 803`, resolving all
+13 differing bytes across all 6,868 payload bytes
+(`3323c8c4ac1fa5c9725d0e921b4b343d15e8de8be40277216222b38e0a942c82`).
+
+Verification:
+```sh
+scripts/repo-python scripts/build.py --unit exact-first-sakuya-object-entry --compare --json
+```
+
+---
+## Historical note (prior 13-byte residual)
 
 `0x004E8060` now has complete selected source in
 `src/characters/SakuyaObjectActionEntry.cpp/.hpp`. It is an authored RTTI-owned

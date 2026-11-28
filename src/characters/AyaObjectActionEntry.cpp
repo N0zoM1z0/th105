@@ -35,18 +35,23 @@ void AyaObjectActionView::initialize_action_entry()
     state_36a = 0;
     state_36c = 0;
 
-    float *shared_heading;
     float shared_scalar;
 
     switch (action_id_13c) {
     case 800:
-        shared_heading = heading_340;
         phase_index_184 = 1;
         sprite_004.reset_one_118 = 2.0f;
         sprite_004.reset_one_11c = 2.0f;
-        sprite_004.reset_zero_128 = shared_heading[0];
+        sprite_004.reset_zero_128 = heading_340[0];
         state_364 = 3;
-        goto action800_810_select;
+        select_sequence(static_cast<int>(heading_340[2]));
+        return;
+
+    case 801:
+        phase_index_184 = 1;
+        sprite_004.reset_zero_128 = heading_340[0];
+        select_sequence(static_cast<int>(heading_340[2]));
+        return;
 
     case 803: {
         float *const heading = heading_340;
@@ -75,29 +80,20 @@ void AyaObjectActionView::initialize_action_entry()
     }
 
     case 810:
-        shared_heading = heading_340;
         state_17c = 0;
         sprite_004.reset_one_118 = 1.5f;
         phase_index_184 = 1;
         sprite_004.reset_one_11c = 1.5f;
-        sprite_004.reset_zero_128 = shared_heading[0];
-    action800_810_select:
-        select_sequence(static_cast<int>(shared_heading[2]));
+        sprite_004.reset_zero_128 = heading_340[0];
+        select_sequence(static_cast<int>(heading_340[2]));
         return;
 
     case 811:
         state_17c = 4;
-        goto action801_854_select;
-
-    case 801:
-    case 854:
-    action801_854_select: {
-        float *const heading = heading_340;
         phase_index_184 = 1;
-        sprite_004.reset_zero_128 = heading[0];
-        select_sequence(static_cast<int>(heading[2]));
+        sprite_004.reset_zero_128 = heading_340[0];
+        select_sequence(static_cast<int>(heading_340[2]));
         return;
-    }
 
     case 812: {
         CharacterObjectEffectEmitter *const owner = fighter_owner_348;
@@ -327,6 +323,12 @@ void AyaObjectActionView::initialize_action_entry()
         }
         return;
     }
+
+    case 854:
+        phase_index_184 = 1;
+        sprite_004.reset_zero_128 = heading_340[0];
+        select_sequence(static_cast<int>(heading_340[2]));
+        return;
 
     case 855:
         phase_index_184 = 10;

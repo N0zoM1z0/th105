@@ -56,6 +56,10 @@ void SakuyaObjectEntryView::initialize_action_entry()
         }
         return;
     }
+    case 802:
+        phase_index_184=1; field_12c=parameters_340[0]; select_requested_sequence(this);
+        if (sequence_id_13e<=2) MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+        return;
     case 803: {
         float payload[4];
         phase_index_184 = 1;
@@ -71,6 +75,8 @@ void SakuyaObjectEntryView::initialize_action_entry()
         }
         return;
     }
+    case 804:
+        phase_index_184=1; field_12c=parameters_340[0]; select_requested_sequence(this); return;
     case 805:
         phase_index_184=1; field_12c=parameters_340[0]; select_requested_sequence(this); return;
     case 810:
@@ -130,8 +136,8 @@ void SakuyaObjectEntryView::initialize_action_entry()
         }
         return;
     }
-    case 817: field_17c=6;
-    case 802:
+    case 817:
+        field_17c=6;
         phase_index_184=1; field_12c=parameters_340[0]; select_requested_sequence(this);
         if (sequence_id_13e<=2) MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
         return;
@@ -144,7 +150,7 @@ void SakuyaObjectEntryView::initialize_action_entry()
         if (sequence_id_13e==2) { field_344=1; field_11c=1.5f; field_120=1.5f; }
         return;
     case 849: field_344=1; select_requested_sequence(this); return;
-    case 804: case 850:
+    case 850:
         phase_index_184=1; field_12c=parameters_340[0]; select_requested_sequence(this); return;
     case 851: field_344=1; alpha_113=0; select_requested_sequence(this); return;
     case 852: {
