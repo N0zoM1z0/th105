@@ -17727,7 +17727,7 @@ source = "src/characters/AyaCpuActionPolicy.cpp"
 object = "build/match-units/GptWeb_AyaCpuActionPolicy.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current1.06a Aya primary-vtable58 CPU root,16032-byte reviewed callable. A real signed764 field accessor at four predicate paths restores independent WORD bounds;17/41 diagnostic owners preserve all prior14, with new action200/300/305 identity. Whole root remains nonexact+12E, metadata16088 and16713-byte section tail. Native complete-return controls pass0/4164 counter,0/5000 finite and0/470 command cases; an unsigned-return negative control fails32/32. Real checked VC8 deque and its94-byte library witness remain. No shared header, ABI, relocation or compiler-profile change; no authored exact credit."
+notes = "Canonical exact JP1.06a Aya primary slot+0x58 CPU root 0x006126E0: 16,032 callable bytes and all 16,661 switch-payload bytes (6 tables, 61 destination words, 370 remap bytes, 15 alignment bytes, 364 relocations)."
 
 [[units.gpt-web-aya-cpu-action-policy.functions]]
 address = "0x006126E0"
@@ -17739,36 +17739,23 @@ rel32_targets = [
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
   "__ftol2_sse=0x0068A1A0",
 ]
-dir32_targets = [
-  "__real@0000000000000000=__real@0000000000000000",
-  "__real@4049000000000000=__real@4049000000000000",
-  "__real@404e000000000000=__real@404e000000000000",
-  "__real@4059000000000000=__real@4059000000000000",
-  "__real@405e000000000000=__real@405e000000000000",
-  "__real@4069000000000000=__real@4069000000000000",
-  "__real@406b800000000000=__real@406b800000000000",
-  "__real@406e000000000000=__real@406e000000000000",
-  "__real@406f400000000000=__real@406f400000000000",
-  "__real@4079000000000000=__real@4079000000000000",
-  "__real@407c200000000000=__real@407c200000000000",
-  "__real@407f400000000000=__real@407f400000000000",
-  "__real@4080400000000000=__real@4080400000000000",
-  "__real@408ae00000000000=__real@408ae00000000000",
-  "__real@408e000000000000=__real@408e000000000000",
-  "__real@42960000=__real@42960000",
-  "__real@42a00000=__real@42a00000",
-  "__real@42b40000=__real@42b40000",
-  "__real@43160000=__real@43160000",
-  "__real@43340000=__real@43340000",
-  "__real@438c0000=__real@438c0000",
-  "__real@43960000=__real@43960000",
-  "__real@43a00000=__real@43a00000",
-  "__real@43af0000=__real@43af0000",
-  "__real@44020000=__real@44020000",
-  "__real@44160000=__real@44160000",
-  "__real@44200000=__real@44200000",
-  "__real@442f0000=__real@442f0000",
-  "__real@44820000=__real@44820000",
+
+[units.gpt-web-aya-cpu-action-policy.functions.switch_payload]
+size = 16661
+sha256 = "b6315f6c65ac3f8bba6099c67c64d890e9d4ac469c9de15d7a4392f6dc6d0097"
+alignment_hex = ""
+table_offset = 16032
+table_entries = 19
+map_offset = 16108
+map_size = 217
+load_offset = 348
+jump_offset = 355
+additional_tables = [
+  { alignment_hex = "8d4900", table_offset = 16328, table_entries = 6, map_offset = 16352, map_size = 13, load_offset = 1539, jump_offset = 1552 },
+  { alignment_hex = "8d4900", table_offset = 16368, table_entries = 3, map_offset = 16380, map_size = 13, load_offset = 2349, jump_offset = 2356 },
+  { alignment_hex = "8d4900", table_offset = 16396, table_entries = 6, map_offset = 16420, map_size = 13, load_offset = 4298, jump_offset = 4311 },
+  { alignment_hex = "8d4900", table_offset = 16436, table_entries = 6, map_offset = 16460, map_size = 13, load_offset = 5812, jump_offset = 5825 },
+  { alignment_hex = "8d4900", table_offset = 16476, table_entries = 21, map_offset = 16560, map_size = 101, load_offset = 7915, jump_offset = 7922 },
 ]
 
 
