@@ -1,4 +1,28 @@
-# YoumuObject initializer physical-tail recovery
+# YoumuObject action initializer (`0x00543670`): canonical exact
+
+`0x00543670`, YoumuObject primary slot `+0x3C`, is **100% canonical exact** in
+`src/characters/YoumuObjectActionEntry.cpp` (`gpt-web-youmu-object-action-entry`,
+commit `7e1d1c14`) across all **5,159 callable bytes** and all **5,492
+switch-payload bytes** (2 tables, 33 destination words, 200 action remap bytes,
+1-byte `90` alignment, tail jump to `0x00596370`).
+
+## Resolution of the 21-byte register/call-preparation residual
+
+Removing the artificial cross-case `goto` labels (`action848_load`,
+`action848_select`, `action850_angle_and_select`) and
+`reinterpret_cast<AnimationSequenceObjectView *>` casts in cases `812`, `820`,
+`821`, `848`, `850`, `851`, and `854` — and placing `case 848:` in natural
+numeric order before `case 850:` — lets VC8 tail-merge identically and aligns
+register allocation across all 5,492 payload bytes
+(`f7b3279277bd7b74f4f18f1397437430058a81af3fd7fde72419d0999ffca7d1`).
+
+Verification:
+```sh
+scripts/repo-python scripts/build.py --unit gpt-web-youmu-object-action-entry --compare --json
+```
+
+---
+## Historical note: YoumuObject initializer physical-tail recovery
 
 The selected 5159-byte initializer at `0x543670` now reproduces the target's
 physical conversion/return copies, complete callable extent and adjacent

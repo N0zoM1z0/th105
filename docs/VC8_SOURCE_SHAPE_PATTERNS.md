@@ -564,18 +564,10 @@ target lacks, so LTCG does not explain the register.
   above the `elapsed >= end` test. Neither a reference nor an assignment inside
   the condition keeps both.
 
-- **Marisa CPU policy 0x4B4070: `goto policy_dispatch` hides a helper boundary
-  (2026-11-14, not committed).** The target merges the four `approach` bodies
-  into the first site, with the later sites jumping back. That is the
-  duplicate-merge shape for bodies ending in `return`, not `goto`. Moving the
-  `if (S(0x766)==0)` proposal block into a separate member function
-  (`goto policy_dispatch` becomes `return`, each approach site gets its own
-  body), forced inline at its single call site, fixes those first two residual
-  regions. LTCG would inline such a single-caller function the same way.
-  What remains is in the dispatch switch. The target keeps separate full tails
-  for `DURATION(0x11,20,..)` and `DURATION(0x10,20,..)`, which ours tail-merges,
-  and two block placements follow from that. The probe uses `__forceinline` only
-  to emulate that inlining, so it was not kept.
+- **Marisa CPU policy 0x4B4070 (resolved 2026-11-28, exact in `9130deb0`).**
+  Previously parked when `goto policy_dispatch` hid tail-merge boundaries;
+  resolved under plain `/O2` by natural C++ control flow (see the Fighter CPU
+  `+0x58` entries below).
 
 
 - **Checked-deque bound operand order.** `GameConfig_save` 0x427390 (2 bytes) and
@@ -1109,3 +1101,64 @@ in `AyaObject` `0x0061A290` (18/34 exact owners, 28/34 `+0` owners, 2026-11-28):
   (`0x005F1F80`, 15,910/16,541 bytes) across all of Phase 1 and Phase 3, differing
   only by two 61-byte Phase 2 branches (`U(0x728)=0x400` in `GG`, `U(0x728)=0x200`
   in `GA`).
+
+**All twelve remaining Object `+0x3C` action-entry roots (89,252 callable B /
+93,544 payload B, 12/12 exact under standalone `/O2`, 2026-11-28):**
+- **Checked typed views + direct `params_340` trig operands restore `mov reg, edi;
+  fld [reg]` CSE copies.** Four large Object initializers — Patchouli
+  `0x0052D200` (10,831 B), Yuyuko `0x00578000` (10,828 B), Suika `0x005BD380`
+  (8,956 B), and Tenshi `0x00657150` (8,590 B) — were all blocked on missing
+  `mov <reg>, edi; fld dword ptr [<reg>]` copies before quantized cosine/sine
+  calls (`0x4063D0`/`0x406360`), plus downstream register/alignment shifts.
+  The cause was two artifacts in the draft sources: raw
+  `reinterpret_cast<unsigned char *>` offset macros (which act as a `char *`
+  aliasing barrier on `this`) and an explicit `float *const input = H;` local.
+  Replacing the macros with checked `offsetof`-verified typed struct members
+  (`params_340`, `x_ec`, `y_f0`, `motion_004`, `aux_154`, `owner_348`,
+  `target_34c`) and writing `cos(params_340[0]) * params_340[1] + ...;
+  sin(params_340[0]) * params_340[1] + ...;` directly lets VC8 field-level
+  non-aliasing keep `edi = params_340` across `cos` and `x_ec = ...`, emit the
+  exact `mov reg, edi; fld [reg]` copy, reuse `edi` for `sin`'s argument, and
+  reload `params_340` after `sin`. All four roots jumped straight to 0 byte
+  diffs on the first build. The same typed-view conversion also closed Yukari
+  `0x005964C0` (7,588 B, fixing the lone `pop ebp` scheduling diff in `case 825`)
+  and cleared the register diffs in Marisa `0x004C8050` (10,126 B).
+- **Natural numeric `case` order (no artificial cross-case `goto`s or hand-merged
+  fallthroughs) aligns `c2.dll:0x10D0F854`'s round-robin register search.**
+  `c2.dll` carries a stateful preferred-register cursor (`EAX -> ECX -> EDX`)
+  across switch cases during allocation. When earlier reconstructions mimicked
+  the target's physical post-`TryTailMerge` layout by moving a case out of order
+  (`case 817: ...; case 802:`, `case 857: ...; case 848:`, `case 811: ...; case
+  800:`, `case 801: case 854:`) or adding cross-case `goto`s (Youmu
+  `812`/`820`/`821`/`848`/`854`, Reimu `906 -> 908`, Aya `800`/`811`/`854`),
+  VC8 still produced identical bytes for the shared blocks but arrived at the
+  next case with the round-robin cursor shifted by 1–2 steps. Writing every case
+  (and nested sequence switch arm) in natural ascending numeric order with its
+  own body — letting VC8 `TryTailMerge` fold identical tails automatically —
+  eliminated all remaining 2–21 byte register residuals across all six remaining
+  roots: Komachi `0x00600390` (moved `800` before `801`), Sakuya `0x004E8060`
+  (moved `802` and `804` into numeric order), Remilia `0x0055BE70` (moved `820`,
+  `848`, `980`, `998`), Aya `0x0061F0B0` (moved `801` and `854`, removed
+  `goto`s), Youmu `0x00543670` (moved `848`, removed `goto`s and
+  `AnimationSequenceObjectView` casts), and Reimu `0x004A1CE0` (split `case 5`
+  in `905`/`906` and ordered `908` `2..9` numerically).
+- **`double` carrier over rounded `float` product flips x87 `fadd` operand
+  order.** In Komachi `0x00600390` `case 817`, `float scale = static_cast<float>(
+  random_float(50) * static_cast<double>(0.01f));` emitted `fld [eax]; fadd
+  [esp+0x14]`. Declaring `double scale = static_cast<float>(random_float(50) *
+  static_cast<double>(0.01f)); scale_y_120 = scale_x_11c = static_cast<float>(
+  scale + params_340[0]);` preserved the single-precision rounding spill and
+  emitted target's `fld dword [esp+0x14]; fadd dword [eax]` (closing the final 5
+  bytes).
+- **`short` key parameter on `replace_secondary` (`0x00496420`).** The callee
+  (`CharacterObjectSecondaryAnimation.cpp`) consumes only the low signed 16-bit
+  key; declaring the caller view as `short key` instead of `int key` removes
+  redundant zero/sign-extension bytes (Marisa `0x004C8050`, Patchouli
+  `0x0052D200`, Yuyuko `0x00578000`).
+- **Failed / unproductive approaches to avoid on similar switch roots:**
+  Testing `/GL` + `/LTCG`, VC8 RTM, `float *const input = H;` caches, or local
+  expression rewrites inside a case whose diff is only `EAX`/`ECX`/`EDX`
+  rotation wastes iterations. First verify (1) zero `reinterpret_cast<unsigned
+  char *>` aliasing barriers on `this`, (2) no artificial `float *` field-cache
+  locals across calls, and (3) natural ascending numeric `case` order with zero
+  artificial cross-case `goto`s.

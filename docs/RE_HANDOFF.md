@@ -15,20 +15,20 @@ roots in JP TH10.5 v1.06a are now canonically exact under standalone VC8 SP1
 bytes and all **93,544** complete switch-payload bytes, covering every switch
 table, remap table, alignment pad, and tail jump to `0x00596370`):
 
-| Character | Address | Callable B | Payload B | Tables | Match unit |
-| --- | --- | ---: | ---: | ---: | --- |
-| Patchouli | `0x0052D200` | 10,831 | 11,180 | 2 | `exact-first-patchouli-object-entry` |
-| Yuyuko | `0x00578000` | 10,828 | 11,143 | 1 | `exact-first-yuyuko-object-entry` |
-| Marisa | `0x004C8050` | 10,126 | 10,532 | 2 | `exact-first-marisa-object-entry` |
-| Suika | `0x005BD380` | 8,956 | 9,284 | 1 | `exact-first-suika-object-entry` |
-| Tenshi | `0x00657150` | 8,590 | 8,902 | 1 | `exact-first-tenshi-object-entry` |
-| Yukari | `0x005964C0` | 7,588 | 7,920 | 1 | `exact-first-yukari-object-entry` |
-| Sakuya | `0x004E8060` | 6,538 | 6,868 | 1 | `exact-first-sakuya-object-entry` |
-| Komachi | `0x00600390` | 6,216 | 6,540 | 2 | `exact-first-komachi-object-entry` |
-| Youmu | `0x00543670` | 5,159 | 5,492 | 2 | `gpt-web-youmu-object-action-entry` |
-| Remilia | `0x0055BE70` | 4,997 | 5,384 | 3 | `exact-first-remilia-object-entry` |
-| Reimu | `0x004A1CE0` | 4,892 | 5,440 | 8 | `gpt-web-reimu-object-action-entry` |
-| Aya | `0x0061F0B0` | 4,531 | 4,859 | 1 | `gpt-web-aya-object-action-entry` |
+| Character | Address | Callable B | Payload B | Tables | Match unit | Commit |
+| --- | --- | ---: | ---: | ---: | --- | --- |
+| Patchouli | `0x0052D200` | 10,831 | 11,180 | 2 | `exact-first-patchouli-object-entry` | `49e632de` |
+| Yuyuko | `0x00578000` | 10,828 | 11,143 | 1 | `exact-first-yuyuko-object-entry` | `49e632de` |
+| Marisa | `0x004C8050` | 10,126 | 10,532 | 2 | `exact-first-marisa-object-entry` | `d7e6e77e` |
+| Suika | `0x005BD380` | 8,956 | 9,284 | 1 | `exact-first-suika-object-entry` | `fe2724fa` |
+| Tenshi | `0x00657150` | 8,590 | 8,902 | 1 | `exact-first-tenshi-object-entry` | `fe2724fa` |
+| Yukari | `0x005964C0` | 7,588 | 7,920 | 1 | `exact-first-yukari-object-entry` | `b75842dd` |
+| Sakuya | `0x004E8060` | 6,538 | 6,868 | 1 | `exact-first-sakuya-object-entry` | `7e1d1c14` |
+| Komachi | `0x00600390` | 6,216 | 6,540 | 2 | `exact-first-komachi-object-entry` | `57a2e172` |
+| Youmu | `0x00543670` | 5,159 | 5,492 | 2 | `gpt-web-youmu-object-action-entry` | `7e1d1c14` |
+| Remilia | `0x0055BE70` | 4,997 | 5,384 | 3 | `exact-first-remilia-object-entry` | `7e1d1c14` |
+| Reimu | `0x004A1CE0` | 4,892 | 5,440 | 8 | `gpt-web-reimu-object-action-entry` | `7e1d1c14` |
+| Aya | `0x0061F0B0` | 4,531 | 4,859 | 1 | `gpt-web-aya-object-action-entry` | `7e1d1c14` |
 
 Key reusable VC8 `/O2` insights closing all twelve roots:
 
@@ -149,9 +149,11 @@ credit:
 - **Roster Object `+0x28` update roots** (e.g. Reimu `0x00496540`, Youmu
   `0x0053CEA0`, Sakuya, Marisa, Remilia, plus closing the parked `AliceObject`
   `0x004FCAB0` / `AyaObject` `0x0061A290` `c2.dll` residuals) — follow
-  [Playbook Section 7](GIANT_ACTION_ROOT_PLAYBOOK.md#7-roster-object-0x28-update-roots-reusable-workflow--lessons).
-- **Roster Object action-entry (`+0x3C`) roots** (e.g. Reimu `0x004A1CE0` and
-  peers).
+  [Playbook Section 7](GIANT_ACTION_ROOT_PLAYBOOK.md#7-roster-object-0x28-update-roots-reusable-workflow--lessons)
+  and [Section 8](GIANT_ACTION_ROOT_PLAYBOOK.md#8-roster-object-0x3c-action-entry-roots-1212-exact--reusable-checklist).
+- **Remaining Fighter input-policy (`+0x50`) and control roots** (check for raw
+  `char *` offset macros and out-of-order/goto cases per
+  [VC8_SOURCE_SHAPE_PATTERNS.md](VC8_SOURCE_SHAPE_PATTERNS.md)).
 - **Remaining scene, UI, audio, and LTCG clusters** (see parked residuals in
   [VC8_SOURCE_SHAPE_PATTERNS.md](VC8_SOURCE_SHAPE_PATTERNS.md#parked-residuals-tried-still-nonexact)
   and open private contexts in [ARTIFACTS.md](ARTIFACTS.md#private-inputs-still-in-use)).

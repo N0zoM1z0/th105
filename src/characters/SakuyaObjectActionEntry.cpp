@@ -1,7 +1,7 @@
 #include "SakuyaObjectActionEntry.hpp"
 #include "characters/CharacterObjectEffects.hpp"
 #include "characters/CharacterObjectRuntime.hpp"
-// JP1.06a 0x004E8060: reviewed action entry with a residual in action 803.
+// JP1.06a 0x004E8060: SakuyaObject primary slot +0x3C action entry initializer (canonical exact).
 // Evidence and finite trials: docs/SAKUYA_OBJECT_ENTRY_2026_10_24.md.
 namespace th105 {
 // The motion method receives the animation subobject at +0x4.

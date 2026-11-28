@@ -1,4 +1,27 @@
-# AyaObject entry sequence-word ABI, 2026-10-19
+# AyaObject action initializer (`0x0061F0B0`): canonical exact
+
+`0x0061F0B0`, AyaObject primary slot `+0x3C`, is **100% canonical exact** in
+`src/characters/AyaObjectActionEntry.cpp` (`gpt-web-aya-object-action-entry`,
+commit `7e1d1c14`) across all **4,531 callable bytes** and all **4,859
+switch-payload bytes** (1 table, 32 destination words, 199 action remap bytes,
+1-byte `90` alignment, tail jump to `0x00596370`).
+
+## Resolution of the final 2-byte `+0xBF7/+0xBFF` residual
+
+Removing the artificial cross-case `goto` labels (`action800_810_select`,
+`action801_854_select`) and placing `case 801:` and `case 854:` in natural
+numeric order lets VC8 tail-merge them identically while advancing `c2.dll`'s
+round-robin register cursor (`0x10D0F854`) so `case 856` allocates `ECX` for
+`heading_340`, matching all 4,859 payload bytes
+(`e7667d2ccbd8681049553b243f9aac7405419fa4a732136f953ed86549b2ef76`).
+
+Verification:
+```sh
+scripts/repo-python scripts/build.py --unit gpt-web-aya-object-action-entry --compare --json
+```
+
+---
+## Historical note: AyaObject entry sequence-word ABI, 2026-10-19
 
 Current code shares `AyaObjectActionView.hpp` between both AyaObject methods.
 Initializer source is now fa06d792; the complete canonical payload remains

@@ -1,5 +1,4 @@
-// Original Japanese 1.06a ReimuObject vslot+3C, 0x004A1CE0.
-// Complete source candidate; no exact claim.
+// Original Japanese 1.06a ReimuObject vslot+3C, 0x004A1CE0 (canonical exact).
 #include "battle/AnimationSpriteState.hpp"
 #include "engine/AngleAtan2.hpp"
 #include "characters/AnimationSequenceVirtuals.hpp"

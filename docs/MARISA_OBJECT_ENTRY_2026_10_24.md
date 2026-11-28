@@ -1,4 +1,31 @@
-# MarisaObject action initializer: complete source, nonexact checkpoint
+# MarisaObject action initializer (`0x004C8050`): canonical exact
+
+`0x004C8050`, MarisaObject primary slot `+0x3C`, is **100% canonical exact** in
+`src/characters/MarisaObjectActionEntry.cpp/.hpp` (`exact-first-marisa-object-entry`,
+commit `d7e6e77e`) across all **10,126 callable bytes** and all **10,532
+switch-payload bytes** (2 tables, 51 destination words, 200 action remap bytes,
+2-byte `8bff` alignment, tail jump to `0x00596370`).
+
+## Resolution of the prior residual
+
+1. **Checked typed views**: Replacing raw `reinterpret_cast<unsigned char *>`
+   offset macros with checked `offsetof`-verified `MarisaObjectEntryView`,
+   `MarisaEntryMotionView`, `MarisaAuxiliaryView`, and `MarisaOwnerView` members
+   removed VC8 aliasing barriers and restored native register allocation.
+2. **Narrow `short` key on `replace_secondary` (`0x00496420`)**: Matching the
+   callee's low 16-bit read removed redundant extension in `case 825`.
+3. **Control-flow and statement ordering**: Flattening the `case 859`/`861`
+   sequence/frame guards, matching `case 913` write order, and placing `case 989`
+   before `case 980` closed all remaining bytes
+   (`374f0f36f53eed919047c7a8453880a50b5df7952036717a643f174743b290b2`).
+
+Verification:
+```sh
+scripts/repo-python scripts/build.py --unit exact-first-marisa-object-entry --compare --json
+```
+
+---
+## Historical note (prior nonexact checkpoint)
 
 `0x004C8050`, MarisaObject primary slot+3C, now has complete selected source in
 `src/characters/MarisaObjectActionEntry.cpp/.hpp`. Formal and independent cold

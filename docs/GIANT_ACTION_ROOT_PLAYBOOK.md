@@ -534,3 +534,41 @@ Object `+0x28` roots match the Fighter playbook and where they differ sharply.
   Always wrap Wine/VC8 builds in `timeout 30`, run serial builds only (never
   concurrent Wine/cl.exe jobs), and replay only the affected unit (plus direct
   consumers if a shared header changed).
+
+---
+
+## 8. Roster Object `+0x3C` action-entry roots (12/12 exact — reusable checklist)
+
+All twelve remaining Object `+0x3C` (`initialize_action_entry`) roots (89,252
+callable bytes / 93,544 full switch-payload bytes) reached canonical exactness
+under standalone VC8 SP1 `/O2 /GS- /GR /EHsc /MT` by applying this short
+checklist before any micro-tuning:
+
+1. **Eliminate raw `char *` offset macros and explicit pointer-cache locals.**
+   Replace `#define FIELD(t,o) (*reinterpret_cast<t *>(reinterpret_cast<unsigned
+   char *>(this)+(o)))` and `float *const input = H;` with checked
+   `offsetof`-verified typed struct views (`*ObjectEntryView`,
+   `*EntryMotionView`, `*AuxiliaryView`, `*OwnerView`) and direct `params_340`
+   accesses. This single pass resolved 100% of diffs in Patchouli (`10,831 B`),
+   Yuyuko (`10,828 B`), Suika (`8,956 B`), Tenshi (`8,590 B`), and Yukari
+   (`7,588 B`) on the first compile.
+2. **Restore natural ascending numeric `case` order and remove synthetic
+   `goto`s / hand-merged fallthroughs.**
+   Never rearrange cases to match post-`TryTailMerge` physical addresses. When
+   cases are ordered numerically with their own complete bodies, VC8 both
+   tail-merges identical arms automatically and keeps `c2.dll:0x10D0F854`'s
+   round-robin register cursor (`EAX`/`ECX`/`EDX`) aligned across cases. This
+   closed Sakuya (`6,538 B`), Komachi (`6,216 B`, plus `double scale` in `817`),
+   Youmu (`5,159 B`), Remilia (`4,997 B`), Reimu (`4,892 B`), and Aya
+   (`4,531 B`).
+3. **Check callee parameter widths against actual callee reads.**
+   Keep `select_sequence(short)` and `replace_secondary(short, ...)` narrow when
+   target consumes only the low 16 bits, and keep facing parameters byte-width
+   where target avoids extra extension.
+4. **Verify complete `switch_payload` ownership in `config/match-units.toml`.**
+   Include every jump table, remap table, alignment byte, and bound tail jump
+   (using the mangled symbol name in `rel32_targets` so
+   `scripts/coff_switch_payload.py` verifies the external `REL32` binding).
+
+See [VC8_SOURCE_SHAPE_PATTERNS.md](VC8_SOURCE_SHAPE_PATTERNS.md) for the exact
+instruction signatures and `c2.dll` mechanics behind each rule.
