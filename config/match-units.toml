@@ -21232,7 +21232,7 @@ source = "src/characters/MarisaObjectActionEntry.cpp"
 object = "build/match-units/ExactFirst_MarisaObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a MarisaObject slot3C4C8050;10126 callable/full10532 target. Nonexact full10536; first whole comparison corrects822 payload item. docs/MARISA_OBJECT_ENTRY_2026_10_24.md."
+notes = "Complete JP1.06a MarisaObject slot3C 0x004C8050; 10126 callable / full 10532 payload canonical exact with typed view, short secondary-animation key, flat 859/861 guards, 913 write order, and 989-before-980 placement. docs/MARISA_OBJECT_ENTRY_2026_10_24.md."
 
 [[units.exact-first-marisa-object-entry.functions]]
 address = "0x004C8050"
@@ -21243,12 +21243,27 @@ rel32_targets = [
     "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
     "?set_components@MarisaEntryMotionView@th105@@QAEXMM@Z=0x00435160",
     "?replace_auxiliary@MarisaObjectEntryView@th105@@QAEXF@Z=0x0045CD70",
-    "?replace_secondary@MarisaObjectEntryView@th105@@QAEXHMHHH@Z=0x00496420",
+    "?replace_secondary@MarisaObjectEntryView@th105@@QAEXFMHHH@Z=0x00496420",
     "MarisaObjectEntryView_spawn_parented=0x004FCA60",
     "MarisaObjectEntryView_spawn_unparented=0x0064CCB0",
-    "MarisaObjectEntryView_spawn_owned=0x00465190",
+    "MarisaOwnerView_spawn_owned=0x00465190",
     "?continue_action_980@MarisaObjectEntryView@th105@@QAEXXZ=0x00596370",
     "__ftol2_sse=0x0068A1A0",
+]
+
+[units.exact-first-marisa-object-entry.functions.switch_payload]
+table_offset = 10128
+jump_offset = 141
+table_entries = 47
+map_offset = 10316
+map_size = 200
+load_offset = 132
+alignment_hex = "8bff"
+size = 10532
+sha256 = "374f0f36f53eed919047c7a8453880a50b5df7952036717a643f174743b290b2"
+tail_jumps = [9999]
+additional_tables = [
+    { table_offset = 10516, jump_offset = 7928, table_entries = 4, alignment_hex = "" },
 ]
 
 

@@ -211,3 +211,19 @@ Each suffix belongs to a `__real@` key. Full nominal owner identity/layout,
 original source/TU and residual scheduling remain unknown. Exact totals are
 unchanged; the prior Iku all-unit cold receipt is historical evidence, not a
 fresh aggregate replay after these nonexact source additions.
+
+## Exact resolution (2026-11-28)
+
+Promoting `src/characters/MarisaObjectActionEntry.hpp` and
+`src/characters/MarisaObjectActionEntry.cpp` from raw `unsigned char *` offset
+macros to a checked typed view (`MarisaObjectEntryView`, `MarisaOwnerView`,
+`MarisaAuxiliaryView`, `MarisaEntryMotionView`), declaring `replace_secondary`
+with its native 16-bit `short` key (`?replace_secondary@MarisaObjectEntryView@th105@@QAEXFMHHH@Z`),
+flattening the sibling `sequence_id_13e < 4` guards in cases `859`/`861`,
+ordering `byte_184 = 1; field_180 = 0;` in `913`, and placing `case 989:` before
+`case 980:` closes the root to 100% canonical exact.
+
+`scripts/repo-python scripts/build.py --unit exact-first-marisa-object-entry --compare --json`
+verifies all 10,126 callable bytes (`4aaebfa43b4c0efabaf2b6fdddfcf4f7e1c97dfde8c23a6ebf2a8a881360220b`)
+and all 10,532 full switch-payload bytes (`374f0f36f53eed919047c7a8453880a50b5df7952036717a643f174743b290b2`,
+2 tables, 51 entries, 200 remap bytes, 1 tail jump, 7-byte internal alignment).
