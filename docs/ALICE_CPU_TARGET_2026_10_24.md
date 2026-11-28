@@ -1,4 +1,45 @@
-# Alice CPU policy: complete source checkpoint, nonexact
+## Canonical exact resolution (2026-11-28)
+
+`exact-first-alice-cpu-policy` now matches `Alice_update_cpu_action_policy`
+(`0x004F4B80`) with **zero byte differences** under VC8 SP1
+`/O2 /GS- /GR /EHsc /MT`:
+
+- Callable code `[0x004F4B80, 0x004F8B62)`: 16,354 bytes, 4,174 instructions,
+  48 `RET 0` exits, 147 direct calls (118 `selector_random_roll`, 20 checked
+  `deque::operator[]`, 5 `__ftol2_sse`, 3 `atan2_degrees`, 1 `mt19937_next_u32`),
+  SHA-256 `8dde0aa257347356612ded23c26cf4a4dfcec593244ad0ed36778c5b812e33da`.
+- Complete nine-table switch payload `[0x004F4B80, 0x004F8DF1)`: 17,009 bytes
+  (83 destination words, 318 remap bytes, 5 alignment bytes `8bff` + `8d4900`),
+  SHA-256 `44c74a61697409bc3628dbd5c2e48788f4c0e5ce02a439bcce5331d19812431d`.
+- Relocations: 382 verified (147 REL32 + 235 DIR32).
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-alice-cpu-policy --compare --json
+```
+
+All remaining codegen discrepancies came from synthetic `goto` labels and two
+small threshold/order differences in the earlier draft:
+
+1. **Remove synthetic `aim_x` and `goto air_against_ground` / `air_aim` /
+   `air_tail`**: writing the natural `if (PEER(0xF0) == 0.0f) { ... } else { ... }`
+   branches with inline `atan2_degrees` calls eliminates the extra local slot,
+   restoring `[esp+0x10]` in the prologue and exact air-branch tail merges.
+2. **Inline `approach_policy` at both call sites**: removing `goto approach_policy;`
+   reproduces `jne 0x4f685c; jmp 0x4f6e16` at `+0x1CD3`.
+3. **Remove `goto expire_policy` / `wait60` / `check214` / `horizontal214` /
+   `rising214` and use `break;` in `switch (S(0x766))` cases `1..100`**: keeps
+   all seven `DURATION(..., 30, 0)` tails unmerged in `case 0` while letting
+   `case 3..8`, `case 9`, `case 10`, and `case 100` merge cleanly into
+   `case 11..18`'s `0x004F8AB7` tail.
+4. **Target-faithful thresholds and expression order**: `if (S(0x764) < 50) break;`
+   in `case 200` (emits `cmp word, 0x32; jl` while keeping the `switch (S(0x13C))`
+   break label above `c2.dll`'s 100-reference `TryTailMerge` threshold),
+   `P(88, 99)` in `case 0` (`h >= 380.0f`), `I(0x6B8) = 0;` before `I(0x6B4)`
+   in the air `h > 250.0` tail, and `(C(0x104) == -1) ? 1 : 2` in `case 10`.
+
+---
+
+# Alice CPU policy: earlier analysis record (superseded by exact match above)
 
 ## Observed target identity and complete boundary
 

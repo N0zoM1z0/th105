@@ -1052,3 +1052,23 @@ in `AyaObject` `0x0061A290` (18/34 exact owners, 28/34 `+0` owners, 2026-11-28):
   `double object_y`) or `821` is present.
   See [Aya evidence](AYA_EVIDENCE.md) and
   [Playbook Section 7](GIANT_ACTION_ROOT_PLAYBOOK.md#7-roster-object-0x28-update-roots-reusable-workflow--lessons).
+
+**Roster CPU `+0x58` policy exact pattern (`Alice_update_cpu_action_policy`
+`0x004F4B80`, 16,354/17,009 canonical exact, 2026-11-28):**
+- Standalone `/O2 /GS- /GR /EHsc /MT` matches the full 17,009-byte root without
+  `/LTCG` once synthetic `goto` labels are replaced by natural C++ control flow:
+  - Removing `float aim_x` and `goto air_against_ground`/`air_aim`/`air_tail`
+    in favor of ordinary `if (PEER(0xF0) == 0.0f) { ... } else { ... }` with
+    inline `atan2_degrees` restores the prologue's `[esp+0x10]` temp slot and
+    native air-branch tail merges.
+  - Inlining the `S(0x766) = 100; S(0x768) = roll(20) + 10;` body instead of
+    `goto approach_policy;` lets `TailMerge` emit `jne; jmp` at the first site.
+  - Removing `goto expire_policy`/`wait60`/`check214` and using per-case `break;`
+    in `switch (S(0x766))` cases `1..100` prevents `case 0`'s seven
+    `DURATION(..., 30, 0)` arms from over-merging into `WAIT(30)` while merging
+    `case 3..8`, `9`, `10`, and `100` cleanly into `case 11..18`'s expire tail.
+  - In `case 200`, writing `if (S(0x764) < 50) break;` inside the facing guard
+    (rather than `&& S(0x764) >= 50`) both emits `cmp word, 0x32; jl` and keeps
+    the `switch (S(0x13C))` break label above `c2.dll`'s 100-reference
+    `TryTailMerge` cap so cases `300..416` do not over-merge.
+  - See [Alice CPU note](ALICE_CPU_TARGET_2026_10_24.md).

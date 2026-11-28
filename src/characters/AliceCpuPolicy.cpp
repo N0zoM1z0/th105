@@ -1,8 +1,8 @@
 #include "AliceCpuPolicy.hpp"
 #include "battle/SpellRuntime.hpp"
 #include <deque>
-// JP1.06a 0x004F4B80: complete source candidate, not an exact-match claim.
-// See docs/ALICE_CPU_TARGET_2026_10_24.md for evidence and remaining codegen differences.
+// JP1.06a 0x004F4B80: canonical exact match (16,354 callable / 17,009 full switch payload).
+// See docs/ALICE_CPU_TARGET_2026_10_24.md for boundary and compiler-shape evidence.
 #include <stdlib.h>
 namespace th105 {
 #define FIELD(type, offset) (*reinterpret_cast<type *>(reinterpret_cast<unsigned char *>(this) + (offset)))
@@ -43,7 +43,8 @@ void AliceCpuPolicyView::update_cpu_action_policy()
     switch (S(0x13C)) {
     case 200:
         if (S(0x764)==0) { S(0x764)=100; if (h>=700.0f) S(0x764)=static_cast<short>(selector_random_roll(100)+1); }
-        if (((F(0xEC)>PEER(0xEC) && C(0x104)==-1) || (F(0xEC)<PEER(0xEC) && C(0x104)==1)) && S(0x764)>49) {
+        if ((F(0xEC)>PEER(0xEC) && C(0x104)==-1) || (F(0xEC)<PEER(0xEC) && C(0x104)==1)) {
+            if (S(0x764)<50) break;
             if (h<220.0 && RNG(1000)<100 && v<50.0) { I(0x6B4)=C(0x104); I(0x6BC)=2; }
             else if (h>=400.0 && h<=600.0f && v<80.0f && RNG(1000)<50) { I(0x6B4)=C(0x104); I(0x6C0)=2; }
             else if (h>=500.0 && h<=650.0f && v==0.0f && RNG(1000)<30) { I(0x6B4)=C(0x104); I(0x6C4)=2; }
@@ -235,7 +236,7 @@ void AliceCpuPolicyView::update_cpu_action_policy()
                         if (RNG(1000)<60) CONTROL_DONE(0x6BC,0,0)
                         if (h>80.0f && RNG(1000)<40) CONTROL_DONE(0x6BC,0,1)
                     }
-                    if (RNG(1000)<75 && h<350.0f && h>80.0f) goto approach_policy;
+                    if (RNG(1000)<75 && h<350.0f && h>80.0f) { S(0x766)=100; S(0x768)=static_cast<short>(selector_random_roll(20)+10); goto policy_dispatch; }
                     if (h<=300.0f && h>=60.0) {
                         if (RNG(1000)<20 && S(0x482)>=600) { U(0x728)=0x200; goto policy_dispatch; }
                         if (h<210.0 && RNG(1000)<50) { I(0x6BC)=2; I(0x6B4)=C(0x104); I(0x6B8)=1; goto policy_dispatch; }
@@ -271,7 +272,7 @@ void AliceCpuPolicyView::update_cpu_action_policy()
                         if (h>300.0f && RNG(1000)<3 && FRONT==206 && v<400.0) INPUT_DONE
                     }
                     if (h<=300.0f && h>=100.0 && v>50.0 && v<150.0f && RNG(1000)<10) { I(0x6BC)=2; I(0x6B4)=C(0x104); I(0x6B8)=1; goto policy_dispatch; }
-                    if (RNG(1000)<75 && h<350.0f && h>80.0f && v<75.0f) goto approach_policy;
+                    if (RNG(1000)<75 && h<350.0f && h>80.0f && v<75.0f) { S(0x766)=100; S(0x768)=static_cast<short>(selector_random_roll(20)+10); goto policy_dispatch; }
                     if (S(0x76E)<=S(0x482)) {
                         if (h>=400.0 && v<200.0 && RNG(1000)<=5) CONTROL_DONE(0x6C0,0,0)
                         if (h>=250.0) {
@@ -281,57 +282,57 @@ void AliceCpuPolicyView::update_cpu_action_policy()
                     }
                 }
             } else {
-                float aim_x;
-                if (PEER(0xF0)==0.0f) goto air_against_ground;
-                if (h<240.0 && h>120.0 && v<80.0f) {
-                    if (RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20; goto policy_dispatch; }
-                    if (RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x40; goto policy_dispatch; }
-                }
-                if (h<=static_cast<float>(((F(0xF4)>0.0f)+1)*120)) {
-                    int const rising=(F(0xF0)<PEER(0xF0) && F(0xF8)>0.0f);
-                    if (v<static_cast<float>(rising*150+100) && RNG(1000)<20) CONTROL_DONE(0x6BC,0,0)
-                }
-                if (h<=300.0f && h<=150.0f && v<80.0f && RNG(1000)<10) { I(0x6BC)=2; I(0x6B4)=C(0x104); I(0x6B8)=0; goto policy_dispatch; }
-                if (h<=static_cast<float>((F(0xF4)>0.0f)*120+180)) {
-                    int const falling=(F(0xF8)<0.0f && F(0xF0)>PEER(0xF0));
-                    if (v<static_cast<float>((falling+3)*50) && RNG(1000)<75) CONTROL_DONE(0x6BC,0,1)
-                }
-                if (S(0x76E)<=S(0x482)) {
-                    if (h>static_cast<float>((v<200.0)*180+120) && RNG(1000)<50) {
-                        I(0x6C0)=2;
-                        aim_x=static_cast<float>(C(0x104))*(PEER(0xEC)-F(0xEC));
-                        goto air_aim;
+                if (PEER(0xF0)==0.0f) {
+                    if (h<240.0 && h>120.0 && v<80.0f) {
+                        if (RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20; goto policy_dispatch; }
+                        if (RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x40; goto policy_dispatch; }
                     }
-                    goto air_tail;
-                }
-                goto policy_dispatch;
-air_against_ground:
-                if (h<240.0 && h>120.0 && v<80.0f) {
-                    if (RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20; goto policy_dispatch; }
-                    if (RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x40; goto policy_dispatch; }
-                }
-                if (h<=static_cast<float>(((F(0xF4)>0.0f)+1)*120)) {
-                    int const rising=(F(0xF0)<PEER(0xF0) && F(0xF8)>0.0f);
-                    if (v<static_cast<float>(rising*150+100) && RNG(1000)<20) CONTROL_DONE(0x6BC,0,0)
-                }
-                if (h<=300.0f && h<=150.0f && v<80.0f && RNG(1000)<10) { I(0x6BC)=2; I(0x6B4)=C(0x104); I(0x6B8)=0; goto policy_dispatch; }
-                if (h<=static_cast<float>((F(0xF4)>0.0f)*120+180)) {
-                    int const falling=(F(0xF8)<0.0f && F(0xF0)>PEER(0xF0));
-                    if (v<static_cast<float>((falling+3)*50) && RNG(1000)<75) CONTROL_DONE(0x6BC,0,1)
-                }
-                if (S(0x76E)<=S(0x482)) {
-                    if (h>static_cast<float>((v<200.0)*180+120) && RNG(1000)<50) {
-                        I(0x6C0)=2;
-                        aim_x=static_cast<float>(C(0x104))*(PEER(0xEC)-F(0xEC));
-air_aim:
-                        int const aim=static_cast<int>(atan2_degrees(PEER(0xF0)-F(0xF0),aim_x));
-                        I(0x6B4)=0; I(0x6B8)=-static_cast<int>(static_cast<short>(aim))>=40;
+                    if (h<=static_cast<float>(((F(0xF4)>0.0f)+1)*120)) {
+                        int const rising=(F(0xF0)<PEER(0xF0) && F(0xF8)>0.0f);
+                        if (v<static_cast<float>(rising*150+100) && RNG(1000)<20) CONTROL_DONE(0x6BC,0,0)
                     }
-air_tail:
-                    if (h>250.0) {
-                        if (RNG(1000)<5) { I(0x6C4)=2; I(0x6B4)=0; I(0x6B8)=0; }
-                        if (RNG(1000)<5 && h>480.0) { I(0x6C4)=2; I(0x6B4)=C(0x104); I(0x6B8)=0; }
-                        if (RNG(1000)<25 && v>100.0 && h>300.0f) CONTROL_DONE(0x6C4,0,1)
+                    if (h<=300.0f && h<=150.0f && v<80.0f && RNG(1000)<10) { I(0x6BC)=2; I(0x6B4)=C(0x104); I(0x6B8)=0; goto policy_dispatch; }
+                    if (h<=static_cast<float>((F(0xF4)>0.0f)*120+180)) {
+                        int const falling=(F(0xF8)<0.0f && F(0xF0)>PEER(0xF0));
+                        if (v<static_cast<float>((falling+3)*50) && RNG(1000)<75) CONTROL_DONE(0x6BC,0,1)
+                    }
+                    if (S(0x76E)<=S(0x482)) {
+                        if (h>static_cast<float>((v<200.0)*180+120) && RNG(1000)<50) {
+                            I(0x6C0)=2;
+                            int const aim=static_cast<int>(atan2_degrees(PEER(0xF0)-F(0xF0),static_cast<float>(C(0x104))*(PEER(0xEC)-F(0xEC))));
+                            I(0x6B4)=0; I(0x6B8)=-static_cast<int>(static_cast<short>(aim))>=40;
+                        }
+                        if (h>250.0) {
+                            if (RNG(1000)<5) { I(0x6C4)=2; I(0x6B8)=0; I(0x6B4)=0; }
+                            if (RNG(1000)<5 && h>480.0) { I(0x6C4)=2; I(0x6B8)=0; I(0x6B4)=C(0x104); }
+                            if (RNG(1000)<25 && v>100.0 && h>300.0f) CONTROL_DONE(0x6C4,0,1)
+                        }
+                    }
+                } else {
+                    if (h<240.0 && h>120.0 && v<80.0f) {
+                        if (RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20; goto policy_dispatch; }
+                        if (RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x40; goto policy_dispatch; }
+                    }
+                    if (h<=static_cast<float>(((F(0xF4)>0.0f)+1)*120)) {
+                        int const rising=(F(0xF0)<PEER(0xF0) && F(0xF8)>0.0f);
+                        if (v<static_cast<float>(rising*150+100) && RNG(1000)<20) CONTROL_DONE(0x6BC,0,0)
+                    }
+                    if (h<=300.0f && h<=150.0f && v<80.0f && RNG(1000)<10) { I(0x6BC)=2; I(0x6B4)=C(0x104); I(0x6B8)=0; goto policy_dispatch; }
+                    if (h<=static_cast<float>((F(0xF4)>0.0f)*120+180)) {
+                        int const falling=(F(0xF8)<0.0f && F(0xF0)>PEER(0xF0));
+                        if (v<static_cast<float>((falling+3)*50) && RNG(1000)<75) CONTROL_DONE(0x6BC,0,1)
+                    }
+                    if (S(0x76E)<=S(0x482)) {
+                        if (h>static_cast<float>((v<200.0)*180+120) && RNG(1000)<50) {
+                            I(0x6C0)=2;
+                            int const aim=static_cast<int>(atan2_degrees(PEER(0xF0)-F(0xF0),static_cast<float>(C(0x104))*(PEER(0xEC)-F(0xEC))));
+                            I(0x6B4)=0; I(0x6B8)=-static_cast<int>(static_cast<short>(aim))>=40;
+                        }
+                        if (h>250.0) {
+                            if (RNG(1000)<5) { I(0x6C4)=2; I(0x6B8)=0; I(0x6B4)=0; }
+                            if (RNG(1000)<5 && h>480.0) { I(0x6C4)=2; I(0x6B8)=0; I(0x6B4)=C(0x104); }
+                            if (RNG(1000)<25 && v>100.0 && h>300.0f) CONTROL_DONE(0x6C4,0,1)
+                        }
                     }
                 }
             }
@@ -340,10 +341,6 @@ air_tail:
 #undef INPUT_DONE
         }
     }
-    goto policy_dispatch;
-approach_policy:
-    S(0x766)=100;
-    S(0x768)=static_cast<short>(selector_random_roll(20)+10);
 policy_dispatch:
 
     // Final movement policy, with independently checked Alice windows.
@@ -418,7 +415,7 @@ policy_dispatch:
                 if (P(30,54)) DURATION((C(0x104)==-1)+1,30,10)
                 if (P(55,84)) DURATION((C(0x104)==-1)+9,30,0)
                 if (P(80,88)) DURATION((C(0x104)==1)+1,30,30)
-                if (P(89,99)) DURATION((C(0x104)==1)+9,30,0)
+                if (P(88,99)) DURATION((C(0x104)==1)+9,30,0)
                 WAIT(10)
             }
             if (h<=110.0) {
@@ -546,62 +543,56 @@ policy_dispatch:
     }
     case 1:
         I(0x6B4)=1;
-        if (S(0x768)>0) return;
+        if (S(0x768)>0) break;
         S(0x766)=0;
-        if (RNG(100)>10) return;
-        goto wait60;
+        if (RNG(100)<=10) S(0x768)=static_cast<short>(selector_random_roll(60));
+        break;
     case 2:
         I(0x6B4)=-1;
-        if (S(0x768)>0) return;
+        if (S(0x768)>0) break;
         S(0x766)=0;
-        if (RNG(100)>10) return;
-        goto wait60;
-    case 3: I(0x6B4)=C(0x104); I(0x6B8)=-1; break;
-    case 4: I(0x6B4)=0; I(0x6B8)=-1; break;
-    case 5: I(0x6B4)=1; I(0x6B8)=-1; break;
-    case 6: U(0x724)=16; break;
-    case 7: U(0x724)=4; break;
-    case 8: U(0x724)=8; break;
+        if (RNG(100)<=10) S(0x768)=static_cast<short>(selector_random_roll(60));
+        break;
+    case 3: I(0x6B4)=C(0x104); I(0x6B8)=-1; if (F(0xF0)>0.0f) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } break;
+    case 4: I(0x6B4)=0; I(0x6B8)=-1; if (F(0xF0)>0.0f) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } break;
+    case 5: I(0x6B4)=1; I(0x6B8)=-1; if (F(0xF0)>0.0f) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } break;
+    case 6: U(0x724)=16; if (F(0xF0)>0.0f) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } break;
+    case 7: U(0x724)=4; if (F(0xF0)>0.0f) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } break;
+    case 8: U(0x724)=8; if (F(0xF0)>0.0f) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } break;
     case 9:
         I(0x6B4)=C(0x104); I(0x6B8)=0; U(0x724)=(C(0x104)!=1)+1;
-        if (S(0x13C)==200 || S(0x13C)==202) { if (S(0x768)<=0) goto expire_policy; }
+        if (S(0x13C)==200 || S(0x13C)==202) {
+            if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); }
+        }
         else S(0x766)=0;
-        return;
+        break;
     case 10:
-        I(0x6B4)=-C(0x104); I(0x6B8)=0; U(0x724)=(C(0x104)!=-1)+1;
-        if (S(0x13C)==201 || S(0x13C)==203) { if (S(0x768)<=0) goto expire_policy; }
+        I(0x6B4)=-C(0x104); I(0x6B8)=0; U(0x724)=(C(0x104)==-1)?1:2;
+        if (S(0x13C)==201 || S(0x13C)==203) {
+            if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); }
+        }
         else S(0x766)=0;
-        return;
-    case 11: I(0x6B4)=C(0x104); I(0x6B8)=-1; I(0x6C8)=1; goto check214;
-    case 12: I(0x6B4)=0; I(0x6B8)=-1; I(0x6C8)=1; goto check214;
-    case 13: I(0x6B4)=-C(0x104); I(0x6B8)=-1; I(0x6C8)=1; goto check214;
-    case 14: I(0x6B4)=C(0x104); goto horizontal214;
-    case 15: I(0x6B4)=-C(0x104);
-    horizontal214:
-        I(0x6B8)=0; I(0x6C8)=1; goto check214;
-    case 16: I(0x6B4)=C(0x104); goto rising214;
-    case 17: I(0x6B4)=0; goto rising214;
-    case 18: I(0x6B4)=-C(0x104);
-    rising214:
-        I(0x6B8)=1; I(0x6C8)=1;
-    check214:
-        if (S(0x13C)==214) { if (S(0x768)<=0) goto expire_policy; }
-        else S(0x766)=0;
-        return;
+        break;
+    case 11: I(0x6B4)=C(0x104); I(0x6B8)=-1; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
+    case 12: I(0x6B4)=0; I(0x6B8)=-1; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
+    case 13: I(0x6B4)=-C(0x104); I(0x6B8)=-1; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
+    case 14: I(0x6B4)=C(0x104); I(0x6B8)=0; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
+    case 15: I(0x6B4)=-C(0x104); I(0x6B8)=0; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
+    case 16: I(0x6B4)=C(0x104); I(0x6B8)=1; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
+    case 17: I(0x6B4)=0; I(0x6B8)=1; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
+    case 18: I(0x6B4)=-C(0x104); I(0x6B8)=1; I(0x6C8)=1; if (S(0x13C)==214) { if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60)); } } else S(0x766)=0; break;
     case 100:
         I(0x6B4)=C(0x104); I(0x6B8)=0; I(0x6BC)=0; U(0x724)=(C(0x104)!=1)+1;
         I(0x6C0)=0; I(0x6C4)=0; I(0x6C8)=0;
-        if (S(0x768)<=0) goto expire_policy;
+        if (S(0x768)<=0) {
+            S(0x766)=0;
+            if (RNG(100)<=100) S(0x768)=static_cast<short>(selector_random_roll(60));
+            break;
+        }
         if (S(0x13C)==200 && h<220.0) I(0x6BC)=2;
-        return;
-    default: return;
+        break;
+    default: break;
     }
-    if (!(F(0xF0)>0.0f)) return;
-expire_policy:
-    S(0x766)=0;
-    if (RNG(100)>100) return;
-wait60:
-    S(0x768)=static_cast<short>(selector_random_roll(60));
 }
 
 

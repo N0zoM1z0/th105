@@ -21017,7 +21017,7 @@ source = "src/characters/AliceCpuPolicy.cpp"
 object = "build/match-units/ExactFirst_AliceCpuPolicy.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a Alice primary slot58 CPU root4F4B80;16354 callable/full17009 target bytes. Complete numeric/offset source, nonexact; all action/attack/policy tables independently reviewed. Original layout and compiler/TU context unknown. docs/ALICE_CPU_TARGET_2026_10_24.md."
+notes = "Canonical exact JP1.06a Alice primary slot+0x58 CPU root 0x004F4B80: 16,354 callable bytes and all 17,009 switch-payload bytes (9 tables, 83 destination words, 318 remap bytes, 5 alignment bytes, 382 relocations). docs/ALICE_CPU_TARGET_2026_10_24.md."
 
 [[units.exact-first-alice-cpu-policy.functions]]
 address = "0x004F4B80"
@@ -21028,6 +21028,27 @@ rel32_targets = [
     "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
     "??A?$deque@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@@std@@QAEAAUFighterSequenceSlot@th105@@I@Z=0x004399C0",
     "__ftol2_sse=0x0068A1A0",
+]
+
+[units.exact-first-alice-cpu-policy.functions.switch_payload]
+size = 17009
+sha256 = "44c74a61697409bc3628dbd5c2e48788f4c0e5ce02a439bcce5331d19812431d"
+alignment_hex = "8bff"
+table_offset = 16356
+table_entries = 18
+map_offset = 16428
+map_size = 217
+load_offset = 345
+jump_offset = 352
+additional_tables = [
+    { alignment_hex = "8d4900", table_offset = 16648, table_entries = 6, jump_offset = 1800 },
+    { alignment_hex = "", table_offset = 16672, table_entries = 5, jump_offset = 2628 },
+    { alignment_hex = "", table_offset = 16692, table_entries = 5, jump_offset = 2893 },
+    { alignment_hex = "", table_offset = 16712, table_entries = 7, jump_offset = 4911 },
+    { alignment_hex = "", table_offset = 16740, table_entries = 7, jump_offset = 5330 },
+    { alignment_hex = "", table_offset = 16768, table_entries = 7, jump_offset = 5794 },
+    { alignment_hex = "", table_offset = 16796, table_entries = 7, jump_offset = 6043 },
+    { alignment_hex = "", table_offset = 16824, table_entries = 21, map_offset = 16908, map_size = 101, load_offset = 10805, jump_offset = 10812 },
 ]
 
 [units.exact-first-sakuya-object-entry]

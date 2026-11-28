@@ -487,6 +487,18 @@ class CompactSwitchTests(unittest.TestCase):
                     ValueError, 'unsupported instruction between compact-switch bound and guard'):
                 payload.inspect(bad, bad, address, len(code), bad_contract, relocs)
 
+    def test_scheduled_ebp_save_and_cpu_constants_between_bound_and_guard(self):
+        # Alice CPU policy schedules push ebp; mov ebp, 2; mov edi, 0x190; mov edx, 0x320 between cmp and ja.
+        compare = bytes.fromhex('83f801 55 bd02000000 bf90010000 ba20030000')
+        body, address, size, contract, relocs = fixture(compare=compare)
+        payload.inspect(body, body, address, size, contract, relocs)
+        # Negative: unallowlisted push/mov immediate or selector overwrite must fail closed.
+        for offset, replacement in ((3, b'\x50'), (4, bytes.fromhex('bd03000000')), (9, bytes.fromhex('bf91010000'))):
+            bad, updated = changed(body, contract, offset, replacement)
+            with self.subTest(offset=offset), self.assertRaisesRegex(
+                    ValueError, 'unsupported instruction between compact-switch bound and guard'):
+                payload.inspect(bad, bad, address, size, updated, relocs)
+
 
 if __name__ == '__main__':
     unittest.main()

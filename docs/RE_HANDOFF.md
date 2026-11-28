@@ -7,7 +7,25 @@ Follow [AGENTS.md](../AGENTS.md), [shared tools](SHARED_TOOLS.md) and the
 Run `scripts/repo-python scripts/report-reconstruction-status.py --summary` or
 read [PROGRESS.md](PROGRESS.md) for current ledger totals.
 
-## Current milestone: all 15/15 Fighter `+0x28` action-state roots exact
+## Latest exact root: Alice CPU `+0x58` policy (`0x004F4B80`, 1/5 CPU roots exact)
+
+`exact-first-alice-cpu-policy` now matches `Alice_update_cpu_action_policy`
+(`0x004F4B80`) with zero byte differences across all **16,354** callable bytes
+and all **17,009** nine-table switch-payload bytes (83 destination words, 318
+remap bytes, 5 alignment bytes, 382 relocations) under standalone VC8 SP1
+`/O2 /GS- /GR /EHsc /MT` — no `/LTCG` required. Replacing the draft's synthetic
+`goto` labels (`approach_policy`, `air_*`, `expire_policy`, `wait60`, `check214`)
+with natural C++ control flow, `if (S(0x764) < 50) break;` in `case 200`, and
+per-case `break;` in `switch (S(0x766))` resolved both `c2.dll` `TryTailMerge`
+thresholds and closed the entire function. See
+[ALICE_CPU_TARGET_2026_10_24.md](ALICE_CPU_TARGET_2026_10_24.md) and
+[VC8_SOURCE_SHAPE_PATTERNS.md](VC8_SOURCE_SHAPE_PATTERNS.md).
+
+```bash
+WINEDEBUG=-all DISPLAY= WAYLAND_DISPLAY= scripts/repo-python scripts/build.py --unit exact-first-alice-cpu-policy --compare --json
+```
+
+## Previous milestone: all 15/15 Fighter `+0x28` action-state roots exact
 
 With `Yukari_dispatch_action_state_vslot28` (`0x0057B030`, commit `488f575e`),
 every Fighter primary vtable `+0x28` action-state root in JP TH10.5 v1.06a is
