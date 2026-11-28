@@ -298,7 +298,8 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
         if (dest.type != x.X86_OP_MEM or dest.mem.index or dest.mem.segment
                 or not 0 <= dest.mem.disp <= 65535):
             raise ValueError('unsupported instruction between compact-switch bound and guard')
-        receiver_store = dest.mem.base == x.X86_REG_ESI and store.mnemonic != 'fstp'
+        receiver_store = dest.mem.base == x.X86_REG_ESI and (
+            store.mnemonic != 'fstp' or dest.size == 4)
         stack_spill = dest.mem.base == x.X86_REG_ESP and (
             (dest.size == 1 and store.mnemonic == 'mov' and store.operands[1].type == x.X86_OP_REG)
             or (dest.size == 4 and store.mnemonic in ('fst', 'fstp')))

@@ -21130,7 +21130,7 @@ source = "src/characters/KomachiObjectActionEntry.cpp"
 object = "build/match-units/ExactFirst_KomachiObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a KomachiObject slot3C root600390;6216 callable/full6540. Seven unmasked differing bytes; all324 metadata bytes equal. Native930 guard and810 rounding controls. docs/KOMACHI_OBJECT_ENTRY_2026_10_24.md."
+notes = "Complete JP1.06a KomachiObject slot3C root 0x00600390; 6216 callable / full 6540 payload canonical exact with checked typed view, case 800 before 801, and double-typed 817 intermediate. docs/KOMACHI_OBJECT_ENTRY_2026_10_24.md."
 
 [[units.exact-first-komachi-object-entry.functions]]
 address = "0x00600390"
@@ -21144,6 +21144,21 @@ rel32_targets = [
     "KomachiObjectEntryView_spawn_unparented=0x0064CCB0",
     "?continue_action_980@KomachiObjectEntryView@th105@@QAEXXZ=0x00596370",
     "__ftol2_sse=0x0068A1A0",
+]
+
+[units.exact-first-komachi-object-entry.functions.switch_payload]
+table_offset = 6216
+jump_offset = 139
+table_entries = 27
+map_offset = 6324
+map_size = 200
+load_offset = 131
+alignment_hex = ""
+size = 6540
+sha256 = "fe41b8cbdcd9e6c4a28c24ca2c5220f067fff3d0f144af1294188779d99526ca"
+tail_jumps = [6147]
+additional_tables = [
+    { table_offset = 6524, jump_offset = 5678, table_entries = 4, alignment_hex = "" },
 ]
 
 [units.exact-first-iku-object-entry]

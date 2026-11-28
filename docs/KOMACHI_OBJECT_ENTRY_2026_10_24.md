@@ -1,4 +1,30 @@
-# KomachiObject action initializer: complete source, seven-byte residual
+# KomachiObject action initializer (`0x00600390`): canonical exact
+
+`0x00600390`, KomachiObject primary slot `+0x3C`, is **100% canonical exact** in
+`src/characters/KomachiObjectActionEntry.cpp/.hpp` (`exact-first-komachi-object-entry`)
+across all **6,216 callable bytes** and all **6,540 switch-payload bytes** (2 tables,
+31 destination words, 200 action remap bytes, tail jump to `0x00596370`).
+
+## Resolution of the 7-byte residual
+
+1. **Checked typed view**: Replacing raw `reinterpret_cast<unsigned char *>` pointer
+   arithmetic with checked `offsetof`-verified `KomachiObjectEntryView` and
+   `KomachiEntryMotionView` members gives VC8 clean typed field layout.
+2. **Entry register choice (`+0x93`/`+0xa2`, 2 bytes)**: Placing `case 800:` before
+   `case 801:` (matching target case ordering; `case 811:` tail-merges into `case 800:`)
+   causes VC8 to allocate `eax` for `params_340` at entry, matching `0x00600422`/`0x00600431`.
+3. **Case 817 x87 operand order (`+0x629..+0x62d`, 5 bytes)**: Capturing the
+   rounded product in a `double` local (`double scale = static_cast<float>(random_float(50) * static_cast<double>(0.01f));`)
+   before adding `params_340[0]` emits `fld dword [esp+0x14]; fadd dword [eax]`,
+   matching all 6,540 bytes canonically (`fe41b8cbdcd9e6c4a28c24ca2c5220f067fff3d0f144af1294188779d99526ca`).
+
+Verification:
+```sh
+scripts/repo-python scripts/build.py --unit exact-first-komachi-object-entry --compare --json
+```
+
+---
+## Historical note (prior 7-byte residual)
 
 `0x00600390`, KomachiObject primary slot+3C, now has complete selected source in
 `src/characters/KomachiObjectActionEntry.cpp/.hpp`. The pointer-only receiver

@@ -1,154 +1,444 @@
 #include "characters/KomachiObjectActionEntry.hpp"
-// JP1.06a 0x00600390: complete source candidate, nonexact at seven bytes.
-// Evidence and finite trials: docs/KOMACHI_OBJECT_ENTRY_2026_10_24.md.
+
+// JP1.06a 0x00600390: KomachiObject primary slot +0x3C action entry initializer.
+// Evidence: docs/KOMACHI_OBJECT_ENTRY_2026_10_24.md.
 namespace th105 {
-#define FIELD(type,offset) (*reinterpret_cast<type *>(reinterpret_cast<unsigned char *>(this)+(offset)))
-#define F(o) FIELD(float,o)
-#define S(o) FIELD(short,o)
-#define B(o) FIELD(unsigned char,o)
-#define I(o) FIELD(int,o)
-#define H FIELD(float *,0x340)
-#define MOTION reinterpret_cast<KomachiEntryMotionView *>(reinterpret_cast<unsigned char *>(this)+4)
-#define SELECT() select_sequence(static_cast<int>(H[2]))
-#define MOVE() MOTION->set_components(H[0],H[1])
-#define SPAWN(a) spawn_unparented(a,F(0xEC),F(0xF0),B(0x104),1,reinterpret_cast<const unsigned *>(payload),3)
-__forceinline static float random_float(int n) { return static_cast<float>(static_cast<unsigned>(selector_random_roll(n))); }
-void KomachiObjectEntryView::initialize_action_entry()
-{
- F(0xF4)=0; F(0xF8)=0; F(0x370)=0; F(0x374)=0; F(0x378)=0;
- S(0x384)=0; F(0x37C)=0; S(0x386)=0; F(0x380)=0; B(0x184)=0;
- S(0x364)=0; S(0x366)=0; S(0x368)=0; S(0x36A)=0; S(0x36C)=0;
- switch(S(0x13C)) {
- case 801:
-  B(0x184)=1; SELECT();
-  if(S(0x13E)==0) { replace_secondary(991,20,30,2,2); F(0x370)=F(0xEC); F(0x374)=F(0xF0); MOVE(); }
-  if(S(0x13E)==1) { MOVE(); F(0x12C)=random_float(360); F(0x11C)=1.25f; F(0x120)=1.25f; }
-  if(S(0x13E)==3) F(0x12C)=H[0];
-  if(S(0x13E)==4) { F(0x128)=H[0]; F(0x124)=H[1]; } return;
- case 810:
-  B(0x17C)=0; SELECT();
-  if(S(0x13E)==0) B(0x184)=1;
-  if(S(0x13E)==1 || S(0x13E)==4 || S(0x13E)==5) { B(0x184)=1; F(0x370)=2; }
-  if(S(0x13E)==2) { float scale=random_float(15)*static_cast<double>(0.1f); F(0x120)=F(0x11C)=static_cast<float>(scale+1.0); F(0x12C)=random_float(360); }
-  if(S(0x13E)==3) { float scale=random_float(15)*static_cast<double>(0.1f); F(0x120)=F(0x11C)=static_cast<float>(scale+1.0); S(0x364)=static_cast<short>(selector_random_roll(20)+10); F(0x12C)=random_float(360); } return;
- case 811: B(0x17C)=4;
- case 800: B(0x184)=1; SELECT(); return;
- case 812:
-  B(0x17C)=8; SELECT();
-  if(S(0x13E)==0) { B(0x184)=1; F(0xF0)=stage_height(); }
-  if(S(0x13E)==1) { float scale=random_float(15)*static_cast<double>(0.1f); F(0x120)=F(0x11C)=static_cast<float>(scale+1.0); S(0x364)=static_cast<short>(selector_random_roll(20)+10); F(0x12C)=random_float(360); }
-  if(S(0x13E)==2) { B(0x184)=1; F(0xF0)=stage_height(); }
-  if(S(0x13E)==3) { float scale=random_float(15)*static_cast<double>(0.1f); F(0x120)=F(0x11C)=static_cast<float>(scale+1.0); F(0x12C)=random_float(360); F(0x370)=random_float(25)*static_cast<double>(0.01f)+0.25; } return;
- case 815:
-  B(0x17C)=1; B(0x184)=1;
-  F(0x120)=F(0x11C)=static_cast<float>(random_float(40)*static_cast<double>(0.01f)+static_cast<double>(0.8f));
-  F(0x12C)=static_cast<float>(mt19937_next_u32()%360); SELECT(); S(0x364)=0;
-  if(S(0x13E)==0) MOVE();
-  if(S(0x13E)==2) { MOVE(); F(0x12C)=random_float(360); F(0x11C)=1.25f; F(0x120)=1.25f; } return;
- case 817:
-  B(0x17C)=5; SELECT();
-  if(S(0x13E)==0) {
-   float scale=random_float(50)*static_cast<double>(0.01f); F(0x120)=F(0x11C)=static_cast<float>(scale+H[0]);
-   F(0x12C)=random_float(360); F(0x124)=random_float(30)-15.0; F(0x128)=random_float(20)+50.0;
-  }
-  if(S(0x13E)==2) { F(0x12C)=H[0]; if(static_cast<unsigned>(selector_random_roll(100))<=49) F(0x374)=1; else F(0x374)=-1; } return;
- case 820: {
-  float payload[3]; B(0x17C)=2; SELECT();
-  if(S(0x13E)==0) B(0x113)=0;
-  if(S(0x13E)==1) { for(int n=12;n!=0;--n) { payload[0]=random_float(360); payload[1]=random_float(30)+10.0; payload[2]=3; SPAWN(820); } }
-  if(S(0x13E)==3) F(0x120)=F(0x11C)=static_cast<float>(random_float(15)*static_cast<double>(0.1f)+0.5);
-  if(S(0x13E)==4) B(0x184)=1;
-  if(S(0x13E)==5) F(0xF8)=4; return;
- }
- case 821:
-  B(0x17C)=6; SELECT();
-  if(S(0x13E)==1) { B(0x184)=1; F(0x370)=1; }
-  if(S(0x13E)==4) F(0x370)=0.35f;
-  if(S(0x13E)==2 || S(0x13E)==3) F(0x11C)=H[0]; return;
- case 822:
-  B(0x17C)=10; SELECT();
-  if(S(0x13E)==0) { F(0x370)=10.0-random_float(20); F(0x12C)=random_float(360); F(0x120)=F(0x11C)=static_cast<float>(random_float(10)*static_cast<double>(0.1f)+0.5); B(0x113)=0; } return;
- case 825:
-  B(0x184)=1; B(0x17C)=3; SELECT();
-  if(S(0x13E)==0) { replace_secondary(994,20,30,2,2); F(0x370)=F(0xEC); F(0x374)=F(0xF0); MOVE(); }
-  S(0x364)=0;
-  if(S(0x13E)==1) { MOVE(); F(0x12C)=random_float(360); F(0x11C)=1.25f; F(0x120)=1.25f; }
-  if(S(0x13E)==3) F(0x12C)=H[0]; return;
- case 826:
-  B(0x184)=1; SELECT();
-  if(S(0x13E)==1) { MOVE(); F(0x12C)=random_float(360); }
-  if(S(0x13E)==3) F(0x12C)=H[0]; return;
- case 827:
-  SELECT(); if(S(0x13E)==0) { replace_secondary(993,20,30,2,2); MOVE(); }
-  if(S(0x13E)==1) { MOVE(); F(0x12C)=random_float(360); F(0x11C)=1.25f; F(0x120)=1.25f; } return;
- case 850:
-  SELECT(); if(S(0x13E)==1) { F(0x12C)=random_float(360); F(0x370)=0.5f; MOVE(); float scale=random_float(10)*static_cast<double>(0.1f); F(0x120)=F(0x11C)=static_cast<float>(scale+1.0); } return;
- case 852:
-  B(0x184)=1; SELECT();
-  if(S(0x13E)==0) { replace_secondary(991,20,30,2,2); F(0x370)=F(0xEC); F(0x374)=F(0xF0); MOVE(); }
-  if(S(0x13E)==1) { MOVE(); F(0x12C)=random_float(360); F(0x11C)=1.25f; F(0x120)=1.25f; } return;
- case 853:
-  SELECT();
-  if(S(0x13E)==0) { F(0xF4)=H[0]; B(0x184)=1; I(0x144)=static_cast<short>(selector_random_roll(360)); float scale=random_float(50)*static_cast<double>(0.01f); F(0x120)=F(0x11C)=static_cast<float>(scale+1.0); }
-  if(S(0x13E)==3) { F(0x12C)=random_float(360); F(0x370)=0.5f; MOVE(); float scale=random_float(10)*static_cast<double>(0.1f); F(0x120)=F(0x11C)=static_cast<float>(scale+1.0); } return;
- case 854:
-  SELECT();
-  if(S(0x13E)==0 || S(0x13E)==1) { F(0x374)=10; F(0xF8)=10; }
-  if(S(0x13E)==2 || S(0x13E)==3) { F(0x12C)=random_float(360); F(0x370)=0.5f; MOVE(); float scale=random_float(10)*static_cast<double>(0.1f); F(0x120)=F(0x11C)=static_cast<float>(scale+1.0); }
-  if(S(0x13E)==4) { float scale=random_float(15)*static_cast<double>(0.1f); F(0x120)=F(0x11C)=static_cast<float>(scale+0.5); } return;
- case 855:
-  SELECT(); if(S(0x13E)==0) { replace_secondary(993,20,30,2,2); MOVE(); }
-  if(S(0x13E)==1) { MOVE(); F(0x12C)=random_float(360); F(0x11C)=1.25f; F(0x120)=1.25f; } return;
- case 856:
-  SELECT(); if(S(0x13E)==0) { B(0x184)=1; F(0xF8)=H[1]; }
-  if(S(0x13E)==1) { float scale=random_float(25)*static_cast<double>(0.1f); F(0x120)=F(0x11C)=static_cast<float>(scale+1.0); S(0x364)=static_cast<short>(selector_random_roll(20)+10); F(0x12C)=random_float(360); }
-  if(S(0x13E)==2) F(0x370)=1;
-  if(S(0x13E)==3) { float scale=random_float(15)*static_cast<double>(0.1f); F(0x120)=F(0x11C)=static_cast<float>(scale+1.0); S(0x364)=static_cast<short>(selector_random_roll(20)+10); F(0x12C)=random_float(360); F(0x374)=random_float(8)-4.0; }
-  if(S(0x13E)==4) F(0x370)=0.6f; return;
- case 861:
-  SELECT(); if(S(0x13E)==1) { B(0x184)=1; F(0x370)=1; }
-  if(S(0x13E)==4) F(0x370)=0.5f; return;
- case 900:
-  SELECT();
-  if(S(0x13E)==0) { B(0x113)=0; F(0x370)=random_float(20)*static_cast<double>(0.1f)+2.0; if(static_cast<unsigned>(selector_random_roll(100))<50) F(0x370)=-F(0x370); }
-  if(S(0x13E)==1) F(0x120)=F(0x11C)=static_cast<float>(random_float(10)*static_cast<double>(0.1f)+0.5);
-  if(S(0x13E)==2) B(0x184)=1;
-  if(S(0x13E)==3) F(0x12C)=H[0];
-  if(S(0x13E)==4) { B(0x184)=1; F(0x370)=1; }
-  if(S(0x13E)==5) F(0x120)=F(0x11C)=static_cast<float>(random_float(10)*static_cast<double>(0.1f)+0.5); return;
- case 901:
-  SELECT();
-  if(S(0x13E)==1) F(0x370)=1;
-  if(S(0x13E)==2 || S(0x13E)==3) F(0x11C)=2;
-  if(S(0x13E)==4) F(0x370)=0.6f;
-  if(S(0x13E)==6) { float scale=random_float(15)*static_cast<double>(0.1f); F(0x120)=F(0x11C)=static_cast<float>(scale+1.0); S(0x364)=static_cast<short>(selector_random_roll(20)+10); F(0x12C)=random_float(360); F(0x374)=random_float(8)-4.0; }
-  if(S(0x13E)==7) { float scale=random_float(25)*static_cast<double>(0.1f); F(0x120)=F(0x11C)=static_cast<float>(scale+1.0); S(0x364)=static_cast<short>(selector_random_roll(20)+10); F(0x12C)=random_float(360); }
-  if(S(0x13E)>=10 && S(0x13E)<=13) { B(0x184)=1; F(0xF8)=H[1]; } return;
- case 902: {
-  float payload[3]; SELECT();
-  if(S(0x13E)==0) {
-   B(0x184)=1; F(0x12C)=H[0]; payload[0]=0; payload[1]=0; payload[2]=2; SPAWN(902); payload[2]=3; SPAWN(902);
-   switch(g_match_identifier) { case 2: case 3: S(0x364)=480; break; case 1: S(0x364)=300; break; case 0: S(0x364)=240; break; }
-  }
-  if(S(0x13E)==1) { float scale=random_float(15)*static_cast<double>(0.1f); F(0x120)=F(0x11C)=static_cast<float>(scale+1.0); S(0x364)=static_cast<short>(selector_random_roll(20)+10); F(0x12C)=random_float(360); } return;
- }
- case 930: {
-  float payload[3]; B(0x17C)=2; SELECT(); if(S(0x13E)==0) B(0x113)=0;
-  if(S(0x13E)==1) { for(int n=12;n!=0;--n) { payload[0]=random_float(360); payload[1]=random_float(30)+10.0; payload[2]=3; SPAWN(930); } }
-  if(S(0x13E)==3) F(0x120)=F(0x11C)=static_cast<float>(random_float(15)*static_cast<double>(0.1f)+0.5); return;
- }
- case 980: continue_action_980(); return;
- case 999: SELECT(); if(S(0x13E)==2) { F(0xF4)=H[0]; F(0xF8)=H[1]; } return;
- }
+
+#define SELECT() select_sequence(static_cast<int>(params_340[2]))
+#define MOVE() motion_004.set_components(params_340[0], params_340[1])
+#define SPAWN(a) spawn_unparented(a, x_ec, y_f0, facing_104, 1, reinterpret_cast<const unsigned *>(payload), 3)
+
+__forceinline static float random_float(int n) {
+    return static_cast<float>(static_cast<unsigned>(selector_random_roll(n)));
 }
+
+void KomachiObjectEntryView::initialize_action_entry() {
+    velocity_x_f4 = 0;
+    velocity_y_f8 = 0;
+    field_370 = 0;
+    field_374 = 0;
+    field_378 = 0;
+    word_384 = 0;
+    field_37c = 0;
+    word_386 = 0;
+    field_380 = 0;
+    byte_184 = 0;
+    word_364 = 0;
+    word_366 = 0;
+    word_368 = 0;
+    word_36a = 0;
+    word_36c = 0;
+    switch (action_id_13c) {
+    case 800:
+        byte_184 = 1;
+        SELECT();
+        return;
+    case 801:
+        byte_184 = 1;
+        SELECT();
+        if (sequence_id_13e == 0) {
+            replace_secondary(991, 20, 30, 2, 2);
+            field_370 = x_ec;
+            field_374 = y_f0;
+            MOVE();
+        }
+        if (sequence_id_13e == 1) {
+            MOVE();
+            rotation_12c = random_float(360);
+            scale_x_11c = 1.25f;
+            scale_y_120 = 1.25f;
+        }
+        if (sequence_id_13e == 3)
+            rotation_12c = params_340[0];
+        if (sequence_id_13e == 4) {
+            field_128 = params_340[0];
+            field_124 = params_340[1];
+        }
+        return;
+    case 810:
+        byte_17c = 0;
+        SELECT();
+        if (sequence_id_13e == 0)
+            byte_184 = 1;
+        if (sequence_id_13e == 1 || sequence_id_13e == 4 || sequence_id_13e == 5) {
+            byte_184 = 1;
+            field_370 = 2;
+        }
+        if (sequence_id_13e == 2) {
+            float scale = static_cast<float>(random_float(15) * static_cast<double>(0.1f));
+            scale_y_120 = scale_x_11c = static_cast<float>(scale + 1.0);
+            rotation_12c = random_float(360);
+        }
+        if (sequence_id_13e == 3) {
+            float scale = static_cast<float>(random_float(15) * static_cast<double>(0.1f));
+            scale_y_120 = scale_x_11c = static_cast<float>(scale + 1.0);
+            word_364 = static_cast<short>(selector_random_roll(20) + 10);
+            rotation_12c = random_float(360);
+        }
+        return;
+    case 811:
+        byte_17c = 4;
+        byte_184 = 1;
+        SELECT();
+        return;
+    case 812:
+        byte_17c = 8;
+        SELECT();
+        if (sequence_id_13e == 0) {
+            byte_184 = 1;
+            y_f0 = stage_height();
+        }
+        if (sequence_id_13e == 1) {
+            float scale = static_cast<float>(random_float(15) * static_cast<double>(0.1f));
+            scale_y_120 = scale_x_11c = static_cast<float>(scale + 1.0);
+            word_364 = static_cast<short>(selector_random_roll(20) + 10);
+            rotation_12c = random_float(360);
+        }
+        if (sequence_id_13e == 2) {
+            byte_184 = 1;
+            y_f0 = stage_height();
+        }
+        if (sequence_id_13e == 3) {
+            float scale = static_cast<float>(random_float(15) * static_cast<double>(0.1f));
+            scale_y_120 = scale_x_11c = static_cast<float>(scale + 1.0);
+            rotation_12c = random_float(360);
+            field_370 = static_cast<float>(random_float(25) * static_cast<double>(0.01f) + 0.25);
+        }
+        return;
+    case 815:
+        byte_17c = 1;
+        byte_184 = 1;
+        scale_y_120 = scale_x_11c = static_cast<float>(random_float(40) * static_cast<double>(0.01f) + static_cast<double>(0.8f));
+        rotation_12c = static_cast<float>(mt19937_next_u32() % 360);
+        SELECT();
+        word_364 = 0;
+        if (sequence_id_13e == 0)
+            MOVE();
+        if (sequence_id_13e == 2) {
+            MOVE();
+            rotation_12c = random_float(360);
+            scale_x_11c = 1.25f;
+            scale_y_120 = 1.25f;
+        }
+        return;
+    case 817:
+        byte_17c = 5;
+        SELECT();
+        if (sequence_id_13e == 0) {
+            double scale = static_cast<float>(random_float(50) * static_cast<double>(0.01f));
+            scale_y_120 = scale_x_11c = static_cast<float>(scale + params_340[0]);
+            rotation_12c = random_float(360);
+            field_124 = static_cast<float>(random_float(30) - 15.0);
+            field_128 = static_cast<float>(random_float(20) + 50.0);
+        }
+        if (sequence_id_13e == 2) {
+            rotation_12c = params_340[0];
+            if (static_cast<unsigned>(selector_random_roll(100)) <= 49)
+                field_374 = 1;
+            else
+                field_374 = -1;
+        }
+        return;
+    case 820: {
+        float payload[3];
+        byte_17c = 2;
+        SELECT();
+        if (sequence_id_13e == 0)
+            alpha_113 = 0;
+        if (sequence_id_13e == 1) {
+            for (int n = 12; n != 0; --n) {
+                payload[0] = random_float(360);
+                payload[1] = static_cast<float>(random_float(30) + 10.0);
+                payload[2] = 3;
+                SPAWN(820);
+            }
+        }
+        if (sequence_id_13e == 3)
+            scale_y_120 = scale_x_11c = static_cast<float>(random_float(15) * static_cast<double>(0.1f) + 0.5);
+        if (sequence_id_13e == 4)
+            byte_184 = 1;
+        if (sequence_id_13e == 5)
+            velocity_y_f8 = 4;
+        return;
+    }
+    case 821:
+        byte_17c = 6;
+        SELECT();
+        if (sequence_id_13e == 1) {
+            byte_184 = 1;
+            field_370 = 1;
+        }
+        if (sequence_id_13e == 4)
+            field_370 = 0.35f;
+        if (sequence_id_13e == 2 || sequence_id_13e == 3)
+            scale_x_11c = params_340[0];
+        return;
+    case 822:
+        byte_17c = 10;
+        SELECT();
+        if (sequence_id_13e == 0) {
+            field_370 = static_cast<float>(10.0 - random_float(20));
+            rotation_12c = random_float(360);
+            scale_y_120 = scale_x_11c = static_cast<float>(random_float(10) * static_cast<double>(0.1f) + 0.5);
+            alpha_113 = 0;
+        }
+        return;
+    case 825:
+        byte_184 = 1;
+        byte_17c = 3;
+        SELECT();
+        if (sequence_id_13e == 0) {
+            replace_secondary(994, 20, 30, 2, 2);
+            field_370 = x_ec;
+            field_374 = y_f0;
+            MOVE();
+        }
+        word_364 = 0;
+        if (sequence_id_13e == 1) {
+            MOVE();
+            rotation_12c = random_float(360);
+            scale_x_11c = 1.25f;
+            scale_y_120 = 1.25f;
+        }
+        if (sequence_id_13e == 3)
+            rotation_12c = params_340[0];
+        return;
+    case 826:
+        byte_184 = 1;
+        SELECT();
+        if (sequence_id_13e == 1) {
+            MOVE();
+            rotation_12c = random_float(360);
+        }
+        if (sequence_id_13e == 3)
+            rotation_12c = params_340[0];
+        return;
+    case 827:
+        SELECT();
+        if (sequence_id_13e == 0) {
+            replace_secondary(993, 20, 30, 2, 2);
+            MOVE();
+        }
+        if (sequence_id_13e == 1) {
+            MOVE();
+            rotation_12c = random_float(360);
+            scale_x_11c = 1.25f;
+            scale_y_120 = 1.25f;
+        }
+        return;
+    case 850:
+        SELECT();
+        if (sequence_id_13e == 1) {
+            rotation_12c = random_float(360);
+            field_370 = 0.5f;
+            MOVE();
+            float scale = static_cast<float>(random_float(10) * static_cast<double>(0.1f));
+            scale_y_120 = scale_x_11c = static_cast<float>(scale + 1.0);
+        }
+        return;
+    case 852:
+        byte_184 = 1;
+        SELECT();
+        if (sequence_id_13e == 0) {
+            replace_secondary(991, 20, 30, 2, 2);
+            field_370 = x_ec;
+            field_374 = y_f0;
+            MOVE();
+        }
+        if (sequence_id_13e == 1) {
+            MOVE();
+            rotation_12c = random_float(360);
+            scale_x_11c = 1.25f;
+            scale_y_120 = 1.25f;
+        }
+        return;
+    case 853:
+        SELECT();
+        if (sequence_id_13e == 0) {
+            velocity_x_f4 = params_340[0];
+            byte_184 = 1;
+            time_counter_144 = static_cast<short>(selector_random_roll(360));
+            float scale = static_cast<float>(random_float(50) * static_cast<double>(0.01f));
+            scale_y_120 = scale_x_11c = static_cast<float>(scale + 1.0);
+        }
+        if (sequence_id_13e == 3) {
+            rotation_12c = random_float(360);
+            field_370 = 0.5f;
+            MOVE();
+            float scale = static_cast<float>(random_float(10) * static_cast<double>(0.1f));
+            scale_y_120 = scale_x_11c = static_cast<float>(scale + 1.0);
+        }
+        return;
+    case 854:
+        SELECT();
+        if (sequence_id_13e == 0 || sequence_id_13e == 1) {
+            field_374 = 10;
+            velocity_y_f8 = 10;
+        }
+        if (sequence_id_13e == 2 || sequence_id_13e == 3) {
+            rotation_12c = random_float(360);
+            field_370 = 0.5f;
+            MOVE();
+            float scale = static_cast<float>(random_float(10) * static_cast<double>(0.1f));
+            scale_y_120 = scale_x_11c = static_cast<float>(scale + 1.0);
+        }
+        if (sequence_id_13e == 4) {
+            float scale = static_cast<float>(random_float(15) * static_cast<double>(0.1f));
+            scale_y_120 = scale_x_11c = static_cast<float>(scale + 0.5);
+        }
+        return;
+    case 855:
+        SELECT();
+        if (sequence_id_13e == 0) {
+            replace_secondary(993, 20, 30, 2, 2);
+            MOVE();
+        }
+        if (sequence_id_13e == 1) {
+            MOVE();
+            rotation_12c = random_float(360);
+            scale_x_11c = 1.25f;
+            scale_y_120 = 1.25f;
+        }
+        return;
+    case 856:
+        SELECT();
+        if (sequence_id_13e == 0) {
+            byte_184 = 1;
+            velocity_y_f8 = params_340[1];
+        }
+        if (sequence_id_13e == 1) {
+            float scale = static_cast<float>(random_float(25) * static_cast<double>(0.1f));
+            scale_y_120 = scale_x_11c = static_cast<float>(scale + 1.0);
+            word_364 = static_cast<short>(selector_random_roll(20) + 10);
+            rotation_12c = random_float(360);
+        }
+        if (sequence_id_13e == 2)
+            field_370 = 1;
+        if (sequence_id_13e == 3) {
+            float scale = static_cast<float>(random_float(15) * static_cast<double>(0.1f));
+            scale_y_120 = scale_x_11c = static_cast<float>(scale + 1.0);
+            word_364 = static_cast<short>(selector_random_roll(20) + 10);
+            rotation_12c = random_float(360);
+            field_374 = static_cast<float>(random_float(8) - 4.0);
+        }
+        if (sequence_id_13e == 4)
+            field_370 = 0.6f;
+        return;
+    case 861:
+        SELECT();
+        if (sequence_id_13e == 1) {
+            byte_184 = 1;
+            field_370 = 1;
+        }
+        if (sequence_id_13e == 4)
+            field_370 = 0.5f;
+        return;
+    case 900:
+        SELECT();
+        if (sequence_id_13e == 0) {
+            alpha_113 = 0;
+            field_370 = static_cast<float>(random_float(20) * static_cast<double>(0.1f) + 2.0);
+            if (static_cast<unsigned>(selector_random_roll(100)) < 50)
+                field_370 = -field_370;
+        }
+        if (sequence_id_13e == 1)
+            scale_y_120 = scale_x_11c = static_cast<float>(random_float(10) * static_cast<double>(0.1f) + 0.5);
+        if (sequence_id_13e == 2)
+            byte_184 = 1;
+        if (sequence_id_13e == 3)
+            rotation_12c = params_340[0];
+        if (sequence_id_13e == 4) {
+            byte_184 = 1;
+            field_370 = 1;
+        }
+        if (sequence_id_13e == 5)
+            scale_y_120 = scale_x_11c = static_cast<float>(random_float(10) * static_cast<double>(0.1f) + 0.5);
+        return;
+    case 901:
+        SELECT();
+        if (sequence_id_13e == 1)
+            field_370 = 1;
+        if (sequence_id_13e == 2 || sequence_id_13e == 3)
+            scale_x_11c = 2;
+        if (sequence_id_13e == 4)
+            field_370 = 0.6f;
+        if (sequence_id_13e == 6) {
+            float scale = static_cast<float>(random_float(15) * static_cast<double>(0.1f));
+            scale_y_120 = scale_x_11c = static_cast<float>(scale + 1.0);
+            word_364 = static_cast<short>(selector_random_roll(20) + 10);
+            rotation_12c = random_float(360);
+            field_374 = static_cast<float>(random_float(8) - 4.0);
+        }
+        if (sequence_id_13e == 7) {
+            float scale = static_cast<float>(random_float(25) * static_cast<double>(0.1f));
+            scale_y_120 = scale_x_11c = static_cast<float>(scale + 1.0);
+            word_364 = static_cast<short>(selector_random_roll(20) + 10);
+            rotation_12c = random_float(360);
+        }
+        if (sequence_id_13e >= 10 && sequence_id_13e <= 13) {
+            byte_184 = 1;
+            velocity_y_f8 = params_340[1];
+        }
+        return;
+    case 902: {
+        float payload[3];
+        SELECT();
+        if (sequence_id_13e == 0) {
+            byte_184 = 1;
+            rotation_12c = params_340[0];
+            payload[0] = 0;
+            payload[1] = 0;
+            payload[2] = 2;
+            SPAWN(902);
+            payload[2] = 3;
+            SPAWN(902);
+            switch (g_match_identifier) {
+            case 2: case 3: word_364 = 480; break;
+            case 1: word_364 = 300; break;
+            case 0: word_364 = 240; break;
+            }
+        }
+        if (sequence_id_13e == 1) {
+            float scale = static_cast<float>(random_float(15) * static_cast<double>(0.1f));
+            scale_y_120 = scale_x_11c = static_cast<float>(scale + 1.0);
+            word_364 = static_cast<short>(selector_random_roll(20) + 10);
+            rotation_12c = random_float(360);
+        }
+        return;
+    }
+    case 930: {
+        float payload[3];
+        byte_17c = 2;
+        SELECT();
+        if (sequence_id_13e == 0)
+            alpha_113 = 0;
+        if (sequence_id_13e == 1) {
+            for (int n = 12; n != 0; --n) {
+                payload[0] = random_float(360);
+                payload[1] = static_cast<float>(random_float(30) + 10.0);
+                payload[2] = 3;
+                SPAWN(930);
+            }
+        }
+        if (sequence_id_13e == 3)
+            scale_y_120 = scale_x_11c = static_cast<float>(random_float(15) * static_cast<double>(0.1f) + 0.5);
+        return;
+    }
+    case 980:
+        continue_action_980();
+        return;
+    case 999:
+        SELECT();
+        if (sequence_id_13e == 2) {
+            velocity_x_f4 = params_340[0];
+            velocity_y_f8 = params_340[1];
+        }
+        return;
+    }
+}
+
 #undef SPAWN
 #undef MOVE
 #undef SELECT
-#undef MOTION
-#undef H
-#undef I
-#undef B
-#undef S
-#undef F
-#undef FIELD
-}
+
+} // namespace th105

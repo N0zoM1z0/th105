@@ -191,6 +191,12 @@ class CompactSwitchTests(unittest.TestCase):
             raw, updated_contract = changed(body, contract, 3, bytes.fromhex(spill))
             with self.subTest(spill=spill), self.assertRaisesRegex(ValueError, 'unsupported instruction'):
                 payload.inspect(raw, raw, address, size, updated_contract, relocs)
+        rx_body, rx_addr, rx_size, rx_contract, rx_relocs = fixture(
+            compare=bytes.fromhex('9090 83f801 d99e80030000'))
+        payload.inspect(rx_body, rx_body, rx_addr, rx_size, rx_contract, rx_relocs)
+        bad_rx, bad_rx_contract = changed(rx_body, rx_contract, 5, bytes.fromhex('dd9e80030000'))
+        with self.assertRaisesRegex(ValueError, 'unsupported instruction'):
+            payload.inspect(bad_rx, bad_rx, rx_addr, rx_size, bad_rx_contract, rx_relocs)
 
     def test_scheduled_edi_save_and_constant_keep_the_selector(self):
         compare = bytes.fromhex('9090 83f801 57 bf01000000')
